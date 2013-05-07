@@ -4,9 +4,9 @@ TYPE= APP
 SRCS= QuickLaunch.cpp QLFilter.cpp MainWindow.cpp MainListView.cpp MainListItem.cpp SetupWindow.cpp SetupListView.cpp QLSettings.cpp
 RSRCS= QuickLaunch.rsrc
 ifeq ($(gccver),2)
-	LIBS= /boot/develop/lib/x86/libbe.so /boot/system/lib/libstdc++.r4.so /boot/develop/lib/x86/libroot_debug.so /boot/develop/lib/x86/libtracker.so
+	LIBS= be stdc++.r4 tracker
 else
-	LIBS= /boot/system/lib/gcc4/libbe.so /boot/system/lib/gcc4/libstdc++.so /boot/system/lib/gcc4/libroot_debug.so /boot/system/lib/gcc4/libtracker.so
+	LIBS= be stdc++ tracker
 endif
 LIBPATHS=
 SYSTEM_INCLUDE_PATHS= /boot/develop/headers/be /boot/develop/headers/cpp /boot/develop/headers/posix /boot/home/config/include
