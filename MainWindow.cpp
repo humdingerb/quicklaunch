@@ -11,6 +11,9 @@
 #include "MainWindow.h"
 #include "MainListItem.h"
 
+#include <ControlLook.h>
+#include <LayoutBuilder.h>
+
 #include <algorithm>
 
 
@@ -34,9 +37,10 @@ MainWindow::MainWindow(BRect frame)
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
 	BRect winframe = app->fSettings->GetMainWindowFrame();
 	MoveTo(winframe.LeftTop());
-
-	fSearchBox = new BTextControl(BRect(), "SearchBox", NULL,
+	
+	fSearchBox = new BTextControl("SearchBox", NULL,
 							NULL, new BMessage(SEARCH_BOX));
+							
 	fSetupButton = new BButton ("Setup", "Setup", new BMessage(SETUP_BUTTON));
 	fSetupButton->SetTarget(be_app);
 
@@ -45,17 +49,19 @@ MainWindow::MainWindow(BRect frame)
 							false, true, B_FANCY_BORDER);
 	
 	// Build the layout
-	SetLayout(new BGroupLayout(B_VERTICAL, 0));
-
-	AddChild(BGroupLayoutBuilder(B_HORIZONTAL, kINSET)
-		.Add(fSearchBox)
-		.Add(fSetupButton)
-		.SetInsets(kINSET, kINSET, kINSET, 0)
-	);
-	AddChild(BGroupLayoutBuilder(B_VERTICAL, kINSET)
-		.Add(fScrollView)
-		.SetInsets(kINSET, kINSET, kINSET, kINSET)
-	);
+	float spacing = be_control_look->DefaultItemSpacing();
+	
+	BLayoutBuilder::Group<>(this, B_VERTICAL, 0)
+		.AddGroup(B_HORIZONTAL, 0)
+			.Add(fSearchBox)
+			.AddStrut(spacing)
+			.Add(fSetupButton)
+			.SetInsets(spacing/2)
+		.End()
+		.AddGroup(B_VERTICAL, 0)
+			.Add(fScrollView)
+			.SetInsets(spacing/2, 0, spacing/2, spacing/2)
+		.End();
 
 	fSearchBox->MakeFocus(true);
 

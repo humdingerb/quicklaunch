@@ -11,6 +11,8 @@
 #include "QuickLaunch.h"
 #include "QLSettings.h"
 
+#include <ControlLook.h>
+#include <LayoutBuilder.h>
 
 static int
 compare_items(const void* a, const void* b)
@@ -47,23 +49,25 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkIgnore->SetTarget(be_app);
 
 	// Build the layout
-	SetLayout(new BGroupLayout(B_VERTICAL, 0));
 
-		AddChild(BGroupLayoutBuilder(B_VERTICAL, 0)
+	float spacing = be_control_look->DefaultItemSpacing();
+
+	BLayoutBuilder::Group<>(this, B_VERTICAL, 0)
+		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkVersion)
 			.Add(fChkPath)
-			.SetInsets(kINSET, kINSET, kINSET, 0)
-		);
-		AddChild(BGroupLayoutBuilder(B_VERTICAL, 0)
+			.SetInsets(spacing/2, spacing/2, spacing/2, 0)
+		.End()
+		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkIgnore)
 			.Add(fIgnoreScroll)
-			.SetInsets(kINSET, kINSET, kINSET, 0)
-		);
-		AddChild(BGroupLayoutBuilder(B_HORIZONTAL, kINSET)
+			.SetInsets(spacing/2, spacing/2, spacing/2, 0)
+		.End()
+		.AddGroup(B_HORIZONTAL, spacing/2)
 			.Add(fButAdd)
 			.Add(fButRem)
-			.SetInsets(0, kINSET, kINSET, kINSET)
-		);
+			.SetInsets(0, spacing/2, spacing/2, spacing/2)
+		.End();
 	
 	fOpenPanel = new BFilePanel(B_OPEN_PANEL, NULL, NULL, B_DIRECTORY_NODE);
 	fOpenPanel->SetTarget(this);
