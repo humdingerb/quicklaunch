@@ -132,12 +132,6 @@ MainWindow::BuildList(const char *predicate)
 				find_directory(B_SYSTEM_ADDONS_DIRECTORY, &dir);
 				if (strstr(parent.Path(), dir.Path()))
 					continue;
-				find_directory(B_COMMON_BIN_DIRECTORY, &dir);
-				if (strstr(parent.Path(), dir.Path()))
-					continue;
-				find_directory(B_USER_CONFIG_DIRECTORY, &dir);
-				if (strstr(parent.Path(), dir.Path()))
-					continue;
 				find_directory(B_TRASH_DIRECTORY, &dir, false, &volume);	// check Trash on all volumes
 				if (strstr(parent.Path(), dir.Path()))
 					continue;

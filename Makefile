@@ -1,13 +1,8 @@
-gccver= $(shell setgcc | tail -c -2)
 NAME= QuickLaunch
 TYPE= APP
-SRCS= QuickLaunch.cpp QLFilter.cpp MainWindow.cpp MainListView.cpp MainListItem.cpp SetupWindow.cpp SetupListView.cpp QLSettings.cpp
-RSRCS= QuickLaunch.rsrc
-ifeq ($(gccver),2)
-	LIBS= be stdc++.r4 tracker
-else
-	LIBS= be stdc++ tracker
-endif
+SRCS= QLFilter.cpp QuickLaunch.cpp MainWindow.cpp MainListView.cpp MainListItem.cpp SetupWindow.cpp SetupListView.cpp QLSettings.cpp
+RSRCS=
+LIBS= /boot/system/lib/libbe.so /boot/system/lib/libstdc++.r4.so /boot/system/lib/libtracker.so /boot/system/lib/libroot.so
 LIBPATHS=
 SYSTEM_INCLUDE_PATHS= /boot/develop/headers/be /boot/develop/headers/cpp /boot/develop/headers/posix /boot/home/config/include
 LOCAL_INCLUDE_PATHS=

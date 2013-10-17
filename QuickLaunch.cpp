@@ -162,9 +162,9 @@ QLApp::QuitRequested()
 void
 QLApp::AboutRequested()
 {
-	BAlert *alert = new BAlert("about", "QuickLaunch   v0.9.5\n"
+	BAlert *alert = new BAlert("about", "QuickLaunch   v0.9.6\n"
 		"\twritten by Humdinger\n"
-		"\tCopyright 2010\n\n"
+		"\tCopyright 2010-2013\n\n"
 		"QuickLaunch quickly starts any installed application. "
 		"Just enter at least three letters of its name and choose "
 		"from a list of all found programs.\n", "Thank you");

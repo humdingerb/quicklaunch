@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"../html-dtd/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="robots" content="all" />
+	<title>QuickLaunch</title>
+
+<style type="text/css">
+
+body {
+    font-size: 0.9em;
+	font-family: "DejaVu Sans",Arial,Helvetica,sans-serif;
+	line-height: 1.5;
+	margin: 40px;
+	min-width: 45em;
+	max-width: 70em;
+}
+hr {
+	border: dotted thin #e0e0e0;
+}
+h1 {
+	font-size: 1.3em;
+	border-bottom: dotted thin #e0e0e0;
+	margin-bottom: 45px;
+}
+h2 {
+	font-size: 1.2em;
+	border-bottom: dotted thin #e0e0e0;
+	margin-top: 40px;
+}
+h3 {
+	font-size: 1em;
+	border-bottom: none;
+	margin-bottom: 0px;
+}
+.key {				/* Shortcut (separate with &#160; */
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;	
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border-color: #c7c7c7;
+	border-style: solid;
+	border-width: 1px;
+	padding: 0px 2px 0px 2px;
+	background-color: #e8e8e8;
+    font-family: sans;
+   	font-variant: small-caps;
+  	font-size: 1em;
+}
+</style> 
+
+</head>
+<body>
+<div align = "center">
+<img width="64" height="64" src="./images/quicklaunch_icon_64.png" alt="QuickLaunch icon" />
+<p><span style="font-size: 1.5em; font-weight:bold">QuickLaunch</span><br />
+for <a href="http://www.haiku-os.org">Haiku</a><br />
+<i>by Humdinger</i></p>
+<hr />
+<p id="index"><a href="#tips+tricks">Tips and Tricks</a> &mdash; <a href="#download">Download</a> &mdash; <a href="#bug+feedback">Bugreports and Feedback</a> &mdash; <a href="#thanks">Thanks</a> &mdash; <a href="#history">History</a><p>
+</div>
+<hr />
+<p><br /></p>
+<p>QuickLaunch is a small launcher tool that helps you to quickly start any installed application.</p>
+<p>Simply start to enter the name of an application and QuickLaunch will find all programs matching these initial letters and show them in a list. You choose an app from that list with the <span class="key">CursorUp/Down</span> keys and launch it by hitting <span class="key">Return</span>. <span class="key">Escape</span> quits QuickLaunch.<p>
+
+<p>Here's the main window after searching for all applications starting with "dis" and the settings window when clicking the <i>Setup</i> button:</p>
+<div align = "center">
+<img src="./images/quicklaunch.png" alt="QuickLaunch windows" />
+</div>
+<p>The setup window shows three options:</p>
+<ul>
+<li>Show the version of an application &mdash; only really useful when having older and newer versions of an app installed.</li>
+<li>Show the path to an application &mdash; interesting when you have several copies of an application.</li>
+<li>Ignore the folders (and their subfolders) that you can add and remove from the list with the buttons at the bottom.</li>
+</ul>
+
+<h2>
+<a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
+<a id="tips+tricks" name="tips+tricks">Tips & Tricks</a></h2>
+<ul>
+<li>Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like <span class="key">Opt</span>+<span class="key">Spacebar</span>, for even quicker QuickLaunching apps.
+<li>Use '*' as jokers, e.g. "*play" for all apps with "play" in their name.</li>
+<li><span class="key">Shift</span>+<span class="key">Return</span> will keep the QuickLaunch window open after launching the app.</li>
+<li><span class="key">Ctrl</span>+<span class="key">Return</span> will open an app's location in Tracker instead of launching it.</li>
+<li>These folders are ignored by default:<br />
+<span style="font-family: monospace">B_SYSTEM_BIN_DIRECTORY, B_SYSTEM_ADDONS_DIRECTORY, B_COMMON_BIN_DIRECTORY, B_USER_CONFIG_DIRECTORY, B_TRASH_DIRECTORY</span><br />
+In other words, applications in Trash are ignored, as well as add-ons, and command line apps.</li>
+</ul>
+
+<h2>
+<a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
+<a id="download" name="download">Download</a></h2>
+<p>You can download QuickLaunch directly <a href="">Sourceforge</a> where you also find the <a href="">source code</a> including a <a href="">Paladin</a> project file to easily build it yourself.</p>
+<p>QuickLaunch is also listed at <a href="">Haikuware</a> and can be built using HaikuPort's <a href="">haikuporter</a>.</p>
+
+<h2>
+<a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
+<a id="bugs+feedback" name="bugs+feedback">Bugreports and Feedback</a></h2>
+<p>Please use sourceforge's <a href="">bugreport form</a> if you experience unusual difficulties or email your general feedback to humdingerB at gmail com.</p>
+
+<h2>
+<a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
+<a id="thanks" name="thanks">Thanks</a></h2>
+<p>	I have to thank DarkWyrm for some helpful hints and for some of the	code I re-used from his RunProgram app and his EscapeCancelFilter.<br />
+Equally useful was Robert Polic's EZLauncher of BeNewsletter 3-46 and the help I got on the #haiku IRC channel.</p>
+
+<h2>
+<a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
+<a id="history" name="history">History</a></h2>
+<p><b>0.9.0</b> - <i>01-02-2010:</i></p>
+<ul>
+<li>Initial release.</li>
+</ul>
+<p><b>0.9.1</b> - <i>04-02-2010:</i></p>
+<ul>
+<li>Show version info to distinguish different versions of the same app.</li>
+<li>Home/End key jump to first/last item.</li>
+<li>Shift+Return will keep the QL window open.</li>
+<li>Added script to add QL to the Deskbar tray. Remove via context menu (Removal will only work with Haiku > r35402, for lower revisions, open Terminal and enter "desklink --remove=DeskButton".)</li>
+</ul>
+<p><b>0.9.2</b> - <i>04-03-2010:</i></p>
+<ul>
+<li>Add setup window to toggle version and path information.</li>
+<li>Ignore user definable folders.</li>
+<li>Make main window horizontally resizable.</li>
+<li>Remember window position and size.</li>
+</ul>
+<p><b>0.9.3</b> - <i>05-03-2010:</i></p>
+<ul>
+<li>Ignore path information wasn't loaded correctly.</li>
+</ul>
+<p><b>0.9.4</b> - <i>11-03-2010:</i></p>
+<ul>
+<li>Added Control+Return to open an app's location in Tracker.</li>
+<li>Added live-truncating of strings on window resize.</li>
+<li>The query now returns only app names beginning with the search string and now starts right after entering the first letter.</li>
+<li>Better handling of different system font size settings.</li>
+<li>Less restrictive window size limits.</li>
+</ul>
+<p><b>0.9.5</b> - <i>17-05-2010:</i></p>
+<ul>
+<li>Ignore Trash on all volumes, not just on /boot.</li>
+<li>Be stricter on the apps' signature. They have to conform to the standard and start with "application/x-vnd". This avoids listing e.g, libraries.</li>
+<li>PageUp and PageDown keys now work in the result list.</li>
+<li>Case-insentive sorting.</li>
+</ul>
+<p><b>0.9.6</b> - <i>14-10-2013:</i></p>
+<ul>
+<li>Small changes to work under Haiku with package management.</li>
+</ul>
+
+</body>
+</html>
