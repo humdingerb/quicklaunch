@@ -1,7 +1,7 @@
 NAME= QuickLaunch
 TYPE= APP
 SRCS= QLFilter.cpp QuickLaunch.cpp MainWindow.cpp MainListView.cpp MainListItem.cpp SetupWindow.cpp SetupListView.cpp QLSettings.cpp
-RSRCS=
+RDEF= QuickLaunch.rdef
 LIBS= /boot/system/lib/libbe.so /boot/system/lib/libstdc++.r4.so /boot/system/lib/libtracker.so /boot/system/lib/libroot.so
 LIBPATHS=
 SYSTEM_INCLUDE_PATHS= /boot/develop/headers/be /boot/develop/headers/cpp /boot/develop/headers/posix /boot/home/config/include
