@@ -4,7 +4,7 @@ SRCS= QLFilter.cpp QuickLaunch.cpp MainWindow.cpp MainListView.cpp MainListItem.
 RDEFS= QuickLaunch.rdef
 LIBS= /boot/system/lib/libbe.so /boot/system/lib/libstdc++.r4.so /boot/system/lib/libtracker.so /boot/system/lib/libroot.so
 LIBPATHS=
-SYSTEM_INCLUDE_PATHS= /boot/system/develop/headers/be /boot/system/develop/headers/cpp /boot/system/develop/headers/posix /boot/home/config/include
+SYSTEM_INCLUDE_PATHS= $(BUILDHOME)/headers/be $(BUILDHOME)/headers/cpp $(BUILDHOME)/headers/posix ~/config/include
 LOCAL_INCLUDE_PATHS=
 OPTIMIZE=FULL
 #	specify any preprocessor symbols to be defined.  The symbols will not
