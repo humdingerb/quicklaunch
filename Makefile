@@ -4,7 +4,7 @@ SRCS= QLFilter.cpp QuickLaunch.cpp MainWindow.cpp MainListView.cpp MainListItem.
 RDEFS= QuickLaunch.rdef
 LIBS= be tracker $(STDCPPLIBS)
 LIBPATHS=
-SYSTEM_INCLUDE_PATHS= $(BUILDHOME)/headers/be $(BUILDHOME)/headers/cpp $(BUILDHOME)/headers/posix ~/config/include
+SYSTEM_INCLUDE_PATHS=
 LOCAL_INCLUDE_PATHS=
 OPTIMIZE=FULL
 #	specify any preprocessor symbols to be defined.  The symbols will not
@@ -24,4 +24,6 @@ COMPILER_FLAGS=
 LINKER_FLAGS=
 
 ## include the makefile-engine
-include $(BUILDHOME)/etc/makefile-engine
+DEVEL_DIRECTORY := \
+	$(shell findpaths -r "makefile_engine" B_FIND_PATH_DEVELOP_DIRECTORY)
+include $(DEVEL_DIRECTORY)/etc/makefile-engine

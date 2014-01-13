@@ -38,8 +38,8 @@ MainListView::Draw(BRect rect)
 		delete string;
 	}
 	else if (IsEmpty() && letters == 0) {
-		BString *string = new BString("Use '*' as jokers.");
-   		float strwidth = font.StringWidth("Use '*' as jokers.");
+		BString *string = new BString("Use '*' as wildcards.");
+   		float strwidth = font.StringWidth("Use '*' as wildcards.");
    		GetPreferredSize(&width, &height);
 		GetFont(&font);
 		MovePenTo(width / 2 - strwidth / 2, height / 2 + font.Size() / 2);
