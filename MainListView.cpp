@@ -8,6 +8,7 @@
 
 #include "MainListView.h"
 #include "MainWindow.h"
+#include "QuickLaunch.h"
 
 MainListView::MainListView()
 		  : BListView(BRect(), "ResultList", B_SINGLE_SELECTION_LIST, B_WILL_DRAW)
@@ -27,23 +28,25 @@ MainListView::Draw(BRect rect)
 	int letters = window->GetStringLength();
 	float width, height;
 	BFont font;
-	if (IsEmpty() && letters > 0) {
-		BString *string = new BString("Found no matches.");
-   		float strwidth = font.StringWidth("Found no matches.");
-   		GetPreferredSize(&width, &height);
-		GetFont(&font);
-		MovePenTo(width / 2 - strwidth / 2, height / 2 + font.Size() / 2);
-		SetHighColor(ui_color(B_FAILURE_COLOR));
-        DrawString(string->String());
-		delete string;
-	}
-	else if (IsEmpty() && letters == 0) {
+	QLApp *app = dynamic_cast<QLApp *> (be_app);
+	
+	if (IsEmpty() && letters <= app->fSettings->GetDelay()) {
 		BString *string = new BString("Use '*' as wildcards.");
    		float strwidth = font.StringWidth("Use '*' as wildcards.");
    		GetPreferredSize(&width, &height);
 		GetFont(&font);
 		MovePenTo(width / 2 - strwidth / 2, height / 2 + font.Size() / 2);
 		SetHighColor(ui_color(B_MENU_SELECTED_BACKGROUND_COLOR));
+        DrawString(string->String());
+		delete string;
+	}
+	else if (IsEmpty() && letters > app->fSettings->GetDelay()) {
+		BString *string = new BString("Found no matches.");
+   		float strwidth = font.StringWidth("Found no matches.");
+   		GetPreferredSize(&width, &height);
+		GetFont(&font);
+		MovePenTo(width / 2 - strwidth / 2, height / 2 + font.Size() / 2);
+		SetHighColor(ui_color(B_FAILURE_COLOR));
         DrawString(string->String());
 		delete string;
 	}

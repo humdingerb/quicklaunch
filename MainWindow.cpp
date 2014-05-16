@@ -74,7 +74,7 @@ void
 MainWindow::BuildList(const char *predicate)
 {
 	fListView->MakeEmpty();
-	
+
 	BVolumeRoster volumeRoster;
 	BVolume volume;
 	BQuery query;
@@ -327,8 +327,9 @@ MainWindow::MessageReceived(BMessage* message)
 		}
 		case NEW_FILTER:
 		{
+			QLApp *app = dynamic_cast<QLApp *> (be_app);
 			int letters = GetStringLength();
-			if (letters > 0) {
+			if (letters > app->fSettings->GetDelay()) {
 				const char *searchString = GetSearchString();
 				BuildList(searchString);
 				fListView->Select(0);

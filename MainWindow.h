@@ -44,7 +44,6 @@
 #define SETUP_BUTTON	'setb'
 
 #define kMAX_DISPLAYED_ITEMS		9
-#define kINSET			5
 
 
 class MainWindow : public BWindow {

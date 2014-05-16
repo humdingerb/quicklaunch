@@ -35,7 +35,7 @@ QLApp::ReadyToRun()
 	fMainWindow->SetSizeLimits(190.0, 800.0, 90.0, 1000.0);
 	BRect frame = fSettings->GetMainWindowFrame();
 	fMainWindow->MoveTo(frame.LeftTop());
-	fMainWindow->ResizeTo(frame.right - frame.left, 90.0);
+	fMainWindow->ResizeTo(frame.right - frame.left, 93.0);
 	fMainWindow->Show();
 	
 	frame.OffsetBy(70.0, 120.0);
@@ -94,6 +94,16 @@ QLApp::MessageReceived(BMessage* message)
 				fMainWindow->fListView->Invalidate();
 				fMainWindow->UnlockLooper();
 			}
+			break;
+		}
+		case DELAY_CHK:
+		{
+			int32 value;
+			message->FindInt32("be:value", &value);
+			fSettings->SetDelay(value);
+			fMainWindow->LockLooper();
+			fMainWindow->PostMessage('fltr');
+			fMainWindow->UnlockLooper();
 			break;
 		}
 		case IGNORE_CHK:
@@ -162,7 +172,7 @@ QLApp::QuitRequested()
 void
 QLApp::AboutRequested()
 {
-	BAlert *alert = new BAlert("about", "QuickLaunch   v0.9.6\n"
+	BAlert *alert = new BAlert("about", "QuickLaunch   v0.9.7\n"
 		"\twritten by Humdinger\n"
 		"\tCopyright 2010-2013\n\n"
 		"QuickLaunch quickly starts any installed application. "

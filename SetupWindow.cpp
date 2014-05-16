@@ -32,7 +32,9 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkVersion = new BCheckBox("VersionChk", "Show application version",
 									new BMessage(VERSION_CHK), B_WILL_DRAW | B_NAVIGABLE); 
 	fChkPath = new BCheckBox("PathChk", "Show application path",
-									new BMessage(PATH_CHK), B_WILL_DRAW | B_NAVIGABLE); 
+									new BMessage(PATH_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkDelay = new BCheckBox("DelayChk", "Wait for a second letter before searching",
+									new BMessage(DELAY_CHK), B_WILL_DRAW | B_NAVIGABLE); 
 	fChkIgnore = new BCheckBox("IgnoreChk", "Ignore these folders (and their subfolders):",
 									new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE); 
 	fIgnoreList = new SetupListView();
@@ -46,6 +48,7 @@ SetupWindow::SetupWindow(BRect frame)
 	
 	fChkVersion->SetTarget(be_app);
 	fChkPath->SetTarget(be_app);
+	fChkDelay->SetTarget(be_app);
 	fChkIgnore->SetTarget(be_app);
 
 	// Build the layout
@@ -56,6 +59,7 @@ SetupWindow::SetupWindow(BRect frame)
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkVersion)
 			.Add(fChkPath)
+			.Add(fChkDelay)
 			.SetInsets(spacing/2, spacing/2, spacing/2, 0)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
@@ -75,6 +79,7 @@ SetupWindow::SetupWindow(BRect frame)
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
 	fChkVersion->SetValue(app->fSettings->GetShowVersion());
 	fChkPath->SetValue(app->fSettings->GetShowPath());
+	fChkDelay->SetValue(app->fSettings->GetDelay());
 	fChkIgnore->SetValue(app->fSettings->GetShowIgnore());
 }
 

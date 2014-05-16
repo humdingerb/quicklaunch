@@ -34,6 +34,7 @@ QLSettings::QLSettings()
 	fSetupWindowBounds = BRect(0.0, 0.0, 340.0, 180.0);
 	fShowVersion = false;
 	fShowPath = true;
+	fDelay = false;
 	fShowIgnore = false;
 	fItemCount = 0;
 
@@ -59,6 +60,10 @@ QLSettings::QLSettings()
 		int32 path;
 		if (settings.FindInt32("show path", &path) == B_OK)
 			fShowPath = path;
+
+		int32 delay;
+		if (settings.FindInt32("delay", &delay) == B_OK)
+			fDelay = delay;
 
 		int32 ignore;
 		if (settings.FindInt32("show ignore", &ignore) == B_OK)
@@ -102,6 +107,7 @@ QLSettings::~QLSettings()
 	settings.AddRect("setup window bounds", app->fSetupWindow->Bounds());
 	settings.AddInt32("show version", fShowVersion);
 	settings.AddInt32("show path", fShowPath);
+	settings.AddInt32("delay", fDelay);
 	settings.AddInt32("show ignore", fShowIgnore);
 	settings.AddInt32("item count", fItemCount);
 

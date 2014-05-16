@@ -60,7 +60,7 @@ h3 {
 for <a href="http://www.haiku-os.org">Haiku</a><br />
 <i>by Humdinger</i></p>
 <hr />
-<p id="index"><a href="#tips+tricks">Tips and Tricks</a> &mdash; <a href="#download">Download</a> &mdash; <a href="#bug+feedback">Bugreports and Feedback</a> &mdash; <a href="#thanks">Thanks</a> &mdash; <a href="#history">History</a><p>
+<p id="index"><a href="#tips+tricks">Tips and Tricks</a> &mdash; <a href="#download">Download</a> &mdash; <a href="#bugs+feedback">Bugreports and Feedback</a> &mdash; <a href="#thanks">Thanks</a> &mdash; <a href="#history">History</a><p>
 </div>
 <hr />
 <p><br /></p>
@@ -71,10 +71,11 @@ for <a href="http://www.haiku-os.org">Haiku</a><br />
 <div align = "center">
 <img src="./images/quicklaunch.png" alt="QuickLaunch windows" />
 </div>
-<p>The setup window shows three options:</p>
+<p>The setup window shows four options:</p>
 <ul>
 <li>Show the version of an application &mdash; only really useful when having older and newer versions of an app installed.</li>
 <li>Show the path to an application &mdash; interesting when you have several copies of an application.</li>
+<li>Wait for a second letter before starting the search &mdash; probably only useful for slow systems.</li>
 <li>Ignore the folders (and their subfolders) that you can add and remove from the list with the buttons at the bottom.</li>
 </ul>
 
@@ -95,7 +96,7 @@ In other words, applications in Trash are ignored, as well as add-ons, and comma
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
 <a id="download" name="download">Download</a></h2>
 <p>QuickLaunch is directly available through HaikuDepot from the HaikuPorts repository.<br />
-<p>You can also download the QuickLaunch package (quicklaunch.hpkg) directly from <a href="http://sourceforge.net/projects/quicklaunch-h/files/?source=navbar">Sourceforge</a> where you also find the <a href="http://sourceforge.net/p/quicklaunch-h/code/ci/master/tree/">source code</a> including a Paladin project file and also a Makefile to easily build it yourself</p>
+<p>You can also download the QuickLaunch package (quicklaunch.hpkg) directly from <a href="http://sourceforge.net/projects/quicklaunch-h/files/?source=navbar">Sourceforge</a> where you also find the <a href="http://sourceforge.net/p/quicklaunch-h/code/ci/master/tree/">source code</a> including a Paladin project file and also a Makefile to easily build it yourself.</p>
 
 <h2>
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
@@ -151,6 +152,12 @@ Equally useful was Robert Polic's EZLauncher of BeNewsletter 3-46 and the help I
 <p><b>0.9.6</b> - <i>14-10-2013:</i></p>
 <ul>
 <li>Small changes to work under Haiku with package management.</li>
+</ul>
+<p><b>0.9.7</b> - <i>17-05-2014:</i></p>
+<ul>
+<li>Added a setting to only start searching after entering a second letter of the application name.</li>
+<li>Respecting custom colours set in Appearance preferences.</li>
+<li>Renamed "jokers" to "wildcards".</li>
 </ul>
 
 </body>

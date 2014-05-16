@@ -69,12 +69,12 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
 
     // set background color
     if (IsSelected()) {
-        view->SetHighColor(ui_color(B_MENU_SELECTED_BACKGROUND_COLOR));
-        view->SetLowColor(ui_color(B_MENU_SELECTED_BACKGROUND_COLOR));
+        view->SetHighColor(ui_color(B_LIST_SELECTED_BACKGROUND_COLOR));
+        view->SetLowColor(ui_color(B_LIST_SELECTED_BACKGROUND_COLOR));    	
     }
     else {
-        view->SetHighColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
-        view->SetLowColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
+        view->SetHighColor(ui_color(B_LIST_BACKGROUND_COLOR));
+        view->SetLowColor(ui_color(B_LIST_BACKGROUND_COLOR));
     }
     view->FillRect(rect);
 
@@ -89,7 +89,10 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
 
 	// application name
 
-    view->SetHighColor(ui_color(B_CONTROL_TEXT_COLOR));
+    if (IsSelected())
+    	view->SetHighColor(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR));
+    else
+    	view->SetHighColor(ui_color(B_LIST_ITEM_TEXT_COLOR));
 
     appfont.GetHeight(&finfo);
     view->SetFont(&appfont);
@@ -114,7 +117,11 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
 
 	// application path and version
 
-    view->SetHighColor(tint_color(ui_color(B_CONTROL_TEXT_COLOR), 0.7));
+    if (IsSelected())
+    	view->SetHighColor(tint_color(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR), 0.7));
+    else
+    	view->SetHighColor(tint_color(ui_color(B_LIST_ITEM_TEXT_COLOR), 0.7));
+    	
 	pathfont.SetSize(appfont.Size() - 2);
     pathfont.GetHeight(&finfo);
     view->SetFont(&pathfont);

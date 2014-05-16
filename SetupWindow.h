@@ -37,12 +37,11 @@
 
 #define VERSION_CHK	'chve'
 #define PATH_CHK	'chpa'
+#define DELAY_CHK	'chde'
 #define IGNORE_CHK	'chig'
 #define ADD_BUT		'addb'
 #define REM_BUT		'remb'
 #define FILEPANEL	'file'
-
-#define kINSET			5
 
 
 class SetupWindow : public BWindow {
@@ -56,6 +55,7 @@ public:
 	BButton			*fButRem;
 	BCheckBox		*fChkVersion;
 	BCheckBox		*fChkPath;
+	BCheckBox		*fChkDelay;
 	BCheckBox		*fChkIgnore;
 	SetupListView	*fIgnoreList;
 	
