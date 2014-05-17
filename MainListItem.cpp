@@ -62,9 +62,9 @@ void
 MainListItem::DrawItem(BView *view, BRect rect, bool complete)
 {
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
-    float       offset = 10;
-    BFont       appfont = be_bold_font;
-    BFont       pathfont = be_plain_font;
+    float offset = 10;
+    BFont appfont;
+    BFont pathfont;
     font_height finfo;
 
     // set background color
@@ -73,8 +73,8 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
         view->SetLowColor(ui_color(B_LIST_SELECTED_BACKGROUND_COLOR));    	
     }
     else {
-        view->SetHighColor(ui_color(B_LIST_BACKGROUND_COLOR));
-        view->SetLowColor(ui_color(B_LIST_BACKGROUND_COLOR));
+        view->SetHighColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
+        view->SetLowColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
     }
     view->FillRect(rect);
 
@@ -95,6 +95,7 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
     	view->SetHighColor(ui_color(B_LIST_ITEM_TEXT_COLOR));
 
     appfont.GetHeight(&finfo);
+    appfont.SetFace(B_BOLD_FACE);
     view->SetFont(&appfont);
 
 	if (app->fSettings->GetShowVersion() || app->fSettings->GetShowPath()) {

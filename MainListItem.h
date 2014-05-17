@@ -27,7 +27,7 @@
 #include <string.h>
 
 
-const int kBitmapSize			= 32;
+const int kBitmapSize = 32;
 
 #define kDEFAULT_ITEM_HEIGHT	(kBitmapSize + 15)
 #define kITEM_MARGIN			 10
