@@ -6,10 +6,10 @@
  *	Humdinger, humdingerb@gmail.com
  */
 
-#include "QuickLaunch.h"
 #include "QLFilter.h"
-#include "MainWindow.h"
+#include "QuickLaunch.h"
 #include "MainListItem.h"
+#include "MainWindow.h"
 
 #include <ControlLook.h>
 #include <LayoutBuilder.h>
@@ -106,9 +106,8 @@ MainWindow::BuildList(const char *predicate)
 					
 				status = query.Fetch();
 			}
-			if (status != B_OK) {
+			if (status != B_OK)
 				printf("2. what happened? %s\n", strerror(status));
-			}
 	
 			BEntry entry;
 			BPath path;

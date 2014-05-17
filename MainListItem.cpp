@@ -7,15 +7,15 @@
  */
 
 #include <Application.h>
-#include "QuickLaunch.h"
-#include "MainListItem.h"
 
+#include "MainListItem.h"
+#include "QuickLaunch.h"
 
 MainListItem::MainListItem(BEntry *entry)
 		  :BListItem()
 {
-	BNode		node;
-	BNodeInfo	node_info;
+	BNode node;
+	BNodeInfo node_info;
 
 	// try to get node info for this entry
 	if ((node.SetTo(entry) == B_NO_ERROR) &&

@@ -9,17 +9,16 @@
 #ifndef SETUP_WINDOW_H
 #define SETUP_WINDOW_H
 
+#include "SetupListView.h"
+
 #include <Application.h>
 #include <Button.h>
 #include <CheckBox.h>
 #include <Entry.h>
 #include <FilePanel.h>
 #include <FindDirectory.h>
-#include <GridLayoutBuilder.h>
-#include <SpaceLayoutItem.h>
 #include <GroupLayout.h>
 #include <GroupLayoutBuilder.h>
-#include <GroupView.h>
 #include <ListView.h>
 #include <ListItem.h>
 #include <Message.h>
@@ -28,10 +27,8 @@
 #include <ScrollView.h>
 #include <Window.h>
 
-#include "SetupListView.h"
-
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 

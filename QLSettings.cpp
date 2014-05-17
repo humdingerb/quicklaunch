@@ -12,8 +12,8 @@
 #include <Application.h>
 #include <FindDirectory.h>
 #include <File.h>
-#include <Path.h>
 #include <Message.h>
+#include <Path.h>
 #include <Screen.h>
 
 #include <stdio.h>

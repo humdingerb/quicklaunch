@@ -12,7 +12,6 @@
 #include <ListView.h>
 #include <String.h>
 
-
 #include <stdio.h>
 
 class MainListView : public BListView {

@@ -7,9 +7,9 @@
  */
 
 #include "MainListItem.h"
-#include "SetupWindow.h"
 #include "QuickLaunch.h"
 #include "QLSettings.h"
+#include "SetupWindow.h"
 
 #include <ControlLook.h>
 #include <LayoutBuilder.h>

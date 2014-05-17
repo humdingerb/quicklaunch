@@ -9,17 +9,15 @@
 #ifndef QL_WINDOW_H
 #define QL_WINDOW_H
 
+#include "MainListView.h"
+
 #include <Alert.h>
 #include <Application.h>
 #include <Button.h>
 #include <Entry.h>
 #include <FindDirectory.h>
-#include <GridLayoutBuilder.h>
-#include <SpaceLayoutItem.h>
 #include <GroupLayout.h>
 #include <GroupLayoutBuilder.h>
-#include <GroupView.h>
-#include <FindDirectory.h>
 #include <ListView.h>
 #include <Message.h>
 #include <Path.h>
@@ -27,18 +25,15 @@
 #include <Roster.h>
 #include <Screen.h>
 #include <ScrollView.h>
-#include <Volume.h>
-#include <VolumeRoster.h>
 #include <TextControl.h>
 #include <Volume.h>
 #include <VolumeRoster.h>
 #include <Window.h>
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-#include "MainListView.h"
 
 #define SEARCH_BOX		'sbox'
 #define SETUP_BUTTON	'setb'

@@ -13,8 +13,8 @@
 #include <Application.h>
 
 #include "MainWindow.h"
-#include "SetupWindow.h"
 #include "QLSettings.h"
+#include "SetupWindow.h"
 
 
 class QLApp : public BApplication {

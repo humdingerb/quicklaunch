@@ -122,9 +122,7 @@ QLApp::MessageReceived(BMessage* message)
  				fSetupWindow->fChkIgnore->SetValue(value);
 				if (!fMainWindow->fListView->IsEmpty()) {
 	 				fMainWindow->fListView->LockLooper();
-	
 	 				const char *searchString = fMainWindow->GetSearchString();
-	
 					fMainWindow->BuildList(searchString);
 					fMainWindow->fListView->UnlockLooper();
 				}
