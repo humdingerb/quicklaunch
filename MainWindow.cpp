@@ -172,7 +172,7 @@ MainWindow::~MainWindow()
 bool
 MainWindow::QuitRequested()
 {
-	return(true);
+	return true;
 }
 
 

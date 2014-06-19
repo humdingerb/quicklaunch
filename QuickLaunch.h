@@ -11,6 +11,7 @@
 
 #include <Alert.h>
 #include <Application.h>
+#include <Messenger.h>
 
 #include "MainWindow.h"
 #include "QLSettings.h"

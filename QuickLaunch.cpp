@@ -45,12 +45,18 @@ QLApp::ReadyToRun()
 	fSetupWindow->SetSizeLimits(340.0, 800.0, 160.0, 1000.0);
 	
 	fSettings->InitIgnoreList();
-	
 }
 
 
 QLApp::~QLApp()
 {
+	BMessenger messengerMain(fMainWindow);
+	if (messengerMain.IsValid() && messengerMain.LockTarget())
+		fMainWindow->Quit();
+	BMessenger messengerSetup(fSetupWindow);
+	if (messengerSetup.IsValid() && messengerSetup.LockTarget())
+		fSetupWindow->Quit();
+		
 	delete fSettings;
 }
 
