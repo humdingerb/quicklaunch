@@ -50,14 +50,14 @@ QLApp::ReadyToRun()
 
 QLApp::~QLApp()
 {
+	delete fSettings;
+	
 	BMessenger messengerMain(fMainWindow);
 	if (messengerMain.IsValid() && messengerMain.LockTarget())
 		fMainWindow->Quit();
 	BMessenger messengerSetup(fSetupWindow);
 	if (messengerSetup.IsValid() && messengerSetup.LockTarget())
 		fSetupWindow->Quit();
-		
-	delete fSettings;
 }
 
 
@@ -153,7 +153,6 @@ QLApp::MessageReceived(BMessage* message)
 				const char *searchString = fMainWindow->GetSearchString();
 				fMainWindow->BuildList(searchString);
 				fMainWindow->fListView->UnlockLooper();
-				fSettings->SetItemCount(fSetupWindow->fIgnoreList->CountItems());
 			}
 			break;
 		}

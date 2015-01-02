@@ -24,7 +24,6 @@ public:
 	void		SetShowPath(int32 path) {fShowPath = path;};
 	void		SetDelay(int32 delay) {fDelay = delay;};
 	void		SetShowIgnore(int32 ignore) {fShowIgnore = ignore;};
-	void		SetItemCount(int32 itemcount) {fItemCount = itemcount;};
 	
 	BRect 		GetMainWindowFrame() {return fMainWindowFrame;};
 	BRect 		GetSetupWindowBounds() {return fSetupWindowBounds;};
@@ -32,7 +31,6 @@ public:
 	int32		GetShowPath() {return fShowPath;};
 	int32		GetDelay() {return fDelay;};
 	int32		GetShowIgnore() {return fShowIgnore;};
-	int32		GetItemCount() {return fItemCount;};
 	void		InitIgnoreList();
 
 private:
@@ -42,7 +40,6 @@ private:
 	int32		fShowPath;
 	int32		fDelay;
 	int32		fShowIgnore;
-	int32		fItemCount;
 };
 
 #endif	// QLSETTINGS_H

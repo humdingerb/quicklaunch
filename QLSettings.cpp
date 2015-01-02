@@ -36,7 +36,6 @@ QLSettings::QLSettings()
 	fShowPath = true;
 	fDelay = false;
 	fShowIgnore = false;
-	fItemCount = 0;
 
 	path.Append("QuickLaunch_settings");
 	BFile file(path.Path(), B_READ_ONLY);
@@ -109,8 +108,7 @@ QLSettings::~QLSettings()
 	settings.AddInt32("show path", fShowPath);
 	settings.AddInt32("delay", fDelay);
 	settings.AddInt32("show ignore", fShowIgnore);
-	settings.AddInt32("item count", fItemCount);
-
+	
 	for (int32 i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
 	{
 		BStringItem *item = dynamic_cast<BStringItem *> (app->fSetupWindow->fIgnoreList->ItemAt(i));
