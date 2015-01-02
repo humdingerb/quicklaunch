@@ -1,5 +1,5 @@
 /*
- * Copyright 2010. All rights reserved.
+ * Copyright 2010-2015. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -175,11 +175,11 @@ QLApp::QuitRequested()
 void
 QLApp::AboutRequested()
 {
-	BAlert *alert = new BAlert("about", "QuickLaunch   v0.9.7\n"
+	BAlert *alert = new BAlert("about", "QuickLaunch   v0.9.8\n"
 		"\twritten by Humdinger\n"
-		"\tCopyright 2010-2013\n\n"
+		"\tCopyright 2010-2015\n\n"
 		"QuickLaunch quickly starts any installed application. "
-		"Just enter at least three letters of its name and choose "
+		"Just enter the first few letters of its name and choose "
 		"from a list of all found programs.\n", "Thank you");
 	BTextView *view = alert->TextView();
 	BFont font;
