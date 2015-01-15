@@ -124,10 +124,7 @@ MainWindow::BuildList(const char *predicate)
 				BPath parent;
 				entry.GetPath(&path);
 				path.GetParent(&parent);
-				
-				find_directory(B_SYSTEM_BIN_DIRECTORY, &dir);
-				if (strstr(parent.Path(), dir.Path()))
-					continue;
+
 				find_directory(B_SYSTEM_ADDONS_DIRECTORY, &dir);
 				if (strstr(parent.Path(), dir.Path()))
 					continue;
