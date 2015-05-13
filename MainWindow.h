@@ -1,5 +1,5 @@
 /*
- * Copyright 2010. All rights reserved.
+ * Copyright 2010-2015. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -49,6 +49,8 @@ public:
 	bool			QuitRequested();
 	void			MessageReceived(BMessage* message);
 	void			BuildList(const char *string);
+	float			GetScrollPosition();
+	void			SetScrollPosition(float position);
 	int				GetStringLength() {return fSearchBox->TextView()->TextLength();};
 	const char		*GetSearchString() {return fSearchBox->TextView()->Text();};
 	MainListView	*fListView;

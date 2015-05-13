@@ -1,5 +1,5 @@
 /*
- * Copyright 2010. All rights reserved.
+ * Copyright 2010-2015. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -15,7 +15,6 @@
 #include <LayoutBuilder.h>
 
 #include <algorithm>
-
 
 
 static int
@@ -135,16 +134,18 @@ MainWindow::BuildList(const char *predicate)
 				QLApp *app = dynamic_cast<QLApp *> (be_app);
 				bool ignore = false;
 				if (app->fSettings->GetShowIgnore()) {
-					BString *newItem = new BString(parent.Path());
-	
-					
+					BString *newItem = new BString(path.Path());
+//					printf("Found: %s\n", newItem->String());
 					for (int i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
 					{
 						BStringItem *sItem = dynamic_cast<BStringItem *> (app->fSetupWindow->fIgnoreList->ItemAt(i));
 						BString *ignoreItem = new BString(sItem->Text());
-	
-						if (newItem->Compare(*ignoreItem, std::min(newItem->Length(), ignoreItem->Length())) == 0)
+
+						if (newItem->ICompare(*ignoreItem, std::min(newItem->Length(), ignoreItem->Length())) == 0)
+						{
+//							printf("\tIGNORE!\t\tmatches %s\n\n", ignoreItem->String());
 							ignore = true;
+						}
 					}
 				}
 				if (!ignore)
@@ -343,4 +344,23 @@ MainWindow::MessageReceived(BMessage* message)
 			break;
 		}
 	}
+}
+
+
+float
+MainWindow::GetScrollPosition()
+{
+	float position;
+	BScrollBar *scrollBar = fScrollView->ScrollBar(B_VERTICAL);
+	position = scrollBar->Value();
+	return (position);
+}
+
+
+void
+MainWindow::SetScrollPosition(float position)
+{
+	BScrollBar *scrollBar = fScrollView->ScrollBar(B_VERTICAL);
+	scrollBar->SetValue(position);
+	return;
 }

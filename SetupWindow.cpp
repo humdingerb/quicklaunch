@@ -1,5 +1,5 @@
 /*
- * Copyright 2010. All rights reserved.
+ * Copyright 2010-2015. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -35,7 +35,7 @@ SetupWindow::SetupWindow(BRect frame)
 									new BMessage(PATH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkDelay = new BCheckBox("DelayChk", "Wait for a second letter before searching",
 									new BMessage(DELAY_CHK), B_WILL_DRAW | B_NAVIGABLE); 
-	fChkIgnore = new BCheckBox("IgnoreChk", "Ignore these folders (and their subfolders):",
+	fChkIgnore = new BCheckBox("IgnoreChk", "Ignore these files & folders (and their subfolders):",
 									new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE); 
 	fIgnoreList = new SetupListView();
 	fIgnoreScroll = new BScrollView("IgnoreList", fIgnoreList, B_FOLLOW_ALL_SIDES,
@@ -73,7 +73,8 @@ SetupWindow::SetupWindow(BRect frame)
 			.SetInsets(0, spacing/2, spacing/2, spacing/2)
 		.End();
 	
-	fOpenPanel = new BFilePanel(B_OPEN_PANEL, NULL, NULL, B_DIRECTORY_NODE);
+	fOpenPanel = new BFilePanel(B_OPEN_PANEL, NULL, NULL,
+		B_FILE_NODE | B_DIRECTORY_NODE);
 	fOpenPanel->SetTarget(this);
 	
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
