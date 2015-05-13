@@ -11,11 +11,15 @@
 #include "MainListItem.h"
 #include "MainWindow.h"
 
+#include <Catalog.h>
 #include <ControlLook.h>
 #include <LayoutBuilder.h>
 
 #include <algorithm>
 
+
+#undef B_TRANSLATION_CONTEXT
+#define B_TRANSLATION_CONTEXT "MainWindow"
 
 static int
 compare_items(const void* a, const void* b)
@@ -29,7 +33,7 @@ compare_items(const void* a, const void* b)
 
 MainWindow::MainWindow(BRect frame)
 	:
-	BWindow(frame, "QuickLaunch", B_TITLED_WINDOW,
+	BWindow(frame, B_TRANSLATE_SYSTEM_NAME("QuickLaunch"), B_TITLED_WINDOW,
 		B_NOT_V_RESIZABLE | B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS
  		| B_QUIT_ON_WINDOW_CLOSE | B_FRAME_EVENTS | B_CLOSE_ON_ESCAPE)
 {
@@ -40,7 +44,7 @@ MainWindow::MainWindow(BRect frame)
 	fSearchBox = new BTextControl("SearchBox", NULL,
 							NULL, new BMessage(SEARCH_BOX));
 							
-	fSetupButton = new BButton ("Setup", "Setup", new BMessage(SETUP_BUTTON));
+	fSetupButton = new BButton ("Setup", B_TRANSLATE("Setup"), new BMessage(SETUP_BUTTON));
 	fSetupButton->SetTarget(be_app);
 
 	fListView = new MainListView();

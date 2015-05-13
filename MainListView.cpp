@@ -11,6 +11,10 @@
 #include "MainWindow.h"
 #include "QuickLaunch.h"
 
+#include <Catalog.h>
+
+#undef B_TRANSLATION_CONTEXT
+#define B_TRANSLATION_CONTEXT "ListView"
 
 class PopUpMenu : public BPopUpMenu {
 public:
@@ -60,7 +64,7 @@ MainListView::Draw(BRect rect)
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
 	
 	if (IsEmpty() && letters <= app->fSettings->GetDelay()) {
-		BString *string = new BString("Use '*' as wildcards.");
+		BString *string = new BString(B_TRANSLATE("Use '*' as wildcards."));
 		float strwidth = font.StringWidth(*string);
    		GetPreferredSize(&width, &height);
 		GetFont(&font);
@@ -70,7 +74,7 @@ MainListView::Draw(BRect rect)
 		delete string;
 	}
 	else if (IsEmpty() && letters > app->fSettings->GetDelay()) {
-		BString *string = new BString("Found no matches.");
+		BString *string = new BString(B_TRANSLATE("Found no matches."));
 		float strwidth = font.StringWidth(*string);
    		GetPreferredSize(&width, &height);
 		GetFont(&font);
@@ -160,7 +164,7 @@ MainListView::ShowPopUpMenu(BPoint screen)
 
 	PopUpMenu* menu = new PopUpMenu("PopUpMenu", this);
 
-	BMenuItem* item = new BMenuItem("Add to ignore list",
+	BMenuItem* item = new BMenuItem(B_TRANSLATE("Add to ignore list"),
 		new BMessage(ADDIGNORE));
 	menu->AddItem(item);
 

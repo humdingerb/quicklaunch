@@ -1,0 +1,15 @@
+1	german	application/x-vnd.QuickLaunch	680205015
+Add to ignore list	ListView		Zur Ignorierliste hinzufügen
+Wait for a second letter before searching	SetupWindow		Erst ab zwei Zeichen mit der Suche beginnen
+Found no matches.	ListView		Keine Treffer
+Setup	SetupWindow		Einstellungen
+Show application version	SetupWindow		Anwendungsversion zeigen
+Setup	MainWindow		Einstellungen
+Use '*' as wildcards.	ListView		'*' als Platzhalter verwenden.
+Show application path	SetupWindow		Anwendungspfad zeigen
+Thank you	Application		Danke
+Ignore these files & folders (and their subfolders):	SetupWindow		Diese Dateien und Order (inkl. Unterordner) ignorieren:
+QuickLaunch v0.9.10\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.10\n\tvon Humdinger\n\tCopyright 2010-2015\n\nMit QuickLaunch lässt sich jede installierte Anwendung schnell starten. Einfach die Anfangsbuchstaben eingeben und aus der Liste der gefundenen Programme auswählen.\n	
+Add…	SetupWindow		Hinzufügen…
+QuickLaunch	System name		QuickLaunch
+Remove	SetupWindow		Entfernen
