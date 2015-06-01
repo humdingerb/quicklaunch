@@ -76,7 +76,7 @@ for <a href="http://www.haiku-os.org">Haiku</a><br />
 <li>Show the version of an application &mdash; only really useful when having older and newer versions of an app installed.</li>
 <li>Show the path to an application &mdash; interesting when you have several copies of an application.</li>
 <li>Wait for a second letter before starting the search &mdash; probably only useful for slow systems.</li>
-<li>Ignore the folders (and their subfolders) that you can add and remove from the list with the buttons at the bottom.</li>
+<li>Ignore files &amp; folders (and their subfolders) that you can add and remove from the list with the buttons at the bottom. You can also right-click an app in the main window's result list to add that specific app to the ignore list.</li>
 </ul>
 
 <h2>
@@ -88,8 +88,9 @@ for <a href="http://www.haiku-os.org">Haiku</a><br />
 <li><span class="key">Shift</span>+<span class="key">Return</span> will keep the QuickLaunch window open after launching the app.</li>
 <li><span class="key">Ctrl</span>+<span class="key">Return</span> will open an app's location in Tracker instead of launching it.</li>
 <li>These folders are ignored by default:<br />
-<span style="font-family: monospace">B_SYSTEM_BIN_DIRECTORY, B_SYSTEM_ADDONS_DIRECTORY, B_TRASH_DIRECTORY</span><br />
-In other words, applications in Trash are ignored, as well as add-ons, and command line apps.</li>
+<span style="font-family: monospace">B_SYSTEM_ADDONS_DIRECTORY and B_TRASH_DIRECTORY</span><br />
+In other words, applications in Trash are ignored, as well as add-ons.<br />
+B_SYSTEM_BIN_DIRECTORY used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, e.g. via the context menu.</li>
 </ul>
 
 <h2>
@@ -167,9 +168,15 @@ Equally useful was Robert Polic's EZLauncher of BeNewsletter 3-46 and the help I
 </ul>
 <p><b>0.9.9</b> - <i>15-01-2015:</i></p>
 <ul>
-<li>Don't ignore /system/bin/ by default. Now that more and more ports are
-available for Haiku, some GUI apps do appear in that folder...</li>
+<li>Don't ignore /system/bin/ by default. Now that more and more ports are available for Haiku, some GUI apps do appear in that folder...</li>
 </ul>
-
+<p><b>0.9.10</b> - <i>--2015:</i></p>
+<ul>
+<li>Allow specific files in the ignore list, not only complete folders (and their subfolders).</li>
+<li>Show a context menu when right-clicking an app to quickly add it to the ignore list.</li>
+<li>Scroll to original location in the app list instead of jumping to the top after adding to the ignore list.</li>
+<li>Updated icon to show three app cubes as Q stroke.</li>
+<li>Localization for German, Dutch, Polish</li>
+</ul>
 </body>
 </html>

@@ -34,7 +34,7 @@ compare_items(const void* a, const void* b)
 MainWindow::MainWindow(BRect frame)
 	:
 	BWindow(frame, B_TRANSLATE_SYSTEM_NAME("QuickLaunch"), B_TITLED_WINDOW,
-		B_NOT_V_RESIZABLE | B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS
+		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS
  		| B_QUIT_ON_WINDOW_CLOSE | B_FRAME_EVENTS | B_CLOSE_ON_ESCAPE)
 {
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
@@ -98,7 +98,7 @@ MainWindow::BuildList(const char *predicate)
 				query.PushOp(B_EQ);
 				
 				query.PushAttr("BEOS:APP_SIG");
-				query.PushString("application/x*vnd");
+				query.PushString("application/x");		// was: application/x*vnd
 				query.PushOp(B_BEGINS_WITH);
 				query.PushOp(B_AND);
 				

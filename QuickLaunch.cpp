@@ -22,7 +22,7 @@ QLApp::QLApp()
 	fSettings = new QLSettings();
 
 	BRect aFrame;
-	aFrame.Set(0.0, 0.0, 340.0, 250.0);
+	aFrame.Set(0.0, 0.0, 340.0, 250.0); 
 	fSetupWindow = new SetupWindow(aFrame);
 	aFrame.Set(0.0, 0.0, 340.0, 90.0);
 	fMainWindow = new MainWindow(aFrame);
@@ -43,8 +43,9 @@ QLApp::ReadyToRun()
 	BRect bounds = fSettings->GetSetupWindowBounds();
 	fSetupWindow->ResizeTo(bounds.Width(), bounds.Height());
 	fSetupWindow->SetSizeLimits(340.0, 800.0, 160.0, 1000.0);
-	
 	fSettings->InitIgnoreList();
+	fSetupWindow->Hide();	
+	fSetupWindow->Show();
 }
 
 
@@ -149,9 +150,12 @@ QLApp::MessageReceived(BMessage* message)
 				fSetupWindow->UnlockLooper();
 			}
 			if (fMainWindow->GetStringLength() > 0) {
+
 				fMainWindow->fListView->LockLooper();
+				float position = fMainWindow->GetScrollPosition();
 				const char *searchString = fMainWindow->GetSearchString();
 				fMainWindow->BuildList(searchString);
+				fMainWindow->SetScrollPosition(position);
 				fMainWindow->fListView->UnlockLooper();
 			}
 			break;
@@ -175,7 +179,7 @@ QLApp::QuitRequested()
 void
 QLApp::AboutRequested()
 {
-	BAlert *alert = new BAlert("about", "QuickLaunch   v0.9.9\n"
+	BAlert *alert = new BAlert("about", "QuickLaunch   v0.9.10\n"
 		"\twritten by Humdinger\n"
 		"\tCopyright 2010-2015\n\n"
 		"QuickLaunch quickly starts any installed application. "
