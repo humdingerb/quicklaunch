@@ -1,0 +1,15 @@
+1	Japanese	application/x-vnd.QuickLaunch	680205015
+Add to ignore list	ListView		無視リストに追加
+Wait for a second letter before searching	SetupWindow		2 文字入力してから検索
+Found no matches.	ListView		一致するアプリがありません
+Setup	SetupWindow		設定
+Show application version	SetupWindow		アプリのバージョンを表示
+Setup	MainWindow		設定
+Use '*' as wildcards.	ListView		'*' はワイルドカード
+Show application path	SetupWindow		アプリのパスを表示
+Thank you	Application		ありがとう
+Ignore these files & folders (and their subfolders):	SetupWindow		以下のファイルとフォルダー (およびサブフォルダー) を無視する:
+QuickLaunch v0.9.10\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.10\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunchは、インストールされたすべてのアプリを素早く立ち上げます。アプリ名の最初の数文字を入力し、見つかったプログラムリストから選択するだけです。\n
+Add…	SetupWindow		追加…
+QuickLaunch	System name		QuickLaunch
+Remove	SetupWindow		削除	
