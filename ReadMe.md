@@ -4,7 +4,7 @@
 
 QuickLaunch is a small launcher tool that helps you to quickly start any installed application.
 
-Simply start to enter the name of an application and QuickLaunch will find all programs matching these initial letters and show them in a list. You choose an app from that list with the <span class="key">CursorUp/Down</span> keys and launch it by hitting <span class="key">Return</span>. <span class="key">Escape</span> quits QuickLaunch.
+Simply start to enter the name of an application and QuickLaunch will find all programs matching these initial letters and show them in a list. You choose an app from that list with the _CursorUp/Down_ keys and launch it by hitting _Return_. _Escape_ quits QuickLaunch.
 
 Here's the main window after searching for all applications starting with "dis" and the settings window when clicking the _Setup_ button:
 
@@ -19,14 +19,14 @@ The setup window shows four options:
 
 ### Tips & Tricks
 
-*   Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like <span class="key">Opt</span>+<span class="key">Spacebar</span>, for even quicker QuickLaunching apps.
+*   Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like _Opt + Spacebar_, for even quicker QuickLaunching apps.
 *   Use '*' as wildcards, e.g. "*play" for all apps with "play" in their name.
-*   <span class="key">Shift</span>+<span class="key">Return</span> will keep the QuickLaunch window open after launching the app.
-*   <span class="key">Ctrl</span>+<span class="key">Return</span> will open an app's location in Tracker instead of launching it.
+*   _Shift + Return_ will keep the QuickLaunch window open after launching the app.
+*   _Ctrl + Return_ will open an app's location in Tracker instead of launching it.
 *   These folders are ignored by default:  
-     <span style="font-family: monospace">B_SYSTEM_ADDONS_DIRECTORY and B_TRASH_DIRECTORY</span>  
+     `B_SYSTEM_ADDONS_DIRECTORY` and `B_TRASH_DIRECTORY`
      In other words, applications in Trash are ignored, as well as add-ons.  
-     B_SYSTEM_BIN_DIRECTORY used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, e.g. via the context menu.
+     `B_SYSTEM_BIN_DIRECTORY` used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, e.g. via the context menu.
 
 ### Download
 
