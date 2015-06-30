@@ -1,5 +1,4 @@
-![QuickLaunch icon](./images/quicklaunch_icon_64.png) **QuickLaunch** for [Haiku](http://www.haiku-os.org)  
-_by Humdinger_
+![QuickLaunch icon](./images/quicklaunch_icon_64.png) **QuickLaunch** for [Haiku](http://www.haiku-os.org)
 
 * * *
 
