@@ -16,8 +16,9 @@
 
 #include <stdio.h>
 
-#define ADDIGNORE	'addi'
-#define POPCLOSED	'pmcl'
+#define ADDIGNORE		'addi'
+#define OPENLOCATION	'oloc'
+#define POPCLOSED		'pmcl'
 
 
 class MainListView : public BListView {

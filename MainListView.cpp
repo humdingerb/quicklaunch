@@ -9,6 +9,7 @@
 #include "MainListView.h"
 #include "MainListItem.h"
 #include "MainWindow.h"
+#include "QLFilter.h"
 #include "QuickLaunch.h"
 
 #include <Catalog.h>
@@ -135,6 +136,15 @@ MainListView::MessageReceived(BMessage* message)
 			}
 			break;
 		}
+		case OPENLOCATION:
+		{
+			fShowingPopUpMenu = false;
+
+			QLApp *app = dynamic_cast<QLApp *> (be_app);
+			BMessenger msgr(app->fMainWindow);
+			BMessage refMsg(RETURN_CTRL_KEY);
+			msgr.SendMessage(&refMsg);
+		}
 		default:
 			BView::MessageReceived(message);
 			break;
@@ -166,6 +176,10 @@ MainListView::ShowPopUpMenu(BPoint screen)
 
 	BMenuItem* item = new BMenuItem(B_TRANSLATE("Add to ignore list"),
 		new BMessage(ADDIGNORE));
+	menu->AddItem(item);
+
+	item = new BMenuItem(B_TRANSLATE("Open app's location"),
+		new BMessage(OPENLOCATION));
 	menu->AddItem(item);
 
 	menu->SetTargetForItems(this);
