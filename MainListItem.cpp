@@ -69,12 +69,14 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
 
     // set background color
     if (IsSelected()) {
-        view->SetHighColor(ui_color(B_LIST_SELECTED_BACKGROUND_COLOR));
-        view->SetLowColor(ui_color(B_LIST_SELECTED_BACKGROUND_COLOR));    	
+		rgb_color bgColor = ui_color(B_LIST_SELECTED_BACKGROUND_COLOR);
+		view->SetHighColor(bgColor);
+		view->SetLowColor(bgColor);
     }
     else {
-        view->SetHighColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
-        view->SetLowColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
+		rgb_color bgColor = ui_color(B_LIST_BACKGROUND_COLOR);
+		view->SetHighColor(bgColor);
+		view->SetLowColor(bgColor);
     }
     view->FillRect(rect);
 
@@ -157,6 +159,10 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
     view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - kBitmapSize
     	- offset/2);
     view->DrawString(string.String());
+
+	view->SetHighColor(tint_color(ui_color(B_CONTROL_BACKGROUND_COLOR),
+		B_DARKEN_1_TINT));
+	view->StrokeLine(rect.LeftBottom(), rect.RightBottom());
 }
 
 

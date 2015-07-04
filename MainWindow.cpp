@@ -160,10 +160,11 @@ MainWindow::BuildList(const char *predicate)
 		}
 	}
 	fListView->SortItems(&compare_items);
+
 	if (fListView->CountItems() < kMAX_DISPLAYED_ITEMS)
-		ResizeTo(Bounds().Width(), (fListView->CountItems()) * (kBitmapSize + 4) + 90);
+		ResizeTo(Bounds().Width(), (fListView->CountItems()) * (kBitmapSize + 4) + 85);
 	else
-		ResizeTo(Bounds().Width(), kMAX_DISPLAYED_ITEMS * (kBitmapSize + 4) + 93);
+		ResizeTo(Bounds().Width(), kMAX_DISPLAYED_ITEMS * (kBitmapSize + 4) + 90);
 }
 
 
@@ -339,7 +340,7 @@ MainWindow::MessageReceived(BMessage* message)
 			}
 			else {
 				fListView->MakeEmpty();
-				ResizeTo(Bounds().Width(), 93);		// original size
+				ResizeTo(Bounds().Width(), 90);		// original size
 				fListView->Invalidate();
 			}
 			break;

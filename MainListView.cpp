@@ -88,8 +88,8 @@ MainListView::Draw(BRect rect)
 	else {
 		SetHighColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
 		FillRect(rect);
-		BListView::Draw(rect);
 	}
+	BListView::Draw(rect);
 }
 
 

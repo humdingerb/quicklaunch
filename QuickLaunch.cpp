@@ -27,7 +27,7 @@ QLApp::QLApp()
 	BRect aFrame;
 	aFrame.Set(0.0, 0.0, 340.0, 250.0); 
 	fSetupWindow = new SetupWindow(aFrame);
-	aFrame.Set(0.0, 0.0, 340.0, 90.0);
+	aFrame.Set(0.0, 0.0, 340.0, 93.0);
 	fMainWindow = new MainWindow(aFrame);
 }
 
@@ -38,7 +38,7 @@ QLApp::ReadyToRun()
 	fMainWindow->SetSizeLimits(190.0, 800.0, 90.0, 1000.0);
 	BRect frame = fSettings->GetMainWindowFrame();
 	fMainWindow->MoveTo(frame.LeftTop());
-	fMainWindow->ResizeTo(frame.right - frame.left, 93.0);
+	fMainWindow->ResizeTo(frame.right - frame.left, 90.0);
 	fMainWindow->Show();
 	
 	frame.OffsetBy(70.0, 120.0);
