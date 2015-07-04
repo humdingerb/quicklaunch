@@ -1,15 +1,16 @@
-1	English	application/x-vnd.QuickLaunch	680205015
+1	English	application/x-vnd.QuickLaunch	2105677548
 Add to ignore list	ListView		Add to ignore list
 Wait for a second letter before searching	SetupWindow		Wait for a second letter before searching
 Found no matches.	ListView		Found no matches.
 Setup	SetupWindow		Setup
+QuickLaunch v0.9.11\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.11\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n
 Show application version	SetupWindow		Show application version
 Setup	MainWindow		Setup
 Use '*' as wildcards.	ListView		Use '*' as wildcards.
+Open app's location	ListView		Open app's location
 Show application path	SetupWindow		Show application path
 Thank you	Application		Thank you
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignore these files & folders (and their subfolders):
-QuickLaunch v0.9.10\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.10\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n
 Add…	SetupWindow		Add…
 QuickLaunch	System name		QuickLaunch
 Remove	SetupWindow		Remove

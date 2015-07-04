@@ -1,15 +1,16 @@
-1	Dutch	application/x-vnd.QuickLaunch	680205015
+1	Dutch	application/x-vnd.QuickLaunch	2105677548
 Add to ignore list	ListView		Voeg toe aan negeerlijst
 Wait for a second letter before searching	SetupWindow		Wacht voor een tweede letter voor zoeken
 Found no matches.	ListView		Geen resultaten gevonden.
 Setup	SetupWindow		Instellingen
+QuickLaunch v0.9.11\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.11\n\tgeschreven door Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch start elke geïnstalleerde applicatie snel. Toets gewoon de eerste paar letters van de naam in en kies van de lijst van alle gevonden applicaties.\n
 Show application version	SetupWindow		Toon applicatieversie
 Setup	MainWindow		Instellingen
 Use '*' as wildcards.	ListView		Gebruik '*' als wildcard
+Open app's location	ListView		Open app's location
 Show application path	SetupWindow		Toon applicatiepad
 Thank you	Application		Bedankt
 Ignore these files & folders (and their subfolders):	SetupWindow		Negeer deze bestanden & mappen (en submappen):
-QuickLaunch v0.9.10\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.10\n\tgeschreven door Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch start elke geïnstalleerde applicatie snel. Toets gewoon de eerste paar letters van de naam in en kies van de lijst van alle gevonden applicaties.\n
 Add…	SetupWindow		Voeg toe…
 QuickLaunch	System name		QuickLaunch
 Remove	SetupWindow		Verwijder
