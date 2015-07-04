@@ -33,9 +33,10 @@ compare_items(const void* a, const void* b)
 
 MainWindow::MainWindow(BRect frame)
 	:
-	BWindow(frame, B_TRANSLATE_SYSTEM_NAME("QuickLaunch"), B_TITLED_WINDOW,
-		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS
- 		| B_QUIT_ON_WINDOW_CLOSE | B_FRAME_EVENTS | B_CLOSE_ON_ESCAPE)
+	BWindow(frame, B_TRANSLATE_SYSTEM_NAME("QuickLaunch"),
+		B_TITLED_WINDOW_LOOK, B_MODAL_ALL_WINDOW_FEEL,
+		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE
+		| B_FRAME_EVENTS | B_CLOSE_ON_ESCAPE)
 {
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
 	BRect winframe = app->fSettings->GetMainWindowFrame();

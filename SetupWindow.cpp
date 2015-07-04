@@ -32,7 +32,8 @@ compare_items(const void* a, const void* b)
 
 SetupWindow::SetupWindow(BRect frame)
 	:
-	BWindow(frame, B_TRANSLATE("Setup"), B_TITLED_WINDOW,
+	BWindow(frame, B_TRANSLATE("Setup"), B_FLOATING_WINDOW_LOOK,
+		B_MODAL_ALL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_CLOSE_ON_ESCAPE)
 {
 	fChkVersion = new BCheckBox("VersionChk", B_TRANSLATE("Show application version"),
