@@ -30,8 +30,7 @@ The setup window shows four options:
 
 ### Download
 
-QuickLaunch is directly available through HaikuDepot from the HaikuPorts repository.  
- You can also build it yourself using [Haikuporter](https://github.com/haikuports). The source is hosted at [GitHub](https://github.com/humdingerb/quicklaunch).
+QuickLaunch is directly available through HaikuDepot from the HaikuPorts repository. You can also build it yourself using [Haikuporter](https://github.com/haikuports). The source is hosted at [GitHub](https://github.com/humdingerb/quicklaunch).
 
 ### Bugreports & Feedback
 
