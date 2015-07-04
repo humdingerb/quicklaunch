@@ -65,12 +65,13 @@ for <a href="http://www.haiku-os.org">Haiku</a><br />
 <hr />
 <p><br /></p>
 <p>QuickLaunch is a small launcher tool that helps you to quickly start any installed application.</p>
-<p>Simply start to enter the name of an application and QuickLaunch will find all programs matching these initial letters and show them in a list. You choose an app from that list with the <span class="key">CursorUp/Down</span> keys and launch it by hitting <span class="key">Return</span>. <span class="key">Escape</span> quits QuickLaunch.</p>
+<p>Simply start to enter the name of an application and QuickLaunch will find all programs matching these initial letters and show them in a list. You choose an app from that list with the <span class="key">CursorUp/Down</span> keys and launch it by hitting <span class="key">RETURN</span>. <span class="key">ESC</span> quits QuickLaunch.</p>
 
-<p>Here's the main window after searching for all applications starting with "dis" and the settings window when clicking the <i>Setup</i> button:</p>
+<p>Here's the main window after searching for all applications starting with "me" and behind it the settings window when clicking the <i>Setup</i> button:</p>
 <div align = "center">
 <img src="./images/quicklaunch.png" alt="QuickLaunch windows" />
 </div>
+<p>In the main window the context menu was evoked via a right-click. The first item adds the selected app to the ignore list (more on that in the setup options discussed below). The second item opens the app's location in a Tracker window. The same can be achieved by pressing <span class="key">CTRL</span>+<span class="key">RETURN</span>.</p>
 <p>The setup window shows four options:</p>
 <ul>
 <li>Show the version of an application &mdash; only really useful when having older and newer versions of an app installed.</li>
@@ -83,10 +84,10 @@ for <a href="http://www.haiku-os.org">Haiku</a><br />
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
 <a id="tips" name="tips">Tips &amp; Tricks</a></h2>
 <ul>
-<li>Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like <span class="key">Opt</span>+<span class="key">Spacebar</span>, for even quicker QuickLaunching apps.</li>
+<li>Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like <span class="key">OPT</span>+<span class="key">SPACEBAR</span>, for even quicker QuickLaunching apps.</li>
 <li>Use '*' as wildcards, e.g. "*play" for all apps with "play" in their name.</li>
-<li><span class="key">Shift</span>+<span class="key">Return</span> will keep the QuickLaunch window open after launching the app.</li>
-<li><span class="key">Ctrl</span>+<span class="key">Return</span> will open an app's location in Tracker instead of launching it.</li>
+<li><span class="key">SHIFT</span>+<span class="key">RETURN</span> will keep the QuickLaunch window open after launching the app.</li>
+<li><span class="key">CTRL</span>+<span class="key">RETURN</span> will open an app's location in Tracker instead of launching it.</li>
 <li>These folders are ignored by default:<br />
 <span style="font-family: monospace">B_SYSTEM_ADDONS_DIRECTORY and B_TRASH_DIRECTORY</span><br />
 In other words, applications in Trash are ignored, as well as add-ons.<br />
@@ -178,6 +179,13 @@ Finally, thanks to everyone that contributed translations for QuickLaunch.</p>
 <li>Scroll to original location in the app list instead of jumping to the top after adding to the ignore list.</li>
 <li>Updated icon to show three app cubes as Q stroke.</li>
 <li>Localization for German, Dutch, Japanese, Polish.</li>
+</ul>
+<p><b>0.9.11</b> - <i>--2015:</i></p>
+<ul>
+<li>Add "Open app's location" to the context menu.</li>
+<li>Have the windows always on top of every other app.</li>
+<li>Add horizontal stroke below every list item.</li>
+<li>Cosmetics on resizing window so the height won't jump.</li>
 </ul>
 </body>
 </html>
