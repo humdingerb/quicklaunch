@@ -113,13 +113,15 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
     float width, height;
     view->GetPreferredSize(&width, &height);
     BString string(fName);
-    view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - kBitmapSize - offset/2);
+    view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - kBitmapSize
+    	- offset / 2);
     view->DrawString(string.String());
 
 	// application path and version
 
     if (IsSelected())
-    	view->SetHighColor(tint_color(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR), 0.7));
+    	view->SetHighColor(tint_color(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR),
+    		0.7));
     else
     	view->SetHighColor(tint_color(ui_color(B_LIST_ITEM_TEXT_COLOR), 0.7));
     	
@@ -128,9 +130,9 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
     view->SetFont(&pathfont);
 
     view->MovePenTo(offset,
-        rect.top + appfont.Size() - pathfont.Size() + 3 + ((rect.Height() - (finfo.ascent +
-        finfo.descent + finfo.leading)) / 2) +
-        (finfo.ascent + finfo.descent) );
+        rect.top + appfont.Size() - pathfont.Size() + 3 + ((rect.Height()
+        - (finfo.ascent + finfo.descent + finfo.leading)) / 2)
+        + (finfo.ascent + finfo.descent));
 
 	BPath parent;
     fPath.GetParent(&parent);
@@ -152,7 +154,8 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
     	string << parent.Path();
     	string << "/";
     }
-    view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - kBitmapSize - offset/2);
+    view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - kBitmapSize
+    	- offset/2);
     view->DrawString(string.String());
 }
 
@@ -162,9 +165,8 @@ void MainListItem::Update(BView *owner, const BFont *finfo)
 	// we need to override the update method so we can make sure the
 	// list item size doesn't change
 	BListItem::Update(owner, finfo);
-	if ((fIcon) && (Height() < fIcon->Bounds().Height() + kITEM_MARGIN)) {
+	if ((fIcon) && (Height() < fIcon->Bounds().Height() + kITEM_MARGIN))
 		SetHeight(fIcon->Bounds().Height() + kITEM_MARGIN);
-	}
 	else
 		SetHeight(kBitmapSize + 15);
 }

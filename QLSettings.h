@@ -19,7 +19,8 @@ public:
 				~QLSettings();
 
 	void 		SetMainWindowFrame(BRect frame) {fMainWindowFrame = frame;};
-	void 		SetSetupWindowBounds(BRect bounds) {fSetupWindowBounds = bounds;};
+	void 		SetSetupWindowBounds(BRect bounds)
+					{fSetupWindowBounds = bounds;};
 	void		SetShowVersion(int32 version) {fShowVersion = version;};
 	void		SetShowPath(int32 path) {fShowPath = path;};
 	void		SetDelay(int32 delay) {fDelay = delay;};

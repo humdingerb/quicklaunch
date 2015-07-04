@@ -51,8 +51,10 @@ public:
 	void			BuildList(const char *string);
 	float			GetScrollPosition();
 	void			SetScrollPosition(float position);
-	int				GetStringLength() {return fSearchBox->TextView()->TextLength();};
-	const char		*GetSearchString() {return fSearchBox->TextView()->Text();};
+	int				GetStringLength()
+						{return fSearchBox->TextView()->TextLength();};
+	const char		*GetSearchString()
+						{return fSearchBox->TextView()->Text();};
 	MainListView	*fListView;
 	
 private:

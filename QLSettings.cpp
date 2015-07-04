@@ -86,9 +86,8 @@ QLSettings::InitIgnoreList()
 		&& settings.Unflatten(&file) == B_OK) {
 		BString itemText;
 		int32 i = 0;
-		while (settings.FindString("item", i++, &itemText) == B_OK) {
+		while (settings.FindString("item", i++, &itemText) == B_OK)
 			app->fSetupWindow->fIgnoreList->AddItem(new BStringItem(itemText.String()));
-		}
 	}
 }
 
@@ -111,7 +110,8 @@ QLSettings::~QLSettings()
 	
 	for (int32 i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
 	{
-		BStringItem *item = dynamic_cast<BStringItem *> (app->fSetupWindow->fIgnoreList->ItemAt(i));
+		BStringItem *item = dynamic_cast<BStringItem *>
+			(app->fSetupWindow->fIgnoreList->ItemAt(i));
 		if (!item)
 			continue;
 		
@@ -123,6 +123,4 @@ QLSettings::~QLSettings()
 	BFile file(path.Path(), B_WRITE_ONLY | B_CREATE_FILE | B_ERASE_FILE);
 	if (file.InitCheck() == B_OK)
 		settings.Flatten(&file);
-
-// settings.PrintToStream();
 }

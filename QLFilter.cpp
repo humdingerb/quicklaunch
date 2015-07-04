@@ -11,7 +11,7 @@
 
 QLFilter::QLFilter()
 		: BMessageFilter(B_PROGRAMMED_DELIVERY,
-						B_ANY_SOURCE, B_KEY_DOWN)
+			B_ANY_SOURCE, B_KEY_DOWN)
 {
 }
 
@@ -30,7 +30,8 @@ QLFilter::Filter(BMessage *message, BHandler **target)
 
 	switch (rawchar) {
 		case B_SPACE: case B_LEFT_ARROW: case B_RIGHT_ARROW: case B_INSERT:
-		case B_DELETE: /*case B_PAGE_UP: case B_PAGE_DOWN:*/ case B_FUNCTION_KEY:
+		case B_DELETE: /*case B_PAGE_UP: case B_PAGE_DOWN:*/
+		case B_FUNCTION_KEY:
 		{
 			return B_DISPATCH_MESSAGE;
 		}

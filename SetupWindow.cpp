@@ -32,27 +32,30 @@ compare_items(const void* a, const void* b)
 
 SetupWindow::SetupWindow(BRect frame)
 	:
-	BWindow(frame, B_TRANSLATE("Setup"), B_FLOATING_WINDOW_LOOK,
+	BWindow(frame, B_TRANSLATE("Setup"), B_TITLED_WINDOW_LOOK,
 		B_MODAL_ALL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_CLOSE_ON_ESCAPE)
 {
-	fChkVersion = new BCheckBox("VersionChk", B_TRANSLATE("Show application version"),
-					new BMessage(VERSION_CHK), B_WILL_DRAW | B_NAVIGABLE); 
+	fChkVersion = new BCheckBox("VersionChk",
+		B_TRANSLATE("Show application version"),
+		new BMessage(VERSION_CHK), B_WILL_DRAW | B_NAVIGABLE); 
 	fChkPath = new BCheckBox("PathChk", B_TRANSLATE("Show application path"),
-					new BMessage(PATH_CHK), B_WILL_DRAW | B_NAVIGABLE);
+		new BMessage(PATH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkDelay = new BCheckBox("DelayChk",
-					B_TRANSLATE("Wait for a second letter before searching"),
-					new BMessage(DELAY_CHK), B_WILL_DRAW | B_NAVIGABLE); 
+		B_TRANSLATE("Wait for a second letter before searching"),
+		new BMessage(DELAY_CHK), B_WILL_DRAW | B_NAVIGABLE); 
 	fChkIgnore = new BCheckBox("IgnoreChk",
-					B_TRANSLATE("Ignore these files & folders (and their subfolders):"),
-					new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE); 
+		B_TRANSLATE("Ignore these files & folders (and their subfolders):"),
+		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE); 
 	fIgnoreList = new SetupListView();
-	fIgnoreScroll = new BScrollView("IgnoreList", fIgnoreList, B_FOLLOW_ALL_SIDES,
-									false, true, B_FANCY_BORDER);
-	fButAdd = new BButton(BRect(), "AddButton", B_TRANSLATE("Add" B_UTF8_ELLIPSIS), new BMessage(ADD_BUT),
-									B_FOLLOW_LEFT | B_FOLLOW_TOP, B_WILL_DRAW | B_NAVIGABLE);
-	fButRem = new BButton(BRect(), "RemButton", B_TRANSLATE("Remove"), new BMessage(REM_BUT),
-									B_FOLLOW_LEFT | B_FOLLOW_TOP, B_WILL_DRAW | B_NAVIGABLE);
+	fIgnoreScroll = new BScrollView("IgnoreList", fIgnoreList,
+		B_FOLLOW_ALL_SIDES, false, true, B_FANCY_BORDER);
+	fButAdd = new BButton(BRect(), "AddButton",
+		B_TRANSLATE("Add" B_UTF8_ELLIPSIS), new BMessage(ADD_BUT),
+		B_FOLLOW_LEFT | B_FOLLOW_TOP, B_WILL_DRAW | B_NAVIGABLE);
+	fButRem = new BButton(BRect(), "RemButton", B_TRANSLATE("Remove"),
+		new BMessage(REM_BUT), B_FOLLOW_LEFT | B_FOLLOW_TOP, B_WILL_DRAW
+		| B_NAVIGABLE);
 	fButRem->SetEnabled(false);
 	
 	fChkVersion->SetTarget(be_app);
@@ -139,7 +142,8 @@ SetupWindow::MessageReceived(BMessage* message)
 				
 				for (int i = 0; i < fIgnoreList->CountItems(); i++)
 				{
-					BStringItem *sItem = dynamic_cast<BStringItem *> (fIgnoreList->ItemAt(i));
+					BStringItem *sItem = dynamic_cast<BStringItem *>
+						(fIgnoreList->ItemAt(i));
 					if (strcmp(sItem->Text(), newitem->Text()) == 0)
 						duplicate = true;
 				}

@@ -44,7 +44,8 @@ PopUpMenu::~PopUpMenu()
 
 MainListView::MainListView()
 		  :
-		  BListView(BRect(), "ResultList", B_SINGLE_SELECTION_LIST, B_WILL_DRAW),
+		  BListView(BRect(), "ResultList", B_SINGLE_SELECTION_LIST,
+		  	B_WILL_DRAW),
 		  fShowingPopUpMenu(false)
 {
 }
@@ -124,7 +125,8 @@ MainListView::MessageReceived(BMessage* message)
 			MainListItem	*item = NULL;
 
 			int selection = app->fMainWindow->fListView->CurrentSelection();
-			item = dynamic_cast<MainListItem *>(app->fMainWindow->fListView->ItemAt(selection));
+			item = dynamic_cast<MainListItem *>
+				(app->fMainWindow->fListView->ItemAt(selection));
 			if (item)
 				ref = item->Ref();
 

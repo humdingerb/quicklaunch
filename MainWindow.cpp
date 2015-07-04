@@ -45,7 +45,8 @@ MainWindow::MainWindow(BRect frame)
 	fSearchBox = new BTextControl("SearchBox", NULL,
 							NULL, new BMessage(SEARCH_BOX));
 							
-	fSetupButton = new BButton ("Setup", B_TRANSLATE("Setup"), new BMessage(SETUP_BUTTON));
+	fSetupButton = new BButton ("Setup", B_TRANSLATE("Setup"),
+		new BMessage(SETUP_BUTTON));
 	fSetupButton->SetTarget(be_app);
 
 	fListView = new MainListView();
@@ -99,7 +100,7 @@ MainWindow::BuildList(const char *predicate)
 				query.PushOp(B_EQ);
 				
 				query.PushAttr("BEOS:APP_SIG");
-				query.PushString("application/x");		// was: application/x*vnd
+				query.PushString("application/x");
 				query.PushOp(B_BEGINS_WITH);
 				query.PushOp(B_AND);
 				
@@ -132,7 +133,8 @@ MainWindow::BuildList(const char *predicate)
 				find_directory(B_SYSTEM_ADDONS_DIRECTORY, &dir);
 				if (strstr(parent.Path(), dir.Path()))
 					continue;
-				find_directory(B_TRASH_DIRECTORY, &dir, false, &volume);	// check Trash on all volumes
+				// check Trash on all volumes
+				find_directory(B_TRASH_DIRECTORY, &dir, false, &volume);
 				if (strstr(parent.Path(), dir.Path()))
 					continue;
 				
@@ -140,17 +142,15 @@ MainWindow::BuildList(const char *predicate)
 				bool ignore = false;
 				if (app->fSettings->GetShowIgnore()) {
 					BString *newItem = new BString(path.Path());
-//					printf("Found: %s\n", newItem->String());
 					for (int i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
 					{
-						BStringItem *sItem = dynamic_cast<BStringItem *> (app->fSetupWindow->fIgnoreList->ItemAt(i));
+						BStringItem *sItem = dynamic_cast<BStringItem *>
+							(app->fSetupWindow->fIgnoreList->ItemAt(i));
 						BString *ignoreItem = new BString(sItem->Text());
 
-						if (newItem->ICompare(*ignoreItem, std::min(newItem->Length(), ignoreItem->Length())) == 0)
-						{
-//							printf("\tIGNORE!\t\tmatches %s\n\n", ignoreItem->String());
+						if (newItem->ICompare(*ignoreItem, std::min(newItem->Length(),
+								ignoreItem->Length())) == 0)
 							ignore = true;
-						}
 					}
 				}
 				if (!ignore)
@@ -228,7 +228,8 @@ MainWindow::MessageReceived(BMessage* message)
 			
 			if (selection < (fListView->CountItems() - kMAX_DISPLAYED_ITEMS)) {
 				fListView->Select(selection + kMAX_DISPLAYED_ITEMS);
-				fListView->ScrollBy(0.0, (kMAX_DISPLAYED_ITEMS) * (kBitmapSize + 9.0));
+				fListView->ScrollBy(0.0, (kMAX_DISPLAYED_ITEMS)
+					* (kBitmapSize + 9.0));
 			}
 			else
 				fListView->Select(last);
