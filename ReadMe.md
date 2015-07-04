@@ -22,7 +22,7 @@ The setup window shows four options:
 ### Tips & Tricks
 
 *   Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like _OPT_ + _SPACEBAR_, for even quicker QuickLaunching apps.
-*   Use '*' as wildcards, e.g. "*play" for all apps with "play" in their name.
+*   Use '\*' as wildcards, e.g. "\*play" for all apps with "play" in their name.
 *   _SHIFT_ + _RETURN_ will keep the QuickLaunch window open after launching the app.
 *   _CTRL_ + _RETURN_ will open an app's location in Tracker instead of launching it.
 *   These folders are ignored by default:  
