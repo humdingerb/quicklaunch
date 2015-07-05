@@ -146,6 +146,7 @@ MainListView::MessageReceived(BMessage* message)
 			BMessenger msgr(app->fMainWindow);
 			BMessage refMsg(RETURN_CTRL_KEY);
 			msgr.SendMessage(&refMsg);
+			break;
 		}
 		default:
 			BView::MessageReceived(message);
