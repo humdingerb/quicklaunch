@@ -1,5 +1,5 @@
 /*
- * Copyright 2010. All rights reserved.
+ * Copyright 2010-2015. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -26,11 +26,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 const int kBitmapSize = 32;
-
-#define kDEFAULT_ITEM_HEIGHT	(kBitmapSize + 15)
-#define kITEM_MARGIN			 10
 
 
 class MainListItem : public BListItem {

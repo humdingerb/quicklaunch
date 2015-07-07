@@ -19,11 +19,11 @@
 
 class PopUpMenu : public BPopUpMenu {
 public:
-							PopUpMenu(const char* name, BMessenger target);
-	virtual 				~PopUpMenu();
+				PopUpMenu(const char* name, BMessenger target);
+	virtual 	~PopUpMenu();
 
 private:
-		BMessenger 			fTarget;
+	BMessenger 	fTarget;
 };
 
 
@@ -43,10 +43,10 @@ PopUpMenu::~PopUpMenu()
 
 
 MainListView::MainListView()
-		  :
-		  BListView(BRect(), "ResultList", B_SINGLE_SELECTION_LIST,
-		  	B_WILL_DRAW),
-		  fShowingPopUpMenu(false)
+	:
+	BListView(BRect(), "ResultList", B_SINGLE_SELECTION_LIST,
+		B_WILL_DRAW),
+	fShowingPopUpMenu(false)
 {
 }
 
@@ -100,7 +100,7 @@ MainListView::FrameResized(float w, float h)
 	
 	for (int32 i = 0; i < CountItems(); i++) {
 		BListItem *item = ItemAt(i);
-		item->Update(this,be_plain_font);
+		item->Update(this, be_plain_font);
 	}
 	Invalidate();
 }

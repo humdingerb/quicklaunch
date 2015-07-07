@@ -1,5 +1,5 @@
 /*
- * Copyright 2010. All rights reserved.
+ * Copyright 2010-2015. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -7,6 +7,7 @@
  */
 
 #include <Application.h>
+#include <ControlLook.h>
 
 #include "MainListItem.h"
 #include "QuickLaunch.h"
@@ -62,31 +63,32 @@ void
 MainListItem::DrawItem(BView *view, BRect rect, bool complete)
 {
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
-    float offset = 10;
-    BFont appfont;
-    BFont pathfont;
-    font_height finfo;
+	float spacing = be_control_look->DefaultLabelSpacing();
+	float offset = spacing;
+	BFont appfont;
+	BFont pathfont;
+	font_height finfo;
 
-    // set background color
-    if (IsSelected()) {
-		rgb_color bgColor = ui_color(B_LIST_SELECTED_BACKGROUND_COLOR);
-		view->SetHighColor(bgColor);
-		view->SetLowColor(bgColor);
-    }
-    else {
-		rgb_color bgColor = ui_color(B_LIST_BACKGROUND_COLOR);
-		view->SetHighColor(bgColor);
-		view->SetLowColor(bgColor);
-    }
+	// set background color
+
+    rgb_color bgColor;
+	if (IsSelected())
+		bgColor = ui_color(B_LIST_SELECTED_BACKGROUND_COLOR);
+	else
+		bgColor = ui_color(B_LIST_BACKGROUND_COLOR);
+
+	view->SetHighColor(bgColor);
+	view->SetLowColor(bgColor);
     view->FillRect(rect);
 
-    // if we have an icon, draw it
-    if (fIcon) {
+	// if we have an icon, draw it
+
+	if (fIcon) {
         view->SetDrawingMode(B_OP_OVER);
-        view->DrawBitmap(fIcon,
-            BPoint(rect.left + 2, rect.top + 6));
+        view->DrawBitmap(fIcon, BPoint(rect.left + spacing / 2,
+			rect.top + (rect.Height() - kBitmapSize) / 2));
         view->SetDrawingMode(B_OP_COPY);
-        offset = fIcon->Bounds().Width() + offset;
+		offset = fIcon->Bounds().Width() + offset + spacing;
     }
 
 	// application name
@@ -95,6 +97,9 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
     	view->SetHighColor(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR));
     else
     	view->SetHighColor(ui_color(B_LIST_ITEM_TEXT_COLOR));
+
+//	if (appfont.Size() > 18)
+//		appfont.SetSize(18);
 
     appfont.GetHeight(&finfo);
     appfont.SetFace(B_BOLD_FACE);
@@ -109,7 +114,7 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
 		view->MovePenTo(offset,
 	        rect.top - 2 + ((rect.Height() - (finfo.ascent +
 	        finfo.descent + finfo.leading)) / 2) +
-	        (finfo.ascent + finfo.descent) );
+	        (finfo.ascent + finfo.descent));
 	}
 
     float width, height;
@@ -123,9 +128,9 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
 
     if (IsSelected())
     	view->SetHighColor(tint_color(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR),
-    		0.7));
+			0.6));
     else
-    	view->SetHighColor(tint_color(ui_color(B_LIST_ITEM_TEXT_COLOR), 0.7));
+		view->SetHighColor(tint_color(ui_color(B_LIST_ITEM_TEXT_COLOR), 0.6));
     	
 	pathfont.SetSize(appfont.Size() - 2);
     pathfont.GetHeight(&finfo);
@@ -160,8 +165,10 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
     	- offset/2);
     view->DrawString(string.String());
 
+	// draw lines
+
 	view->SetHighColor(tint_color(ui_color(B_CONTROL_BACKGROUND_COLOR),
-		B_DARKEN_1_TINT));
+		B_DARKEN_2_TINT));
 	view->StrokeLine(rect.LeftBottom(), rect.RightBottom());
 }
 
@@ -171,8 +178,15 @@ void MainListItem::Update(BView *owner, const BFont *finfo)
 	// we need to override the update method so we can make sure the
 	// list item size doesn't change
 	BListItem::Update(owner, finfo);
-	if ((fIcon) && (Height() < fIcon->Bounds().Height() + kITEM_MARGIN))
-		SetHeight(fIcon->Bounds().Height() + kITEM_MARGIN);
+
+	font_height	fheight;
+	finfo->GetHeight(&fheight);
+	float spacing = be_control_look->DefaultLabelSpacing();
+	float height = ceilf(fheight.ascent + 2 + fheight.leading / 2
+		+ fheight.descent);
+
+	if (Height() < 18)
+		SetHeight(fIcon->Bounds().Height() + spacing);
 	else
-		SetHeight(kBitmapSize + 15);
+		SetHeight(height * 2);
 }
