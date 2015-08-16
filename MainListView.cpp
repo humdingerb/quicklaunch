@@ -44,8 +44,7 @@ PopUpMenu::~PopUpMenu()
 
 MainListView::MainListView()
 	:
-	BListView(BRect(), "ResultList", B_SINGLE_SELECTION_LIST,
-		B_WILL_DRAW),
+	BListView("ResultList"),
 	fShowingPopUpMenu(false)
 {
 }

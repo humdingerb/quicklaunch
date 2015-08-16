@@ -1,4 +1,4 @@
-1	Dutch	application/x-vnd.QuickLaunch	2105677548
+1	Dutch	application/x-vnd.QuickLaunch	3733298393
 Add to ignore list	ListView		Voeg toe aan negeerlijst
 Wait for a second letter before searching	SetupWindow		Wacht voor een tweede letter voor zoeken
 Found no matches.	ListView		Geen resultaten gevonden.
@@ -11,6 +11,7 @@ Open app's location	ListView		Open app's location
 Show application path	SetupWindow		Toon applicatiepad
 Thank you	Application		Bedankt
 Ignore these files & folders (and their subfolders):	SetupWindow		Negeer deze bestanden & mappen (en submappen):
+Remember last search term	SetupWindow		Remember last search term
 Add…	SetupWindow		Voeg toe…
 QuickLaunch	System name		QuickLaunch
 Remove	SetupWindow		Verwijder

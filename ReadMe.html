@@ -18,6 +18,23 @@ body {
 	min-width: 45em;
 	max-width: 70em;
 }
+/* link colors and text decoration */
+
+a:link {
+	font-weight: bold;
+	text-decoration: none;
+	color: #dc3c01;
+}
+a:visited {
+	font-weight: bold;
+	text-decoration: none;
+	color: #892601;
+}
+a:hover, a:active {
+	text-decoration: underline;
+	color: #ff4500;
+}
+
 hr {
 	border: dotted thin #e0e0e0;
 }
@@ -38,7 +55,7 @@ h3 {
 }
 .key {				/* Shortcut (separate with &#160; */
 	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;	
+	-khtml-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	border-color: #c7c7c7;
@@ -47,10 +64,27 @@ h3 {
 	padding: 0px 2px 0px 2px;
 	background-color: #e8e8e8;
     font-family: sans;
-   	font-variant: small-caps;
-  	font-size: 1em;
+	font-variant: small-caps;
+	font-size: 1em;
 }
-</style> 
+.menu {				/* Menu */
+    font-size: 1.0em;
+    font-family: serif;
+    font-style: italic;
+	color: #24225e;
+}
+.button {			/* Button */
+    font-size: 1.0em;
+    font-family: serif;
+    font-style: italic;
+	color: #33583c;
+}
+.path {				/* File path */
+    background-color: #e8e8e8;
+    font-size: 0.9em;
+    font-family: monospace;
+}
+</style>
 
 </head>
 <body>
@@ -72,12 +106,13 @@ for <a href="http://www.haiku-os.org">Haiku</a><br />
 <img src="./images/quicklaunch.png" alt="QuickLaunch windows" />
 </div>
 <p>In the main window the context menu was evoked via a right-click. The first item adds the selected app to the ignore list (more on that in the setup options discussed below). The second item opens the app's location in a Tracker window. The same can be achieved by pressing <span class="key">CTRL</span>+<span class="key">RETURN</span>.</p>
-<p>The setup window shows four options:</p>
+<p>The setup window shows five options:</p>
 <ul>
-<li>Show the version of an application &mdash; only really useful when having older and newer versions of an app installed.</li>
-<li>Show the path to an application &mdash; interesting when you have several copies of an application.</li>
-<li>Wait for a second letter before starting the search &mdash; probably only useful for slow systems.</li>
-<li>Ignore files &amp; folders (and their subfolders) that you can add and remove from the list with the buttons at the bottom. You can also right-click an app in the main window's result list to add that specific app to the ignore list.</li>
+<li><span class="menu">Show the version of an application</span> &mdash; only really useful when having older and newer versions of an app installed.</li>
+<li><span class="menu">Show the path to an application</span> &mdash; interesting when you have several copies of an application.</li>
+<li><span class="menu">Wait for a second letter before starting the search</span> &mdash; probably only useful for slow systems.</li>
+<li><span class="menu">Remeber last search term</span> &mdash; starts QuickLaunch with the previous search.</li>
+<li><span class="menu">Ignore these files &amp; folders (and their subfolders)</span> that you can add and remove from the list with the buttons at the bottom. You can also right-click an app in the main window's result list to add that specific app to the ignore list.</li>
 </ul>
 
 <h2>
@@ -180,9 +215,10 @@ Finally, thanks to everyone that contributed translations for QuickLaunch.</p>
 <li>Updated icon to show three app cubes as Q stroke.</li>
 <li>Localization for German, Dutch, Japanese, Polish.</li>
 </ul>
-<p><b>0.9.11</b> - <i>--2015:</i></p>
+<p><b>0.9.11</b> - <i>16-08-2015:</i></p>
 <ul>
 <li>Add "Open app's location" to the context menu.</li>
+<li>Add an option to always start with the previous search term.</li>
 <li>Have the windows always on top of every other app.</li>
 <li>Add horizontal stroke below every list item.</li>
 <li>Cosmetics on resizing window so the height won't jump.</li>

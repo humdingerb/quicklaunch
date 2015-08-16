@@ -51,7 +51,7 @@ MainWindow::MainWindow(BRect frame)
 
 	fListView = new MainListView();
 	fScrollView = new BScrollView("ScrollList", fListView, B_FOLLOW_ALL_SIDES,
-							false, true, B_FANCY_BORDER);
+							false, true);
 	
 	// Build the layout
 	float spacing = be_control_look->DefaultItemSpacing();

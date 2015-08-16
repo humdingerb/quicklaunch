@@ -1,4 +1,4 @@
-1	English	application/x-vnd.QuickLaunch	2105677548
+1	English	application/x-vnd.QuickLaunch	3733298393
 Add to ignore list	ListView		Add to ignore list
 Wait for a second letter before searching	SetupWindow		Wait for a second letter before searching
 Found no matches.	ListView		Found no matches.
@@ -11,6 +11,7 @@ Open app's location	ListView		Open app's location
 Show application path	SetupWindow		Show application path
 Thank you	Application		Thank you
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignore these files & folders (and their subfolders):
+Remember last search term	SetupWindow		Remember last search term
 Add…	SetupWindow		Add…
 QuickLaunch	System name		QuickLaunch
 Remove	SetupWindow		Remove

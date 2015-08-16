@@ -1,4 +1,4 @@
-1	Japanese	application/x-vnd.QuickLaunch	2105677548
+1	Japanese	application/x-vnd.QuickLaunch	3733298393
 Add to ignore list	ListView		無視リストに追加
 Wait for a second letter before searching	SetupWindow		2 文字入力してから検索
 Found no matches.	ListView		一致するアプリがありません
@@ -11,6 +11,7 @@ Open app's location	ListView		Open app's location
 Show application path	SetupWindow		アプリのパスを表示
 Thank you	Application		ありがとう
 Ignore these files & folders (and their subfolders):	SetupWindow		以下のファイルとフォルダー (およびサブフォルダー) を無視する:
+Remember last search term	SetupWindow		Remember last search term
 Add…	SetupWindow		追加…
 QuickLaunch	System name		QuickLaunch
 Remove	SetupWindow		削除	

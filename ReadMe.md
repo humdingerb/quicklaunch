@@ -12,12 +12,13 @@ Here's the main window after searching for all applications starting with "me" a
 
 In the main window the context menu was evoked via a right-click. The first item adds the selected app to the ignore list (more on that in the setup options discussed below). The second item opens the app's location in a Tracker window. The same can be achieved by pressing _CTRL_ + _RETURN_.
 
-The setup window shows four options:
+The setup window shows five options:
 
-*   Show the version of an application — only really useful when having older and newer versions of an app installed.
-*   Show the path to an application — interesting when you have several copies of an application.
-*   Wait for a second letter before starting the search — probably only useful for slow systems.
-*   Ignore files & folders (and their subfolders) that you can add and remove from the list with the buttons at the bottom. You can also right-click an app in the main window's result list to add that specific app to the ignore list.
+*   _Show the version of an application_ — only really useful when having older and newer versions of an app installed.
+*   _Show the path to an application_ — interesting when you have several copies of an application.
+*   _Wait for a second letter before starting the search_ — starts QuickLaunch with the previous search.
+*   _Remeber last search term — probably only useful for slow systems.
+*   _Ignore these files & folders (and their subfolders)_ that you can add and remove from the list with the buttons at the bottom. You can also right-click an app in the main window's result list to add that specific app to the ignore list.
 
 ### Tips & Tricks
 
@@ -111,9 +112,10 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 *   Updated icon to show three app cubes as Q stroke.
 *   Localization for German, Dutch, Japanese, Polish.
 
-**0.9.11** - _--2015:_
+**0.9.11** - _16-08-2015:_
 
 *   Add "Open app's location" to the context menu.
+*   Add an option to always start with the previous search term.
 *   Have the windows always on top of every other app.
 *   Add horizontal stroke below every list item.
 *   Cosmetics on resizing window so the height won't jump.
