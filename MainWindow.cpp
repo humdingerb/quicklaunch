@@ -72,6 +72,7 @@ MainWindow::MainWindow(BRect frame)
 
 	AddCommonFilter(new QLFilter);
 	fListView->SetInvocationMessage(new BMessage(RETURN_KEY));
+	fListView->SetViewColor(B_TRANSPARENT_COLOR);
 }
 
 

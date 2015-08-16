@@ -168,7 +168,7 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
 	// draw lines
 
 	view->SetHighColor(tint_color(ui_color(B_CONTROL_BACKGROUND_COLOR),
-		B_DARKEN_2_TINT));
+		B_DARKEN_1_TINT));
 	view->StrokeLine(rect.LeftBottom(), rect.RightBottom());
 }
 
@@ -186,7 +186,7 @@ void MainListItem::Update(BView *owner, const BFont *finfo)
 		+ fheight.descent);
 
 	if (Height() < 18)
-		SetHeight(fIcon->Bounds().Height() + spacing);
+		SetHeight(fIcon->Bounds().Height() + spacing + 4);
 	else
-		SetHeight(height * 2);
+		SetHeight(height * 2 + 4);
 }

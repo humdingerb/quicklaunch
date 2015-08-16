@@ -64,30 +64,30 @@ MainListView::Draw(BRect rect)
 	float width, height;
 	BFont font;
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
-	
-	if (IsEmpty() && letters <= app->fSettings->GetDelay()) {
-		BString *string = new BString(B_TRANSLATE("Use '*' as wildcards."));
-		float strwidth = font.StringWidth(*string);
+
+	if (IsEmpty()) {
+		SetHighColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
+		FillRect(rect);
+
+		BString string;
+		if (letters <= app->fSettings->GetDelay())
+			string = B_TRANSLATE("Use '*' as wildcards.");
+		else
+			string = B_TRANSLATE("Found no matches.");
+
+		float strwidth = font.StringWidth(string);
    		GetPreferredSize(&width, &height);
 		GetFont(&font);
 		MovePenTo(width / 2 - strwidth / 2, height / 2 + font.Size() / 2);
 		SetHighColor(ui_color(B_MENU_SELECTED_BACKGROUND_COLOR));
-        DrawString(string->String());
-		delete string;
-	}
-	else if (IsEmpty() && letters > app->fSettings->GetDelay()) {
-		BString *string = new BString(B_TRANSLATE("Found no matches."));
-		float strwidth = font.StringWidth(*string);
-   		GetPreferredSize(&width, &height);
-		GetFont(&font);
-		MovePenTo(width / 2 - strwidth / 2, height / 2 + font.Size() / 2);
-		SetHighColor(ui_color(B_FAILURE_COLOR));
-        DrawString(string->String());
-		delete string;
+        DrawString(string.String());
 	}
 	else {
 		SetHighColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
-		FillRect(rect);
+		BRect bounds(Bounds());
+		BRect itemFrame = ItemFrame(CountItems() - 1);
+		bounds.top = itemFrame.bottom;
+		FillRect(bounds);
 	}
 	BListView::Draw(rect);
 }
