@@ -65,6 +65,7 @@ MainListView::Draw(BRect rect)
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
 
 	if (IsEmpty()) {
+		SetLowColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
 		SetHighColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
 		FillRect(rect);
 
