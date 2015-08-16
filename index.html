@@ -31,35 +31,38 @@
         <hr>
 
         <section id="main_content">
-          <p><img src="https://dl.dropboxusercontent.com/u/21023348/images/quicklaunch_icon_64.png" alt="QuickLaunch icon"> <strong>QuickLaunch</strong> for <a href="http://www.haiku-os.org">Haiku</a></p>
+          <p><img src="https://raw.githubusercontent.com/humdingerb/clipdinger/master/images/quicklaunch_icon_64.png" alt="QuickLaunch icon"> <strong>QuickLaunch</strong> for <a href="http://www.haiku-os.org">Haiku</a></p>
 
 <hr>
 
 <p>QuickLaunch is a small launcher tool that helps you to quickly start any installed application.</p>
 
-<p>Simply start to enter the name of an application and QuickLaunch will find all programs matching these initial letters and show them in a list. You choose an app from that list with the <em>CursorUp/Down</em> keys and launch it by hitting <em>Return</em>. <em>Escape</em> quits QuickLaunch.</p>
+<p>Simply start to enter the name of an application and QuickLaunch will find all programs matching these initial letters and show them in a list. You choose an app from that list with the <em>CursorUp/Down</em> keys and launch it by hitting <em>RETURN</em>. <em>ESC</em> quits QuickLaunch.</p>
 
-<p>Here's the main window after searching for all applications starting with "dis" and the settings window when clicking the <em>Setup</em> button:</p>
+<p>Here's the main window after searching for all applications starting with "me" and behind it the settings window when clicking the <em>Setup</em> button:</p>
 
-<p><img src="https://dl.dropboxusercontent.com/u/21023348/images/quicklaunch.png" alt="QuickLaunch windows"></p>
+<p><img src="https://raw.githubusercontent.com/humdingerb/clipdinger/master/images/quicklaunch.png" alt="QuickLaunch windows"></p>
 
-<p>The setup window shows four options:</p>
+<p>In the main window the context menu was evoked via a right-click. The first item adds the selected app to the ignore list (more on that in the setup options discussed below). The second item opens the app's location in a Tracker window. The same can be achieved by pressing <em>CTRL</em> + <em>RETURN</em>.</p>
+
+<p>The setup window shows five options:</p>
 
 <ul>
-<li>  Show the version of an application — only really useful when having older and newer versions of an app installed.</li>
-<li>  Show the path to an application — interesting when you have several copies of an application.</li>
-<li>  Wait for a second letter before starting the search — probably only useful for slow systems.</li>
-<li>  Ignore files &amp; folders (and their subfolders) that you can add and remove from the list with the buttons at the bottom. You can also right-click an app in the main window's result list to add that specific app to the ignore list.</li>
+<li>  <em>Show the version of an application</em> — only really useful when having older and newer versions of an app installed.</li>
+<li>  <em>Show the path to an application</em> — interesting when you have several copies of an application.</li>
+<li>  <em>Wait for a second letter before starting the search</em> — starts QuickLaunch with the previous search.</li>
+<li>  _Remeber last search term — probably only useful for slow systems.</li>
+<li>  <em>Ignore these files &amp; folders (and their subfolders)</em> that you can add and remove from the list with the buttons at the bottom. You can also right-click an app in the main window's result list to add that specific app to the ignore list.</li>
 </ul>
 
 <h3>
 <a id="tips--tricks" class="anchor" href="#tips--tricks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tips &amp; Tricks</h3>
 
 <ul>
-<li>  Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like <em>Opt + Spacebar</em>, for even quicker QuickLaunching apps.</li>
-<li>  Use '<em>' as wildcards, e.g. "</em>play" for all apps with "play" in their name.</li>
-<li>  <em>Shift + Return</em> will keep the QuickLaunch window open after launching the app.</li>
-<li>  <em>Ctrl + Return</em> will open an app's location in Tracker instead of launching it.</li>
+<li>  Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like <em>OPT</em> + <em>SPACEBAR</em>, for even quicker QuickLaunching apps.</li>
+<li>  Use '*' as wildcards, e.g. "*play" for all apps with "play" in their name.</li>
+<li>  <em>SHIFT</em> + <em>RETURN</em> will keep the QuickLaunch window open after launching the app.</li>
+<li>  <em>CTRL</em> + <em>RETURN</em> will open an app's location in Tracker instead of launching it.</li>
 <li>  These folders are ignored by default:<br>
  <code>B_SYSTEM_ADDONS_DIRECTORY</code> and <code>B_TRASH_DIRECTORY</code>
  In other words, applications in Trash are ignored, as well as add-ons.<br>
@@ -69,8 +72,7 @@
 <h3>
 <a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h3>
 
-<p>QuickLaunch is directly available through HaikuDepot from the HaikuPorts repository.<br>
- You can also build it yourself using <a href="https://github.com/haikuports">Haikuporter</a>. The source is hosted at <a href="https://github.com/humdingerb/quicklaunch">GitHub</a>.</p>
+<p>QuickLaunch is directly available through HaikuDepot from the HaikuPorts repository. You can also build it yourself using <a href="https://github.com/haikuports">Haikuporter</a>. The source is hosted at <a href="https://github.com/humdingerb/quicklaunch">GitHub</a>.</p>
 
 <h3>
 <a id="bugreports--feedback" class="anchor" href="#bugreports--feedback" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bugreports &amp; Feedback</h3>
@@ -172,6 +174,16 @@
 <li>  Scroll to original location in the app list instead of jumping to the top after adding to the ignore list.</li>
 <li>  Updated icon to show three app cubes as Q stroke.</li>
 <li>  Localization for German, Dutch, Japanese, Polish.</li>
+</ul>
+
+<p><strong>0.9.11</strong> - <em>16-08-2015:</em></p>
+
+<ul>
+<li>  Add "Open containing folder" to the context menu.</li>
+<li>  Add an option to always start with the previous search term.</li>
+<li>  Have the windows always on top of every other app.</li>
+<li>  Add horizontal stroke below every list item.</li>
+<li>  Cosmetics on resizing window so the height won't jump and flicker.</li>
 </ul>
         </section>
 
