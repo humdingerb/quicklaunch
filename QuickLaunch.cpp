@@ -8,7 +8,7 @@
  * A graphical launch panel finding an app via a query.
  */
 
-
+#include "QLFilter.h"
 #include "QuickLaunch.h"
 
 #include <Catalog.h>
@@ -49,6 +49,12 @@ QLApp::ReadyToRun()
 	fSettings->InitIgnoreList();
 	fSetupWindow->Hide();	
 	fSetupWindow->Show();
+
+	if (fSettings->GetSaveSearch()) {
+		BMessenger messenger(fMainWindow);
+		BMessage message(NEW_FILTER);
+		messenger.SendMessage(&message);
+	}
 }
 
 

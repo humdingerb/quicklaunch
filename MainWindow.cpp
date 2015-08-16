@@ -74,10 +74,8 @@ MainWindow::MainWindow(BRect frame)
 	fListView->SetInvocationMessage(new BMessage(RETURN_KEY));
 	fListView->SetViewColor(B_TRANSPARENT_COLOR);
 
-	if (app->fSettings->GetSaveSearch()) {
+	if (app->fSettings->GetSaveSearch())
 		fSearchBox->SetText(app->fSettings->GetSearchTerm());
-		PostMessage(NEW_FILTER);
-	}
 }
 
 
