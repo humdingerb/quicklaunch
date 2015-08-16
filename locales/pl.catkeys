@@ -1,4 +1,4 @@
-1	Polish	application/x-vnd.QuickLaunch	3733298393
+1	Polish	application/x-vnd.QuickLaunch	3542727679
 Add to ignore list	ListView		Dodaj do listy ignorowanych
 Wait for a second letter before searching	SetupWindow		Czekaj na drugą literę przed rozpoczęciem wyszukiwania
 Found no matches.	ListView		Nie znaleziono dopasowań.
@@ -6,8 +6,8 @@ Setup	SetupWindow		Ustawienia
 QuickLaunch v0.9.11\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.11\n\tnapisany przez Humdingera\n\tCopyright 2010-2015\n\nQuickLaunch błyskawicznie uruchamia dowolną zainstalowaną aplikację. Wystarczy wprowadzić kilka pierwszych liter jej nazwy i wybrać z listy znalezionych programów.\n
 Show application version	SetupWindow		Pokaż wersję aplikacji
 Setup	MainWindow		Ustawienia
+Open containing folder	ListView		Otwórz katalog docelowy
 Use '*' as wildcards.	ListView		Użyj „*” jako maski.
-Open app's location	ListView		Open app's location
 Show application path	SetupWindow		Pokaż ścieżkę aplikacji
 Thank you	Application		Dziękuję
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignoruj te pliki i katalogi (oraz ich podkatalogi):

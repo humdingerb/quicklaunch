@@ -171,7 +171,7 @@ MainListView::MouseDown(BPoint position)
 void
 MainListView::ShowPopUpMenu(BPoint screen)
 {
-	if (fShowingPopUpMenu)
+	if (fShowingPopUpMenu || IsEmpty())
 		return;
 
 	PopUpMenu* menu = new PopUpMenu("PopUpMenu", this);
@@ -180,7 +180,7 @@ MainListView::ShowPopUpMenu(BPoint screen)
 		new BMessage(ADDIGNORE));
 	menu->AddItem(item);
 
-	item = new BMenuItem(B_TRANSLATE("Open app's location"),
+	item = new BMenuItem(B_TRANSLATE("Open containing folder"),
 		new BMessage(OPENLOCATION));
 	menu->AddItem(item);
 
