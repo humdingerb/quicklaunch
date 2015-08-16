@@ -73,6 +73,11 @@ MainWindow::MainWindow(BRect frame)
 	AddCommonFilter(new QLFilter);
 	fListView->SetInvocationMessage(new BMessage(RETURN_KEY));
 	fListView->SetViewColor(B_TRANSPARENT_COLOR);
+
+	if (app->fSettings->GetSaveSearch()) {
+		fSearchBox->SetText(app->fSettings->GetSearchTerm());
+		PostMessage(NEW_FILTER);
+	}
 }
 
 
@@ -171,6 +176,8 @@ MainWindow::BuildList(const char *predicate)
 
 MainWindow::~MainWindow()
 {
+	QLApp *app = dynamic_cast<QLApp *> (be_app);
+	app->fSettings->SetSearchTerm(GetSearchString());
 }
 
 
@@ -280,7 +287,9 @@ MainWindow::MessageReceived(BMessage* message)
 				msgr.SendMessage(&refMsg);
 			}
 			// End DW code
-			
+			QLApp *app = dynamic_cast<QLApp *> (be_app);
+			app->fSettings->SetSearchTerm(GetSearchString());
+
 			be_app->PostMessage(B_QUIT_REQUESTED);
 			break;
 		}
@@ -327,6 +336,9 @@ MainWindow::MessageReceived(BMessage* message)
 					sprintf(string, "Error launching: %s", strerror(result));
 				}
 			}
+			QLApp *app = dynamic_cast<QLApp *> (be_app);
+			app->fSettings->SetSearchTerm(GetSearchString());
+
 			be_app->PostMessage(B_QUIT_REQUESTED);
 			break;
 		}

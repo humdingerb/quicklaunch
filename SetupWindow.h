@@ -1,5 +1,5 @@
 /*
- * Copyright 2010. All rights reserved.
+ * Copyright 2010-2015. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -32,13 +32,14 @@
 #include <string.h>
 
 
-#define VERSION_CHK	'chve'
-#define PATH_CHK	'chpa'
-#define DELAY_CHK	'chde'
-#define IGNORE_CHK	'chig'
-#define ADD_BUT		'addb'
-#define REM_BUT		'remb'
-#define FILEPANEL	'file'
+#define VERSION_CHK		'chve'
+#define PATH_CHK		'chpa'
+#define DELAY_CHK		'chde'
+#define SAVESEARCH_CHK	'chss'
+#define IGNORE_CHK		'chig'
+#define ADD_BUT			'addb'
+#define REM_BUT			'remb'
+#define FILEPANEL		'file'
 
 
 class SetupWindow : public BWindow {
@@ -53,6 +54,7 @@ public:
 	BCheckBox		*fChkVersion;
 	BCheckBox		*fChkPath;
 	BCheckBox		*fChkDelay;
+	BCheckBox		*fChkSaveSearch;
 	BCheckBox		*fChkIgnore;
 	SetupListView	*fIgnoreList;
 	

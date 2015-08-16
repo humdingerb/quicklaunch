@@ -55,7 +55,7 @@ QLApp::ReadyToRun()
 QLApp::~QLApp()
 {
 	delete fSettings;
-	
+
 	BMessenger messengerMain(fMainWindow);
 	if (messengerMain.IsValid() && messengerMain.LockTarget())
 		fMainWindow->Quit();
@@ -114,6 +114,13 @@ QLApp::MessageReceived(BMessage* message)
 			fMainWindow->LockLooper();
 			fMainWindow->PostMessage('fltr');
 			fMainWindow->UnlockLooper();
+			break;
+		}
+		case SAVESEARCH_CHK:
+		{
+			int32 value;
+			message->FindInt32("be:value", &value);
+			fSettings->SetSaveSearch(value);
 			break;
 		}
 		case IGNORE_CHK:

@@ -43,7 +43,10 @@ SetupWindow::SetupWindow(BRect frame)
 		new BMessage(PATH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkDelay = new BCheckBox("DelayChk",
 		B_TRANSLATE("Wait for a second letter before searching"),
-		new BMessage(DELAY_CHK), B_WILL_DRAW | B_NAVIGABLE); 
+		new BMessage(DELAY_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkSaveSearch = new BCheckBox("SaveSearchChk",
+		B_TRANSLATE("Remember last search term"),
+		new BMessage(SAVESEARCH_CHK), B_WILL_DRAW | B_NAVIGABLE); 
 	fChkIgnore = new BCheckBox("IgnoreChk",
 		B_TRANSLATE("Ignore these files & folders (and their subfolders):"),
 		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE); 
@@ -61,6 +64,7 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkVersion->SetTarget(be_app);
 	fChkPath->SetTarget(be_app);
 	fChkDelay->SetTarget(be_app);
+	fChkSaveSearch->SetTarget(be_app);
 	fChkIgnore->SetTarget(be_app);
 
 	// Build the layout
@@ -72,6 +76,7 @@ SetupWindow::SetupWindow(BRect frame)
 			.Add(fChkVersion)
 			.Add(fChkPath)
 			.Add(fChkDelay)
+			.Add(fChkSaveSearch)
 			.SetInsets(spacing/2, spacing/2, spacing/2, 0)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
@@ -93,6 +98,7 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkVersion->SetValue(app->fSettings->GetShowVersion());
 	fChkPath->SetValue(app->fSettings->GetShowPath());
 	fChkDelay->SetValue(app->fSettings->GetDelay());
+	fChkSaveSearch->SetValue(app->fSettings->GetSaveSearch());
 	fChkIgnore->SetValue(app->fSettings->GetShowIgnore());
 }
 

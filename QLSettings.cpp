@@ -35,6 +35,8 @@ QLSettings::QLSettings()
 	fShowVersion = false;
 	fShowPath = true;
 	fDelay = false;
+	fSaveSearch = false;
+	fSearchTerm ="";
 	fShowIgnore = false;
 
 	path.Append("QuickLaunch_settings");
@@ -63,6 +65,14 @@ QLSettings::QLSettings()
 		int32 delay;
 		if (settings.FindInt32("delay", &delay) == B_OK)
 			fDelay = delay;
+
+		int32 savesearch;
+		if (settings.FindInt32("savesearch", &savesearch) == B_OK)
+			fSaveSearch = savesearch;
+
+		BString searchterm;
+		if (settings.FindString("searchterm", &searchterm) == B_OK)
+			fSearchTerm = searchterm;
 
 		int32 ignore;
 		if (settings.FindInt32("show ignore", &ignore) == B_OK)
@@ -106,6 +116,8 @@ QLSettings::~QLSettings()
 	settings.AddInt32("show version", fShowVersion);
 	settings.AddInt32("show path", fShowPath);
 	settings.AddInt32("delay", fDelay);
+	settings.AddInt32("savesearch", fSaveSearch);
+	settings.AddString("searchterm", fSearchTerm);
 	settings.AddInt32("show ignore", fShowIgnore);
 	
 	for (int32 i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
