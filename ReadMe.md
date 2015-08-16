@@ -114,8 +114,8 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 
 **0.9.11** - _16-08-2015:_
 
-*   Add "Open app's location" to the context menu.
+*   Add "Open containing folder" to the context menu.
 *   Add an option to always start with the previous search term.
 *   Have the windows always on top of every other app.
 *   Add horizontal stroke below every list item.
-*   Cosmetics on resizing window so the height won't jump.
+*   Cosmetics on resizing window so the height won't jump and flicker.
