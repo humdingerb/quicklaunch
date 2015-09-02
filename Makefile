@@ -21,6 +21,7 @@ DEFINES=
 #	ALL = enable all warnings
 WARNINGS=
 # Build with debugging symbols if set to TRUE
+DEBUGGER=
 SYMBOLS=
 COMPILER_FLAGS=
 LINKER_FLAGS=

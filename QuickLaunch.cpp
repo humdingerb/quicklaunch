@@ -21,11 +21,11 @@ extern const char *kApplicationSignature = "application/x-vnd.QuickLaunch";
 QLApp::QLApp()
 	:
 	BApplication(kApplicationSignature)
-{	
+{
 	fSettings = new QLSettings();
 
 	BRect aFrame;
-	aFrame.Set(0.0, 0.0, 340.0, 250.0); 
+	aFrame.Set(0.0, 0.0, 340.0, 250.0);
 	fSetupWindow = new SetupWindow(aFrame);
 	aFrame.Set(0.0, 0.0, 340.0, 93.0);
 	fMainWindow = new MainWindow(aFrame);
@@ -40,14 +40,14 @@ QLApp::ReadyToRun()
 	fMainWindow->MoveTo(frame.LeftTop());
 	fMainWindow->ResizeTo(frame.right - frame.left, 90.0);
 	fMainWindow->Show();
-	
+
 	frame.OffsetBy(70.0, 120.0);
 	fSetupWindow->MoveTo(frame.LeftTop());
 	BRect bounds = fSettings->GetSetupWindowBounds();
 	fSetupWindow->ResizeTo(bounds.Width(), bounds.Height());
 	fSetupWindow->SetSizeLimits(340.0, 800.0, 160.0, 1000.0);
 	fSettings->InitIgnoreList();
-	fSetupWindow->Hide();	
+	fSetupWindow->Hide();
 	fSetupWindow->Show();
 
 	if (fSettings->GetSaveSearch()) {
@@ -60,11 +60,13 @@ QLApp::ReadyToRun()
 
 QLApp::~QLApp()
 {
+	BMessenger messengerMain(fMainWindow);
+	if (messengerMain.IsValid() && messengerMain.LockTarget()) {
+		fSettings->SetSearchTerm(fMainWindow->GetSearchString());
+		fMainWindow->Quit();
+	}
 	delete fSettings;
 
-	BMessenger messengerMain(fMainWindow);
-	if (messengerMain.IsValid() && messengerMain.LockTarget())
-		fMainWindow->Quit();
 	BMessenger messengerSetup(fSetupWindow);
 	if (messengerSetup.IsValid() && messengerSetup.LockTarget())
 		fSetupWindow->Quit();
@@ -87,7 +89,7 @@ QLApp::MessageReceived(BMessage* message)
 				fSetupWindow->Hide();
 			}
 			break;
-		}		
+		}
 		case VERSION_CHK:
 		{
 			int32 value;
@@ -129,6 +131,14 @@ QLApp::MessageReceived(BMessage* message)
 			fSettings->SetSaveSearch(value);
 			break;
 		}
+		case ONTOP_CHK:
+		{
+			int32 value;
+			message->FindInt32("be:value", &value);
+			fSettings->SetOnTop(value);
+			SetWindowsFeel(value);
+			break;
+		}
 		case IGNORE_CHK:
 		{
 			if (fSetupWindow->fIgnoreList->IsEmpty()) {
@@ -137,7 +147,7 @@ QLApp::MessageReceived(BMessage* message)
 				fSettings->SetShowIgnore(false);
 				fSetupWindow->UnlockLooper();
 				break;
-			} 
+			}
 			int32 value;
 			message->FindInt32("be:value", &value);
 			fSettings->SetShowIgnore(value);
@@ -185,6 +195,24 @@ QLApp::MessageReceived(BMessage* message)
 }
 
 
+void
+QLApp::SetWindowsFeel(int32 value)
+{
+	fMainWindow->LockLooper();
+	fMainWindow->SetFeel(value ?
+		B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
+	fMainWindow->UnlockLooper();
+
+	if (fSetupWindow) {
+		fSetupWindow->LockLooper();
+		fSetupWindow->SetFeel(value ?
+			B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
+		fSetupWindow->Activate();
+		fSetupWindow->UnlockLooper();
+	}
+}
+
+
 bool
 QLApp::QuitRequested()
 {
@@ -213,7 +241,7 @@ QLApp::AboutRequested()
 	alert->Go();
 }
 
-		
+
 int
 main()
 {

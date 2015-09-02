@@ -34,17 +34,17 @@ compare_items(const void* a, const void* b)
 MainWindow::MainWindow(BRect frame)
 	:
 	BWindow(frame, B_TRANSLATE_SYSTEM_NAME("QuickLaunch"),
-		B_TITLED_WINDOW_LOOK, B_MODAL_ALL_WINDOW_FEEL,
+		B_TITLED_WINDOW_LOOK, B_NORMAL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE
 		| B_FRAME_EVENTS | B_CLOSE_ON_ESCAPE)
 {
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
 	BRect winframe = app->fSettings->GetMainWindowFrame();
 	MoveTo(winframe.LeftTop());
-	
+
 	fSearchBox = new BTextControl("SearchBox", NULL,
 							NULL, new BMessage(SEARCH_BOX));
-							
+
 	fSetupButton = new BButton ("Setup", B_TRANSLATE("Setup"),
 		new BMessage(SETUP_BUTTON));
 	fSetupButton->SetTarget(be_app);
@@ -52,10 +52,10 @@ MainWindow::MainWindow(BRect frame)
 	fListView = new MainListView();
 	fScrollView = new BScrollView("ScrollList", fListView, B_FOLLOW_ALL_SIDES,
 							false, true);
-	
+
 	// Build the layout
 	float spacing = be_control_look->DefaultItemSpacing();
-	
+
 	BLayoutBuilder::Group<>(this, B_VERTICAL, 0)
 		.AddGroup(B_HORIZONTAL, 0)
 			.Add(fSearchBox)
@@ -76,6 +76,9 @@ MainWindow::MainWindow(BRect frame)
 
 	if (app->fSettings->GetSaveSearch())
 		fSearchBox->SetText(app->fSettings->GetSearchTerm());
+
+	int32 value = app->fSettings->GetOnTop();
+	SetFeel(value ?	B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
 }
 
 
@@ -87,14 +90,14 @@ MainWindow::BuildList(const char *predicate)
 	BVolumeRoster volumeRoster;
 	BVolume volume;
 	BQuery query;
-	
+
 	while (volumeRoster.GetNextVolume(&volume) == B_OK) {
 		if (volume.KnowsQuery())
-		{		
+		{
 			// Set up the volume and predicate for the query.
 			query.SetVolume(&volume);
 			query.SetPredicate(predicate);
-		
+
 			status_t status = query.Fetch();
 			char buffer[B_FILE_NAME_LENGTH];
 			volume.GetName(buffer);
@@ -102,33 +105,33 @@ MainWindow::BuildList(const char *predicate)
 				query.PushAttr("BEOS:TYPE");
 				query.PushString("application/x-vnd.be-elfexecutable", true);
 				query.PushOp(B_EQ);
-				
+
 				query.PushAttr("BEOS:APP_SIG");
 				query.PushString("application/x");
 				query.PushOp(B_BEGINS_WITH);
 				query.PushOp(B_AND);
-				
+
 				query.PushAttr("name");
 				query.PushString(predicate, true);
 				query.PushOp(B_BEGINS_WITH);
 				query.PushOp(B_AND);
-					
+
 				status = query.Fetch();
 			}
 			if (status != B_OK)
 				printf("2. what happened? %s\n", strerror(status));
-	
+
 			BEntry entry;
 			BPath path;
 			while (query.GetNextEntry(&entry) == B_OK) {
 				if (!entry.IsFile())
 					continue;
-	
+
 				if (entry.GetPath(&path) < B_OK) {
 					fprintf(stderr, "could not get path for entry\n");
 					continue;
 				}
-				
+
 				BPath dir;
 				BPath parent;
 				entry.GetPath(&path);
@@ -141,7 +144,7 @@ MainWindow::BuildList(const char *predicate)
 				find_directory(B_TRASH_DIRECTORY, &dir, false, &volume);
 				if (strstr(parent.Path(), dir.Path()))
 					continue;
-				
+
 				QLApp *app = dynamic_cast<QLApp *> (be_app);
 				bool ignore = false;
 				if (app->fSettings->GetShowIgnore()) {
@@ -174,8 +177,6 @@ MainWindow::BuildList(const char *predicate)
 
 MainWindow::~MainWindow()
 {
-	QLApp *app = dynamic_cast<QLApp *> (be_app);
-	app->fSettings->SetSearchTerm(GetSearchString());
 }
 
 
@@ -211,7 +212,7 @@ MainWindow::MessageReceived(BMessage* message)
 				fListView->Select(selection + 1);
 			else
 				fListView->Select(first);
-			
+
 			fListView->ScrollToSelection();
 			break;
 		}
@@ -219,7 +220,7 @@ MainWindow::MessageReceived(BMessage* message)
 		{
 			int selection = fListView->CurrentSelection();
 			int first = fListView->IndexOf(fListView->FirstItem());
-			
+
 			if (selection > kMAX_DISPLAYED_ITEMS)
 				fListView->Select(selection - kMAX_DISPLAYED_ITEMS);
 			else
@@ -232,7 +233,7 @@ MainWindow::MessageReceived(BMessage* message)
 		{
 			int selection = fListView->CurrentSelection();
 			int last = fListView->IndexOf(fListView->LastItem());
-			
+
 			if (selection < (fListView->CountItems() - kMAX_DISPLAYED_ITEMS)) {
 				fListView->Select(selection + kMAX_DISPLAYED_ITEMS);
 				fListView->ScrollBy(0.0, (kMAX_DISPLAYED_ITEMS)
@@ -246,7 +247,7 @@ MainWindow::MessageReceived(BMessage* message)
 		{
 			if (fListView->IsEmpty() == 0)
 				fListView->Select(0);
-			
+
 			fListView->ScrollToSelection();
 			break;
 		}
@@ -261,16 +262,16 @@ MainWindow::MessageReceived(BMessage* message)
 		case RETURN_CTRL_KEY:
 		{
 			Hide();
-			
+
 			// Begin DW code
 			entry_ref	*ref = NULL;
 			MainListItem	*item = NULL;
-			
+
 			int selection = fListView->CurrentSelection();
 			item = dynamic_cast<MainListItem *>(fListView->ItemAt(selection));
 			if (item)
 				ref = item->Ref();
-				
+
 			if (ref) {
 			// if we got a ref, try opening its parent folder by sending a
 			// B_REFS_RECEIVED to Tracker
@@ -297,12 +298,12 @@ MainWindow::MessageReceived(BMessage* message)
 			entry_ref	*ref = NULL;
 			status_t	result;
 			MainListItem	*item = NULL;
-			
+
 			int selection = fListView->CurrentSelection();
 			item = dynamic_cast<MainListItem *>(fListView->ItemAt(selection));
 			if (item)
 				ref = item->Ref();
-				
+
 			if (ref) {
 			// if we got a ref, try launching it
 				result = be_roster->Launch(ref);
@@ -320,13 +321,13 @@ MainWindow::MessageReceived(BMessage* message)
 			entry_ref	*ref = NULL;
 			status_t	result;
 			MainListItem	*item = NULL;
-			
+
 			int selection = fListView->CurrentSelection();
-			
+
 			item = dynamic_cast<MainListItem *>(fListView->ItemAt(selection));
 			if (item)
 				ref = item->Ref();
-				
+
 			if (ref) {
 			// if we got a ref, try launching it
 			result = be_roster->Launch(ref);

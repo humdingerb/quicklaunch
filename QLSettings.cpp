@@ -24,7 +24,7 @@ QLSettings::QLSettings()
 	BPath path;
 	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path) != B_OK)
 		return;
-	
+
 	// Defaults
 	BScreen *screen = new BScreen(B_MAIN_SCREEN_ID);
 	BRect resolution = screen->Frame();
@@ -36,12 +36,13 @@ QLSettings::QLSettings()
 	fShowPath = true;
 	fDelay = false;
 	fSaveSearch = false;
-	fSearchTerm ="";
+	fSearchTerm = "";
+	fOnTop = false;
 	fShowIgnore = false;
 
 	path.Append("QuickLaunch_settings");
 	BFile file(path.Path(), B_READ_ONLY);
-	
+
 	BMessage settings;
 
 	if (file.InitCheck() == B_OK
@@ -49,11 +50,11 @@ QLSettings::QLSettings()
 		BRect frame;
 		if (settings.FindRect("main window frame", &frame) == B_OK)
 			fMainWindowFrame = frame;
-		
+
 		BRect bounds;
 		if (settings.FindRect("setup window bounds", &bounds) == B_OK)
 			fSetupWindowBounds = bounds;
-			
+
 		int32 version;
 		if (settings.FindInt32("show version", &version) == B_OK)
 			fShowVersion = version;
@@ -74,6 +75,10 @@ QLSettings::QLSettings()
 		if (settings.FindString("searchterm", &searchterm) == B_OK)
 			fSearchTerm = searchterm;
 
+		int32 ontop;
+		if (settings.FindInt32("ontop", &ontop) == B_OK)
+			fOnTop = ontop;
+
 		int32 ignore;
 		if (settings.FindInt32("show ignore", &ignore) == B_OK)
 			fShowIgnore = ignore;
@@ -84,13 +89,13 @@ void
 QLSettings::InitIgnoreList()
 {
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
-	
+
 	BPath path;
 	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path) != B_OK)
 		return;
 	path.Append("QuickLaunch_settings");
 	BFile file(path.Path(), B_READ_ONLY);
-	
+
 	BMessage settings;
 	if (file.InitCheck() == B_OK
 		&& settings.Unflatten(&file) == B_OK) {
@@ -103,9 +108,9 @@ QLSettings::InitIgnoreList()
 
 
 QLSettings::~QLSettings()
-{	
+{
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
-	
+
 	BPath path;
 	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path) < B_OK)
 		return;
@@ -118,15 +123,16 @@ QLSettings::~QLSettings()
 	settings.AddInt32("delay", fDelay);
 	settings.AddInt32("savesearch", fSaveSearch);
 	settings.AddString("searchterm", fSearchTerm);
+	settings.AddInt32("ontop", fOnTop);
 	settings.AddInt32("show ignore", fShowIgnore);
-	
+
 	for (int32 i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
 	{
 		BStringItem *item = dynamic_cast<BStringItem *>
 			(app->fSetupWindow->fIgnoreList->ItemAt(i));
 		if (!item)
 			continue;
-		
+
 		if (item->Text())
 			settings.AddString("item", item->Text());
 	}

@@ -27,9 +27,11 @@ public:
 	virtual bool	QuitRequested();
 	virtual void	ReadyToRun();
 	void			MessageReceived(BMessage* message);
-	
+
+	void			SetWindowsFeel(int32 value);
+
 	SetupWindow		*fSetupWindow;
-	QLSettings		*fSettings;		
+	QLSettings		*fSettings;
 	MainWindow		*fMainWindow;
 };
 

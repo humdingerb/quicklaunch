@@ -33,12 +33,12 @@ compare_items(const void* a, const void* b)
 SetupWindow::SetupWindow(BRect frame)
 	:
 	BWindow(frame, B_TRANSLATE("Setup"), B_TITLED_WINDOW_LOOK,
-		B_MODAL_ALL_WINDOW_FEEL,
+		B_NORMAL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_CLOSE_ON_ESCAPE)
 {
 	fChkVersion = new BCheckBox("VersionChk",
 		B_TRANSLATE("Show application version"),
-		new BMessage(VERSION_CHK), B_WILL_DRAW | B_NAVIGABLE); 
+		new BMessage(VERSION_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkPath = new BCheckBox("PathChk", B_TRANSLATE("Show application path"),
 		new BMessage(PATH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkDelay = new BCheckBox("DelayChk",
@@ -46,10 +46,13 @@ SetupWindow::SetupWindow(BRect frame)
 		new BMessage(DELAY_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkSaveSearch = new BCheckBox("SaveSearchChk",
 		B_TRANSLATE("Remember last search term"),
-		new BMessage(SAVESEARCH_CHK), B_WILL_DRAW | B_NAVIGABLE); 
+		new BMessage(SAVESEARCH_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkOnTop = new BCheckBox("OnTopChk",
+		B_TRANSLATE("Window always on top"),
+		new BMessage(ONTOP_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkIgnore = new BCheckBox("IgnoreChk",
 		B_TRANSLATE("Ignore these files & folders (and their subfolders):"),
-		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE); 
+		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fIgnoreList = new SetupListView();
 	fIgnoreScroll = new BScrollView("IgnoreList", fIgnoreList,
 		B_FOLLOW_ALL_SIDES, false, true, B_FANCY_BORDER);
@@ -60,11 +63,12 @@ SetupWindow::SetupWindow(BRect frame)
 		new BMessage(REM_BUT), B_FOLLOW_LEFT | B_FOLLOW_TOP, B_WILL_DRAW
 		| B_NAVIGABLE);
 	fButRem->SetEnabled(false);
-	
+
 	fChkVersion->SetTarget(be_app);
 	fChkPath->SetTarget(be_app);
 	fChkDelay->SetTarget(be_app);
 	fChkSaveSearch->SetTarget(be_app);
+	fChkOnTop->SetTarget(be_app);
 	fChkIgnore->SetTarget(be_app);
 
 	// Build the layout
@@ -77,6 +81,7 @@ SetupWindow::SetupWindow(BRect frame)
 			.Add(fChkPath)
 			.Add(fChkDelay)
 			.Add(fChkSaveSearch)
+			.Add(fChkOnTop)
 			.SetInsets(spacing/2, spacing/2, spacing/2, 0)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
@@ -89,21 +94,25 @@ SetupWindow::SetupWindow(BRect frame)
 			.Add(fButRem)
 			.SetInsets(0, spacing/2, spacing/2, spacing/2)
 		.End();
-	
-	fOpenPanel = new BFilePanel(B_OPEN_PANEL, NULL, NULL,
-		B_FILE_NODE | B_DIRECTORY_NODE);
-	fOpenPanel->SetTarget(this);
-	
+
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
 	fChkVersion->SetValue(app->fSettings->GetShowVersion());
 	fChkPath->SetValue(app->fSettings->GetShowPath());
 	fChkDelay->SetValue(app->fSettings->GetDelay());
 	fChkSaveSearch->SetValue(app->fSettings->GetSaveSearch());
+	fChkOnTop->SetValue(app->fSettings->GetOnTop());
 	fChkIgnore->SetValue(app->fSettings->GetShowIgnore());
+
+	int32 value = app->fSettings->GetOnTop();
+	SetFeel(value ?	B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
+
+	fOpenPanel = new BFilePanel(B_OPEN_PANEL, NULL, NULL,
+		B_FILE_NODE | B_DIRECTORY_NODE);
+	fOpenPanel->SetTarget(this);
 }
 
 
-SetupWindow::~SetupWindow() 
+SetupWindow::~SetupWindow()
 {
 	delete fOpenPanel;
 }
@@ -123,6 +132,11 @@ SetupWindow::MessageReceived(BMessage* message)
 	switch (message->what) {
 		case ADD_BUT:
 		{
+			QLApp *app = dynamic_cast<QLApp *> (be_app);
+			int32 value = app->fSettings->GetOnTop();
+			fOpenPanel->Window()->SetFeel(value ?
+				B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
+
 			fOpenPanel->Show();
 			break;
 		}
@@ -138,14 +152,14 @@ SetupWindow::MessageReceived(BMessage* message)
 			entry_ref	ref;
 			status_t	err;
 			ref_num = 0;
-			
+
 	    	while ((err = message->FindRef("refs", ref_num, &ref)) == B_OK) {
 				BPath path;
 				BEntry *entry = new BEntry(&ref);
 				entry->GetPath(&path);
 				BStringItem *newitem = new BStringItem(path.Path());
 				bool duplicate = false;
-				
+
 				for (int i = 0; i < fIgnoreList->CountItems(); i++)
 				{
 					BStringItem *sItem = dynamic_cast<BStringItem *>
@@ -156,7 +170,7 @@ SetupWindow::MessageReceived(BMessage* message)
 				if (!duplicate)	{
 					fIgnoreList->AddItem(newitem);
 					fIgnoreList->SortItems(&compare_items);
-				}	
+				}
 				ref_num++;
 			}
 			be_app->PostMessage(FILEPANEL);

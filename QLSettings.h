@@ -5,7 +5,7 @@
  * Author:
  *	Humdinger, humdingerb@gmail.com
  */
- 
+
 #ifndef QLSETTINGS_H
 #define QLSETTINGS_H
 
@@ -26,8 +26,9 @@ public:
 	void		SetDelay(int32 delay) {fDelay = delay;};
 	void		SetSaveSearch(int32 savesearch) {fSaveSearch = savesearch;};
 	void		SetSearchTerm(BString searchterm) {fSearchTerm = searchterm;};
+	void		SetOnTop(int32 ontop) {fOnTop = ontop;};
 	void		SetShowIgnore(int32 ignore) {fShowIgnore = ignore;};
-	
+
 	BRect 		GetMainWindowFrame() {return fMainWindowFrame;};
 	BRect 		GetSetupWindowBounds() {return fSetupWindowBounds;};
 	int32		GetShowVersion() {return fShowVersion;};
@@ -35,6 +36,7 @@ public:
 	int32		GetDelay() {return fDelay;};
 	int32		GetSaveSearch() {return fSaveSearch;};
 	BString		GetSearchTerm() {return fSearchTerm;};
+	int32		GetOnTop() {return fOnTop;};
 	int32		GetShowIgnore() {return fShowIgnore;};
 	void		InitIgnoreList();
 
@@ -46,6 +48,7 @@ private:
 	int32		fDelay;
 	int32		fSaveSearch;
 	BString		fSearchTerm;
+	int32		fOnTop;
 	int32		fShowIgnore;
 };
 

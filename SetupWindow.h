@@ -5,7 +5,7 @@
  * Author:
  *	Humdinger, humdingerb@gmail.com
  */
- 
+
 #ifndef SETUP_WINDOW_H
 #define SETUP_WINDOW_H
 
@@ -36,6 +36,7 @@
 #define PATH_CHK		'chpa'
 #define DELAY_CHK		'chde'
 #define SAVESEARCH_CHK	'chss'
+#define ONTOP_CHK		'chot'
 #define IGNORE_CHK		'chig'
 #define ADD_BUT			'addb'
 #define REM_BUT			'remb'
@@ -46,7 +47,7 @@ class SetupWindow : public BWindow {
 public:
 					SetupWindow(BRect rect);
 	virtual			~SetupWindow();
-	
+
 	bool			QuitRequested();
 	void			MessageReceived(BMessage* message);
 
@@ -55,9 +56,10 @@ public:
 	BCheckBox		*fChkPath;
 	BCheckBox		*fChkDelay;
 	BCheckBox		*fChkSaveSearch;
+	BCheckBox		*fChkOnTop;
 	BCheckBox		*fChkIgnore;
 	SetupListView	*fIgnoreList;
-	
+
 private:
 	BScrollView		*fIgnoreScroll;
 	BButton			*fButAdd;
