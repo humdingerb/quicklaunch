@@ -17,7 +17,7 @@ The setup window shows these options:
 *   _Show the version of an application_ — only really useful when having older and newer versions of an app installed.
 *   _Show the path to an application_ — interesting when you have several copies of an application.
 *   _Wait for a second letter before starting the search_ — starts QuickLaunch with the previous search.
-*   _Remeber last search term — probably only useful for slow systems.
+*   _Remeber last search term_ — probably only useful for slow systems.
 *   _Window always on top_ — the window floats modally in front of all others. Useful if you start a few apps after another and don't want to lose QuickLauch under the newly opening windows.
 *   _Ignore these files & folders (and their subfolders)_ that you can add and remove from the list with the buttons at the bottom. You can also right-click an app in the main window's result list to add that specific app to the ignore list.
 
