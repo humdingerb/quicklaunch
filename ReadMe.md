@@ -12,12 +12,13 @@ Here's the main window after searching for all applications starting with "me" a
 
 In the main window the context menu was evoked via a right-click. The first item adds the selected app to the ignore list (more on that in the setup options discussed below). The second item opens the app's location in a Tracker window. The same can be achieved by pressing _CTRL_ + _RETURN_.
 
-The setup window shows five options:
+The setup window shows these options:
 
 *   _Show the version of an application_ — only really useful when having older and newer versions of an app installed.
 *   _Show the path to an application_ — interesting when you have several copies of an application.
 *   _Wait for a second letter before starting the search_ — starts QuickLaunch with the previous search.
 *   _Remeber last search term — probably only useful for slow systems.
+*   _Window always on top_ — the window floats modally in front of all others. Useful if you start a few apps after another and don't want to lose QuickLauch under the newly opening windows.
 *   _Ignore these files & folders (and their subfolders)_ that you can add and remove from the list with the buttons at the bottom. You can also right-click an app in the main window's result list to add that specific app to the ignore list.
 
 ### Tips & Tricks
@@ -26,9 +27,9 @@ The setup window shows five options:
 *   Use '\*' as wildcards, e.g. "\*play" for all apps with "play" in their name.
 *   _SHIFT_ + _RETURN_ will keep the QuickLaunch window open after launching the app.
 *   _CTRL_ + _RETURN_ will open an app's location in Tracker instead of launching it.
-*   These folders are ignored by default:  
+*   These folders are ignored by default:
      `B_SYSTEM_ADDONS_DIRECTORY` and `B_TRASH_DIRECTORY`
-     In other words, applications in Trash are ignored, as well as add-ons.  
+     In other words, applications in Trash are ignored, as well as add-ons.
      `B_SYSTEM_BIN_DIRECTORY` used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, e.g. via the context menu.
 
 ### Download
@@ -41,8 +42,8 @@ Please use GitHubs's [issue tracker](https://github.com/humdingerb/quicklaunch/i
 
 ### Thanks
 
-I have to thank DarkWyrm for some helpful hints and for some of the code I re-used from his RunProgram app and his EscapeCancelFilter.  
- Equally useful was Robert Polic's EZLauncher of BeNewsletter 3-46 and the help I got on the #haiku IRC channel.  
+I have to thank DarkWyrm for some helpful hints and for some of the code I re-used from his RunProgram app and his EscapeCancelFilter.
+ Equally useful was Robert Polic's EZLauncher of BeNewsletter 3-46 and the help I got on the #haiku IRC channel.
  Finally, thanks to everyone that contributed translations for QuickLaunch.
 
 ### History
@@ -119,3 +120,11 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 *   Have the windows always on top of every other app.
 *   Add horizontal stroke below every list item.
 *   Cosmetics on resizing window so the height won't jump and flicker.
+
+**0.9.12** - _03-09-2015:_
+
+*	Make the "Window always on top" optional. Not everyone was pleased with
+	that change of v0.9.11...
+*	Also fix the formerly not usable file dialog when adding files/folders to
+	ignore. It was hidden behind the always-on-top window.
+*	Added Italian localization, thanks Barrett!

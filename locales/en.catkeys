@@ -1,9 +1,10 @@
-1	English	application/x-vnd.QuickLaunch	3542727679
+1	English	application/x-vnd.QuickLaunch	2099613309
+QuickLaunch v0.9.12\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.12\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n
+Window always on top	SetupWindow		Window always on top
 Add to ignore list	ListView		Add to ignore list
 Wait for a second letter before searching	SetupWindow		Wait for a second letter before searching
 Found no matches.	ListView		Found no matches.
 Setup	SetupWindow		Setup
-QuickLaunch v0.9.11\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.11\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n
 Show application version	SetupWindow		Show application version
 Setup	MainWindow		Setup
 Open containing folder	ListView		Open containing folder

@@ -224,7 +224,7 @@ void
 QLApp::AboutRequested()
 {
 	BAlert *alert = new BAlert("about",
-		B_TRANSLATE("QuickLaunch v0.9.11\n"
+		B_TRANSLATE("QuickLaunch v0.9.12\n"
 		"\twritten by Humdinger\n"
 		"\tCopyright 2010-2015\n\n"
 		"QuickLaunch quickly starts any installed application. "
