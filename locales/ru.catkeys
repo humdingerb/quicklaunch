@@ -1,0 +1,19 @@
+1	English	application/x-vnd.QuickLaunch	2099613309
+QuickLaunch v0.9.12\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.12\n\tразработан Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch позволяет быстро запустить любое установленное приложение. Всего лишь введите первые несколько букв его названия и выберите из списка найденных вариантов.\n
+Window always on top	SetupWindow		Окно всегда поверх остальных
+Add to ignore list	ListView		Добавить в список игнорирования
+Wait for a second letter before searching	SetupWindow		Ожидать ввод второй буквы перед поиском
+Found no matches.	ListView		Совпадения не найдены.
+Setup	SetupWindow		Настройки
+Show application version	SetupWindow		Показывать версию приложения
+Setup	MainWindow		Настройки
+Open containing folder	ListView		Открыть папку, содержащую элемент
+Use '*' as wildcards.	ListView		Используйте '*' для вывода всего списка.
+Show application path	SetupWindow		Отображать полный путь к приложению
+Thank you	Application		Спасибо
+Ignore these files & folders (and their subfolders):	SetupWindow		Игнорировать эти файлы и папки (и их подпапки):
+Remember last search term	SetupWindow		Запоминать последний поисковый запрос
+Add…	SetupWindow		Добавить
+QuickLaunch	System name		QuickLaunch
+Remove	SetupWindow		Удалить
+
