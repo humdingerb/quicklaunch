@@ -13,7 +13,7 @@ Show application path	SetupWindow		Отображать полный путь к
 Thank you	Application		Спасибо
 Ignore these files & folders (and their subfolders):	SetupWindow		Игнорировать эти файлы и папки (и их подпапки):
 Remember last search term	SetupWindow		Запоминать последний поисковый запрос
-Add…	SetupWindow		Добавить
+Add…	SetupWindow		Добавить…
 QuickLaunch	System name		QuickLaunch
 Remove	SetupWindow		Удалить
 
