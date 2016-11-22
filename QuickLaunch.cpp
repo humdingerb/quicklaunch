@@ -13,7 +13,7 @@
 
 #include <Catalog.h>
 
-extern const char *kApplicationSignature = "application/x-vnd.QuickLaunch";
+extern const char *kApplicationSignature = "application/x-vnd.humdinger-quicklaunch";
 
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "Application"
