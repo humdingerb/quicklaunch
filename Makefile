@@ -1,6 +1,6 @@
 NAME= QuickLaunch
 TYPE= APP
-APP_MIME_SIG= application/x-vnd.QuickLaunch
+APP_MIME_SIG= application/x-vnd.humdinger-quicklaunch
 SRCS= QLFilter.cpp QuickLaunch.cpp MainWindow.cpp MainListView.cpp MainListItem.cpp SetupWindow.cpp SetupListView.cpp QLSettings.cpp
 RDEFS= QuickLaunch.rdef
 LIBS= be localestub tracker $(STDCPPLIBS)
@@ -13,7 +13,7 @@ OPTIMIZE= FULL
 #	to use.  For example, setting DEFINES to "DEBUG=1" will cause the
 #	compiler option "-DDEBUG=1" to be used.  Setting DEFINES to "DEBUG"
 #	would pass "-DDEBUG" on the compiler's command line.
-LOCALES= en de it ja nl pl
+LOCALES= de en es it ja nl pl
 DEFINES=
 #	specify special warning levels
 #	if unspecified default warnings will be used

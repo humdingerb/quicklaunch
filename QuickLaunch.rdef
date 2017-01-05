@@ -1,4 +1,4 @@
-resource app_signature "application/x-vnd.QuickLaunch";
+resource app_signature "application/x-vnd.humdinger-quicklaunch";
 
 resource app_flags B_SINGLE_LAUNCH;
 

@@ -1,4 +1,4 @@
-1	Japanese	application/x-vnd.QuickLaunch	2099613309
+1	Japanese	application/x-vnd.humdinger-quicklaunch	2099613309
 QuickLaunch v0.9.12\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.12\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunchは、インストールされたすべてのアプリを素早く立ち上げます。アプリ名の最初の数文字を入力し、見つかったプログラムリストから選択するだけです。\n
 Window always on top	SetupWindow		ウィンドウ 常に手前に
 Add to ignore list	ListView		無視リストに追加
