@@ -18,6 +18,7 @@ The setup window shows these options:
 *   _Show the path to an application_ — interesting when you have several copies of an application.
 *   _Wait for a second letter before starting the search_ — starts QuickLaunch with the previous search.
 *   _Remeber last search term_ — probably only useful for slow systems.
+*   _Launch applications with a single click_ — instead of requiring the usual double-click.
 *   _Window always on top_ — the window floats modally in front of all others. Useful if you start a few apps after another and don't want to lose QuickLauch under the newly opening windows.
 *   _Ignore these files & folders (and their subfolders)_ that you can add and remove from the list with the buttons at the bottom. You can also right-click an app in the main window's result list to add that specific app to the ignore list.
 
@@ -128,3 +129,13 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 *	Also fix the formerly not usable file dialog when adding files/folders to
 	ignore. It was hidden behind the always-on-top window.
 *	Added Italian localization, thanks Barrett!
+
+
+**0.9.13** - _13-03-2017:_
+
+*	User request: Add a setting to launch applications with a single click.
+*	Fixed layout issues in setup window and made default main and setup windows
+    a bit bigger.
+*	Added Russian localization, thanks Akujiism!
+*	Added Spanish localization, thanks un_spacyar!
+*	Added Ukrainian localization, thanks Lan72!

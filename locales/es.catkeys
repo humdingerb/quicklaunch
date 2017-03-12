@@ -1,18 +1,19 @@
-1	Spanish	application/x-vnd.humdinger-quicklaunch	2099613309
-QuickLaunch v0.9.12\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.12\n\escrito por Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch permite iniciar rápidamente cualquier aplicación instalada. Sólo ingrese las primeras letras del nombre y elija de la lista de resultados encontrados.\n
-Window always on top	SetupWindow		Ventana siempre en primer plano
+1	Spanish	application/x-vnd.humdinger-quicklaunch	3619563551
+Thank you	Application		Gracias
+QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tescrito por Humdinger\n\tCopyright %years%\n\nQuickLaunch permite iniciar rápidamente cualquier aplicación instalada. Sólo ingrese las primeras letras del nombre y elija de la lista de resultados encontrados.\n
 Add to ignore list	ListView		Agregar a la lista de ignorados
-Wait for a second letter before searching	SetupWindow		Esperar por una segunda letra antes de iniciar la búsqueda
 Found no matches.	ListView		No se encontraron coincidencias.
-Setup	SetupWindow		Configuración
-Show application version	SetupWindow		Mostrar versión de la aplicación
-Setup	MainWindow		Configuración
 Open containing folder	ListView		Abrir carpeta contenedora
 Use '*' as wildcards.	ListView		Usar '*' como caracter comodín.
-Show application path	SetupWindow		Mostrar la ruta de la aplicación
-Thank you	Application		Gracias
-Ignore these files & folders (and their subfolders):	SetupWindow		Ignorar estos archivos y carpetas (y sus correspondientes subcarpetas):
-Remember last search term	SetupWindow		Recordar la última búsqueda
+Setup	MainWindow		Configuración
 Add…	SetupWindow		Agregar…
-QuickLaunch	System name		QuickLaunch
+Ignore these files & folders (and their subfolders):	SetupWindow		Ignorar estos archivos y carpetas (y sus correspondientes subcarpetas):
+Launch applications with a single click	SetupWindow		Iniciar aplicaciones con un solo clic
+Remember last search term	SetupWindow		Recordar la última búsqueda
 Remove	SetupWindow		Quitar
+Setup	SetupWindow		Configuración
+Show application path	SetupWindow		Mostrar la ruta de la aplicación
+Show application version	SetupWindow		Mostrar versión de la aplicación
+Wait for a second letter before searching	SetupWindow		Esperar por una segunda letra antes de iniciar la búsqueda
+Window always on top	SetupWindow		Ventana siempre en primer plano
+QuickLaunch	System name		QuickLaunch

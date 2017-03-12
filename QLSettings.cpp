@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015. All rights reserved.
+ * Copyright 2010-2017. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -28,15 +28,17 @@ QLSettings::QLSettings()
 	// Defaults
 	BScreen *screen = new BScreen(B_MAIN_SCREEN_ID);
 	BRect resolution = screen->Frame();
-	fMainWindowFrame = BRect(resolution.Width() / 2 - 320.0 / 2,
-							resolution.Height() / 2 - 193.0 / 2, 320.0, 93.0);
+	fMainWindowFrame = BRect(
+		resolution.Width() / 2 - 320.0 / 2, resolution.Height() / 2 - 120.0 / 2,
+		resolution.Width() / 2 + 320.0 / 2, resolution.Height() / 2 + 120.0 / 2);
 	delete screen;
-	fSetupWindowBounds = BRect(0.0, 0.0, 340.0, 180.0);
+	fSetupWindowBounds = BRect(0.0, 0.0, 340.0, 280.0);
 	fShowVersion = false;
 	fShowPath = true;
 	fDelay = false;
 	fSaveSearch = false;
 	fSearchTerm = "";
+	fSingleClick = false;
 	fOnTop = false;
 	fShowIgnore = false;
 
@@ -74,6 +76,10 @@ QLSettings::QLSettings()
 		BString searchterm;
 		if (settings.FindString("searchterm", &searchterm) == B_OK)
 			fSearchTerm = searchterm;
+
+		int32 singleclick;
+		if (settings.FindInt32("singleclick", &singleclick) == B_OK)
+			fSingleClick = singleclick;
 
 		int32 ontop;
 		if (settings.FindInt32("ontop", &ontop) == B_OK)
@@ -123,6 +129,7 @@ QLSettings::~QLSettings()
 	settings.AddInt32("delay", fDelay);
 	settings.AddInt32("savesearch", fSaveSearch);
 	settings.AddString("searchterm", fSearchTerm);
+	settings.AddInt32("singleclick", fSingleClick);
 	settings.AddInt32("ontop", fOnTop);
 	settings.AddInt32("show ignore", fShowIgnore);
 

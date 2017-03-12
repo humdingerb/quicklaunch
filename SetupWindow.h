@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015. All rights reserved.
+ * Copyright 2010-2017. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -36,6 +36,7 @@
 #define PATH_CHK		'chpa'
 #define DELAY_CHK		'chde'
 #define SAVESEARCH_CHK	'chss'
+#define SINGLECLICK_CHK	'ch1c'
 #define ONTOP_CHK		'chot'
 #define IGNORE_CHK		'chig'
 #define ADD_BUT			'addb'
@@ -45,7 +46,7 @@
 
 class SetupWindow : public BWindow {
 public:
-					SetupWindow(BRect rect);
+					SetupWindow();
 	virtual			~SetupWindow();
 
 	bool			QuitRequested();
@@ -56,6 +57,7 @@ public:
 	BCheckBox		*fChkPath;
 	BCheckBox		*fChkDelay;
 	BCheckBox		*fChkSaveSearch;
+	BCheckBox		*fChkSingleClick;
 	BCheckBox		*fChkOnTop;
 	BCheckBox		*fChkIgnore;
 	SetupListView	*fIgnoreList;

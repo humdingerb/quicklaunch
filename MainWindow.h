@@ -35,6 +35,7 @@
 #include <strings.h>
 
 
+#define SINGLE_CLICK	'1clk'
 #define SEARCH_BOX		'sbox'
 #define SETUP_BUTTON	'setb'
 
@@ -43,7 +44,7 @@
 
 class MainWindow : public BWindow {
 public:
-					MainWindow(BRect rect);
+					MainWindow();
 	virtual			~MainWindow();
 	
 	bool			QuitRequested();

@@ -1,18 +1,20 @@
-1	German	application/x-vnd.humdinger-quicklaunch	2099613309
-QuickLaunch v0.9.12\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.12\n\tvon Humdinger\n\tCopyright 2010-2015\n\nMit QuickLaunch lässt sich jede installierte Anwendung schnell starten. Einfach die Anfangsbuchstaben eingeben und aus der Liste der gefundenen Programme auswählen.\n
-Window always on top	SetupWindow		Fenster immer im Vordergrund
+1	German	application/x-vnd.humdinger-quicklaunch	3619563551
+Thank you	Application		Danke
+QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\von Humdinger\n\tCopyright %years%\n\nMit QuickLaunch lässt sich jede installierte Anwendung schnell starten. Einfach die Anfangsbuchstaben eingeben und aus der Liste der gefundenen Programme auswählen.\n
 Add to ignore list	ListView		Zur Ignorierliste hinzufügen
-Wait for a second letter before searching	SetupWindow		Erst ab zwei Zeichen mit der Suche beginnen
 Found no matches.	ListView		Keine Treffer
-Setup	SetupWindow		Einstellungen
-Show application version	SetupWindow		Anwendungsversion zeigen
-Setup	MainWindow		Einstellungen
 Open containing folder	ListView		Speicherort öffnen
 Use '*' as wildcards.	ListView		'*' als Platzhalter verwenden
-Show application path	SetupWindow		Anwendungspfad zeigen
-Thank you	Application		Danke
-Ignore these files & folders (and their subfolders):	SetupWindow		Diese Dateien und Order (inkl. Unterordner) ignorieren:
-Remember last search term	SetupWindow		Letzte Suche merken
+Setup	MainWindow		Einstellungen
 Add…	SetupWindow		Hinzufügen…
-QuickLaunch	System name		QuickLaunch
+Ignore these files & folders (and their subfolders):	SetupWindow		Diese Dateien und Order (inkl. Unterordner) ignorieren:
+Launch applications with a single click	SetupWindow		Anwendungen mit einem Klick starten
+Remember last search term	SetupWindow		Letzte Suche merken
 Remove	SetupWindow		Entfernen
+Setup	SetupWindow		Einstellungen
+Show application path	SetupWindow		Anwendungspfad zeigen
+Show application version	SetupWindow		Anwendungsversion zeigen
+Wait for a second letter before searching	SetupWindow		Erst ab zwei Zeichen mit der Suche beginnen
+Window always on top	SetupWindow		Fenster immer im Vordergrund
+QuickLaunch	System name		QuickLaunch
+nch

@@ -1,18 +1,19 @@
-1	Polish	application/x-vnd.humdinger-quicklaunch	2099613309
-QuickLaunch v0.9.12\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.12\n\tnapisany przez Humdingera\n\tCopyright 2010-2015\n\nQuickLaunch błyskawicznie uruchamia dowolną zainstalowaną aplikację. Wystarczy wprowadzić kilka pierwszych liter jej nazwy i wybrać z listy znalezionych programów.\n
-Window always on top	SetupWindow		Okno zawsze na wierzchu
+1	Polish	application/x-vnd.humdinger-quicklaunch	3619563551
+Thank you	Application		Dziękuję
+QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tnapisany przez Humdingera\n\tCopyright %years%\n\nQuickLaunch błyskawicznie uruchamia dowolną zainstalowaną aplikację. Wystarczy wprowadzić kilka pierwszych liter jej nazwy i wybrać z listy znalezionych programów.\n
 Add to ignore list	ListView		Dodaj do listy ignorowanych
-Wait for a second letter before searching	SetupWindow		Czekaj na drugą literę przed rozpoczęciem wyszukiwania
 Found no matches.	ListView		Nie znaleziono dopasowań.
-Setup	SetupWindow		Ustawienia
-Show application version	SetupWindow		Pokaż wersję aplikacji
-Setup	MainWindow		Ustawienia
 Open containing folder	ListView		Otwórz katalog docelowy
 Use '*' as wildcards.	ListView		Użyj „*” jako maski.
-Show application path	SetupWindow		Pokaż ścieżkę aplikacji
-Thank you	Application		Dziękuję
-Ignore these files & folders (and their subfolders):	SetupWindow		Ignoruj te pliki i katalogi (oraz ich podkatalogi):
-Remember last search term	SetupWindow		Remember last search term
+Setup	MainWindow		Ustawienia
 Add…	SetupWindow		Dodaj…
-QuickLaunch	System name		QuickLaunch
+Ignore these files & folders (and their subfolders):	SetupWindow		Ignoruj te pliki i katalogi (oraz ich podkatalogi):
+Launch applications with a single click	SetupWindow		Toepassingen starten met een enkele klik
+Remember last search term	SetupWindow		Herinner me vorig zoekterm
 Remove	SetupWindow		Usuń
+Setup	SetupWindow		Ustawienia
+Show application path	SetupWindow		Pokaż ścieżkę aplikacji
+Show application version	SetupWindow		Pokaż wersję aplikacji
+Wait for a second letter before searching	SetupWindow		Czekaj na drugą literę przed rozpoczęciem wyszukiwania
+Window always on top	SetupWindow		Okno zawsze na wierzchu
+QuickLaunch	System name		QuickLaunch

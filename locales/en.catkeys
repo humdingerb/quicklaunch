@@ -1,18 +1,19 @@
-1	English	application/x-vnd.humdinger-quicklaunch	2099613309
-QuickLaunch v0.9.12\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application		QuickLaunch v0.9.12\n\twritten by Humdinger\n\tCopyright 2010-2015\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n
-Window always on top	SetupWindow		Window always on top
+1	English	application/x-vnd.humdinger-quicklaunch	3619563551
+Thank you	Application		Thank you
+QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n
 Add to ignore list	ListView		Add to ignore list
-Wait for a second letter before searching	SetupWindow		Wait for a second letter before searching
 Found no matches.	ListView		Found no matches.
-Setup	SetupWindow		Setup
-Show application version	SetupWindow		Show application version
-Setup	MainWindow		Setup
 Open containing folder	ListView		Open containing folder
 Use '*' as wildcards.	ListView		Use '*' as wildcards.
-Show application path	SetupWindow		Show application path
-Thank you	Application		Thank you
-Ignore these files & folders (and their subfolders):	SetupWindow		Ignore these files & folders (and their subfolders):
-Remember last search term	SetupWindow		Remember last search term
+Setup	MainWindow		Setup
 Add…	SetupWindow		Add…
-QuickLaunch	System name		QuickLaunch
+Ignore these files & folders (and their subfolders):	SetupWindow		Ignore these files & folders (and their subfolders):
+Launch applications with a single click	SetupWindow		Launch applications with a single click
+Remember last search term	SetupWindow		Remember last search term
 Remove	SetupWindow		Remove
+Setup	SetupWindow		Setup
+Show application path	SetupWindow		Show application path
+Show application version	SetupWindow		Show application version
+Wait for a second letter before searching	SetupWindow		Wait for a second letter before searching
+Window always on top	SetupWindow		Window always on top
+QuickLaunch	System name		QuickLaunch

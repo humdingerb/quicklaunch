@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015. All rights reserved.
+ * Copyright 2010-2017. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -30,45 +30,60 @@ compare_items(const void* a, const void* b)
 }
 
 
-SetupWindow::SetupWindow(BRect frame)
+SetupWindow::SetupWindow()
 	:
-	BWindow(frame, B_TRANSLATE("Setup"), B_TITLED_WINDOW_LOOK,
-		B_NORMAL_WINDOW_FEEL,
-		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_CLOSE_ON_ESCAPE)
+	BWindow(BRect(), B_TRANSLATE("Setup"), B_TITLED_WINDOW_LOOK,
+		B_NORMAL_WINDOW_FEEL, B_NOT_ZOOMABLE | B_AUTO_UPDATE_SIZE_LIMITS
+		| B_CLOSE_ON_ESCAPE)
 {
 	fChkVersion = new BCheckBox("VersionChk",
 		B_TRANSLATE("Show application version"),
 		new BMessage(VERSION_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkVersion->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 	fChkPath = new BCheckBox("PathChk", B_TRANSLATE("Show application path"),
 		new BMessage(PATH_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkPath->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 	fChkDelay = new BCheckBox("DelayChk",
 		B_TRANSLATE("Wait for a second letter before searching"),
 		new BMessage(DELAY_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkDelay->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 	fChkSaveSearch = new BCheckBox("SaveSearchChk",
 		B_TRANSLATE("Remember last search term"),
 		new BMessage(SAVESEARCH_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkSaveSearch->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+	fChkSingleClick = new BCheckBox("SingleClickChk",
+		B_TRANSLATE("Launch applications with a single click"),
+		new BMessage(SINGLECLICK_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkSingleClick->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 	fChkOnTop = new BCheckBox("OnTopChk",
 		B_TRANSLATE("Window always on top"),
 		new BMessage(ONTOP_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkOnTop->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 	fChkIgnore = new BCheckBox("IgnoreChk",
 		B_TRANSLATE("Ignore these files & folders (and their subfolders):"),
 		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkIgnore->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
 	fIgnoreList = new SetupListView();
 	fIgnoreScroll = new BScrollView("IgnoreList", fIgnoreList,
-		B_FOLLOW_ALL_SIDES, false, true, B_FANCY_BORDER);
-	fButAdd = new BButton(BRect(), "AddButton",
-		B_TRANSLATE("Add" B_UTF8_ELLIPSIS), new BMessage(ADD_BUT),
-		B_FOLLOW_LEFT | B_FOLLOW_TOP, B_WILL_DRAW | B_NAVIGABLE);
-	fButRem = new BButton(BRect(), "RemButton", B_TRANSLATE("Remove"),
-		new BMessage(REM_BUT), B_FOLLOW_LEFT | B_FOLLOW_TOP, B_WILL_DRAW
-		| B_NAVIGABLE);
+		B_WILL_DRAW | B_NAVIGABLE, false, true, B_FANCY_BORDER);
+	fIgnoreScroll->SetExplicitMinSize(BSize(B_SIZE_UNSET, 48));
+	fIgnoreScroll->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
+	fButAdd = new BButton("AddButton", B_TRANSLATE("Add" B_UTF8_ELLIPSIS),
+		new BMessage(ADD_BUT));
+	fButAdd->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+	fButRem = new BButton("RemButton", B_TRANSLATE("Remove"),
+		new BMessage(REM_BUT));
 	fButRem->SetEnabled(false);
+	fButRem->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
 	fChkVersion->SetTarget(be_app);
 	fChkPath->SetTarget(be_app);
 	fChkDelay->SetTarget(be_app);
 	fChkSaveSearch->SetTarget(be_app);
 	fChkOnTop->SetTarget(be_app);
+	fChkSingleClick->SetTarget(be_app);
 	fChkIgnore->SetTarget(be_app);
 
 	// Build the layout
@@ -79,27 +94,35 @@ SetupWindow::SetupWindow(BRect frame)
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkVersion)
 			.Add(fChkPath)
+			.SetInsets(spacing, spacing, spacing, 0)
+		.End()
+		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkDelay)
 			.Add(fChkSaveSearch)
+			.Add(fChkSingleClick)
 			.Add(fChkOnTop)
-			.SetInsets(spacing/2, spacing/2, spacing/2, 0)
+			.SetInsets(spacing, spacing, spacing, 0)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkIgnore)
 			.Add(fIgnoreScroll)
-			.SetInsets(spacing/2, spacing/2, spacing/2, 0)
+			.SetInsets(spacing, spacing, spacing, 0)
 		.End()
-		.AddGroup(B_HORIZONTAL, spacing/2)
+		.AddGroup(B_HORIZONTAL, spacing)
+			.AddGlue()
 			.Add(fButAdd)
 			.Add(fButRem)
-			.SetInsets(0, spacing/2, spacing/2, spacing/2)
-		.End();
+			.AddGlue()
+			.SetInsets(0, spacing, spacing, spacing)
+		.End()
+	.End();
 
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
 	fChkVersion->SetValue(app->fSettings->GetShowVersion());
 	fChkPath->SetValue(app->fSettings->GetShowPath());
 	fChkDelay->SetValue(app->fSettings->GetDelay());
 	fChkSaveSearch->SetValue(app->fSettings->GetSaveSearch());
+	fChkSingleClick->SetValue(app->fSettings->GetSingleClick());
 	fChkOnTop->SetValue(app->fSettings->GetOnTop());
 	fChkIgnore->SetValue(app->fSettings->GetShowIgnore());
 

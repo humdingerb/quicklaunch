@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015. All rights reserved.
+ * Copyright 2010-2017. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -31,27 +31,28 @@ compare_items(const void* a, const void* b)
 }
 
 
-MainWindow::MainWindow(BRect frame)
+MainWindow::MainWindow()
 	:
-	BWindow(frame, B_TRANSLATE_SYSTEM_NAME("QuickLaunch"),
+	BWindow(BRect(), B_TRANSLATE_SYSTEM_NAME("QuickLaunch"),
 		B_TITLED_WINDOW_LOOK, B_NORMAL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE
-		| B_FRAME_EVENTS | B_CLOSE_ON_ESCAPE)
+		| B_FRAME_EVENTS | B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
-	BRect winframe = app->fSettings->GetMainWindowFrame();
-	MoveTo(winframe.LeftTop());
 
-	fSearchBox = new BTextControl("SearchBox", NULL,
-							NULL, new BMessage(SEARCH_BOX));
+	fSearchBox = new BTextControl("SearchBox", NULL, NULL,
+		new BMessage(SEARCH_BOX));
 
 	fSetupButton = new BButton ("Setup", B_TRANSLATE("Setup"),
 		new BMessage(SETUP_BUTTON));
 	fSetupButton->SetTarget(be_app);
 
 	fListView = new MainListView();
-	fScrollView = new BScrollView("ScrollList", fListView, B_FOLLOW_ALL_SIDES,
-							false, true);
+	fListView->SetExplicitMinSize(BSize(B_SIZE_UNSET, 40.0));
+	fListView->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
+	fScrollView = new BScrollView("ScrollList", fListView, B_WILL_DRAW,
+		false, true);
 
 	// Build the layout
 	float spacing = be_control_look->DefaultItemSpacing();
@@ -313,6 +314,12 @@ MainWindow::MessageReceived(BMessage* message)
 			}
 			break;
 		}
+		case SINGLE_CLICK:
+		{
+			QLApp *app = dynamic_cast<QLApp *> (be_app);
+			if (app->fSettings->GetSingleClick() == false)
+				break;
+		}	// intentional fall-through
 		case RETURN_KEY:
 		{
 			Hide();

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015. All rights reserved.
+ * Copyright 2010-2017. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -120,7 +120,6 @@ MainListView::MessageReceived(BMessage* message)
 			fShowingPopUpMenu = false;
 
 			QLApp *app = dynamic_cast<QLApp *> (be_app);
-			char		string[512];
 			entry_ref	*ref = NULL;
 			MainListItem	*item = NULL;
 
@@ -164,7 +163,12 @@ MainListView::MouseDown(BPoint position)
 
 	if (buttons == B_SECONDARY_MOUSE_BUTTON)
 		ShowPopUpMenu(ConvertToScreen(position));
-
+	else if (buttons == B_PRIMARY_MOUSE_BUTTON) {
+		QLApp *app = dynamic_cast<QLApp *> (be_app);
+		BMessenger msgr(app->fMainWindow);
+		BMessage refMsg(RETURN_KEY);
+		msgr.SendMessage(&refMsg);
+	}
 	BListView::MouseDown(position);
 }
 

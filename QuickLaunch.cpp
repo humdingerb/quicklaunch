@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015. All rights reserved.
+ * Copyright 2010-2017. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -13,7 +13,7 @@
 
 #include <Catalog.h>
 
-extern const char *kApplicationSignature = "application/x-vnd.humdinger-quicklaunch";
+const char *kApplicationSignature = "application/x-vnd.humdinger-quicklaunch";
 
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "Application"
@@ -23,12 +23,8 @@ QLApp::QLApp()
 	BApplication(kApplicationSignature)
 {
 	fSettings = new QLSettings();
-
-	BRect aFrame;
-	aFrame.Set(0.0, 0.0, 340.0, 250.0);
-	fSetupWindow = new SetupWindow(aFrame);
-	aFrame.Set(0.0, 0.0, 340.0, 93.0);
-	fMainWindow = new MainWindow(aFrame);
+	fSetupWindow = new SetupWindow();
+	fMainWindow = new MainWindow();
 }
 
 
@@ -38,7 +34,7 @@ QLApp::ReadyToRun()
 	fMainWindow->SetSizeLimits(190.0, 800.0, 90.0, 1000.0);
 	BRect frame = fSettings->GetMainWindowFrame();
 	fMainWindow->MoveTo(frame.LeftTop());
-	fMainWindow->ResizeTo(frame.right - frame.left, 90.0);
+	fMainWindow->ResizeTo(frame.right - frame.left, frame.bottom - frame.top);
 	fMainWindow->Show();
 
 	frame.OffsetBy(70.0, 120.0);
@@ -129,6 +125,13 @@ QLApp::MessageReceived(BMessage* message)
 			int32 value;
 			message->FindInt32("be:value", &value);
 			fSettings->SetSaveSearch(value);
+			break;
+		}
+		case SINGLECLICK_CHK:
+		{
+			int32 value;
+			message->FindInt32("be:value", &value);
+			fSettings->SetSingleClick(value);
 			break;
 		}
 		case ONTOP_CHK:
@@ -223,13 +226,20 @@ QLApp::QuitRequested()
 void
 QLApp::AboutRequested()
 {
-	BAlert *alert = new BAlert("about",
-		B_TRANSLATE("QuickLaunch v0.9.12\n"
+	BString text = B_TRANSLATE_COMMENT(
+		"QuickLaunch %version%\n"
 		"\twritten by Humdinger\n"
-		"\tCopyright 2010-2015\n\n"
+		"\tCopyright %years%\n\n"
 		"QuickLaunch quickly starts any installed application. "
 		"Just enter the first few letters of its name and choose "
-		"from a list of all found programs.\n"), B_TRANSLATE("Thank you"));
+		"from a list of all found programs.\n",
+		"Don't change the variables %years% and %version%.");
+	text.ReplaceAll("%version%", "v0.9.13");
+	text.ReplaceAll("%years%", "2010-2017");
+
+	BAlert *alert = new BAlert("about", text.String(),
+		B_TRANSLATE("Thank you"));
+
 	BTextView *view = alert->TextView();
 	BFont font;
 
