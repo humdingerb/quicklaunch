@@ -136,6 +136,9 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 *	User request: Add a setting to launch applications with a single click.
 *	Fixed layout issues in setup window and made default main and setup windows
     a bit bigger.
+*	Apply "Always on top" setting only to the main window when there's no setup
+	window open. The "ignore" file dialog has issues when it's modal too: you
+	couldn't drag'n'drop files/folders into it...
 *	Added Russian localization, thanks Akujiism!
 *	Added Spanish localization, thanks un_spacyar!
 *	Added Ukrainian localization, thanks Lan72!

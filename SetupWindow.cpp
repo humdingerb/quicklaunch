@@ -126,9 +126,6 @@ SetupWindow::SetupWindow()
 	fChkOnTop->SetValue(app->fSettings->GetOnTop());
 	fChkIgnore->SetValue(app->fSettings->GetShowIgnore());
 
-	int32 value = app->fSettings->GetOnTop();
-	SetFeel(value ?	B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
-
 	fOpenPanel = new BFilePanel(B_OPEN_PANEL, NULL, NULL,
 		B_FILE_NODE | B_DIRECTORY_NODE);
 	fOpenPanel->SetTarget(this);
@@ -145,6 +142,11 @@ bool
 SetupWindow::QuitRequested()
 {
 	this->Hide();
+
+	QLApp *app = dynamic_cast<QLApp *> (be_app);
+	int32 value = app->fSettings->GetOnTop();
+	app->SetWindowsFeel(value);
+
 	return false;
 }
 
@@ -155,11 +157,6 @@ SetupWindow::MessageReceived(BMessage* message)
 	switch (message->what) {
 		case ADD_BUT:
 		{
-			QLApp *app = dynamic_cast<QLApp *> (be_app);
-			int32 value = app->fSettings->GetOnTop();
-			fOpenPanel->Window()->SetFeel(value ?
-				B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
-
 			fOpenPanel->Show();
 			break;
 		}

@@ -166,7 +166,7 @@ MainListView::MouseDown(BPoint position)
 	else if (buttons == B_PRIMARY_MOUSE_BUTTON) {
 		QLApp *app = dynamic_cast<QLApp *> (be_app);
 		BMessenger msgr(app->fMainWindow);
-		BMessage refMsg(RETURN_KEY);
+		BMessage refMsg(SINGLE_CLICK);
 		msgr.SendMessage(&refMsg);
 	}
 	BListView::MouseDown(position);

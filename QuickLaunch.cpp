@@ -34,7 +34,7 @@ QLApp::ReadyToRun()
 	fMainWindow->SetSizeLimits(190.0, 800.0, 90.0, 1000.0);
 	BRect frame = fSettings->GetMainWindowFrame();
 	fMainWindow->MoveTo(frame.LeftTop());
-	fMainWindow->ResizeTo(frame.right - frame.left, frame.bottom - frame.top);
+	fMainWindow->ResizeTo(frame.right - frame.left, 100.0);
 	fMainWindow->Show();
 
 	frame.OffsetBy(70.0, 120.0);
@@ -76,6 +76,7 @@ QLApp::MessageReceived(BMessage* message)
 		case SETUP_BUTTON:
 		{
 			if (fSetupWindow->IsHidden()) {
+				SetWindowsFeel(0);
 				BRect frame = fMainWindow->Frame();
 				frame.OffsetBy(70.0, 120.0);
 				fSetupWindow->MoveTo(frame.LeftTop());
@@ -139,7 +140,6 @@ QLApp::MessageReceived(BMessage* message)
 			int32 value;
 			message->FindInt32("be:value", &value);
 			fSettings->SetOnTop(value);
-			SetWindowsFeel(value);
 			break;
 		}
 		case IGNORE_CHK:
@@ -205,14 +205,6 @@ QLApp::SetWindowsFeel(int32 value)
 	fMainWindow->SetFeel(value ?
 		B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
 	fMainWindow->UnlockLooper();
-
-	if (fSetupWindow) {
-		fSetupWindow->LockLooper();
-		fSetupWindow->SetFeel(value ?
-			B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
-		fSetupWindow->Activate();
-		fSetupWindow->UnlockLooper();
-	}
 }
 
 
