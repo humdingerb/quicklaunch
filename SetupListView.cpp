@@ -11,7 +11,7 @@
 #include "SetupWindow.h"
 
 SetupListView::SetupListView()
-		  : BListView("IgnoreList")
+		  : BListView("IgnoreList", B_MULTIPLE_SELECTION_LIST)
 {
 }
 

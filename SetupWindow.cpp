@@ -162,10 +162,35 @@ SetupWindow::MessageReceived(BMessage* message)
 		}
 		case REM_BUT:
 		{
-			fIgnoreList->RemoveItem(fIgnoreList->CurrentSelection());
+			BList indices;
+			for (int32 i = 0; true; i++) {
+				int32 index = fIgnoreList->CurrentSelection(i);
+				if (index < 0)
+					break;
+				if (!indices.AddItem((void*)(addr_t)index))
+					break;
+			}
+			int32 index = fIgnoreList->CurrentSelection() - 1;
+			fIgnoreList->DeselectAll();
+
+			if (indices.CountItems() > 0) {
+				int32 count = indices.CountItems();
+				for (int32 i = 0; i < count; i++) {
+					int32 index = (int32)(addr_t)indices.ItemAtFast(i) - i;
+					delete fIgnoreList->RemoveItem(index);
+				}
+			}
+			if (fIgnoreList->CountItems() > 0) {
+				if (index < 0)
+					index = 0;
+
+				fIgnoreList->Select(index);
+			}
+
 			be_app->PostMessage(FILEPANEL);
 			break;
 		}
+		case B_SIMPLE_DATA:
 		case B_REFS_RECEIVED:
 		{
 			int32		ref_num;
