@@ -29,8 +29,8 @@ QLSettings::QLSettings()
 	BScreen *screen = new BScreen(B_MAIN_SCREEN_ID);
 	BRect resolution = screen->Frame();
 	fMainWindowFrame = BRect(
-		resolution.Width() / 2 - 320.0 / 2, resolution.Height() / 2 - 120.0 / 2,
-		resolution.Width() / 2 + 320.0 / 2, resolution.Height() / 2 + 120.0 / 2);
+		resolution.Width() / 2 - 340.0 / 2, resolution.Height() / 2 - 120.0 / 2,
+		resolution.Width() / 2 + 340.0 / 2, resolution.Height() / 2 + 120.0 / 2);
 	delete screen;
 	fSetupWindowBounds = BRect(0.0, 0.0, 340.0, 280.0);
 	fShowVersion = false;

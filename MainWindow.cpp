@@ -12,6 +12,7 @@
 
 #include <Catalog.h>
 #include <ControlLook.h>
+#include <Font.h>
 #include <LayoutBuilder.h>
 
 #include <algorithm>
@@ -47,7 +48,13 @@ MainWindow::MainWindow()
 	fSetupButton->SetTarget(be_app);
 
 	fListView = new MainListView();
-	fListView->SetExplicitMinSize(BSize(B_SIZE_UNSET, 40.0));
+
+	font_height finfo;
+	be_plain_font->GetHeight(&finfo);
+	float fontHeight = finfo.ascent + finfo.descent + finfo.leading;
+	if (fontHeight < 16.0)
+		fontHeight = 16.0;
+	fListView->SetExplicitMinSize(BSize(B_SIZE_UNSET, fontHeight * 2.5));
 	fListView->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
 	fScrollView = new BScrollView("ScrollList", fListView, B_WILL_DRAW,
@@ -168,10 +175,16 @@ MainWindow::BuildList(const char *predicate)
 	}
 	fListView->SortItems(&compare_items);
 
-	if (fListView->CountItems() < kMAX_DISPLAYED_ITEMS)
-		ResizeTo(Bounds().Width(), (fListView->CountItems()) * (kBitmapSize + 4) + 85);
-	else
-		ResizeTo(Bounds().Width(), kMAX_DISPLAYED_ITEMS * (kBitmapSize + 4) + 90);
+	BRect windowRest = Frame().Height() - fListView->Frame().Height();
+	BRect itemFrame = fListView->ItemFrame(0);
+	int32 count = fListView->CountItems();
+	if (count < kMAX_DISPLAYED_ITEMS) {
+		ResizeTo(Bounds().Width(), count * itemFrame.Height()
+			+ windowRest.Height() + count);
+	} else {
+		ResizeTo(Bounds().Width(), kMAX_DISPLAYED_ITEMS * itemFrame.Height()
+			+ windowRest.Height() + kMAX_DISPLAYED_ITEMS);
+	}
 }
 
 
@@ -333,7 +346,7 @@ MainWindow::MessageReceived(BMessage* message)
 				fListView->Select(0);
 			} else {
 				fListView->MakeEmpty();
-				ResizeTo(Bounds().Width(), 90);		// original size
+				ResizeTo(Bounds().Width(), 0);		// original size
 				fListView->Invalidate();
 			}
 			break;

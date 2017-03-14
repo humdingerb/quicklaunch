@@ -31,17 +31,16 @@ QLApp::QLApp()
 void
 QLApp::ReadyToRun()
 {
-	fMainWindow->SetSizeLimits(190.0, 800.0, 90.0, 1000.0);
 	BRect frame = fSettings->GetMainWindowFrame();
 	fMainWindow->MoveTo(frame.LeftTop());
-	fMainWindow->ResizeTo(frame.right - frame.left, 100.0);
+	fMainWindow->ResizeTo(frame.right - frame.left, 0);
 	fMainWindow->Show();
 
 	frame.OffsetBy(70.0, 120.0);
 	fSetupWindow->MoveTo(frame.LeftTop());
 	BRect bounds = fSettings->GetSetupWindowBounds();
 	fSetupWindow->ResizeTo(bounds.Width(), bounds.Height());
-	fSetupWindow->SetSizeLimits(340.0, 800.0, 160.0, 1000.0);
+
 	fSettings->InitIgnoreList();
 	fSetupWindow->Hide();
 	fSetupWindow->Show();
