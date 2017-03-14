@@ -139,6 +139,7 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 *	Apply "Always on top" setting only to the main window when there's no setup
 	window open. The "ignore" file dialog has issues when it's modal too: you
 	couldn't drag'n'drop files/folders into it...
+*	Show error dialog if the launch of an application has failed for some reason.
 *	Added Russian localization, thanks Akujiism!
 *	Added Spanish localization, thanks un_spacyar!
 *	Added Ukrainian localization, thanks Lan72!

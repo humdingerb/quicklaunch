@@ -1,5 +1,5 @@
 /*
- * Copyright 2010. All rights reserved.
+ * Copyright 2010-2017. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -9,6 +9,7 @@
 #ifndef QL_WINDOW_H
 #define QL_WINDOW_H
 
+#include "MainListItem.h"
 #include "MainListView.h"
 
 #include <Alert.h>
@@ -39,7 +40,7 @@
 #define SEARCH_BOX		'sbox'
 #define SETUP_BUTTON	'setb'
 
-#define kMAX_DISPLAYED_ITEMS		9
+#define kMAX_DISPLAYED_ITEMS	9
 
 
 class MainWindow : public BWindow {
@@ -56,6 +57,8 @@ public:
 						{return fSearchBox->TextView()->TextLength();};
 	const char		*GetSearchString()
 						{return fSearchBox->TextView()->Text();};
+	void			LaunchApp(MainListItem *item);
+
 	MainListView	*fListView;
 	
 private:

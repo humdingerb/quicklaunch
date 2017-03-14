@@ -8,7 +8,6 @@
 
 #include "QLFilter.h"
 #include "QuickLaunch.h"
-#include "MainListItem.h"
 #include "MainWindow.h"
 
 #include <Catalog.h>
@@ -265,8 +264,8 @@ MainWindow::MessageReceived(BMessage* message)
 			Hide();
 
 			// Begin DW code
-			entry_ref	*ref = NULL;
-			MainListItem	*item = NULL;
+			entry_ref *ref = NULL;
+			MainListItem *item = NULL;
 
 			int selection = fListView->CurrentSelection();
 			item = dynamic_cast<MainListItem *>(fListView->ItemAt(selection));
@@ -295,23 +294,11 @@ MainWindow::MessageReceived(BMessage* message)
 		}
 		case RETURN_SHIFT_KEY:
 		{
-			char		string[512];
-			entry_ref	*ref = NULL;
-			status_t	result;
-			MainListItem	*item = NULL;
-
+			MainListItem *item = NULL;
 			int selection = fListView->CurrentSelection();
 			item = dynamic_cast<MainListItem *>(fListView->ItemAt(selection));
-			if (item)
-				ref = item->Ref();
-
-			if (ref) {
-			// if we got a ref, try launching it
-				result = be_roster->Launch(ref);
-				if (result != B_NO_ERROR) {
-					sprintf(string, "Error launching: %s", strerror(result));
-				}
-			}
+			if (item != NULL)
+				LaunchApp(item);
 			break;
 		}
 		case SINGLE_CLICK:
@@ -324,24 +311,12 @@ MainWindow::MessageReceived(BMessage* message)
 		{
 			Hide();
 
-			char		string[512];
-			entry_ref	*ref = NULL;
-			status_t	result;
-			MainListItem	*item = NULL;
-
+			MainListItem *item = NULL;
 			int selection = fListView->CurrentSelection();
-
 			item = dynamic_cast<MainListItem *>(fListView->ItemAt(selection));
-			if (item)
-				ref = item->Ref();
+			if (item != NULL)
+				LaunchApp(item);
 
-			if (ref) {
-			// if we got a ref, try launching it
-			result = be_roster->Launch(ref);
-				if (result != B_NO_ERROR) {
-					sprintf(string, "Error launching: %s", strerror(result));
-				}
-			}
 			QLApp *app = dynamic_cast<QLApp *> (be_app);
 			app->fSettings->SetSearchTerm(GetSearchString());
 
@@ -356,8 +331,7 @@ MainWindow::MessageReceived(BMessage* message)
 				const char *searchString = GetSearchString();
 				BuildList(searchString);
 				fListView->Select(0);
-			}
-			else {
+			} else {
 				fListView->MakeEmpty();
 				ResizeTo(Bounds().Width(), 90);		// original size
 				fListView->Invalidate();
@@ -368,6 +342,36 @@ MainWindow::MessageReceived(BMessage* message)
 		{
 			BWindow::MessageReceived(message);
 			break;
+		}
+	}
+}
+
+
+void
+MainWindow::LaunchApp(MainListItem *item)
+{
+	entry_ref *ref = NULL;
+	ref = item->Ref();
+
+	if (ref != NULL) {
+		status_t result = be_roster->Launch(ref);
+		BString errorMessage;
+		if (result != B_OK && result != B_ALREADY_RUNNING) {
+			BString errStr(B_TRANSLATE_COMMENT("Failed to launch %appname%.\n\n"
+			"Error:", "Don't translate the variable %appname%."));
+			errStr.ReplaceFirst("%appname%", item->GetName());
+			errorMessage << errStr.String() << " ";
+			errorMessage << strerror(result);
+		} else {
+			// clear error message on success (might have been
+			// filled when trying to launch by ref)
+			errorMessage = "";
+		}
+		if (errorMessage.Length() > 0) {
+			BAlert *alert = new BAlert("error", errorMessage.String(),
+				B_TRANSLATE("OK"), NULL, NULL, B_WIDTH_FROM_WIDEST);
+			alert->SetFlags(alert->Flags() | B_CLOSE_ON_ESCAPE);
+			alert->Go();
 		}
 	}
 }
