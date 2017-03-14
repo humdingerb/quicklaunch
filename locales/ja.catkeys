@@ -1,11 +1,13 @@
-1	Japanese	application/x-vnd.humdinger-quicklaunch	3619563551
+1	Japanese	application/x-vnd.humdinger-quicklaunch	1028244333
 Thank you	Application		ありがとう
 QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nは、インストールされたすべてのアプリを素早く立ち上げます。アプリ名の最初の数文字を入力し、見つかったプログラムリストから選択するだけです。\n
 Add to ignore list	ListView		無視リストに追加
 Found no matches.	ListView		一致するアプリがありません
 Open containing folder	ListView		フォルダーを開く
 Use '*' as wildcards.	ListView		'*' はワイルドカード
+OK	MainWindow		OK
 Setup	MainWindow		設定
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	％appname％の起動に失敗しました。\n\nエラー：
 Add…	SetupWindow		追加…
 Ignore these files & folders (and their subfolders):	SetupWindow		以下のファイルとフォルダー (およびサブフォルダー) を無視する:
 Launch applications with a single click	SetupWindow		ワンクリックでアプリケーションを起動

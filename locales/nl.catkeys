@@ -1,11 +1,13 @@
-1	Netherland	application/x-vnd.humdinger-quicklaunch	3619563551
+1	Netherlands	application/x-vnd.humdinger-quicklaunch	1028244333
 Thank you	Application		Bedankt
 QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tgeschreven door Humdinger\n\tCopyright %years%\n\nQuickLaunch start elke geïnstalleerde applicatie snel. Toets gewoon de eerste paar letters van de naam in en kies van de lijst van alle gevonden applicaties.\n
 Add to ignore list	ListView		Voeg toe aan negeerlijst
 Found no matches.	ListView		Geen resultaten gevonden.
 Open containing folder	ListView		Bijbehorende map openen
 Use '*' as wildcards.	ListView		Gebruik '*' als wildcard
+OK	MainWindow		OK
 Setup	MainWindow		Instellingen
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Kan starten %appname%.\n\nFout:
 Add…	SetupWindow		Voeg toe…
 Ignore these files & folders (and their subfolders):	SetupWindow		Negeer deze bestanden & mappen (en submappen):
 Launch applications with a single click	SetupWindow		Toepassingen starten met een enkele klik
@@ -17,3 +19,6 @@ Show application version	SetupWindow		Toon applicatieversie
 Wait for a second letter before searching	SetupWindow		Wacht voor een tweede letter voor zoeken
 Window always on top	SetupWindow		Venster atijd bovenop
 QuickLaunch	System name		QuickLaunch
+aunch
+ch
+ch

@@ -131,7 +131,7 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 *	Added Italian localization, thanks Barrett!
 
 
-**0.9.13** - _13-03-2017:_
+**0.9.13** - _14-03-2017:_
 
 *	User request: Add a setting to launch applications with a single click.
 *	Fixed layout issues in setup window and made default main and setup windows
@@ -139,6 +139,8 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 *	Apply "Always on top" setting only to the main window when there's no setup
 	window open. The "ignore" file dialog has issues when it's modal too: you
 	couldn't drag'n'drop files/folders into it...
+*	Change resizing of the main window to always fit the number of list items;
+	font sensitive.
 *	Show error dialog if the launch of an application has failed for some reason.
 *	Added Russian localization, thanks Akujiism!
 *	Added Spanish localization, thanks un_spacyar!
