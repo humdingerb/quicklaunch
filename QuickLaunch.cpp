@@ -23,7 +23,7 @@ QLApp::QLApp()
 	BApplication(kApplicationSignature)
 {
 	fSettings = new QLSettings();
-	fSetupWindow = new SetupWindow();
+	fSetupWindow = new SetupWindow(fSettings->GetSetupWindowFrame());
 	fMainWindow = new MainWindow();
 }
 
@@ -35,11 +35,6 @@ QLApp::ReadyToRun()
 	fMainWindow->MoveTo(frame.LeftTop());
 	fMainWindow->ResizeTo(frame.right - frame.left, 0);
 	fMainWindow->Show();
-
-	frame.OffsetBy(70.0, 120.0);
-	fSetupWindow->MoveTo(frame.LeftTop());
-	BRect bounds = fSettings->GetSetupWindowBounds();
-	fSetupWindow->ResizeTo(bounds.Width(), bounds.Height());
 
 	fSettings->InitIgnoreList();
 	fSetupWindow->Hide();
@@ -76,9 +71,6 @@ QLApp::MessageReceived(BMessage* message)
 		{
 			if (fSetupWindow->IsHidden()) {
 				SetWindowsFeel(0);
-				BRect frame = fMainWindow->Frame();
-				frame.OffsetBy(70.0, 120.0);
-				fSetupWindow->MoveTo(frame.LeftTop());
 				fSetupWindow->Show();
 			}
 			else {

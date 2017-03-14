@@ -32,7 +32,7 @@ QLSettings::QLSettings()
 		resolution.Width() / 2 - 340.0 / 2, resolution.Height() / 2 - 120.0 / 2,
 		resolution.Width() / 2 + 340.0 / 2, resolution.Height() / 2 + 120.0 / 2);
 	delete screen;
-	fSetupWindowBounds = BRect(0.0, 0.0, 340.0, 280.0);
+	fSetupWindowFrame = fMainWindowFrame.OffsetByCopy(70.0, 120.0);
 	fShowVersion = false;
 	fShowPath = true;
 	fDelay = false;
@@ -53,9 +53,9 @@ QLSettings::QLSettings()
 		if (settings.FindRect("main window frame", &frame) == B_OK)
 			fMainWindowFrame = frame;
 
-		BRect bounds;
-		if (settings.FindRect("setup window bounds", &bounds) == B_OK)
-			fSetupWindowBounds = bounds;
+		BRect setupframe;
+		if (settings.FindRect("setup window frame", &setupframe) == B_OK)
+			fSetupWindowFrame = setupframe;
 
 		int32 version;
 		if (settings.FindInt32("show version", &version) == B_OK)
@@ -123,7 +123,8 @@ QLSettings::~QLSettings()
 
 	BMessage settings;
 	settings.AddRect("main window frame", app->fMainWindow->Frame());
-	settings.AddRect("setup window bounds", app->fSetupWindow->Bounds());
+	settings.AddRect("setup window frame",
+		app->fSetupWindow->ConvertToScreen(app->fSetupWindow->Bounds()));
 	settings.AddInt32("show version", fShowVersion);
 	settings.AddInt32("show path", fShowPath);
 	settings.AddInt32("delay", fDelay);

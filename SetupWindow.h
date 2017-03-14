@@ -46,7 +46,7 @@
 
 class SetupWindow : public BWindow {
 public:
-					SetupWindow();
+					SetupWindow(BRect frame);
 	virtual			~SetupWindow();
 
 	bool			QuitRequested();

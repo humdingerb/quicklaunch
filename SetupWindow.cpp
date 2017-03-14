@@ -30,9 +30,9 @@ compare_items(const void* a, const void* b)
 }
 
 
-SetupWindow::SetupWindow()
+SetupWindow::SetupWindow(BRect frame)
 	:
-	BWindow(BRect(), B_TRANSLATE("Setup"), B_TITLED_WINDOW_LOOK,
+	BWindow(frame, B_TRANSLATE("Setup"), B_TITLED_WINDOW_LOOK,
 		B_NORMAL_WINDOW_FEEL, B_NOT_ZOOMABLE | B_AUTO_UPDATE_SIZE_LIMITS
 		| B_CLOSE_ON_ESCAPE)
 {

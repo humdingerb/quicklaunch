@@ -19,8 +19,8 @@ public:
 				~QLSettings();
 
 	void 		SetMainWindowFrame(BRect frame) {fMainWindowFrame = frame;};
-	void 		SetSetupWindowBounds(BRect bounds)
-					{fSetupWindowBounds = bounds;};
+	void 		SetSetupWindowFrame(BRect setupframe)
+					{fSetupWindowFrame = setupframe;};
 	void		SetShowVersion(int32 version) {fShowVersion = version;};
 	void		SetShowPath(int32 path) {fShowPath = path;};
 	void		SetDelay(int32 delay) {fDelay = delay;};
@@ -31,7 +31,7 @@ public:
 	void		SetShowIgnore(int32 ignore) {fShowIgnore = ignore;};
 
 	BRect 		GetMainWindowFrame() {return fMainWindowFrame;};
-	BRect 		GetSetupWindowBounds() {return fSetupWindowBounds;};
+	BRect 		GetSetupWindowFrame() {return fSetupWindowFrame;};
 	int32		GetShowVersion() {return fShowVersion;};
 	int32		GetShowPath() {return fShowPath;};
 	int32		GetDelay() {return fDelay;};
@@ -44,7 +44,7 @@ public:
 
 private:
 	BRect		fMainWindowFrame;
-	BRect		fSetupWindowBounds;
+	BRect		fSetupWindowFrame;
 	int32		fShowVersion;
 	int32		fShowPath;
 	int32		fDelay;
