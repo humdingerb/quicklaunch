@@ -236,12 +236,12 @@ MainWindow::MessageReceived(BMessage* message)
 			int selection = fListView->CurrentSelection();
 			int first = fListView->IndexOf(fListView->FirstItem());
 
-			if (selection > kMAX_DISPLAYED_ITEMS)
-				fListView->Select(selection - kMAX_DISPLAYED_ITEMS);
-			else
+			if (selection > kMAX_DISPLAYED_ITEMS) {
+				fListView->Select(selection - kMAX_DISPLAYED_ITEMS + 1);
+				fListView->ScrollBy(0.0, -1 * (kMAX_DISPLAYED_ITEMS - 1)
+					* fListView->ItemFrame(0).Height() - 8);
+			} else
 				fListView->Select(first);
-
-			fListView->ScrollToSelection();
 			break;
 		}
 		case PAGE_DOWN:
@@ -250,11 +250,10 @@ MainWindow::MessageReceived(BMessage* message)
 			int last = fListView->IndexOf(fListView->LastItem());
 
 			if (selection < (fListView->CountItems() - kMAX_DISPLAYED_ITEMS)) {
-				fListView->Select(selection + kMAX_DISPLAYED_ITEMS);
-				fListView->ScrollBy(0.0, (kMAX_DISPLAYED_ITEMS)
-					* (fIconHeight + 9.0));
-			}
-			else
+				fListView->Select(selection + kMAX_DISPLAYED_ITEMS - 1);
+				fListView->ScrollBy(0.0, (kMAX_DISPLAYED_ITEMS - 1)
+					* fListView->ItemFrame(0).Height() + 8);
+			} else
 				fListView->Select(last);
 			break;
 		}
