@@ -86,6 +86,8 @@ MainWindow::MainWindow()
 
 	int32 value = app->fSettings->GetOnTop();
 	SetFeel(value ?	B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
+
+	GetIconHeight();
 }
 
 
@@ -168,7 +170,7 @@ MainWindow::BuildList(const char *predicate)
 					}
 				}
 				if (!ignore)
-					fListView->AddItem(new MainListItem(&entry));
+					fListView->AddItem(new MainListItem(&entry, fIconHeight));
 			}
 			query.Clear();
 		}
@@ -250,7 +252,7 @@ MainWindow::MessageReceived(BMessage* message)
 			if (selection < (fListView->CountItems() - kMAX_DISPLAYED_ITEMS)) {
 				fListView->Select(selection + kMAX_DISPLAYED_ITEMS);
 				fListView->ScrollBy(0.0, (kMAX_DISPLAYED_ITEMS)
-					* (kBitmapSize + 9.0));
+					* (fIconHeight + 9.0));
 			}
 			else
 				fListView->Select(last);
@@ -387,6 +389,32 @@ MainWindow::LaunchApp(MainListItem *item)
 			alert->Go();
 		}
 	}
+}
+
+
+
+void
+MainWindow::GetIconHeight()
+{
+	font_height	fontHeight;
+	be_plain_font->GetHeight(&fontHeight);
+	float height = 2 * (fontHeight.ascent + fontHeight.descent
+		+ fontHeight.leading);
+	fIconHeight = int(height * 0.9);
+//	printf("height: %i, fIconHeight: %i\n", (int)height, fIconHeight);
+
+	static int iconSizes[] = { 16, 24, 32, 40, 48, 64, 72, 1000 };
+
+	int count = sizeof(iconSizes)/sizeof(iconSizes[0]);
+	for (int i = 0; i < count; i++) {
+		if (abs(fIconHeight - iconSizes[i])
+				< abs(fIconHeight - iconSizes[i+1])) {
+			fIconHeight = iconSizes[i];
+			break;
+		}
+	}
+
+//	printf("After: fIconHeight: %i\n", fIconHeight);
 }
 
 

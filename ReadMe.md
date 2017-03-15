@@ -138,6 +138,7 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
     a bit bigger. Save the absolute position of the setup window.
 *	Change resizing of the main window to always fit the number of list items;
 	font sensitive.
+*	Use icon size depending on font size.
 *	Allow drag'n'drop of files from Tracker to the "ignore" list.
 	Allow removing multiple items from the "ignore" list.
 *	Apply "Always on top" setting only to the main window when there's no setup

@@ -26,12 +26,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-const int kBitmapSize = 32;
-
 
 class MainListItem : public BListItem {
 public:
-					MainListItem(BEntry* entry);
+					MainListItem(BEntry* entry, int iconSize);
 					~MainListItem();
 	virtual void	DrawItem(BView*, BRect, bool);
 	virtual	void	Update(BView*, const BFont*);
@@ -45,6 +43,7 @@ private:
 	BPath			fPath;
 	version_info	fVersionInfo;
 	BBitmap			*fIcon;
+	int				fIconSize;
 };
 
 #endif // QLLISTITEM_H

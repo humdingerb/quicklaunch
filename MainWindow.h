@@ -62,6 +62,9 @@ public:
 	MainListView	*fListView;
 	
 private:
+	void			GetIconHeight();
+
+	int				fIconHeight;
 	BTextControl	*fSearchBox;
 	BButton			*fSetupButton;
 	BScrollView		*fScrollView;

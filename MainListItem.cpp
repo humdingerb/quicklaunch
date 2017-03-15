@@ -12,9 +12,10 @@
 #include "MainListItem.h"
 #include "QuickLaunch.h"
 
-MainListItem::MainListItem(BEntry *entry)
+MainListItem::MainListItem(BEntry *entry, int iconSize)
 		  :BListItem()
 {
+	fIconSize = iconSize;
 	BNode node;
 	BNodeInfo node_info;
 
@@ -28,10 +29,10 @@ MainListItem::MainListItem(BEntry *entry)
 		
 		// create bitmap large enough for icon
 		fIcon = new BBitmap(
-			BRect(0, 0, kBitmapSize - 1, kBitmapSize - 1), 0, B_RGBA32);
+			BRect(0, 0, fIconSize, fIconSize), 0, B_RGBA32);
 
 		// cache the icon
-		node_info.GetTrackerIcon(fIcon);
+		node_info.GetIcon(fIcon, icon_size(fIconSize));
 		
 		// cache ref
 		entry->GetRef(&fRef);
@@ -86,7 +87,7 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
 	if (fIcon) {
         view->SetDrawingMode(B_OP_OVER);
         view->DrawBitmap(fIcon, BPoint(rect.left + spacing / 2,
-			rect.top + (rect.Height() - kBitmapSize) / 2));
+			rect.top + (rect.Height() - fIconSize) / 2));
         view->SetDrawingMode(B_OP_COPY);
 		offset = fIcon->Bounds().Width() + offset + spacing;
     }
@@ -120,7 +121,7 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
     float width, height;
     view->GetPreferredSize(&width, &height);
     BString string(fName);
-    view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - kBitmapSize
+    view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - fIconSize
     	- offset / 2);
     view->DrawString(string.String());
 
@@ -161,7 +162,7 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
     	string << parent.Path();
     	string << "/";
     }
-    view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - kBitmapSize
+    view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - fIconSize
     	- offset/2);
     view->DrawString(string.String());
 
