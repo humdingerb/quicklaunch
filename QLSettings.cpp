@@ -91,27 +91,6 @@ QLSettings::QLSettings()
 	}
 }
 
-void
-QLSettings::InitIgnoreList()
-{
-	QLApp *app = dynamic_cast<QLApp *> (be_app);
-
-	BPath path;
-	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path) != B_OK)
-		return;
-	path.Append("QuickLaunch_settings");
-	BFile file(path.Path(), B_READ_ONLY);
-
-	BMessage settings;
-	if (file.InitCheck() == B_OK
-		&& settings.Unflatten(&file) == B_OK) {
-		BString itemText;
-		int32 i = 0;
-		while (settings.FindString("item", i++, &itemText) == B_OK)
-			app->fSetupWindow->fIgnoreList->AddItem(new BStringItem(itemText.String()));
-	}
-}
-
 
 QLSettings::~QLSettings()
 {
@@ -149,4 +128,26 @@ QLSettings::~QLSettings()
 	BFile file(path.Path(), B_WRITE_ONLY | B_CREATE_FILE | B_ERASE_FILE);
 	if (file.InitCheck() == B_OK)
 		settings.Flatten(&file);
+}
+
+
+void
+QLSettings::InitIgnoreList()
+{
+	QLApp *app = dynamic_cast<QLApp *> (be_app);
+
+	BPath path;
+	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path) != B_OK)
+		return;
+	path.Append("QuickLaunch_settings");
+	BFile file(path.Path(), B_READ_ONLY);
+
+	BMessage settings;
+	if (file.InitCheck() == B_OK
+		&& settings.Unflatten(&file) == B_OK) {
+		BString itemText;
+		int32 i = 0;
+		while (settings.FindString("item", i++, &itemText) == B_OK)
+			app->fSetupWindow->fIgnoreList->AddItem(new BStringItem(itemText.String()));
+	}
 }

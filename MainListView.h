@@ -25,13 +25,15 @@ class MainListView : public BListView {
 public:
 					MainListView();
 					~MainListView();
+
 	virtual void	Draw(BRect rect);
 	virtual	void	FrameResized(float w, float h);
 	virtual	void	MessageReceived(BMessage* message);
 	void			MouseDown(BPoint position);
-	void			ShowPopUpMenu(BPoint screen);
 
 private:
+	void			_ShowPopUpMenu(BPoint screen);
+
 	bool			fShowingPopUpMenu;
 };
 

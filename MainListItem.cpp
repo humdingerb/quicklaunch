@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015. All rights reserved.
+ * Copyright 2010-2017. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -66,6 +66,9 @@ MainListItem::~MainListItem()
 }
 
 
+#pragma mark -- BListItem Overrides --
+
+
 void
 MainListItem::DrawItem(BView *view, BRect rect, bool complete)
 {
@@ -104,9 +107,6 @@ MainListItem::DrawItem(BView *view, BRect rect, bool complete)
     	view->SetHighColor(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR));
     else
     	view->SetHighColor(ui_color(B_LIST_ITEM_TEXT_COLOR));
-
-//	if (appfont.Size() > 18)
-//		appfont.SetSize(18);
 
     appfont.GetHeight(&finfo);
     appfont.SetFace(B_BOLD_FACE);

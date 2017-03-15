@@ -28,26 +28,6 @@ QLApp::QLApp()
 }
 
 
-void
-QLApp::ReadyToRun()
-{
-	BRect frame = fSettings->GetMainWindowFrame();
-	fMainWindow->MoveTo(frame.LeftTop());
-	fMainWindow->ResizeTo(frame.right - frame.left, 0);
-	fMainWindow->Show();
-
-	fSettings->InitIgnoreList();
-	fSetupWindow->Hide();
-	fSetupWindow->Show();
-
-	if (fSettings->GetSaveSearch()) {
-		BMessenger messenger(fMainWindow);
-		BMessage message(NEW_FILTER);
-		messenger.SendMessage(&message);
-	}
-}
-
-
 QLApp::~QLApp()
 {
 	BMessenger messengerMain(fMainWindow);
@@ -60,6 +40,38 @@ QLApp::~QLApp()
 	BMessenger messengerSetup(fSetupWindow);
 	if (messengerSetup.IsValid() && messengerSetup.LockTarget())
 		fSetupWindow->Quit();
+}
+
+
+#pragma mark -- BApplication Overrides --
+
+
+void
+QLApp::AboutRequested()
+{
+	BString text = B_TRANSLATE_COMMENT(
+		"QuickLaunch %version%\n"
+		"\twritten by Humdinger\n"
+		"\tCopyright %years%\n\n"
+		"QuickLaunch quickly starts any installed application. "
+		"Just enter the first few letters of its name and choose "
+		"from a list of all found programs.\n",
+		"Don't change the variables %years% and %version%.");
+	text.ReplaceAll("%version%", "v0.9.13");
+	text.ReplaceAll("%years%", "2010-2017");
+
+	BAlert *alert = new BAlert("about", text.String(),
+		B_TRANSLATE("Thank you"));
+
+	BTextView *view = alert->TextView();
+	BFont font;
+
+	view->SetStylable(true);
+	view->GetFont(&font);
+	font.SetSize(font.Size()+4);
+	font.SetFace(B_BOLD_FACE);
+	view->SetFontAndColor(0, 11, &font);
+	alert->Go();
 }
 
 
@@ -189,6 +201,36 @@ QLApp::MessageReceived(BMessage* message)
 }
 
 
+bool
+QLApp::QuitRequested()
+{
+	return true;
+}
+
+
+void
+QLApp::ReadyToRun()
+{
+	BRect frame = fSettings->GetMainWindowFrame();
+	fMainWindow->MoveTo(frame.LeftTop());
+	fMainWindow->ResizeTo(frame.right - frame.left, 0);
+	fMainWindow->Show();
+
+	fSettings->InitIgnoreList();
+	fSetupWindow->Hide();
+	fSetupWindow->Show();
+
+	if (fSettings->GetSaveSearch()) {
+		BMessenger messenger(fMainWindow);
+		BMessage message(NEW_FILTER);
+		messenger.SendMessage(&message);
+	}
+}
+
+
+#pragma mark -- Public Methods --
+
+
 void
 QLApp::SetWindowsFeel(int32 value)
 {
@@ -199,40 +241,7 @@ QLApp::SetWindowsFeel(int32 value)
 }
 
 
-bool
-QLApp::QuitRequested()
-{
-	return true;
-}
-
-
-void
-QLApp::AboutRequested()
-{
-	BString text = B_TRANSLATE_COMMENT(
-		"QuickLaunch %version%\n"
-		"\twritten by Humdinger\n"
-		"\tCopyright %years%\n\n"
-		"QuickLaunch quickly starts any installed application. "
-		"Just enter the first few letters of its name and choose "
-		"from a list of all found programs.\n",
-		"Don't change the variables %years% and %version%.");
-	text.ReplaceAll("%version%", "v0.9.13");
-	text.ReplaceAll("%years%", "2010-2017");
-
-	BAlert *alert = new BAlert("about", text.String(),
-		B_TRANSLATE("Thank you"));
-
-	BTextView *view = alert->TextView();
-	BFont font;
-
-	view->SetStylable(true);
-	view->GetFont(&font);
-	font.SetSize(font.Size()+4);
-	font.SetFace(B_BOLD_FACE);
-	view->SetFontAndColor(0, 11, &font);
-	alert->Go();
-}
+#pragma mark -- main --
 
 
 int

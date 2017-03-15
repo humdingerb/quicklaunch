@@ -64,9 +64,9 @@ public:
 
 private:
 
-			void	GetSelectedItems(BList& indices);
-			void	RemoveSelected(); // uses RemoveItemList()
-	virtual	void	RemoveItemList(const BList& indices);
+			void	_GetSelectedItems(BList& indices);
+			void	_RemoveSelected(); // uses RemoveItemList()
+	virtual	void	_RemoveItemList(const BList& indices);
 
 	BScrollView		*fIgnoreScroll;
 	BButton			*fButAdd;

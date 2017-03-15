@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015. All rights reserved.
+ * Copyright 2010-2017. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -31,11 +31,13 @@ class MainListItem : public BListItem {
 public:
 					MainListItem(BEntry* entry, int iconSize);
 					~MainListItem();
+
 	virtual void	DrawItem(BView*, BRect, bool);
 	virtual	void	Update(BView*, const BFont*);
+
 	BBitmap*		Bitmap() {return fIcon;};
-	entry_ref*		Ref() {return &fRef;};
 	char*			GetName() {return fName;};
+	entry_ref*		Ref() {return &fRef;};
 		
 private:
 	char			fName[B_FILE_NAME_LENGTH];

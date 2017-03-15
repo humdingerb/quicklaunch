@@ -55,6 +55,9 @@ MainListView::~MainListView()
 }
 
 
+#pragma mark -- BListView Overrides --
+
+
 void
 MainListView::Draw(BRect rect)
 {
@@ -162,7 +165,7 @@ MainListView::MouseDown(BPoint position)
 		buttons = Window()->CurrentMessage()->FindInt32("buttons");
 
 	if (buttons == B_SECONDARY_MOUSE_BUTTON)
-		ShowPopUpMenu(ConvertToScreen(position));
+		_ShowPopUpMenu(ConvertToScreen(position));
 	else if (buttons == B_PRIMARY_MOUSE_BUTTON) {
 		QLApp *app = dynamic_cast<QLApp *> (be_app);
 		BMessenger msgr(app->fMainWindow);
@@ -173,8 +176,11 @@ MainListView::MouseDown(BPoint position)
 }
 
 
+#pragma mark -- Private Methods --
+
+
 void
-MainListView::ShowPopUpMenu(BPoint screen)
+MainListView::_ShowPopUpMenu(BPoint screen)
 {
 	if (fShowingPopUpMenu || IsEmpty())
 		return;

@@ -24,9 +24,9 @@ public:
 	virtual			~QLApp();
 
 	void			AboutRequested();
+	void			MessageReceived(BMessage* message);
 	virtual bool	QuitRequested();
 	virtual void	ReadyToRun();
-	void			MessageReceived(BMessage* message);
 
 	void			SetWindowsFeel(int32 value);
 

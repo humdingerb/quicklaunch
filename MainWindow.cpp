@@ -87,107 +87,10 @@ MainWindow::MainWindow()
 	int32 value = app->fSettings->GetOnTop();
 	SetFeel(value ?	B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
 
-	GetIconHeight();
+	_GetIconHeight();
 }
 
 
-void
-MainWindow::BuildList(const char *predicate)
-{
-	fListView->MakeEmpty();
-
-	BVolumeRoster volumeRoster;
-	BVolume volume;
-	BQuery query;
-
-	while (volumeRoster.GetNextVolume(&volume) == B_OK) {
-		if (volume.KnowsQuery())
-		{
-			// Set up the volume and predicate for the query.
-			query.SetVolume(&volume);
-			query.SetPredicate(predicate);
-
-			status_t status = query.Fetch();
-			char buffer[B_FILE_NAME_LENGTH];
-			volume.GetName(buffer);
-			if (status == B_BAD_VALUE) {
-				query.PushAttr("BEOS:TYPE");
-				query.PushString("application/x-vnd.be-elfexecutable", true);
-				query.PushOp(B_EQ);
-
-				query.PushAttr("BEOS:APP_SIG");
-				query.PushString("application/x");
-				query.PushOp(B_BEGINS_WITH);
-				query.PushOp(B_AND);
-
-				query.PushAttr("name");
-				query.PushString(predicate, true);
-				query.PushOp(B_BEGINS_WITH);
-				query.PushOp(B_AND);
-
-				status = query.Fetch();
-			}
-			if (status != B_OK)
-				printf("2. what happened? %s\n", strerror(status));
-
-			BEntry entry;
-			BPath path;
-			while (query.GetNextEntry(&entry) == B_OK) {
-				if (!entry.IsFile())
-					continue;
-
-				if (entry.GetPath(&path) < B_OK) {
-					fprintf(stderr, "could not get path for entry\n");
-					continue;
-				}
-
-				BPath dir;
-				BPath parent;
-				entry.GetPath(&path);
-				path.GetParent(&parent);
-
-				find_directory(B_SYSTEM_ADDONS_DIRECTORY, &dir);
-				if (strstr(parent.Path(), dir.Path()))
-					continue;
-				// check Trash on all volumes
-				find_directory(B_TRASH_DIRECTORY, &dir, false, &volume);
-				if (strstr(parent.Path(), dir.Path()))
-					continue;
-
-				QLApp *app = dynamic_cast<QLApp *> (be_app);
-				bool ignore = false;
-				if (app->fSettings->GetShowIgnore()) {
-					BString *newItem = new BString(path.Path());
-					for (int i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
-					{
-						BStringItem *sItem = dynamic_cast<BStringItem *>
-							(app->fSetupWindow->fIgnoreList->ItemAt(i));
-						BString *ignoreItem = new BString(sItem->Text());
-
-						if (newItem->ICompare(*ignoreItem, std::min(newItem->Length(),
-								ignoreItem->Length())) == 0)
-							ignore = true;
-					}
-				}
-				if (!ignore)
-					fListView->AddItem(new MainListItem(&entry, fIconHeight));
-			}
-			query.Clear();
-		}
-	}
-	fListView->SortItems(&compare_items);
-
-	BRect windowRest = Frame().Height() - fListView->Frame().Height();
-	BRect itemFrame = fListView->ItemFrame(0);
-	int32 count = fListView->CountItems();
-	if (count < kMAX_DISPLAYED_ITEMS) {
-		ResizeTo(Bounds().Width(), count * itemFrame.Height()
-			+ windowRest.Height() + count);
-	} else {
-		ResizeTo(Bounds().Width(), kMAX_DISPLAYED_ITEMS * itemFrame.Height()
-			+ windowRest.Height() + kMAX_DISPLAYED_ITEMS);
-	}
-}
 
 
 MainWindow::~MainWindow()
@@ -195,11 +98,7 @@ MainWindow::~MainWindow()
 }
 
 
-bool
-MainWindow::QuitRequested()
-{
-	return true;
-}
+#pragma mark -- BWindow Overrides --
 
 
 void
@@ -312,7 +211,7 @@ MainWindow::MessageReceived(BMessage* message)
 			int selection = fListView->CurrentSelection();
 			item = dynamic_cast<MainListItem *>(fListView->ItemAt(selection));
 			if (item != NULL)
-				LaunchApp(item);
+				_LaunchApp(item);
 			break;
 		}
 		case SINGLE_CLICK:
@@ -329,7 +228,7 @@ MainWindow::MessageReceived(BMessage* message)
 			int selection = fListView->CurrentSelection();
 			item = dynamic_cast<MainListItem *>(fListView->ItemAt(selection));
 			if (item != NULL)
-				LaunchApp(item);
+				_LaunchApp(item);
 
 			QLApp *app = dynamic_cast<QLApp *> (be_app);
 			app->fSettings->SetSearchTerm(GetSearchString());
@@ -361,8 +260,164 @@ MainWindow::MessageReceived(BMessage* message)
 }
 
 
+bool
+MainWindow::QuitRequested()
+{
+	return true;
+}
+
+
+#pragma mark -- Public Methods --
+
+
 void
-MainWindow::LaunchApp(MainListItem *item)
+MainWindow::BuildList(const char *predicate)
+{
+	fListView->MakeEmpty();
+
+	BVolumeRoster volumeRoster;
+	BVolume volume;
+	BQuery query;
+
+	while (volumeRoster.GetNextVolume(&volume) == B_OK) {
+		if (volume.KnowsQuery())
+		{
+			// Set up the volume and predicate for the query.
+			query.SetVolume(&volume);
+			query.SetPredicate(predicate);
+
+			status_t status = query.Fetch();
+			char buffer[B_FILE_NAME_LENGTH];
+			volume.GetName(buffer);
+			if (status == B_BAD_VALUE) {
+				query.PushAttr("BEOS:TYPE");
+				query.PushString("application/x-vnd.be-elfexecutable", true);
+				query.PushOp(B_EQ);
+
+				query.PushAttr("BEOS:APP_SIG");
+				query.PushString("application/x");
+				query.PushOp(B_BEGINS_WITH);
+				query.PushOp(B_AND);
+
+				query.PushAttr("name");
+				query.PushString(predicate, true);
+				query.PushOp(B_BEGINS_WITH);
+				query.PushOp(B_AND);
+
+				status = query.Fetch();
+			}
+			if (status != B_OK)
+				printf("2. what happened? %s\n", strerror(status));
+
+			BEntry entry;
+			BPath path;
+			while (query.GetNextEntry(&entry) == B_OK) {
+				if (!entry.IsFile())
+					continue;
+
+				if (entry.GetPath(&path) < B_OK) {
+					fprintf(stderr, "could not get path for entry\n");
+					continue;
+				}
+
+				BPath dir;
+				BPath parent;
+				entry.GetPath(&path);
+				path.GetParent(&parent);
+
+				find_directory(B_SYSTEM_ADDONS_DIRECTORY, &dir);
+				if (strstr(parent.Path(), dir.Path()))
+					continue;
+				// check Trash on all volumes
+				find_directory(B_TRASH_DIRECTORY, &dir, false, &volume);
+				if (strstr(parent.Path(), dir.Path()))
+					continue;
+
+				QLApp *app = dynamic_cast<QLApp *> (be_app);
+				bool ignore = false;
+				if (app->fSettings->GetShowIgnore()) {
+					BString *newItem = new BString(path.Path());
+					for (int i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
+					{
+						BStringItem *sItem = dynamic_cast<BStringItem *>
+							(app->fSetupWindow->fIgnoreList->ItemAt(i));
+						BString *ignoreItem = new BString(sItem->Text());
+
+						if (newItem->ICompare(*ignoreItem, std::min(newItem->Length(),
+								ignoreItem->Length())) == 0)
+							ignore = true;
+					}
+				}
+				if (!ignore)
+					fListView->AddItem(new MainListItem(&entry, fIconHeight));
+			}
+			query.Clear();
+		}
+	}
+	fListView->SortItems(&compare_items);
+
+	BRect windowRest = Frame().Height() - fListView->Frame().Height();
+	BRect itemFrame = fListView->ItemFrame(0);
+	int32 count = fListView->CountItems();
+	if (count < kMAX_DISPLAYED_ITEMS) {
+		ResizeTo(Bounds().Width(), count * itemFrame.Height()
+			+ windowRest.Height() + count);
+	} else {
+		ResizeTo(Bounds().Width(), kMAX_DISPLAYED_ITEMS * itemFrame.Height()
+			+ windowRest.Height() + kMAX_DISPLAYED_ITEMS);
+	}
+}
+
+
+float
+MainWindow::GetScrollPosition()
+{
+	float position;
+	BScrollBar *scrollBar = fScrollView->ScrollBar(B_VERTICAL);
+	position = scrollBar->Value();
+	return (position);
+}
+
+
+void
+MainWindow::SetScrollPosition(float position)
+{
+	BScrollBar *scrollBar = fScrollView->ScrollBar(B_VERTICAL);
+	scrollBar->SetValue(position);
+	return;
+}
+
+
+#pragma mark -- Private Methods --
+
+
+void
+MainWindow::_GetIconHeight()
+{
+	font_height	fontHeight;
+	be_plain_font->GetHeight(&fontHeight);
+	float height = 2 * (fontHeight.ascent + fontHeight.descent
+		+ fontHeight.leading);
+	fIconHeight = int(height * 0.9);
+//	printf("height: %i, fIconHeight: %i\n", (int)height, fIconHeight);
+
+	static int iconSizes[] = { 16, 32, 40, 48, 64, 72, 80, 96, 1000 };
+
+	int count = sizeof(iconSizes)/sizeof(iconSizes[0]);
+	for (int i = 0; i < count; i++) {
+		if (abs(fIconHeight - iconSizes[i])
+				< abs(fIconHeight - iconSizes[i+1])) {
+			fIconHeight = iconSizes[i];
+			break;
+		}
+	}
+//	printf("After: fIconHeight: %i\n", fIconHeight);
+}
+
+
+
+void
+MainWindow::_LaunchApp(MainListItem *item)
 {
 	entry_ref *ref = NULL;
 	ref = item->Ref();
@@ -388,48 +443,4 @@ MainWindow::LaunchApp(MainListItem *item)
 			alert->Go();
 		}
 	}
-}
-
-
-
-void
-MainWindow::GetIconHeight()
-{
-	font_height	fontHeight;
-	be_plain_font->GetHeight(&fontHeight);
-	float height = 2 * (fontHeight.ascent + fontHeight.descent
-		+ fontHeight.leading);
-	fIconHeight = int(height * 0.9);
-//	printf("height: %i, fIconHeight: %i\n", (int)height, fIconHeight);
-
-	static int iconSizes[] = { 16, 32, 40, 48, 64, 72, 80, 96, 1000 };
-
-	int count = sizeof(iconSizes)/sizeof(iconSizes[0]);
-	for (int i = 0; i < count; i++) {
-		if (abs(fIconHeight - iconSizes[i])
-				< abs(fIconHeight - iconSizes[i+1])) {
-			fIconHeight = iconSizes[i];
-			break;
-		}
-	}
-//	printf("After: fIconHeight: %i\n", fIconHeight);
-}
-
-
-float
-MainWindow::GetScrollPosition()
-{
-	float position;
-	BScrollBar *scrollBar = fScrollView->ScrollBar(B_VERTICAL);
-	position = scrollBar->Value();
-	return (position);
-}
-
-
-void
-MainWindow::SetScrollPosition(float position)
-{
-	BScrollBar *scrollBar = fScrollView->ScrollBar(B_VERTICAL);
-	scrollBar->SetValue(position);
-	return;
 }

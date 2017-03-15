@@ -48,8 +48,9 @@ public:
 					MainWindow();
 	virtual			~MainWindow();
 	
-	bool			QuitRequested();
 	void			MessageReceived(BMessage* message);
+	bool			QuitRequested();
+
 	void			BuildList(const char *string);
 	float			GetScrollPosition();
 	void			SetScrollPosition(float position);
@@ -57,12 +58,12 @@ public:
 						{return fSearchBox->TextView()->TextLength();};
 	const char		*GetSearchString()
 						{return fSearchBox->TextView()->Text();};
-	void			LaunchApp(MainListItem *item);
 
 	MainListView	*fListView;
 	
 private:
-	void			GetIconHeight();
+	void			_GetIconHeight();
+	void			_LaunchApp(MainListItem *item);
 
 	int				fIconHeight;
 	BTextControl	*fSearchBox;
