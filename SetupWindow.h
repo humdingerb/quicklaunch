@@ -63,6 +63,11 @@ public:
 	SetupListView	*fIgnoreList;
 
 private:
+
+			void	GetSelectedItems(BList& indices);
+			void	RemoveSelected(); // uses RemoveItemList()
+	virtual	void	RemoveItemList(const BList& indices);
+
 	BScrollView		*fIgnoreScroll;
 	BButton			*fButAdd;
 	BFilePanel		*fOpenPanel;
