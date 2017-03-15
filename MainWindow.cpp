@@ -402,7 +402,7 @@ MainWindow::GetIconHeight()
 	fIconHeight = int(height * 0.9);
 //	printf("height: %i, fIconHeight: %i\n", (int)height, fIconHeight);
 
-	static int iconSizes[] = { 16, 24, 32, 40, 48, 64, 72, 1000 };
+	static int iconSizes[] = { 16, 32, 40, 48, 64, 72, 80, 96, 1000 };
 
 	int count = sizeof(iconSizes)/sizeof(iconSizes[0]);
 	for (int i = 0; i < count; i++) {
@@ -412,7 +412,6 @@ MainWindow::GetIconHeight()
 			break;
 		}
 	}
-
 //	printf("After: fIconHeight: %i\n", fIconHeight);
 }
 
