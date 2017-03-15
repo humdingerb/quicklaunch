@@ -136,6 +136,7 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 *	User request: Add a setting to launch applications with a single click.
 *	Fixed layout issues in setup window and made default main and setup windows
     a bit bigger. Save the absolute position of the setup window.
+*	Improved page up/down scrolling.
 *	Change resizing of the main window to always fit the number of list items;
 	font sensitive.
 *	Use icon size depending on font size.

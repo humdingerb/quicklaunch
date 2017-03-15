@@ -32,8 +32,15 @@ MainListItem::MainListItem(BEntry *entry, int iconSize)
 			BRect(0, 0, fIconSize, fIconSize), 0, B_RGBA32);
 
 		// cache the icon
-		node_info.GetIcon(fIcon, icon_size(fIconSize));
-		
+		status_t result = node_info.GetIcon(fIcon, icon_size(fIconSize));
+		if (result != B_OK) {
+			BMimeType nodeType;
+			nodeType.SetTo("application/x-vnd.Be-elfexecutable");
+			result = nodeType.GetIcon(fIcon, icon_size(fIconSize));
+			if (result != B_OK)
+				fIcon = NULL;
+		}
+
 		// cache ref
 		entry->GetRef(&fRef);
 		
@@ -46,8 +53,7 @@ MainListItem::MainListItem(BEntry *entry, int iconSize)
 			return;
 		info.GetVersionInfo(&fVersionInfo, B_APP_VERSION_KIND);
 
-	}
-	else {
+	} else {
 		fIcon = NULL;
 		strcpy(fName, "<Lost File>");
 	}
