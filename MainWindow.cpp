@@ -141,6 +141,8 @@ MainWindow::MessageReceived(BMessage* message)
 					* fListView->ItemFrame(0).Height() - 8);
 			} else
 				fListView->Select(first);
+
+			fListView->ScrollToSelection();
 			break;
 		}
 		case PAGE_DOWN:
