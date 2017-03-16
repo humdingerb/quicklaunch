@@ -28,6 +28,8 @@ public:
 
 	virtual void	Draw(BRect rect);
 	virtual	void	FrameResized(float w, float h);
+	virtual bool	InitiateDrag(BPoint point, int32 index,
+						bool wasSelected);
 	virtual	void	MessageReceived(BMessage* message);
 	void			MouseDown(BPoint position);
 

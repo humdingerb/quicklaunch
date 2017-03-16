@@ -197,7 +197,7 @@ MainWindow::MessageReceived(BMessage* message)
 				parent.GetRef(&folderRef);
 				BMessenger msgr("application/x-vnd.Be-TRAK");
 				BMessage refMsg(B_REFS_RECEIVED);
-				refMsg.AddRef("refs",&folderRef);
+				refMsg.AddRef("refs", &folderRef);
 				msgr.SendMessage(&refMsg);
 			}
 			// End DW code

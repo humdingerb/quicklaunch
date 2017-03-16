@@ -109,6 +109,60 @@ MainListView::FrameResized(float w, float h)
 }
 
 
+bool
+MainListView::InitiateDrag(BPoint point, int32 dragIndex, bool wasSelected)
+{
+	BPoint pt;
+	uint32 buttons;
+	GetMouse(&pt, &buttons);
+
+	if ((buttons & B_SECONDARY_MOUSE_BUTTON) != 0)
+		return false;
+
+	MainListItem* sItem = dynamic_cast<MainListItem *> (ItemAt(CurrentSelection()));
+	if (sItem == NULL) {
+		// workaround for a timing problem (see Locale prefs)
+		sItem = dynamic_cast<MainListItem *> (ItemAt(dragIndex));
+		Select(dragIndex);
+		if (sItem == NULL)
+			return false;
+	}
+	entry_ref *ref = NULL;
+	ref = sItem->Ref();
+	if (ref == NULL)
+		return false;
+
+	BMessage message(B_SIMPLE_DATA);
+	message.AddRef("refs", ref);
+
+	BRect dragRect(0.0f, 0.0f, Bounds().Width(), sItem->Height());
+	BBitmap* dragBitmap = new BBitmap(dragRect, B_RGB32, true);
+	if (dragBitmap->IsValid()) {
+		BView* view = new BView(dragBitmap->Bounds(), "helper", B_FOLLOW_NONE,
+			B_WILL_DRAW);
+		dragBitmap->AddChild(view);
+		dragBitmap->Lock();
+
+		sItem->DrawItem(view, dragRect, true);
+		view->SetHighColor(0, 0, 0, 255);
+		view->StrokeRect(view->Bounds());
+		view->Sync();
+
+		dragBitmap->Unlock();
+	} else {
+		delete dragBitmap;
+		dragBitmap = NULL;
+	}
+
+	if (dragBitmap != NULL)
+		DragMessage(&message, dragBitmap, B_OP_ALPHA, BPoint(0.0, 0.0));
+	else
+		DragMessage(&message, dragRect.OffsetToCopy(point), this);
+
+	return true;
+}
+
+
 void
 MainListView::MessageReceived(BMessage* message)
 {
