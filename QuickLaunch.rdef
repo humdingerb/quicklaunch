@@ -3,13 +3,13 @@ resource app_signature "application/x-vnd.humdinger-quicklaunch";
 resource app_flags B_SINGLE_LAUNCH;
 
 resource app_version {
-	major  = 0,
-	middle = 9,
-	minor  = 13,
+	major  = 1,
+	middle = 0,
+	minor  = 0,
 
 	/* 0 = development	1 = alpha			2 = beta
 	   3 = gamma		4 = golden master	5 = final */
-	variety = 2,
+	variety = 5,
 
 	internal = 0,
 

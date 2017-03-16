@@ -57,7 +57,7 @@ QLApp::AboutRequested()
 		"Just enter the first few letters of its name and choose "
 		"from a list of all found programs.\n",
 		"Don't change the variables %years% and %version%.");
-	text.ReplaceAll("%version%", "v0.9.13");
+	text.ReplaceAll("%version%", "v1.0");
 	text.ReplaceAll("%years%", "2010-2017");
 
 	BAlert *alert = new BAlert("about", text.String(),

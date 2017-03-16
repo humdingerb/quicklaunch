@@ -129,6 +129,8 @@ SetupWindow::SetupWindow(BRect frame)
 	fOpenPanel = new BFilePanel(B_OPEN_PANEL, NULL, NULL,
 		B_FILE_NODE | B_DIRECTORY_NODE);
 	fOpenPanel->SetTarget(this);
+
+	AddShortcut('S', B_COMMAND_KEY, new BMessage(B_QUIT_REQUESTED));
 }
 
 

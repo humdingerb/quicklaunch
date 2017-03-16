@@ -6,11 +6,11 @@ QuickLaunch is a small launcher tool that helps you to quickly start any install
 
 Simply start to enter the name of an application and QuickLaunch will find all programs matching these initial letters and show them in a list. You choose an app from that list with the _CursorUp/Down_ keys and launch it by hitting _RETURN_. _ESC_ quits QuickLaunch.
 
-Here's the main window after searching for all applications starting with "me" and behind it the settings window when clicking the _Setup_ button:
+Here's the main window after searching for all applications starting with "me" and behind it the settings window when clicking the _Setup_ button (or pressing _ALT_+_S_):
 
 ![QuickLaunch windows](./images/quicklaunch.png)
 
-In the main window the context menu was evoked via a right-click. The first item adds the selected app to the ignore list (more on that in the setup options discussed below). The second item opens the app's location in a Tracker window. The same can be achieved by pressing _CTRL_ + _RETURN_.
+In the main window the context menu was evoked via a right-click. The first item adds the selected app to the ignore list (works also with a drag & drop). More on that in the setup options discussed below. The second item opens the app's location in a Tracker window. The same can be achieved by pressing _CTRL_ + _RETURN_.
 
 The setup window shows these options:
 
@@ -20,7 +20,7 @@ The setup window shows these options:
 *   _Remeber last search term_ — probably only useful for slow systems.
 *   _Launch applications with a single click_ — instead of requiring the usual double-click.
 *   _Window always on top_ — the window floats modally in front of all others. Useful if you start a few apps after another and don't want to lose QuickLauch under the newly opening windows.
-*   _Ignore these files & folders (and their subfolders)_ that you can add and remove from the list with the buttons at the bottom. You can also right-click an app in the main window's result list to add that specific app to the ignore list.
+*   _Ignore these files & folders (and their subfolders)_ that you can add and remove from the list with the buttons at the bottom. You can also right-click an app in the main window's result list to add that specific app to the ignore list or drag & drop any application or folder from Tracker or an app from QuickLaunch's main window into it. _DEL_ removes the selected items from the ignore list.
 
 ### Tips & Tricks
 
@@ -131,7 +131,7 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 *	Added Italian localization, thanks Barrett!
 
 
-**0.9.13** - _14-03-2017:_
+**1.0** - _16-03-2017:_
 
 *	User request: Add a setting to launch applications with a single click.
 *	Fixed layout issues in setup window and made default main and setup windows
@@ -140,11 +140,14 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 *	Change resizing of the main window to always fit the number of list items;
 	font sensitive.
 *	Use icon size depending on font size.
-*	Allow drag'n'drop of files from Tracker to the "ignore" list.
-	Allow removing multiple items from the "ignore" list.
+*	Allow drag'n'drop of files from Tracker or items from the main window to the
+	"ignore" list.
+	Allow removing multiple items from the "ignore" list. Also via _DEL_ key or
+	a context menu.
 *	Apply "Always on top" setting only to the main window when there's no setup
 	window open. The "ignore" file dialog has issues when it's modal too: you
 	couldn't drag'n'drop files/folders into it...
+*	Open and close the Setup window with _ALT_+_S_.
 *	Show error dialog if the launch of an application has failed for some reason.
 *	Added Russian localization, thanks Akujiism!
 *	Added Spanish localization, thanks un_spacyar!

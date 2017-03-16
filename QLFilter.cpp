@@ -1,11 +1,12 @@
 /*
- * Copyright 2010. All rights reserved.
+ * Copyright 2010-2017. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
  *	Humdinger, humdingerb@gmail.com
  */
 
+#include "QuickLaunch.h"
 #include "QLFilter.h"
 
 
@@ -110,6 +111,13 @@ QLFilter::Filter(BMessage *message, BHandler **target)
 				return B_SKIP_MESSAGE;
 			}
 		}
+		case 's':
+		{
+			if (mod & B_COMMAND_KEY) {
+				be_app->PostMessage(SETUP_BUTTON);
+				return B_SKIP_MESSAGE;
+			}
+		}
 		default:
 		{
 			BLooper *loop = (*target)->Looper();
@@ -117,7 +125,7 @@ QLFilter::Filter(BMessage *message, BHandler **target)
 				BMessenger msgr(loop);
 				msgr.SendMessage(NEW_FILTER);
 			}
-			return B_DISPATCH_MESSAGE;
 		}
 	}
+	return B_DISPATCH_MESSAGE;
 }	
