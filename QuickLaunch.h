@@ -33,6 +33,10 @@ public:
 	SetupWindow		*fSetupWindow;
 	QLSettings		*fSettings;
 	MainWindow		*fMainWindow;
+
+private:
+	void			_AddToDeskbar();
+	void			_RemoveFromDeskbar();
 };
 
 #endif	// QUICKLAUNCH_H

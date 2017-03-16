@@ -8,15 +8,19 @@
  * A graphical launch panel finding an app via a query.
  */
 
+#include "DeskButton.h"
 #include "QLFilter.h"
 #include "QuickLaunch.h"
 
+#include <Deskbar.h>
 #include <Catalog.h>
 
-const char *kApplicationSignature = "application/x-vnd.humdinger-quicklaunch";
 
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "Application"
+
+const char *kApplicationSignature = "application/x-vnd.humdinger-quicklaunch";
+
 
 QLApp::QLApp()
 	:
@@ -88,6 +92,17 @@ QLApp::MessageReceived(BMessage* message)
 			else {
 				fSetupWindow->Hide();
 			}
+			break;
+		}
+		case DESKBAR_CHK:
+		{
+			int32 value;
+			message->FindInt32("be:value", &value);
+			fSettings->SetDeskbar(value);
+			if (value)
+				_AddToDeskbar();
+			else
+				_RemoveFromDeskbar();
 			break;
 		}
 		case VERSION_CHK:
@@ -238,6 +253,44 @@ QLApp::SetWindowsFeel(int32 value)
 	fMainWindow->SetFeel(value ?
 		B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
 	fMainWindow->UnlockLooper();
+}
+
+
+#pragma mark -- Private Methods --
+
+
+void
+QLApp::_AddToDeskbar()
+{
+	BDeskbar deskbar;
+	entry_ref entry;
+
+	if (!deskbar.HasItem("QuickLaunch")
+		&& (be_roster->FindApp(kApplicationSignature, &entry) == B_OK)) {
+		status_t err = deskbar.AddItem(&entry);
+		if (err != B_OK) {
+			status_t err = deskbar.AddItem(new DeskButton(BRect(0, 0, 15, 15),
+				&entry, entry.name));
+			if (err != B_OK)
+				printf("QuickLaunch: Can't install icon in Deskbar\n");
+		}
+	}
+}
+
+
+void
+QLApp::_RemoveFromDeskbar()
+{
+	BDeskbar deskbar;
+	int32 found_id;
+
+	if (deskbar.GetItemInfo("QuickLaunch", &found_id) == B_OK) {
+		status_t err = deskbar.RemoveItem(found_id);
+		if (err != B_OK) {
+			printf("QuickLaunch: Error removing replicant id "
+				"%" B_PRId32 ": %s\n", found_id, strerror(err));
+		}
+	}
 }
 
 

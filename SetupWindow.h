@@ -32,6 +32,7 @@
 #include <string.h>
 
 
+#define DESKBAR_CHK		'chdb'
 #define VERSION_CHK		'chve'
 #define PATH_CHK		'chpa'
 #define DELAY_CHK		'chde'
@@ -53,7 +54,7 @@ public:
 	bool			QuitRequested();
 	void			MessageReceived(BMessage* message);
 
-	BButton			*fButRem;
+	BCheckBox		*fChkDeskbar;
 	BCheckBox		*fChkVersion;
 	BCheckBox		*fChkPath;
 	BCheckBox		*fChkDelay;
@@ -62,6 +63,7 @@ public:
 	BCheckBox		*fChkOnTop;
 	BCheckBox		*fChkIgnore;
 	SetupListView	*fIgnoreList;
+	BButton			*fButRem;
 
 private:
 

@@ -33,6 +33,7 @@ QLSettings::QLSettings()
 		resolution.Width() / 2 + 340.0 / 2, resolution.Height() / 2 + 120.0 / 2);
 	delete screen;
 	fSetupWindowFrame = fMainWindowFrame.OffsetByCopy(70.0, 120.0);
+	fDeskbar = false;
 	fShowVersion = false;
 	fShowPath = true;
 	fDelay = false;
@@ -56,6 +57,10 @@ QLSettings::QLSettings()
 		BRect setupframe;
 		if (settings.FindRect("setup window frame", &setupframe) == B_OK)
 			fSetupWindowFrame = setupframe;
+
+		int32 deskbar;
+		if (settings.FindInt32("deskbar", &deskbar) == B_OK)
+			fDeskbar = deskbar;
 
 		int32 version;
 		if (settings.FindInt32("show version", &version) == B_OK)
@@ -104,6 +109,7 @@ QLSettings::~QLSettings()
 	settings.AddRect("main window frame", app->fMainWindow->Frame());
 	settings.AddRect("setup window frame",
 		app->fSetupWindow->ConvertToScreen(app->fSetupWindow->Bounds()));
+	settings.AddInt32("deskbar", fDeskbar);
 	settings.AddInt32("show version", fShowVersion);
 	settings.AddInt32("show path", fShowPath);
 	settings.AddInt32("delay", fDelay);

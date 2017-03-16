@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015. All rights reserved.
+ * Copyright 2010-2017. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -21,6 +21,7 @@ public:
 	void 		SetMainWindowFrame(BRect frame) {fMainWindowFrame = frame;};
 	void 		SetSetupWindowFrame(BRect setupframe)
 					{fSetupWindowFrame = setupframe;};
+	void		SetDeskbar(int32 deskbar) {fDeskbar = deskbar;};
 	void		SetShowVersion(int32 version) {fShowVersion = version;};
 	void		SetShowPath(int32 path) {fShowPath = path;};
 	void		SetDelay(int32 delay) {fDelay = delay;};
@@ -32,6 +33,7 @@ public:
 
 	BRect 		GetMainWindowFrame() {return fMainWindowFrame;};
 	BRect 		GetSetupWindowFrame() {return fSetupWindowFrame;};
+	int32		GetDeskbar() {return fDeskbar;};
 	int32		GetShowVersion() {return fShowVersion;};
 	int32		GetShowPath() {return fShowPath;};
 	int32		GetDelay() {return fDelay;};
@@ -45,6 +47,7 @@ public:
 private:
 	BRect		fMainWindowFrame;
 	BRect		fSetupWindowFrame;
+	int32		fDeskbar;
 	int32		fShowVersion;
 	int32		fShowPath;
 	int32		fDelay;

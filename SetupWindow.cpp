@@ -36,6 +36,11 @@ SetupWindow::SetupWindow(BRect frame)
 		B_NORMAL_WINDOW_FEEL, B_NOT_ZOOMABLE | B_AUTO_UPDATE_SIZE_LIMITS
 		| B_CLOSE_ON_ESCAPE)
 {
+	fChkDeskbar = new BCheckBox("DeskbarChk",
+		B_TRANSLATE("Add icon to Deskbar tray"),
+		new BMessage(DESKBAR_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkDeskbar->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
 	fChkVersion = new BCheckBox("VersionChk",
 		B_TRANSLATE("Show application version"),
 		new BMessage(VERSION_CHK), B_WILL_DRAW | B_NAVIGABLE);
@@ -78,6 +83,7 @@ SetupWindow::SetupWindow(BRect frame)
 	fButRem->SetEnabled(false);
 	fButRem->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
+	fChkDeskbar->SetTarget(be_app);
 	fChkVersion->SetTarget(be_app);
 	fChkPath->SetTarget(be_app);
 	fChkDelay->SetTarget(be_app);
@@ -91,6 +97,10 @@ SetupWindow::SetupWindow(BRect frame)
 	float spacing = be_control_look->DefaultItemSpacing();
 
 	BLayoutBuilder::Group<>(this, B_VERTICAL, 0)
+		.AddGroup(B_VERTICAL, 0)
+			.Add(fChkDeskbar)
+			.SetInsets(spacing, spacing, spacing, 0)
+		.End()
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkVersion)
 			.Add(fChkPath)
@@ -118,6 +128,7 @@ SetupWindow::SetupWindow(BRect frame)
 	.End();
 
 	QLApp *app = dynamic_cast<QLApp *> (be_app);
+	fChkDeskbar->SetValue(app->fSettings->GetDeskbar());
 	fChkVersion->SetValue(app->fSettings->GetShowVersion());
 	fChkPath->SetValue(app->fSettings->GetShowPath());
 	fChkDelay->SetValue(app->fSettings->GetDelay());
