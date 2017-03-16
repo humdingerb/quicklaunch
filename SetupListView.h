@@ -18,6 +18,8 @@ class SetupListView : public BListView {
 public:
 					SetupListView();
 					~SetupListView();
+
+	virtual	void	KeyDown(const char* bytes, int32 numBytes);
 	virtual void	SelectionChanged();
 };
 

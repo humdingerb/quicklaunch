@@ -22,6 +22,26 @@ SetupListView::~SetupListView()
 
 
 void
+SetupListView::KeyDown(const char* bytes, int32 numBytes)
+{
+	switch (bytes[0]) {
+		case B_DELETE:
+		{
+			if (!IsEmpty()) {
+				Looper()->PostMessage(REM_BUT, this);
+			}
+			break;
+		}
+		default:
+		{
+			BListView::KeyDown(bytes, numBytes);
+			break;
+		}
+	}
+}
+
+
+void
 SetupListView::SelectionChanged()
 {
 	SetupWindow *window = dynamic_cast<SetupWindow *> (Window());
