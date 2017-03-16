@@ -1,4 +1,4 @@
-1	English	application/x-vnd.humdinger-quicklaunch	1028244333
+1	English	application/x-vnd.humdinger-quicklaunch	2374527420
 Thank you	Application		Thank you
 QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n
 Add to ignore list	ListView		Add to ignore list
@@ -16,6 +16,7 @@ Remove	SetupWindow		Remove
 Setup	SetupWindow		Setup
 Show application path	SetupWindow		Show application path
 Show application version	SetupWindow		Show application version
+Show Deskbar replicant	SetupWindow		Show Deskbar replicant
 Wait for a second letter before searching	SetupWindow		Wait for a second letter before searching
 Window always on top	SetupWindow		Window always on top
 QuickLaunch	System name		QuickLaunch

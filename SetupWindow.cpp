@@ -37,7 +37,7 @@ SetupWindow::SetupWindow(BRect frame)
 		| B_CLOSE_ON_ESCAPE)
 {
 	fChkDeskbar = new BCheckBox("DeskbarChk",
-		B_TRANSLATE("Add icon to Deskbar tray"),
+		B_TRANSLATE("Show Deskbar replicant"),
 		new BMessage(DESKBAR_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkDeskbar->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 

@@ -1,4 +1,4 @@
-1	Italian	application/x-vnd.humdinger-quicklaunch	1028244333
+1	Italian	application/x-vnd.humdinger-quicklaunch	2374527420
 Thank you	Application		Grazie!
 QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tscritto da Humdinger\n\tCopyright %years%\n\nQuickLaunch avvia velocemente ogni applicazione installata. E' sufficiente inserire le prime lettere dell'applicazione e scegliere dalla lista dei programmi trovati.\n
 Add to ignore list	ListView		Aggiungi alla lista ignora
@@ -8,6 +8,7 @@ Use '*' as wildcards.	ListView		Usa '*' come wildcard.
 OK	MainWindow		OK
 Setup	MainWindow		Impostazioni
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Impossibile lanciare %appname%.\n\nErrore:
+Show Deskbar replicant	SetupWindow		Show Deskbar replicant
 Add…	SetupWindow		Aggiungi…
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignora questi file & cartelle (e le sottodirectory):
 Launch applications with a single click	SetupWindow		Esegui le applicazioni con un solo clic

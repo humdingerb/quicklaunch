@@ -14,24 +14,43 @@ In the main window the context menu was evoked via a right-click. The first item
 
 The setup window shows these options:
 
-*   _Show the version of an application_ — only really useful when having older and newer versions of an app installed.
-*   _Show the path to an application_ — interesting when you have several copies of an application.
-*   _Wait for a second letter before starting the search_ — starts QuickLaunch with the previous search.
+*	_Show Deskbar replicant_ — puts the QuickLaunch icon into the Deskbar tray.
+	Click on it to start QuickLaunch.
+*   _Show the version of an application_ — only really useful when having older 
+	and newer versions of an app installed.
+*   _Show the path to an application_ — interesting when you have several copies 
+	of an application.
+*   _Wait for a second letter before starting the search_ — starts QuickLaunch 
+	with the previous search.
 *   _Remeber last search term_ — probably only useful for slow systems.
-*   _Launch applications with a single click_ — instead of requiring the usual double-click.
-*   _Window always on top_ — the window floats modally in front of all others. Useful if you start a few apps after another and don't want to lose QuickLauch under the newly opening windows.
-*   _Ignore these files & folders (and their subfolders)_ that you can add and remove from the list with the buttons at the bottom. You can also right-click an app in the main window's result list to add that specific app to the ignore list or drag & drop any application or folder from Tracker or an app from QuickLaunch's main window into it. _DEL_ removes the selected items from the ignore list.
+*   _Launch applications with a single click_ — instead of requiring the usual 
+	double-click.
+*   _Window always on top_ — the window floats modally in front of all others. 
+	Useful if you start a few apps after another and don't want to lose 
+	QuickLauch under the newly opening windows.
+*   _Ignore these files & folders (and their subfolders)_ that you can add and 
+	remove from the list with the buttons at the bottom. You can also right-
+	click an app in the main window's result list to add that specific app to 
+	the ignore list or drag & drop any application or folder from Tracker or an 
+	app from QuickLaunch's main window into it. _DEL_ removes the selected items 
+	from the ignore list.
 
 ### Tips & Tricks
 
-*   Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like _OPT_ + _SPACEBAR_, for even quicker QuickLaunching apps.
+*   Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like 
+	_OPT_ + _SPACEBAR_, for even quicker QuickLaunching apps.
 *   Use '\*' as wildcards, e.g. "\*play" for all apps with "play" in their name.
-*   _SHIFT_ + _RETURN_ will keep the QuickLaunch window open after launching the app.
-*   _CTRL_ + _RETURN_ will open an app's location in Tracker instead of launching it.
+*   _SHIFT_ + _RETURN_ will keep the QuickLaunch window open after launching the 
+	app.
+*   _CTRL_ + _RETURN_ will open an app's location in Tracker instead of 
+	launching it.
 *   These folders are ignored by default:
      `B_SYSTEM_ADDONS_DIRECTORY` and `B_TRASH_DIRECTORY`
      In other words, applications in Trash are ignored, as well as add-ons.
-     `B_SYSTEM_BIN_DIRECTORY` used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, e.g. via _Add to ignore list_ of the context menu.
+     `B_SYSTEM_BIN_DIRECTORY` used to be ignored, but since especially ported 
+     software often ends up in the /bin folder, that is a bad idea. You'll have 
+     to remove unwanted commandline apps manually now, e.g. via _Add to ignore 
+     list_ of the context menu.
 
 ### Download
 
@@ -51,7 +70,9 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 
 **1.0** - _16-03-2017:_
 
-*	User request: Add a setting to launch applications with a single click.
+*	Add a setting to launch applications with a single click.
+*	Add optional to put a replicant in the Deskbar for a quick launch of 
+	QuickLaunch.
 *	Fixed layout issues in setup window and made default main and setup windows
     a bit bigger. Save the absolute position of the setup window.
 *	Improved page up/down scrolling.
