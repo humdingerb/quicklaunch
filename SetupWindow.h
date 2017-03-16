@@ -42,6 +42,7 @@
 #define ADD_BUT			'addb'
 #define REM_BUT			'remb'
 #define FILEPANEL		'file'
+#define POPCLOSE		'clpo'
 
 
 class SetupWindow : public BWindow {
