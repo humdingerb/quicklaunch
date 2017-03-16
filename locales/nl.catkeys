@@ -7,7 +7,7 @@ Open containing folder	ListView		Bijbehorende map openen
 Use '*' as wildcards.	ListView		Gebruik '*' als wildcard
 OK	MainWindow		OK
 Setup	MainWindow		Instellingen
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Kan starten %appname%.\n\nFout:
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Kan %appname% niet starten.\n\nFout:
 Add…	SetupWindow		Voeg toe…
 Ignore these files & folders (and their subfolders):	SetupWindow		Negeer deze bestanden & mappen (en submappen):
 Launch applications with a single click	SetupWindow		Toepassingen starten met een enkele klik
@@ -19,6 +19,3 @@ Show application version	SetupWindow		Toon applicatieversie
 Wait for a second letter before searching	SetupWindow		Wacht voor een tweede letter voor zoeken
 Window always on top	SetupWindow		Venster atijd bovenop
 QuickLaunch	System name		QuickLaunch
-aunch
-ch
-ch

@@ -31,7 +31,7 @@ The setup window shows these options:
 *   These folders are ignored by default:
      `B_SYSTEM_ADDONS_DIRECTORY` and `B_TRASH_DIRECTORY`
      In other words, applications in Trash are ignored, as well as add-ons.
-     `B_SYSTEM_BIN_DIRECTORY` used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, e.g. via the context menu.
+     `B_SYSTEM_BIN_DIRECTORY` used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, e.g. via _Add to ignore list_ of the context menu.
 
 ### Download
 
@@ -39,7 +39,7 @@ QuickLaunch is directly available through HaikuDepot from the HaikuPorts reposit
 
 ### Bugreports & Feedback
 
-Please use GitHubs's [issue tracker](https://github.com/humdingerb/quicklaunch/issues) if you experience unusual difficulties or email your general feedback to [me](mailto:humdinger@gmail.com). Also, email me if you'd like to provide more localizations.
+Please use GitHubs's [issue tracker](https://github.com/humdingerb/quicklaunch/issues) if you experience unusual difficulties or email your general feedback to [me](mailto:humdingerb@gmail.com). Also, email me if you'd like to provide more localizations.
 
 ### Thanks
 
