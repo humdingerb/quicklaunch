@@ -49,88 +49,6 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 
 ### History
 
-**0.9.0** - _01-02-2010:_
-
-*   Initial release.
-
-**0.9.1** - _04-02-2010:_
-
-*   Show version info to distinguish different versions of the same app.
-*   Home/End key jump to first/last item.
-*   Shift+Return will keep the QL window open.
-*   Added script to add QL to the Deskbar tray. Remove via context menu (Removal will only work with Haiku > r35402, for lower revisions, open Terminal and enter "desklink --remove=DeskButton".)
-
-**0.9.2** - _04-03-2010:_
-
-*   Add setup window to toggle version and path information.
-*   Ignore user definable folders.
-*   Make main window horizontally resizable.
-*   Remember window position and size.
-
-**0.9.3** - _05-03-2010:_
-
-*   Ignore path information wasn't loaded correctly.
-
-**0.9.4** - _11-03-2010:_
-
-*   Added Control+Return to open an app's location in Tracker.
-*   Added live-truncating of strings on window resize.
-*   The query now returns only app names beginning with the search string and now starts right after entering the first letter.
-*   Better handling of different system font size settings.
-*   Less restrictive window size limits.
-
-**0.9.5** - _17-05-2010:_
-
-*   Ignore Trash on all volumes, not just on /boot.
-*   Be stricter on the apps' signature. They have to conform to the standard and start with "application/x-vnd". This avoids listing e.g, libraries.
-*   PageUp and PageDown keys now work in the result list.
-*   Case-insentive sorting.
-
-**0.9.6** - _14-10-2013:_
-
-*   Small changes to work under Haiku with package management.
-
-**0.9.7** - _17-05-2014:_
-
-*   Added a setting to only start searching after entering a second letter of the application name.
-*   Respecting custom colours set in Appearance preferences.
-*   Better handling of bigger/smaller font sizes.
-*   Renamed "jokers" to "wildcards".
-
-**0.9.8** - _02-01-2015:_
-
-*   Fixed a crash on quit. No idea how it has worked all these years, frankly.
-*   Removed a never used variable and its get/set functions.
-
-**0.9.9** - _15-01-2015:_
-
-*   Don't ignore /system/bin/ by default. Now that more and more ports are available for Haiku, some GUI apps do appear in that folder...
-
-**0.9.10** - _15-06-2015:_
-
-*   Allow specific files in the ignore list, not only complete folders (and their subfolders).
-*   Show a context menu when right-clicking an app to quickly add it to the ignore list.
-*   Scroll to original location in the app list instead of jumping to the top after adding to the ignore list.
-*   Updated icon to show three app cubes as Q stroke.
-*   Localization for German, Dutch, Japanese, Polish.
-
-**0.9.11** - _16-08-2015:_
-
-*   Add "Open containing folder" to the context menu.
-*   Add an option to always start with the previous search term.
-*   Have the windows always on top of every other app.
-*   Add horizontal stroke below every list item.
-*   Cosmetics on resizing window so the height won't jump and flicker.
-
-**0.9.12** - _03-09-2015:_
-
-*	Make the "Window always on top" optional. Not everyone was pleased with
-	that change of v0.9.11...
-*	Also fix the formerly not usable file dialog when adding files/folders to
-	ignore. It was hidden behind the always-on-top window.
-*	Added Italian localization, thanks Barrett!
-
-
 **1.0** - _16-03-2017:_
 
 *	User request: Add a setting to launch applications with a single click.
@@ -148,7 +66,118 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 	window open. The "ignore" file dialog has issues when it's modal too: you
 	couldn't drag'n'drop files/folders into it...
 *	Open and close the Setup window with _ALT_+_S_.
-*	Show error dialog if the launch of an application has failed for some reason.
+*	Show error dialog if the launch of an application has failed for some
+	reason.
 *	Added Russian localization, thanks Akujiism!
 *	Added Spanish localization, thanks un_spacyar!
 *	Added Ukrainian localization, thanks Lan72!
+
+**0.9.12** - _03-09-2015:_
+
+*	Make the "Window always on top" optional. Not everyone was pleased with
+	that change of v0.9.11...
+*	Also fix the formerly not usable file dialog when adding files/folders to
+	ignore. It was hidden behind the always-on-top window.
+*	Added Italian localization, thanks Barrett!
+
+**0.9.11** - _16-08-2015:_
+
+*   Add "Open containing folder" to the context menu.
+*   Add an option to always start with the previous search term.
+*   Have the windows always on top of every other app.
+*   Add horizontal stroke below every list item.
+*   Cosmetics on resizing window so the height won't jump and flicker.
+
+**0.9.10** - _15-06-2015:_
+
+*   Allow specific files in the ignore list, not only complete folders (and 
+	their subfolders).
+*   Show a context menu when right-clicking an app to quickly add it to the 
+	ignore list.
+*   Scroll to original location in the app list instead of jumping to the top 
+	after adding to the ignore list.
+*   Updated icon to show three app cubes as Q stroke.
+*   Localization for German, Dutch, Japanese, Polish.
+
+**0.9.9** - _15-01-2015:_
+
+*   Don't ignore /system/bin/ by default. Now that more and more ports are 
+	available for Haiku, some GUI apps do appear in that folder...
+
+**0.9.8** - _02-01-2015:_
+
+*   Fixed a crash on quit. No idea how it has worked all these years, frankly.
+*   Removed a never used variable and its get/set functions.
+
+**0.9.7** - _17-05-2014:_
+
+*   Added a setting to only start searching after entering a second letter of 
+	the application name.
+*   Respecting custom colours set in Appearance preferences.
+*   Better handling of bigger/smaller font sizes.
+*   Renamed "jokers" to "wildcards".
+
+**0.9.6** - _14-10-2013:_
+
+*   Small changes to work under Haiku with package management.
+
+**0.9.5** - _17-05-2010:_
+
+*   Ignore Trash on all volumes, not just on /boot.
+*   Be stricter on the apps' signature. They have to conform to the standard and 
+	start with "application/x-vnd". This avoids listing e.g, libraries.
+*   PageUp and PageDown keys now work in the result list.
+*   Case-insentive sorting.
+
+**0.9.4** - _11-03-2010:_
+
+*   Added Control+Return to open an app's location in Tracker.
+*   Added live-truncating of strings on window resize.
+*   The query now returns only app names beginning with the search string and 
+	now starts right after entering the first letter.
+*   Better handling of different system font size settings.
+*   Less restrictive window size limits.
+
+**0.9.3** - _05-03-2010:_
+
+*   Ignore path information wasn't loaded correctly.
+
+**0.9.2** - _04-03-2010:_
+
+*   Add setup window to toggle version and path information.
+*   Ignore user definable folders.
+*   Make main window horizontally resizable.
+*   Remember window position and size.
+
+**0.9.1** - _04-02-2010:_
+
+*   Show version info to distinguish different versions of the same app.
+*   Home/End key jump to first/last item.
+*   Shift+Return will keep the QL window open.
+*   Added script to add QL to the Deskbar tray. Remove via context menu (Removal 
+	will only work with Haiku > r35402, for lower revisions, open Terminal and 
+	enter "desklink --remove=DeskButton".)
+	
+**0.9.0** - _01-02-2010:_
+
+*   Initial release.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

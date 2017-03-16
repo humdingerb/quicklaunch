@@ -152,85 +152,6 @@ Finally, thanks to everyone that contributed translations for QuickLaunch.</p>
 <h2>
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
 <a id="history" name="history">History</a></h2>
-<p><b>0.9.0</b> - <i>01-02-2010:</i></p>
-<ul>
-<li>Initial release.</li>
-</ul>
-<p><b>0.9.1</b> - <i>04-02-2010:</i></p>
-<ul>
-<li>Show version info to distinguish different versions of the same app.</li>
-<li>Home/End key jump to first/last item.</li>
-<li>Shift+Return will keep the QL window open.</li>
-<li>Added script to add QL to the Deskbar tray. Remove via context menu (Removal will only work with Haiku > r35402, for lower revisions, open Terminal and enter "desklink --remove=DeskButton".)</li>
-</ul>
-<p><b>0.9.2</b> - <i>04-03-2010:</i></p>
-<ul>
-<li>Add setup window to toggle version and path information.</li>
-<li>Ignore user definable folders.</li>
-<li>Make main window horizontally resizable.</li>
-<li>Remember window position and size.</li>
-</ul>
-<p><b>0.9.3</b> - <i>05-03-2010:</i></p>
-<ul>
-<li>Ignore path information wasn't loaded correctly.</li>
-</ul>
-<p><b>0.9.4</b> - <i>11-03-2010:</i></p>
-<ul>
-<li>Added Control+Return to open an app's location in Tracker.</li>
-<li>Added live-truncating of strings on window resize.</li>
-<li>The query now returns only app names beginning with the search string and now starts right after entering the first letter.</li>
-<li>Better handling of different system font size settings.</li>
-<li>Less restrictive window size limits.</li>
-</ul>
-<p><b>0.9.5</b> - <i>17-05-2010:</i></p>
-<ul>
-<li>Ignore Trash on all volumes, not just on /boot.</li>
-<li>Be stricter on the apps' signature. They have to conform to the standard and start with "application/x-vnd". This avoids listing e.g, libraries.</li>
-<li>PageUp and PageDown keys now work in the result list.</li>
-<li>Case-insentive sorting.</li>
-</ul>
-<p><b>0.9.6</b> - <i>14-10-2013:</i></p>
-<ul>
-<li>Small changes to work under Haiku with package management.</li>
-</ul>
-<p><b>0.9.7</b> - <i>17-05-2014:</i></p>
-<ul>
-<li>Added a setting to only start searching after entering a second letter of the application name.</li>
-<li>Respecting custom colours set in Appearance preferences.</li>
-<li>Better handling of bigger/smaller font sizes.</li>
-<li>Renamed "jokers" to "wildcards".</li>
-</ul>
-<p><b>0.9.8</b> - <i>02-01-2015:</i></p>
-<ul>
-<li>Fixed a crash on quit. No idea how it has worked all these years, frankly.</li>
-<li>Removed a never used variable and its get/set functions.</li>
-</ul>
-<p><b>0.9.9</b> - <i>15-01-2015:</i></p>
-<ul>
-<li>Don't ignore /system/bin/ by default. Now that more and more ports are available for Haiku, some GUI apps do appear in that folder...</li>
-</ul>
-<p><b>0.9.10</b> - <i>15-06-2015:</i></p>
-<ul>
-<li>Allow specific files in the ignore list, not only complete folders (and their subfolders).</li>
-<li>Show a context menu when right-clicking an app to quickly add it to the ignore list.</li>
-<li>Scroll to original location in the app list instead of jumping to the top after adding to the ignore list.</li>
-<li>Updated icon to show three app cubes as Q stroke.</li>
-<li>Localization for German, Dutch, Japanese, Polish.</li>
-</ul>
-<p><b>0.9.11</b> - <i>16-08-2015:</i></p>
-<ul>
-<li>Add "Open containing folder" to the context menu.</li>
-<li>Add an option to always start with the previous search term.</li>
-<li>Have the windows always on top of every other app.</li>
-<li>Add horizontal stroke below every list item.</li>
-<li>Cosmetics on resizing window so the height won't jump and flicker.</li>
-</ul>
-<p><b>0.9.12</b> - <i>03-09-2015:</i></p>
-<ul>
-<li>Make the "Window always on top" optional. Not everyone was pleased with that change of v0.9.11...</li>
-<li>Also fix the formerly not usable file dialog when adding files/folders to ignore. It was hidden behind the always-on-top window.</li>
-<li>Added Italian localization, thanks Barrett!</li>
-</ul>
 <p><b>1.0</b> - <i>16-03-2017:</i></p>
 <ul>
 <li>User request: Add a setting to launch applications with a single click.</li>
@@ -247,6 +168,85 @@ The "ignore" file dialog had issues when it's modal too: you couldn't drag'n'dro
 <li>Added Russian localization, thanks Akujiism!</li>
 <li>Added Spanish localization, thanks un_spacyar!</li>
 <li>Added Ukrainian localization, thanks Lan72!</li>
+</ul>
+<p><b>0.9.12</b> - <i>03-09-2015:</i></p>
+<ul>
+<li>Make the "Window always on top" optional. Not everyone was pleased with that change of v0.9.11...</li>
+<li>Also fix the formerly not usable file dialog when adding files/folders to ignore. It was hidden behind the always-on-top window.</li>
+<li>Added Italian localization, thanks Barrett!</li>
+</ul>
+<p><b>0.9.11</b> - <i>16-08-2015:</i></p>
+<ul>
+<li>Add "Open containing folder" to the context menu.</li>
+<li>Add an option to always start with the previous search term.</li>
+<li>Have the windows always on top of every other app.</li>
+<li>Add horizontal stroke below every list item.</li>
+<li>Cosmetics on resizing window so the height won't jump and flicker.</li>
+</ul>
+<p><b>0.9.10</b> - <i>15-06-2015:</i></p>
+<ul>
+<li>Allow specific files in the ignore list, not only complete folders (and their subfolders).</li>
+<li>Show a context menu when right-clicking an app to quickly add it to the ignore list.</li>
+<li>Scroll to original location in the app list instead of jumping to the top after adding to the ignore list.</li>
+<li>Updated icon to show three app cubes as Q stroke.</li>
+<li>Localization for German, Dutch, Japanese, Polish.</li>
+</ul>
+<p><b>0.9.8</b> - <i>02-01-2015:</i></p>
+<ul>
+<li>Fixed a crash on quit. No idea how it has worked all these years, frankly.</li>
+<li>Removed a never used variable and its get/set functions.</li>
+</ul>
+<p><b>0.9.9</b> - <i>15-01-2015:</i></p>
+<ul>
+<li>Don't ignore /system/bin/ by default. Now that more and more ports are available for Haiku, some GUI apps do appear in that folder...</li>
+</ul>
+<p><b>0.9.7</b> - <i>17-05-2014:</i></p>
+<ul>
+<li>Added a setting to only start searching after entering a second letter of the application name.</li>
+<li>Respecting custom colours set in Appearance preferences.</li>
+<li>Better handling of bigger/smaller font sizes.</li>
+<li>Renamed "jokers" to "wildcards".</li>
+</ul>
+<p><b>0.9.6</b> - <i>14-10-2013:</i></p>
+<ul>
+<li>Small changes to work under Haiku with package management.</li>
+</ul>
+<p><b>0.9.5</b> - <i>17-05-2010:</i></p>
+<ul>
+<li>Ignore Trash on all volumes, not just on /boot.</li>
+<li>Be stricter on the apps' signature. They have to conform to the standard and start with "application/x-vnd". This avoids listing e.g, libraries.</li>
+<li>PageUp and PageDown keys now work in the result list.</li>
+<li>Case-insentive sorting.</li>
+</ul>
+<p><b>0.9.4</b> - <i>11-03-2010:</i></p>
+<ul>
+<li>Added Control+Return to open an app's location in Tracker.</li>
+<li>Added live-truncating of strings on window resize.</li>
+<li>The query now returns only app names beginning with the search string and now starts right after entering the first letter.</li>
+<li>Better handling of different system font size settings.</li>
+<li>Less restrictive window size limits.</li>
+</ul>
+<p><b>0.9.3</b> - <i>05-03-2010:</i></p>
+<ul>
+<li>Ignore path information wasn't loaded correctly.</li>
+</ul>
+<p><b>0.9.2</b> - <i>04-03-2010:</i></p>
+<ul>
+<li>Add setup window to toggle version and path information.</li>
+<li>Ignore user definable folders.</li>
+<li>Make main window horizontally resizable.</li>
+<li>Remember window position and size.</li>
+</ul>
+<p><b>0.9.1</b> - <i>04-02-2010:</i></p>
+<ul>
+<li>Show version info to distinguish different versions of the same app.</li>
+<li>Home/End key jump to first/last item.</li>
+<li>Shift+Return will keep the QL window open.</li>
+<li>Added script to add QL to the Deskbar tray. Remove via context menu (Removal will only work with Haiku > r35402, for lower revisions, open Terminal and enter "desklink --remove=DeskButton".)</li>
+</ul>
+<p><b>0.9.0</b> - <i>01-02-2010:</i></p>
+<ul>
+<li>Initial release.</li>
 </ul>
 </body>
 </html>
