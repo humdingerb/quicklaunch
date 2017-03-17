@@ -8,7 +8,7 @@ Use '*' as wildcards.	ListView		Usar '*' como caracter comodín.
 OK	MainWindow		OK
 Setup	MainWindow		Configuración
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Error al iniciar %appname%.\n\nError:
-Show Deskbar replicant	SetupWindow		Show Deskbar replicant
+Show Deskbar replicant	SetupWindow		Mostrar replicante de la barra de escritorio
 Add…	SetupWindow		Agregar…
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignorar estos archivos y carpetas (y sus correspondientes subcarpetas):
 Launch applications with a single click	SetupWindow		Iniciar aplicaciones con un solo clic

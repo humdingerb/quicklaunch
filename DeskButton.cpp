@@ -18,6 +18,8 @@
 #include <NodeInfo.h>
 #include <Roster.h>
 
+#include <image.h>
+
 extern const char *kApplicationSignature;
 	// from QuickLaunch.cpp
 
@@ -28,25 +30,52 @@ DeskButton::DeskButton(BRect frame, entry_ref* ref, const char* name,
 	BView(frame, name, resizeMask, flags),
 	fRef(*ref)
 {
-	fSegments = new BBitmap(BRect(0, 0, 15, 15), B_RGBA32);
-	BNodeInfo::GetTrackerIcon(&fRef, fSegments, B_MINI_ICON);
+	fIcon = new BBitmap(BRect(0, 0, 15, 15), B_RGBA32);
+	BNodeInfo::GetTrackerIcon(&fRef, fIcon, B_MINI_ICON);
 }
 
 
 DeskButton::DeskButton(BMessage *message)
 	:
-	BView(message)	
+	BView(message)
 {
 	message->FindRef("ref", &fRef);
 	
-	fSegments = new BBitmap(BRect(0, 0, 15, 15), B_RGBA32);
-	BNodeInfo::GetTrackerIcon(&fRef, fSegments, B_MINI_ICON);
+	fIcon = new BBitmap(BRect(0, 0, 15, 15), B_RGBA32);
+	BNodeInfo::GetTrackerIcon(&fRef, fIcon, B_MINI_ICON);
+}
+
+
+DeskButton::DeskButton()
+	:
+	BView(BRect(0, 0, 15, 15), "QuickLaunch", B_FOLLOW_NONE, B_WILL_DRAW)
+{
+//	be_roster->FindApp(kApplicationSignature, &fRef);
+
+	// Black magic by AnEvilYak to avoid using the app_signature
+	int32 cookie = 0;
+	image_info info;
+
+	while (get_next_image_info(B_CURRENT_TEAM, &cookie, &info) == B_OK) {
+		if ((addr_t)B_CURRENT_IMAGE_SYMBOL < (addr_t)info.text
+				|| (addr_t)B_CURRENT_IMAGE_SYMBOL
+				> (addr_t)info.text + (addr_t)info.text_size)
+			continue;
+
+		fRef.device = info.device;
+		fRef.directory = info.node;
+		fRef.set_name(info.name);
+		break;
+	}
+
+	fIcon = new BBitmap(BRect(0, 0, 15, 15), B_RGBA32);
+	BNodeInfo::GetTrackerIcon(&fRef, fIcon, B_MINI_ICON);
 }
 
 
 DeskButton::~DeskButton()
 {
-	delete fSegments;
+	delete fIcon;
 }
 
 
@@ -91,7 +120,7 @@ DeskButton::Draw(BRect rect)
 	SetDrawingMode(B_OP_ALPHA);
 	SetBlendingMode(B_PIXEL_ALPHA, B_ALPHA_OVERLAY);
 
-	DrawBitmap(fSegments);
+	DrawBitmap(fIcon);
 }
 
 

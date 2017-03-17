@@ -19,6 +19,7 @@ class DeskButton : public BView {
 			uint32 resizeMask = B_FOLLOW_ALL, 
 			uint32 flags = B_WILL_DRAW | B_NAVIGABLE);
 		DeskButton(BMessage* archive);
+		DeskButton();
 		virtual ~DeskButton();
 
 		// archiving overrides
@@ -31,7 +32,7 @@ class DeskButton : public BView {
 		virtual void Draw(BRect updateRect);
 
 	private:
-		BBitmap*	fSegments;
+		BBitmap*	fIcon;
 		entry_ref	fRef;
 };
 

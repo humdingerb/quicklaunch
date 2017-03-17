@@ -22,6 +22,15 @@
 const char *kApplicationSignature = "application/x-vnd.humdinger-quicklaunch";
 
 
+extern "C" _EXPORT BView *instantiate_deskbar_item();
+
+extern "C" _EXPORT BView *
+instantiate_deskbar_item()
+{
+	return new DeskButton();
+}
+
+
 QLApp::QLApp()
 	:
 	BApplication(kApplicationSignature)
@@ -259,20 +268,44 @@ QLApp::SetWindowsFeel(int32 value)
 #pragma mark -- Private Methods --
 
 
+status_t
+our_image(image_info& image)
+{
+	int32 cookie = 0;
+	while (get_next_image_info(B_CURRENT_TEAM, &cookie, &image) == B_OK) {
+		if ((char *)our_image >= (char *)image.text
+			&& (char *)our_image <= (char *)image.text + image.text_size)
+			return B_OK;
+	}
+
+	return B_ERROR;
+}
+
+
 void
 QLApp::_AddToDeskbar()
 {
 	BDeskbar deskbar;
-	entry_ref entry;
 
-	if (!deskbar.HasItem("QuickLaunch")
-		&& (be_roster->FindApp(kApplicationSignature, &entry) == B_OK)) {
-		status_t err = deskbar.AddItem(&entry);
-		if (err != B_OK) {
-			status_t err = deskbar.AddItem(new DeskButton(BRect(0, 0, 15, 15),
-				&entry, entry.name));
-			if (err != B_OK)
-				printf("QuickLaunch: Can't install icon in Deskbar\n");
+	if (deskbar.IsRunning() && !deskbar.HasItem("QuickLaunch")) {
+		image_info info;
+		entry_ref ref;
+
+		if (our_image(info) == B_OK
+			&& get_ref_for_path(info.name, &ref) == B_OK) {
+			int32 id;
+			status_t err = deskbar.AddItem(&ref, &id);
+			printf("info_name: %s, ref_name: %s, id: %" B_PRId32 "\nerr: %" B_PRId32 "\n",
+				info.name, ref.name, id, err);
+
+			if (err != B_OK) {
+				status_t err = deskbar.AddItem(new DeskButton(BRect(0, 0, 15, 15),
+					&ref, ref.name));
+				if (err != B_OK) {
+					printf("QuickLaunch: Can't install icon in Deskbar:
+						%" B_PRId32 "\n", err);
+				}
+			}
 		}
 	}
 }

@@ -89,6 +89,7 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 *	Open and close the Setup window with _ALT_+_S_.
 *	Show error dialog if the launch of an application has failed for some
 	reason.
+*	Added French localization, thanks Anarchos!
 *	Added Russian localization, thanks Akujiism!
 *	Added Spanish localization, thanks un_spacyar!
 *	Added Ukrainian localization, thanks Lan72!
