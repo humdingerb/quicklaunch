@@ -8,7 +8,7 @@ Use '*' as wildcards.	ListView		'*' はワイルドカード
 OK	MainWindow		OK
 Setup	MainWindow		設定
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	％appname％の起動に失敗しました。\n\nエラー：
-Show Deskbar replicant	SetupWindow		Show Deskbar replicant
+Show Deskbar replicant	SetupWindow		Deskbarレプリカントを表示
 Add…	SetupWindow		追加…
 Ignore these files & folders (and their subfolders):	SetupWindow		以下のファイルとフォルダー (およびサブフォルダー) を無視する:
 Launch applications with a single click	SetupWindow		ワンクリックでアプリケーションを起動
@@ -20,3 +20,4 @@ Show application version	SetupWindow		アプリのバージョンを表示
 Wait for a second letter before searching	SetupWindow		2 文字入力してから検索
 Window always on top	SetupWindow		ウィンドウ 常に手前に
 QuickLaunch	System name		QuickLaunch
+m name		QuickLaunch

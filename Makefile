@@ -91,7 +91,7 @@ OPTIMIZE :=
 # 	will recreate only the "locales/en.catkeys" file. Use it as a template
 # 	for creating catkeys for other languages. All localization files must be
 # 	placed in the "locales" subdirectory.
-LOCALES = de en es it ja nl pl ru uk
+LOCALES = de en es fr it ja nl pl ru uk
 
 #	Specify all the preprocessor symbols to be defined. The symbols will not
 #	have their values set automatically; you must supply the value (if any) to
@@ -110,7 +110,7 @@ SYMBOLS :=
 
 #	Includes debug information, which allows the binary to be debugged easily.
 #	If set to "TRUE", debug info will be created.
-DEBUGGER := TRUE
+DEBUGGER :=
 
 #	Specify any additional compiler flags to be used.
 COMPILER_FLAGS = -Wall -Wno-multichar -Wno-unknown-pragmas

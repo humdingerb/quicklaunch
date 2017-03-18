@@ -8,7 +8,7 @@ Use '*' as wildcards.	ListView		Використовуйте '*' як розді
 OK	MainWindow		OK
 Setup	MainWindow		Налаштування
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Не вдалося запустити %appname%.\n\nНомер помилки .:
-Show Deskbar replicant	SetupWindow		Show Deskbar replicant
+Show Deskbar replicant	SetupWindow		Показати Deskbar реплікантів
 Add…	SetupWindow		Додати…
 Ignore these files & folders (and their subfolders):	SetupWindow		Ігнорувати ці файли і папки (та їх підпапки):
 Launch applications with a single click	SetupWindow		Запуск додатків з одним натисненням кнопки
