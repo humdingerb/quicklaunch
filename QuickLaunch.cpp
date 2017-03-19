@@ -295,16 +295,10 @@ QLApp::_AddToDeskbar()
 			&& get_ref_for_path(info.name, &ref) == B_OK) {
 			int32 id;
 			status_t err = deskbar.AddItem(&ref, &id);
-			printf("info_name: %s, ref_name: %s, id: %" B_PRId32 "\nerr: %" B_PRId32 "\n",
-				info.name, ref.name, id, err);
 
 			if (err != B_OK) {
-				status_t err = deskbar.AddItem(new DeskButton(BRect(0, 0, 15, 15),
-					&ref, ref.name));
-				if (err != B_OK) {
-					printf("QuickLaunch: Can't install icon in Deskbar:
-						%" B_PRId32 "\n", err);
-				}
+			printf("info_name: %s, ref_name: %s, id: %" B_PRId32 "\nerr: %" B_PRId32 "\n",
+				info.name, ref.name, id, err);
 			}
 		}
 	}

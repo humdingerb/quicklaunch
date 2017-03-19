@@ -1,4 +1,6 @@
-![QuickLaunch icon](./images/quicklaunch_icon_64.png) **QuickLaunch** for [Haiku](http://www.haiku-os.org)
+![QuickLaunch icon](./images/quicklaunch_icon_64.png)
+**QuickLaunch**
+for [Haiku](http://www.haiku-os.org)
 
 * * *
 
@@ -14,43 +16,31 @@ In the main window the context menu was evoked via a right-click. The first item
 
 The setup window shows these options:
 
-*	_Show Deskbar replicant_ — puts the QuickLaunch icon into the Deskbar tray.
-	Click on it to start QuickLaunch.
-*   _Show the version of an application_ — only really useful when having older 
-	and newer versions of an app installed.
-*   _Show the path to an application_ — interesting when you have several copies 
-	of an application.
-*   _Wait for a second letter before starting the search_ — starts QuickLaunch 
-	with the previous search.
+*	_Show Deskbar replicant_ — puts the QuickLaunch icon into the Deskbar tray. Click on it to start QuickLaunch.
+*   _Show the version of an application_ — only really useful when having older and newer versions of an app installed.
+*   _Show the path to an application_ — interesting when you have several copies of an application.
+*   _Wait for a second letter before starting the search_ — starts QuickLaunch with the previous search.
 *   _Remeber last search term_ — probably only useful for slow systems.
-*   _Launch applications with a single click_ — instead of requiring the usual 
-	double-click.
+*   _Launch applications with a single click_ — instead of requiring the usual double-click.
 *   _Window always on top_ — the window floats modally in front of all others. 
-	Useful if you start a few apps after another and don't want to lose 
-	QuickLauch under the newly opening windows.
-*   _Ignore these files & folders (and their subfolders)_ that you can add and 
-	remove from the list with the buttons at the bottom. You can also right-
-	click an app in the main window's result list to add that specific app to 
-	the ignore list or drag & drop any application or folder from Tracker or an 
-	app from QuickLaunch's main window into it. _DEL_ removes the selected items 
-	from the ignore list.
+Useful if you start a few apps after another and don't want to lose QuickLauch under the newly opening windows.
+*   _Ignore these files & folders (and their subfolders)_ that you can add and remove from the list with the buttons at the bottom.
+You can also right-click an app in the main window's result list to add that specific app to the ignore list or drag & drop any application or folder from Tracker or an 	app from QuickLaunch's main window into it.
+_DEL_ removes the selected items from the ignore list.
 
 ### Tips & Tricks
 
-*   Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like 
-	_OPT_ + _SPACEBAR_, for even quicker QuickLaunching apps.
+*   Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like _OPT_ + _SPACEBAR_, for even quicker QuickLaunching apps.
 *   Use '\*' as wildcards, e.g. "\*play" for all apps with "play" in their name.
-*   _SHIFT_ + _RETURN_ will keep the QuickLaunch window open after launching the 
-	app.
-*   _CTRL_ + _RETURN_ will open an app's location in Tracker instead of 
-	launching it.
+*   _SHIFT_ + _RETURN_ will keep the QuickLaunch window open after launching the app.
+*   _CTRL_ + _RETURN_ will open an app's location in Tracker instead of launching it.
 *   These folders are ignored by default:
-     `B_SYSTEM_ADDONS_DIRECTORY` and `B_TRASH_DIRECTORY`
-     In other words, applications in Trash are ignored, as well as add-ons.
-     `B_SYSTEM_BIN_DIRECTORY` used to be ignored, but since especially ported 
-     software often ends up in the /bin folder, that is a bad idea. You'll have 
-     to remove unwanted commandline apps manually now, e.g. via _Add to ignore 
-     list_ of the context menu.
+`B_SYSTEM_ADDONS_DIRECTORY` and `B_TRASH_DIRECTORY`
+In other words, applications in Trash are ignored, as well as add-ons.
+`B_SYSTEM_BIN_DIRECTORY` used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, e.g. via _Add to ignore list_ of the context menu.
+*	If you happen to use an app or a script that doesn't show up in QuickLaunch (and is in a writable location), you can add these atrributes in Terminal to the app or script:
+`addattr BEOS:TYPE application/x-vnd.Be-elfexecutable /path/to/your/app-or-script`
+`addattr BEOS:APP_SIG  application/x-vnd.anything-unique /path/to/your/app-or-script`
 
 ### Download
 
@@ -62,33 +52,26 @@ Please use GitHubs's [issue tracker](https://github.com/humdingerb/quicklaunch/i
 
 ### Thanks
 
-I have to thank DarkWyrm for some helpful hints and for some of the code I re-used from his RunProgram app and his EscapeCancelFilter.
- Equally useful was Robert Polic's EZLauncher of BeNewsletter 3-46 and the help I got on the #haiku IRC channel.
- Finally, thanks to everyone that contributed translations for QuickLaunch.
+I have to thank DarkWyrm for some helpful hints and for some of the code I re-used from his RunProgram app and his EscapeCancelFilter. Equally useful was Robert Polic's EZLauncher of BeNewsletter 3-46 and the help I got on the #haiku IRC channel.
+AnEvilYak provided valuable hints and code when I got stuck.
+Finally, thanks to everyone that contributed translations for QuickLaunch.
 
 ### History
 
-**1.0** - _16-03-2017:_
+**1.0** - _20-03-2017:_
 
 *	Add a setting to launch applications with a single click.
-*	Add optional to put a replicant in the Deskbar for a quick launch of 
-	QuickLaunch.
-*	Fixed layout issues in setup window and made default main and setup windows
-    a bit bigger. Save the absolute position of the setup window.
+*	Add option to put a replicant in the Deskbar tray for a quick launch of QuickLaunch.
+*	Have the icon size depend on the font size.
+*	Fixed layout issues in the setup window and made default main and setup windows a bit bigger. Save the absolute position of the setup window.
+*	Change resizing of the main window to always fit the number of list items; font sensitive.
+*	Allow drag & drop of files from Tracker or items from the main window to the "ignore" list.
+	Allow removing multiple items from the "ignore" list. Also via _DEL_ key or a context menu.
 *	Improved page up/down scrolling.
-*	Change resizing of the main window to always fit the number of list items;
-	font sensitive.
-*	Use icon size depending on font size.
-*	Allow drag'n'drop of files from Tracker or items from the main window to the
-	"ignore" list.
-	Allow removing multiple items from the "ignore" list. Also via _DEL_ key or
-	a context menu.
-*	Apply "Always on top" setting only to the main window when there's no setup
-	window open. The "ignore" file dialog has issues when it's modal too: you
-	couldn't drag'n'drop files/folders into it...
+*	Apply "Always on top" setting only to the main window when there's no setup window open. The "ignore" file dialog has issues when it's modal too: you couldn't drag & drop files/folders into it...
 *	Open and close the Setup window with _ALT_+_S_.
-*	Show error dialog if the launch of an application has failed for some
-	reason.
+*	Show an error dialog if the launch of an application has failed for some reason.
+*	Added a tip to the ReadMe, showing how to add type and signature to apps and scripts that are missing them.
 *	Added French localization, thanks Anarchos!
 *	Added Russian localization, thanks Akujiism!
 *	Added Spanish localization, thanks un_spacyar!
@@ -96,10 +79,8 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 
 **0.9.12** - _03-09-2015:_
 
-*	Make the "Window always on top" optional. Not everyone was pleased with
-	that change of v0.9.11...
-*	Also fix the formerly not usable file dialog when adding files/folders to
-	ignore. It was hidden behind the always-on-top window.
+*	Make the "Window always on top" optional. Not everyone was pleased with	that change of v0.9.11...
+*	Also fix the formerly not usable file dialog when adding files/folders to ignore. It was hidden behind the always-on-top window.
 *	Added Italian localization, thanks Barrett!
 
 **0.9.11** - _16-08-2015:_
@@ -112,19 +93,15 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 
 **0.9.10** - _15-06-2015:_
 
-*   Allow specific files in the ignore list, not only complete folders (and 
-	their subfolders).
-*   Show a context menu when right-clicking an app to quickly add it to the 
-	ignore list.
-*   Scroll to original location in the app list instead of jumping to the top 
-	after adding to the ignore list.
+*   Allow specific files in the ignore list, not only complete folders (and their subfolders).
+*   Show a context menu when right-clicking an app to quickly add it to the ignore list.
+*   Scroll to original location in the app list instead of jumping to the top after adding to the ignore list.
 *   Updated icon to show three app cubes as Q stroke.
 *   Localization for German, Dutch, Japanese, Polish.
 
 **0.9.9** - _15-01-2015:_
 
-*   Don't ignore /system/bin/ by default. Now that more and more ports are 
-	available for Haiku, some GUI apps do appear in that folder...
+*   Don't ignore /system/bin/ by default. Now that more and more ports are available for Haiku, some GUI apps do appear in that folder...
 
 **0.9.8** - _02-01-2015:_
 
@@ -133,8 +110,7 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 
 **0.9.7** - _17-05-2014:_
 
-*   Added a setting to only start searching after entering a second letter of 
-	the application name.
+*   Added a setting to only start searching after entering a second letter of the application name.
 *   Respecting custom colours set in Appearance preferences.
 *   Better handling of bigger/smaller font sizes.
 *   Renamed "jokers" to "wildcards".
@@ -146,8 +122,7 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 **0.9.5** - _17-05-2010:_
 
 *   Ignore Trash on all volumes, not just on /boot.
-*   Be stricter on the apps' signature. They have to conform to the standard and 
-	start with "application/x-vnd". This avoids listing e.g, libraries.
+*   Be stricter on the apps' signature. They have to conform to the standard and 	start with "application/x-vnd". This avoids listing e.g, libraries.
 *   PageUp and PageDown keys now work in the result list.
 *   Case-insentive sorting.
 
@@ -155,8 +130,7 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 
 *   Added Control+Return to open an app's location in Tracker.
 *   Added live-truncating of strings on window resize.
-*   The query now returns only app names beginning with the search string and 
-	now starts right after entering the first letter.
+*   The query now returns only app names beginning with the search string and now starts right after entering the first letter.
 *   Better handling of different system font size settings.
 *   Less restrictive window size limits.
 
@@ -176,30 +150,8 @@ I have to thank DarkWyrm for some helpful hints and for some of the code I re-us
 *   Show version info to distinguish different versions of the same app.
 *   Home/End key jump to first/last item.
 *   Shift+Return will keep the QL window open.
-*   Added script to add QL to the Deskbar tray. Remove via context menu (Removal 
-	will only work with Haiku > r35402, for lower revisions, open Terminal and 
-	enter "desklink --remove=DeskButton".)
+*   Added script to add QL to the Deskbar tray. Remove via context menu (Removal will only work with Haiku > r35402, for lower revisions, open Terminal and enter "desklink --remove=DeskButton".)
 	
 **0.9.0** - _01-02-2010:_
 
 *   Initial release.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

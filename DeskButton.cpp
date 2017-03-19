@@ -50,9 +50,8 @@ DeskButton::DeskButton()
 	:
 	BView(BRect(0, 0, 15, 15), "QuickLaunch", B_FOLLOW_NONE, B_WILL_DRAW)
 {
-//	be_roster->FindApp(kApplicationSignature, &fRef);
-
 	// Black magic by AnEvilYak to avoid using the app_signature
+	// with be_roster->FindApp(kApplicationSignature, &fRef);
 	int32 cookie = 0;
 	image_info info;
 
@@ -62,9 +61,7 @@ DeskButton::DeskButton()
 				> (addr_t)info.text + (addr_t)info.text_size)
 			continue;
 
-		fRef.device = info.device;
-		fRef.directory = info.node;
-		fRef.set_name(info.name);
+		get_ref_for_path(info.name, &fRef);
 		break;
 	}
 
