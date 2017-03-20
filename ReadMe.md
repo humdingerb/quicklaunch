@@ -27,6 +27,7 @@ Useful if you start a few apps after another and don't want to lose QuickLauch u
 *   _Ignore these files & folders (and their subfolders)_ that you can add and remove from the list with the buttons at the bottom.
 You can also right-click an app in the main window's result list to add that specific app to the ignore list or drag & drop any application or folder from Tracker or an 	app from QuickLaunch's main window into it.
 _DEL_ removes the selected items from the ignore list.
+If you add a folder instead of a file, QuickLaunch will ignore all the files and subfolders it contains. Those items are marked with a "<tt>*</tt>" in the list and are printed in italics.
 
 ### Tips & Tricks
 
@@ -67,6 +68,7 @@ Finally, thanks to everyone that contributed translations for QuickLaunch.
 *	Change resizing of the main window to always fit the number of list items; font sensitive.
 *	Allow drag & drop of files from Tracker or items from the main window to the "ignore" list.
 	Allow removing multiple items from the "ignore" list. Also via _DEL_ key or a context menu.
+*	Show a "*" and make the item italic in the ignore list, if it's not a file, but a folder+subfolders that gets ignored.
 *	Improved page up/down scrolling.
 *	Apply "Always on top" setting only to the main window when there's no setup window open. The "ignore" file dialog has issues when it's modal too: you couldn't drag & drop files/folders into it...
 *	Open and close the Setup window with _ALT_+_S_.

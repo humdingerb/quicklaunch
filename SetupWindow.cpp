@@ -6,9 +6,9 @@
  *	Humdinger, humdingerb@gmail.com
  */
 
-#include "MainListItem.h"
 #include "QuickLaunch.h"
 #include "QLSettings.h"
+#include "SetupListItem.h"
 #include "SetupWindow.h"
 
 #include <Catalog.h>
@@ -23,18 +23,18 @@
 static int
 compare_items(const void* a, const void* b)
 {
-	BStringItem* stringA = *(BStringItem**)a;
-	BStringItem* stringB = *(BStringItem**)b;
+	SetupListItem* stringA = *(SetupListItem**)a;
+	SetupListItem* stringB = *(SetupListItem**)b;
 
-	return strcmp(stringA->Text(), stringB->Text());
+	return strcmp(stringA->GetItem(), stringB->GetItem());
 }
 
 
 SetupWindow::SetupWindow(BRect frame)
 	:
 	BWindow(frame, B_TRANSLATE("Setup"), B_TITLED_WINDOW_LOOK,
-		B_NORMAL_WINDOW_FEEL, B_NOT_ZOOMABLE | B_AUTO_UPDATE_SIZE_LIMITS
-		| B_CLOSE_ON_ESCAPE)
+		B_NORMAL_WINDOW_FEEL, B_NOT_ZOOMABLE | B_FRAME_EVENTS
+		| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
 	fChkDeskbar = new BCheckBox("DeskbarChk",
 		B_TRANSLATE("Show Deskbar replicant"),
@@ -137,6 +137,8 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkOnTop->SetValue(app->fSettings->GetOnTop());
 	fChkIgnore->SetValue(app->fSettings->GetShowIgnore());
 
+	fIgnoreList->SetViewColor(B_TRANSPARENT_COLOR);
+
 	fOpenPanel = new BFilePanel(B_OPEN_PANEL, NULL, NULL,
 		B_FILE_NODE | B_DIRECTORY_NODE);
 	fOpenPanel->SetTarget(this);
@@ -194,14 +196,14 @@ SetupWindow::MessageReceived(BMessage* message)
 				BPath path;
 				BEntry *entry = new BEntry(&ref);
 				entry->GetPath(&path);
-				BStringItem *newitem = new BStringItem(path.Path());
+				SetupListItem *newitem = new SetupListItem(path.Path());
 				bool duplicate = false;
 
 				for (int i = 0; i < fIgnoreList->CountItems(); i++)
 				{
-					BStringItem *sItem = dynamic_cast<BStringItem *>
+					SetupListItem *sItem = dynamic_cast<SetupListItem *>
 						(fIgnoreList->ItemAt(i));
-					if (strcmp(sItem->Text(), newitem->Text()) == 0)
+					if (strcmp(sItem->GetItem(), newitem->GetItem()) == 0)
 						duplicate = true;
 				}
 				if (!duplicate)	{

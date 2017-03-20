@@ -9,6 +9,7 @@
 #include "QLFilter.h"
 #include "QuickLaunch.h"
 #include "MainWindow.h"
+#include "SetupListItem.h"
 
 #include <Catalog.h>
 #include <ControlLook.h>
@@ -46,6 +47,9 @@ MainWindow::MainWindow()
 	fSetupButton = new BButton ("Setup", B_TRANSLATE("Setup"),
 		new BMessage(SETUP_BUTTON));
 	fSetupButton->SetTarget(be_app);
+	fHelpButton = new BButton ("Help", B_TRANSLATE("Help"),
+		new BMessage(HELP_BUTTON));
+	fHelpButton->SetTarget(be_app);
 
 	fListView = new MainListView();
 
@@ -68,11 +72,13 @@ MainWindow::MainWindow()
 			.Add(fSearchBox)
 			.AddStrut(spacing)
 			.Add(fSetupButton)
-			.SetInsets(spacing/2)
+			.AddStrut(spacing / 2)
+			.Add(fHelpButton)
+			.SetInsets(spacing / 2)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fScrollView)
-			.SetInsets(spacing/2, 0, spacing/2, spacing/2)
+			.SetInsets(spacing / 2, 0, spacing / 2, spacing / 2)
 		.End();
 
 	fSearchBox->MakeFocus(true);
@@ -341,9 +347,9 @@ MainWindow::BuildList(const char *predicate)
 					BString *newItem = new BString(path.Path());
 					for (int i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
 					{
-						BStringItem *sItem = dynamic_cast<BStringItem *>
+						SetupListItem *sItem = dynamic_cast<SetupListItem *>
 							(app->fSetupWindow->fIgnoreList->ItemAt(i));
-						BString *ignoreItem = new BString(sItem->Text());
+						BString *ignoreItem = new BString(sItem->GetItem());
 
 						if (newItem->ICompare(*ignoreItem, std::min(newItem->Length(),
 								ignoreItem->Length())) == 0)

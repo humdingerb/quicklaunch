@@ -103,6 +103,23 @@ QLApp::MessageReceived(BMessage* message)
 			}
 			break;
 		}
+		case HELP_BUTTON:
+		{
+			app_info info;
+			BPath path;
+			be_roster->GetActiveAppInfo(&info);
+			BEntry entry(&info.ref);
+
+			entry.GetPath(&path);
+			path.GetParent(&path);
+			path.Append("ReadMe.html");
+
+			entry = path.Path();
+			entry_ref ref;
+			entry.GetRef(&ref);
+			be_roster->Launch(&ref);
+			break;
+		}
 		case DESKBAR_CHK:
 		{
 			int32 value;

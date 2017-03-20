@@ -116,7 +116,9 @@ for <a href="http://www.haiku-os.org">Haiku</a><br />
 <li><p><span class="menu">Launch applications with a single click</span> —  instead of requiring the usual double-click.</p></li>
 <li><p><span class="menu">Window always on top</span> — the window floats modally in front of all others. Useful if you start a few apps after another and don't want to lose QuickLauch under the newly opening windows.</p></li>
 <li><p><span class="menu">Ignore these files &amp; folders (and their subfolders)</span> that you can add and remove from the list with the buttons at the bottom.<br />
-You can also right-click an app in the main window's result list to add that specific app to the ignore list or drag &amp; drop any application or folder from Tracker or an app from QuickLaunch's main window into it. <span class="key">DEL</span> removes the selected items from the ignore list.</p></li>
+You can also right-click an app in the main window's result list to add that specific app to the ignore list or drag &amp; drop any application or folder from Tracker or an app from QuickLaunch's main window into it.<br />
+<span class="key">DEL</span> removes the selected items from the ignore list.</p>
+<p>If you add a folder instead of a file, QuickLaunch will ignore all the files and subfolders it contains. Those items are marked with a "<tt>*</tt>" in the list and are printed in italics.</p></li>
 </ul>
 
 <h2>
@@ -153,7 +155,7 @@ You can also build it yourself using <a href="https://github.com/haikuports">Hai
 <a id="thanks" name="thanks">Thanks</a></h2>
 <p>	I have to thank DarkWyrm for some helpful hints and for some of the	code I re-used from his RunProgram app and his EscapeCancelFilter.<br />
 Equally useful was Robert Polic's EZLauncher of BeNewsletter 3-46 and the help I got on the #haiku IRC channel.<br />
-AnEvilYak provided valuable hints and code when I got stuck.
+AnEvilYak provided valuable hints and code when I got stuck.<br />
 Finally, thanks to everyone that contributed translations for QuickLaunch.</p>
 
 <h2>
@@ -168,6 +170,7 @@ Finally, thanks to everyone that contributed translations for QuickLaunch.</p>
 <li>Change resizing of the main window to always fit the number of list items; font sensitive.</li>
 <li>Allow drag &amp; drop of files from Tracker or items from the main window to the "ignore" list.<br />
 Allow removing multiple items from the "ignore" list. Also via DEL key or a context menu.</li>
+<li>Show a "*" and make the item italic in the ignore list, if it's not a file, but a folder+subfolders that gets ignored.</li>
 <li>Improved page up/down scrolling.</li>
 <li>Apply "Always on top" setting only to the main window when there's no setup window open.<br />
 The "ignore" file dialog had issues when it's modal too: you couldn't drag &amp; drop files/folders into it...</li>

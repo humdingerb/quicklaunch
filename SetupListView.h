@@ -20,6 +20,8 @@ public:
 					SetupListView();
 					~SetupListView();
 
+	virtual void	Draw(BRect rect);
+	virtual	void	FrameResized(float w, float h);
 	virtual	void	KeyDown(const char* bytes, int32 numBytes);
 	virtual	void	MessageReceived(BMessage* message);
 	void			MouseDown(BPoint position);

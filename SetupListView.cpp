@@ -17,7 +17,9 @@
 #define B_TRANSLATION_CONTEXT "SetupWindow"
 
 SetupListView::SetupListView()
-		  : BListView("IgnoreList", B_MULTIPLE_SELECTION_LIST)
+	:
+	BListView("IgnoreList", B_MULTIPLE_SELECTION_LIST),
+	fShowingPopUpMenu(false)
 {
 }
 
@@ -28,6 +30,33 @@ SetupListView::~SetupListView()
 
 
 #pragma mark -- BListView Overrides --
+
+
+void
+SetupListView::Draw(BRect rect)
+{
+	SetHighColor(ui_color(B_LIST_BACKGROUND_COLOR));
+	BRect bounds(Bounds());
+	BRect itemFrame = ItemFrame(CountItems() - 1);
+	bounds.top = itemFrame.bottom;
+	FillRect(bounds);
+
+	BListView::Draw(rect);
+}
+
+
+void
+SetupListView::FrameResized(float w, float h)
+{
+	BListView::FrameResized(w, h);
+
+	for (int32 i = 0; i < CountItems(); i++) {
+		BListItem *item = ItemAt(i);
+		item->Update(this, be_plain_font);
+	}
+	Invalidate();
+}
+
 
 void
 SetupListView::KeyDown(const char* bytes, int32 numBytes)

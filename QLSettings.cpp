@@ -8,6 +8,7 @@
 
 #include "QLSettings.h"
 #include "QuickLaunch.h"
+#include "SetupListItem.h"
 
 #include <Application.h>
 #include <FindDirectory.h>
@@ -121,13 +122,13 @@ QLSettings::~QLSettings()
 
 	for (int32 i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
 	{
-		BStringItem *item = dynamic_cast<BStringItem *>
+		SetupListItem *item = dynamic_cast<SetupListItem *>
 			(app->fSetupWindow->fIgnoreList->ItemAt(i));
 		if (!item)
 			continue;
 
-		if (item->Text())
-			settings.AddString("item", item->Text());
+		if (item->GetItem())
+			settings.AddString("item", item->GetItem());
 	}
 
 	path.Append("QuickLaunch_settings");
@@ -149,11 +150,10 @@ QLSettings::InitIgnoreList()
 	BFile file(path.Path(), B_READ_ONLY);
 
 	BMessage settings;
-	if (file.InitCheck() == B_OK
-		&& settings.Unflatten(&file) == B_OK) {
+	if (file.InitCheck() == B_OK && settings.Unflatten(&file) == B_OK) {
 		BString itemText;
 		int32 i = 0;
 		while (settings.FindString("item", i++, &itemText) == B_OK)
-			app->fSetupWindow->fIgnoreList->AddItem(new BStringItem(itemText.String()));
+			app->fSetupWindow->fIgnoreList->AddItem(new SetupListItem(itemText.String()));
 	}
 }

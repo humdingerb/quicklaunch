@@ -111,6 +111,13 @@ QLFilter::Filter(BMessage *message, BHandler **target)
 				return B_SKIP_MESSAGE;
 			}
 		}
+		case 'h':
+		{
+			if (mod & B_COMMAND_KEY) {
+				be_app->PostMessage(HELP_BUTTON);
+				return B_SKIP_MESSAGE;
+			}
+		}
 		case 's':
 		{
 			if (mod & B_COMMAND_KEY) {
