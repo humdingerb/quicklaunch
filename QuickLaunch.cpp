@@ -36,6 +36,10 @@ QLApp::QLApp()
 	BApplication(kApplicationSignature)
 {
 	fSettings = new QLSettings();
+
+	if (fSettings->GetDeskbar())	// make sure the replicant is shown
+		_AddToDeskbar();
+
 	fSetupWindow = new SetupWindow(fSettings->GetSetupWindowFrame());
 	fMainWindow = new MainWindow();
 }
