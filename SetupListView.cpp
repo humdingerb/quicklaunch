@@ -51,7 +51,7 @@ SetupListView::FrameResized(float w, float h)
 	BListView::FrameResized(w, h);
 
 	for (int32 i = 0; i < CountItems(); i++) {
-		BListItem *item = ItemAt(i);
+		BListItem* item = ItemAt(i);
 		item->Update(this, be_plain_font);
 	}
 	Invalidate();
@@ -128,7 +128,7 @@ SetupListView::MouseDown(BPoint position)
 void
 SetupListView::SelectionChanged()
 {
-	SetupWindow *window = dynamic_cast<SetupWindow *> (Window());
+	SetupWindow* window = dynamic_cast<SetupWindow *> (Window());
 	if (CurrentSelection() < 0)
 		window->fButRem->SetEnabled(false);
 	else

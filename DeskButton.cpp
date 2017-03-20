@@ -20,7 +20,7 @@
 
 #include <image.h>
 
-extern const char *kApplicationSignature;
+extern const char* kApplicationSignature;
 	// from QuickLaunch.cpp
 
 
@@ -35,7 +35,7 @@ DeskButton::DeskButton(BRect frame, entry_ref* ref, const char* name,
 }
 
 
-DeskButton::DeskButton(BMessage *message)
+DeskButton::DeskButton(BMessage* message)
 	:
 	BView(message)
 {
@@ -77,8 +77,8 @@ DeskButton::~DeskButton()
 
 
 // archiving overrides
-DeskButton *
-DeskButton::Instantiate(BMessage *data)
+DeskButton*
+DeskButton::Instantiate(BMessage* data)
 {
 	if (!validate_instantiation(data, "DeskButton"))
 		return NULL;
@@ -88,7 +88,7 @@ DeskButton::Instantiate(BMessage *data)
 
 
 status_t 
-DeskButton::Archive(BMessage *data, bool deep) const
+DeskButton::Archive(BMessage* data, bool deep) const
 {
 	BView::Archive(data, deep);
 	
@@ -101,7 +101,7 @@ DeskButton::Archive(BMessage *data, bool deep) const
 void
 DeskButton::AttachedToWindow()
 {
-	BView *parent = Parent();
+	BView* parent = Parent();
 	if (parent)
 		SetViewColor(parent->ViewColor());
 

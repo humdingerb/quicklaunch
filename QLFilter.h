@@ -34,7 +34,7 @@ class QLFilter : public BMessageFilter {
 public:
 							QLFilter();
 	virtual					~QLFilter();
-	virtual filter_result 	Filter(BMessage *message, BHandler **target);
+	virtual filter_result 	Filter(BMessage* message, BHandler** target);
 };
 
 #endif // QL_FILTER_H

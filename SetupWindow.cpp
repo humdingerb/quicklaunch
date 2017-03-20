@@ -127,7 +127,7 @@ SetupWindow::SetupWindow(BRect frame)
 		.End()
 	.End();
 
-	QLApp *app = dynamic_cast<QLApp *> (be_app);
+	QLApp* app = dynamic_cast<QLApp *> (be_app);
 	fChkDeskbar->SetValue(app->fSettings->GetDeskbar());
 	fChkVersion->SetValue(app->fSettings->GetShowVersion());
 	fChkPath->SetValue(app->fSettings->GetShowPath());
@@ -161,7 +161,7 @@ SetupWindow::QuitRequested()
 {
 	this->Hide();
 
-	QLApp *app = dynamic_cast<QLApp *> (be_app);
+	QLApp* app = dynamic_cast<QLApp *> (be_app);
 	int32 value = app->fSettings->GetOnTop();
 	app->SetWindowsFeel(value);
 
@@ -192,16 +192,16 @@ SetupWindow::MessageReceived(BMessage* message)
 			status_t	err;
 			ref_num = 0;
 
-	    	while ((err = message->FindRef("refs", ref_num, &ref)) == B_OK) {
+			while ((err = message->FindRef("refs", ref_num, &ref)) == B_OK) {
 				BPath path;
-				BEntry *entry = new BEntry(&ref);
+				BEntry* entry = new BEntry(&ref);
 				entry->GetPath(&path);
-				SetupListItem *newitem = new SetupListItem(path.Path());
+				SetupListItem* newitem = new SetupListItem(path.Path());
 				bool duplicate = false;
 
 				for (int i = 0; i < fIgnoreList->CountItems(); i++)
 				{
-					SetupListItem *sItem = dynamic_cast<SetupListItem *>
+					SetupListItem* sItem = dynamic_cast<SetupListItem *>
 						(fIgnoreList->ItemAt(i));
 					if (strcmp(sItem->GetItem(), newitem->GetItem()) == 0)
 						duplicate = true;

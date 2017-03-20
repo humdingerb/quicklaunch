@@ -61,11 +61,11 @@ MainListView::~MainListView()
 void
 MainListView::Draw(BRect rect)
 {
-	MainWindow *window = dynamic_cast<MainWindow *> (Window());
+	MainWindow* window = dynamic_cast<MainWindow *> (Window());
 	int letters = window->GetStringLength();
 	float width, height;
 	BFont font;
-	QLApp *app = dynamic_cast<QLApp *> (be_app);
+	QLApp* app = dynamic_cast<QLApp *> (be_app);
 
 	if (IsEmpty()) {
 		SetLowColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
@@ -79,13 +79,12 @@ MainListView::Draw(BRect rect)
 			string = B_TRANSLATE("Found no matches.");
 
 		float strwidth = font.StringWidth(string);
-   		GetPreferredSize(&width, &height);
+		GetPreferredSize(&width, &height);
 		GetFont(&font);
 		MovePenTo(width / 2 - strwidth / 2, height / 2 + font.Size() / 2);
 		SetHighColor(ui_color(B_MENU_SELECTED_BACKGROUND_COLOR));
-        DrawString(string.String());
-	}
-	else {
+		DrawString(string.String());
+	} else {
 		SetHighColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
 		BRect bounds(Bounds());
 		BRect itemFrame = ItemFrame(CountItems() - 1);
@@ -102,7 +101,7 @@ MainListView::FrameResized(float w, float h)
 	BListView::FrameResized(w, h);
 	
 	for (int32 i = 0; i < CountItems(); i++) {
-		BListItem *item = ItemAt(i);
+		BListItem* item = ItemAt(i);
 		item->Update(this, be_plain_font);
 	}
 	Invalidate();
@@ -119,7 +118,8 @@ MainListView::InitiateDrag(BPoint point, int32 dragIndex, bool wasSelected)
 	if ((buttons & B_SECONDARY_MOUSE_BUTTON) != 0)
 		return false;
 
-	MainListItem* sItem = dynamic_cast<MainListItem *> (ItemAt(CurrentSelection()));
+	MainListItem* sItem = dynamic_cast<MainListItem *>
+		(ItemAt(CurrentSelection()));
 	if (sItem == NULL) {
 		// workaround for a timing problem (see Locale prefs)
 		sItem = dynamic_cast<MainListItem *> (ItemAt(dragIndex));
@@ -127,7 +127,7 @@ MainListView::InitiateDrag(BPoint point, int32 dragIndex, bool wasSelected)
 		if (sItem == NULL)
 			return false;
 	}
-	entry_ref *ref = NULL;
+	entry_ref* ref = NULL;
 	ref = sItem->Ref();
 	if (ref == NULL)
 		return false;
@@ -176,7 +176,7 @@ MainListView::MessageReceived(BMessage* message)
 		{
 			fShowingPopUpMenu = false;
 
-			QLApp *app = dynamic_cast<QLApp *> (be_app);
+			QLApp* app = dynamic_cast<QLApp *> (be_app);
 			entry_ref	*ref = NULL;
 			MainListItem	*item = NULL;
 
@@ -198,7 +198,7 @@ MainListView::MessageReceived(BMessage* message)
 		{
 			fShowingPopUpMenu = false;
 
-			QLApp *app = dynamic_cast<QLApp *> (be_app);
+			QLApp* app = dynamic_cast<QLApp *> (be_app);
 			BMessenger msgr(app->fMainWindow);
 			BMessage refMsg(RETURN_CTRL_KEY);
 			msgr.SendMessage(&refMsg);
@@ -221,7 +221,7 @@ MainListView::MouseDown(BPoint position)
 	if (buttons == B_SECONDARY_MOUSE_BUTTON)
 		_ShowPopUpMenu(ConvertToScreen(position));
 	else if (buttons == B_PRIMARY_MOUSE_BUTTON) {
-		QLApp *app = dynamic_cast<QLApp *> (be_app);
+		QLApp* app = dynamic_cast<QLApp *> (be_app);
 		BMessenger msgr(app->fMainWindow);
 		BMessage refMsg(SINGLE_CLICK);
 		msgr.SendMessage(&refMsg);

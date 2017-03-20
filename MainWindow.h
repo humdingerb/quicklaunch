@@ -52,7 +52,7 @@ public:
 	void			MessageReceived(BMessage* message);
 	bool			QuitRequested();
 
-	void			BuildList(const char *string);
+	void			BuildList(const char* string);
 	float			GetScrollPosition();
 	void			SetScrollPosition(float position);
 	int				GetStringLength()
@@ -64,7 +64,7 @@ public:
 	
 private:
 	void			_GetIconHeight();
-	void			_LaunchApp(MainListItem *item);
+	void			_LaunchApp(MainListItem* item);
 
 	int				fIconHeight;
 	BTextControl	*fSearchBox;

@@ -23,7 +23,7 @@ QLFilter::~QLFilter()
 
 
 filter_result
-QLFilter::Filter(BMessage *message, BHandler **target)
+QLFilter::Filter(BMessage* message, BHandler** target)
 {
 	int32 rawchar, mod;
 	message->FindInt32("raw_char", &rawchar);
@@ -42,7 +42,7 @@ QLFilter::Filter(BMessage *message, BHandler **target)
 		}
 		case B_UP_ARROW:
 		{
-			BLooper *loop = (*target)->Looper();
+			BLooper* loop = (*target)->Looper();
 			if (loop) {
 				BMessenger msgr(loop);
 				msgr.SendMessage(CURSOR_UP);
@@ -51,7 +51,7 @@ QLFilter::Filter(BMessage *message, BHandler **target)
 		}
 		case B_DOWN_ARROW:
 		{
-			BLooper *loop = (*target)->Looper();
+			BLooper* loop = (*target)->Looper();
 			if (loop) {
 				BMessenger msgr(loop);
 				msgr.SendMessage(CURSOR_DOWN);
@@ -60,7 +60,7 @@ QLFilter::Filter(BMessage *message, BHandler **target)
 		}
 		case B_PAGE_UP:
 		{
-			BLooper *loop = (*target)->Looper();
+			BLooper* loop = (*target)->Looper();
 			if (loop) {
 				BMessenger msgr(loop);
 				msgr.SendMessage(PAGE_UP);
@@ -69,7 +69,7 @@ QLFilter::Filter(BMessage *message, BHandler **target)
 		}
 		case B_PAGE_DOWN:
 		{
-			BLooper *loop = (*target)->Looper();
+			BLooper* loop = (*target)->Looper();
 			if (loop) {
 				BMessenger msgr(loop);
 				msgr.SendMessage(PAGE_DOWN);
@@ -78,7 +78,7 @@ QLFilter::Filter(BMessage *message, BHandler **target)
 		}
 		case B_HOME:
 		{
-			BLooper *loop = (*target)->Looper();
+			BLooper* loop = (*target)->Looper();
 			if (loop) {
 				BMessenger msgr(loop);
 				msgr.SendMessage(HOME);
@@ -87,7 +87,7 @@ QLFilter::Filter(BMessage *message, BHandler **target)
 		}
 		case B_END:
 		{
-			BLooper *loop = (*target)->Looper();
+			BLooper* loop = (*target)->Looper();
 			if (loop) {
 				BMessenger msgr(loop);
 				msgr.SendMessage(END);
@@ -104,7 +104,7 @@ QLFilter::Filter(BMessage *message, BHandler **target)
 			else
 				message = RETURN_KEY;
 		
-			BLooper *loop = (*target)->Looper();
+			BLooper* loop = (*target)->Looper();
 			if (loop) {
 				BMessenger msgr(loop);
 				msgr.SendMessage(message);
@@ -127,7 +127,7 @@ QLFilter::Filter(BMessage *message, BHandler **target)
 		}
 		default:
 		{
-			BLooper *loop = (*target)->Looper();
+			BLooper* loop = (*target)->Looper();
 			if (loop) {
 				BMessenger msgr(loop);
 				msgr.SendMessage(NEW_FILTER);

@@ -19,12 +19,12 @@
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "Application"
 
-const char *kApplicationSignature = "application/x-vnd.humdinger-quicklaunch";
+const char* kApplicationSignature = "application/x-vnd.humdinger-quicklaunch";
 
 
-extern "C" _EXPORT BView *instantiate_deskbar_item();
+extern "C" _EXPORT BView* instantiate_deskbar_item();
 
-extern "C" _EXPORT BView *
+extern "C" _EXPORT BView*
 instantiate_deskbar_item()
 {
 	return new DeskButton();
@@ -73,10 +73,10 @@ QLApp::AboutRequested()
 	text.ReplaceAll("%version%", "v1.0");
 	text.ReplaceAll("%years%", "2010-2017");
 
-	BAlert *alert = new BAlert("about", text.String(),
+	BAlert* alert = new BAlert("about", text.String(),
 		B_TRANSLATE("Thank you"));
 
-	BTextView *view = alert->TextView();
+	BTextView* view = alert->TextView();
 	BFont font;
 
 	view->SetStylable(true);
@@ -97,10 +97,8 @@ QLApp::MessageReceived(BMessage* message)
 			if (fSetupWindow->IsHidden()) {
 				SetWindowsFeel(0);
 				fSetupWindow->Show();
-			}
-			else {
+			} else
 				fSetupWindow->Hide();
-			}
 			break;
 		}
 		case HELP_BUTTON:
@@ -201,8 +199,8 @@ QLApp::MessageReceived(BMessage* message)
 			if (!fSetupWindow->fIgnoreList->IsEmpty()) {
  				fSetupWindow->fChkIgnore->SetValue(value);
 				if (!fMainWindow->fListView->IsEmpty()) {
-	 				fMainWindow->fListView->LockLooper();
-	 				const char *searchString = fMainWindow->GetSearchString();
+					fMainWindow->fListView->LockLooper();
+					const char* searchString = fMainWindow->GetSearchString();
 					fMainWindow->BuildList(searchString);
 					fMainWindow->fListView->UnlockLooper();
 				}
@@ -226,7 +224,7 @@ QLApp::MessageReceived(BMessage* message)
 
 				fMainWindow->fListView->LockLooper();
 				float position = fMainWindow->GetScrollPosition();
-				const char *searchString = fMainWindow->GetSearchString();
+				const char* searchString = fMainWindow->GetSearchString();
 				fMainWindow->BuildList(searchString);
 				fMainWindow->SetScrollPosition(position);
 				fMainWindow->fListView->UnlockLooper();
@@ -276,8 +274,8 @@ void
 QLApp::SetWindowsFeel(int32 value)
 {
 	fMainWindow->LockLooper();
-	fMainWindow->SetFeel(value ?
-		B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
+	fMainWindow->SetFeel(value
+		? B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
 	fMainWindow->UnlockLooper();
 }
 
@@ -314,7 +312,8 @@ QLApp::_AddToDeskbar()
 			status_t err = deskbar.AddItem(&ref, &id);
 
 			if (err != B_OK) {
-			printf("info_name: %s, ref_name: %s, id: %" B_PRId32 "\nerr: %" B_PRId32 "\n",
+			printf("info_name: %s, ref_name: %s, id: %" B_PRId32
+				"\nerr: %" B_PRId32 "\n",
 				info.name, ref.name, id, err);
 			}
 		}

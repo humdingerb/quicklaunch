@@ -39,7 +39,7 @@ MainWindow::MainWindow()
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE
 		| B_FRAME_EVENTS | B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
-	QLApp *app = dynamic_cast<QLApp *> (be_app);
+	QLApp* app = dynamic_cast<QLApp *> (be_app);
 
 	fSearchBox = new BTextControl("SearchBox", NULL, NULL,
 		new BMessage(SEARCH_BOX));
@@ -95,8 +95,6 @@ MainWindow::MainWindow()
 
 	_GetIconHeight();
 }
-
-
 
 
 MainWindow::~MainWindow()
@@ -185,8 +183,8 @@ MainWindow::MessageReceived(BMessage* message)
 			Hide();
 
 			// Begin DW code
-			entry_ref *ref = NULL;
-			MainListItem *item = NULL;
+			entry_ref* ref = NULL;
+			MainListItem* item = NULL;
 
 			int selection = fListView->CurrentSelection();
 			item = dynamic_cast<MainListItem *>(fListView->ItemAt(selection));
@@ -207,7 +205,7 @@ MainWindow::MessageReceived(BMessage* message)
 				msgr.SendMessage(&refMsg);
 			}
 			// End DW code
-			QLApp *app = dynamic_cast<QLApp *> (be_app);
+			QLApp* app = dynamic_cast<QLApp *> (be_app);
 			app->fSettings->SetSearchTerm(GetSearchString());
 
 			be_app->PostMessage(B_QUIT_REQUESTED);
@@ -215,7 +213,7 @@ MainWindow::MessageReceived(BMessage* message)
 		}
 		case RETURN_SHIFT_KEY:
 		{
-			MainListItem *item = NULL;
+			MainListItem* item = NULL;
 			int selection = fListView->CurrentSelection();
 			item = dynamic_cast<MainListItem *>(fListView->ItemAt(selection));
 			if (item != NULL)
@@ -224,7 +222,7 @@ MainWindow::MessageReceived(BMessage* message)
 		}
 		case SINGLE_CLICK:
 		{
-			QLApp *app = dynamic_cast<QLApp *> (be_app);
+			QLApp* app = dynamic_cast<QLApp *> (be_app);
 			if (app->fSettings->GetSingleClick() == false)
 				break;
 		}	// intentional fall-through
@@ -232,13 +230,13 @@ MainWindow::MessageReceived(BMessage* message)
 		{
 			Hide();
 
-			MainListItem *item = NULL;
+			MainListItem* item = NULL;
 			int selection = fListView->CurrentSelection();
 			item = dynamic_cast<MainListItem *>(fListView->ItemAt(selection));
 			if (item != NULL)
 				_LaunchApp(item);
 
-			QLApp *app = dynamic_cast<QLApp *> (be_app);
+			QLApp* app = dynamic_cast<QLApp *> (be_app);
 			app->fSettings->SetSearchTerm(GetSearchString());
 
 			be_app->PostMessage(B_QUIT_REQUESTED);
@@ -246,10 +244,10 @@ MainWindow::MessageReceived(BMessage* message)
 		}
 		case NEW_FILTER:
 		{
-			QLApp *app = dynamic_cast<QLApp *> (be_app);
+			QLApp* app = dynamic_cast<QLApp *> (be_app);
 			int letters = GetStringLength();
 			if (letters > app->fSettings->GetDelay()) {
-				const char *searchString = GetSearchString();
+				const char* searchString = GetSearchString();
 				BuildList(searchString);
 				fListView->Select(0);
 			} else {
@@ -279,7 +277,7 @@ MainWindow::QuitRequested()
 
 
 void
-MainWindow::BuildList(const char *predicate)
+MainWindow::BuildList(const char* predicate)
 {
 	fListView->MakeEmpty();
 
@@ -341,15 +339,15 @@ MainWindow::BuildList(const char *predicate)
 				if (strstr(parent.Path(), dir.Path()))
 					continue;
 
-				QLApp *app = dynamic_cast<QLApp *> (be_app);
+				QLApp* app = dynamic_cast<QLApp *> (be_app);
 				bool ignore = false;
 				if (app->fSettings->GetShowIgnore()) {
-					BString *newItem = new BString(path.Path());
+					BString* newItem = new BString(path.Path());
 					for (int i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
 					{
-						SetupListItem *sItem = dynamic_cast<SetupListItem *>
+						SetupListItem* sItem = dynamic_cast<SetupListItem *>
 							(app->fSetupWindow->fIgnoreList->ItemAt(i));
-						BString *ignoreItem = new BString(sItem->GetItem());
+						BString* ignoreItem = new BString(sItem->GetItem());
 
 						if (newItem->ICompare(*ignoreItem, std::min(newItem->Length(),
 								ignoreItem->Length())) == 0)
@@ -381,7 +379,7 @@ float
 MainWindow::GetScrollPosition()
 {
 	float position;
-	BScrollBar *scrollBar = fScrollView->ScrollBar(B_VERTICAL);
+	BScrollBar* scrollBar = fScrollView->ScrollBar(B_VERTICAL);
 	position = scrollBar->Value();
 	return (position);
 }
@@ -390,7 +388,7 @@ MainWindow::GetScrollPosition()
 void
 MainWindow::SetScrollPosition(float position)
 {
-	BScrollBar *scrollBar = fScrollView->ScrollBar(B_VERTICAL);
+	BScrollBar* scrollBar = fScrollView->ScrollBar(B_VERTICAL);
 	scrollBar->SetValue(position);
 	return;
 }
@@ -414,7 +412,7 @@ MainWindow::_GetIconHeight()
 	int count = sizeof(iconSizes)/sizeof(iconSizes[0]);
 	for (int i = 0; i < count; i++) {
 		if (abs(fIconHeight - iconSizes[i])
-				< abs(fIconHeight - iconSizes[i+1])) {
+				< abs(fIconHeight - iconSizes[i + 1])) {
 			fIconHeight = iconSizes[i];
 			break;
 		}
@@ -423,11 +421,10 @@ MainWindow::_GetIconHeight()
 }
 
 
-
 void
-MainWindow::_LaunchApp(MainListItem *item)
+MainWindow::_LaunchApp(MainListItem* item)
 {
-	entry_ref *ref = NULL;
+	entry_ref* ref = NULL;
 	ref = item->Ref();
 
 	if (ref != NULL) {
@@ -445,7 +442,7 @@ MainWindow::_LaunchApp(MainListItem *item)
 			errorMessage = "";
 		}
 		if (errorMessage.Length() > 0) {
-			BAlert *alert = new BAlert("error", errorMessage.String(),
+			BAlert* alert = new BAlert("error", errorMessage.String(),
 				B_TRANSLATE("OK"), NULL, NULL, B_WIDTH_FROM_WIDEST);
 			alert->SetFlags(alert->Flags() | B_CLOSE_ON_ESCAPE);
 			alert->Go();

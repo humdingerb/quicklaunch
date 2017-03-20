@@ -23,8 +23,8 @@ class DeskButton : public BView {
 		virtual ~DeskButton();
 
 		// archiving overrides
-		static DeskButton* Instantiate(BMessage *data);
-		virtual	status_t Archive(BMessage *data, bool deep = true) const;
+		static DeskButton* Instantiate(BMessage* data);
+		virtual	status_t Archive(BMessage* data, bool deep = true) const;
 
 		// misc BView overrides
 		virtual void AttachedToWindow();

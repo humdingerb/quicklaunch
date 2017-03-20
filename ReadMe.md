@@ -1,5 +1,5 @@
 ![QuickLaunch icon](./images/quicklaunch_icon_64.png)
-**QuickLaunch**
+**QuickLaunch v1.0**
 for [Haiku](https://www.haiku-os.org)
 
 * * *

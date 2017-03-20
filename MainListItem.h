@@ -35,9 +35,9 @@ public:
 	virtual void	DrawItem(BView*, BRect, bool);
 	virtual	void	Update(BView*, const BFont*);
 
-	BBitmap*		Bitmap() {return fIcon;};
-	char*			GetName() {return fName;};
-	entry_ref*		Ref() {return &fRef;};
+	BBitmap*		Bitmap() { return fIcon; };
+	char*			GetName() { return fName; };
+	entry_ref*		Ref() { return &fRef; };
 		
 private:
 	char			fName[B_FILE_NAME_LENGTH];

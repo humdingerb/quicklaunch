@@ -27,7 +27,7 @@ QLSettings::QLSettings()
 		return;
 
 	// Defaults
-	BScreen *screen = new BScreen(B_MAIN_SCREEN_ID);
+	BScreen* screen = new BScreen(B_MAIN_SCREEN_ID);
 	BRect resolution = screen->Frame();
 	fMainWindowFrame = BRect(
 		resolution.Width() / 2 - 340.0 / 2, resolution.Height() / 2 - 120.0 / 2,
@@ -100,7 +100,7 @@ QLSettings::QLSettings()
 
 QLSettings::~QLSettings()
 {
-	QLApp *app = dynamic_cast<QLApp *> (be_app);
+	QLApp* app = dynamic_cast<QLApp *> (be_app);
 
 	BPath path;
 	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path) < B_OK)
@@ -122,7 +122,7 @@ QLSettings::~QLSettings()
 
 	for (int32 i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
 	{
-		SetupListItem *item = dynamic_cast<SetupListItem *>
+		SetupListItem* item = dynamic_cast<SetupListItem *>
 			(app->fSetupWindow->fIgnoreList->ItemAt(i));
 		if (!item)
 			continue;
@@ -141,7 +141,7 @@ QLSettings::~QLSettings()
 void
 QLSettings::InitIgnoreList()
 {
-	QLApp *app = dynamic_cast<QLApp *> (be_app);
+	QLApp* app = dynamic_cast<QLApp *> (be_app);
 
 	BPath path;
 	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path) != B_OK)
@@ -154,6 +154,7 @@ QLSettings::InitIgnoreList()
 		BString itemText;
 		int32 i = 0;
 		while (settings.FindString("item", i++, &itemText) == B_OK)
-			app->fSetupWindow->fIgnoreList->AddItem(new SetupListItem(itemText.String()));
+			app->fSetupWindow->fIgnoreList->AddItem(
+			new SetupListItem(itemText.String()));
 	}
 }

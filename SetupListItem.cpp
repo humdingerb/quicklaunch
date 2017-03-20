@@ -33,11 +33,12 @@ SetupListItem::~SetupListItem()
 
 
 void
-SetupListItem::DrawItem(BView *view, BRect rect, bool complete)
+SetupListItem::DrawItem(BView* view, BRect rect, bool complete)
 {
 	// set background color
 
-    rgb_color bgColor;
+	rgb_color bgColor;
+
 	if (IsSelected())
 		bgColor = ui_color(B_LIST_SELECTED_BACKGROUND_COLOR);
 	else
@@ -45,34 +46,38 @@ SetupListItem::DrawItem(BView *view, BRect rect, bool complete)
 
 	view->SetHighColor(bgColor);
 	view->SetLowColor(bgColor);
-    view->FillRect(rect);
+	view->FillRect(rect);
 
 	// truncate and draw string
 
-    if (IsSelected())
-    	view->SetHighColor(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR));
-    else
-    	view->SetHighColor(ui_color(B_LIST_ITEM_TEXT_COLOR));
+	if (IsSelected())
+		view->SetHighColor(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR));
+	else
+		view->SetHighColor(ui_color(B_LIST_ITEM_TEXT_COLOR));
 
 	float spacing = be_control_look->DefaultLabelSpacing();
 	BFont font;
 	font_height finfo;
 	font.GetHeight(&finfo);
+
 	if (fIsDirectory)
 		font.SetFace(B_ITALIC_FACE);
 	else
 		font.SetFace(B_REGULAR_FACE);
+
 	view->SetFont(&font);
 
 	view->MovePenTo(spacing,
 		rect.top - 2 + ((rect.Height() - (finfo.ascent + finfo.descent
 		+ finfo.leading)) / 2) + (finfo.ascent + finfo.descent));
 
-    float width, height;
-    view->GetPreferredSize(&width, &height);
-    BString string(fItemString);
+	float width, height;
+	view->GetPreferredSize(&width, &height);
+	BString string(fItemString);
+
 	if (fIsDirectory)
 		string << " *";
-    view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - spacing);
-    view->DrawString(string.String());
+
+	view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - spacing);
+	view->DrawString(string.String());
 }
