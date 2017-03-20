@@ -1,6 +1,6 @@
 ![QuickLaunch icon](./images/quicklaunch_icon_64.png)
 **QuickLaunch**
-for [Haiku](http://www.haiku-os.org)
+for [Haiku](https://www.haiku-os.org)
 
 * * *
 
@@ -13,6 +13,10 @@ Here's the main window after searching for all applications starting with "me" a
 ![QuickLaunch windows](./images/quicklaunch.png)
 
 In the main window the context menu was evoked via a right-click. The first item adds the selected app to the ignore list (works also with a drag & drop). More on that in the setup options discussed below. The second item opens the app's location in a Tracker window. The same can be achieved by pressing _CTRL_ + _RETURN_.
+
+The _Help_ button or pressing _ALT_+_H_ opens this ReadMe in the browser.
+
+### Setup Options
 
 The setup window shows these options:
 
@@ -62,7 +66,7 @@ Finally, thanks to everyone that contributed translations for QuickLaunch.
 **1.0** - _20-03-2017:_
 
 *	Add a setting to launch applications with a single click.
-*	Add option to put a replicant in the Deskbar tray for a quick launch of QuickLaunch.
+*	Add option to put a replicant in the Deskbar tray for a quick launch of QuickLaunch. Removed the "Add to Deskbar.sh" script.
 *	Have the icon size depend on the font size.
 *	Fixed layout issues in the setup window and made default main and setup windows a bit bigger. Save the absolute position of the setup window.
 *	Change resizing of the main window to always fit the number of list items; font sensitive.
@@ -72,8 +76,9 @@ Finally, thanks to everyone that contributed translations for QuickLaunch.
 *	Improved page up/down scrolling.
 *	Apply "Always on top" setting only to the main window when there's no setup window open. The "ignore" file dialog has issues when it's modal too: you couldn't drag & drop files/folders into it...
 *	Open and close the Setup window with _ALT_+_S_.
+*	Add "Help" button to summon this ReadMe. _ALT_+_H_ works too.
 *	Show an error dialog if the launch of an application has failed for some reason.
-*	Added a tip to the ReadMe, showing how to add type and signature to apps and scripts that are missing them.
+*	Added a tip to the ReadMe, showing how to add type and signature to apps and scripts that lack them.
 *	Added French localization, thanks Anarchos!
 *	Added Russian localization, thanks Akujiism!
 *	Added Spanish localization, thanks un_spacyar!

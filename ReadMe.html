@@ -91,21 +91,28 @@ h3 {
 <div align = "center">
 <img width="64" height="64" src="./images/quicklaunch_icon_64.png" alt="QuickLaunch icon" />
 <p><span style="font-size: 1.5em; font-weight:bold">QuickLaunch</span><br />
-for <a href="http://www.haiku-os.org">Haiku</a><br />
+for <a href="https://www.haiku-os.org">Haiku</a><br />
 <i>by Humdinger</i></p>
 <hr />
-<p id="index"><a href="#tips">Tips &amp; Tricks</a> — <a href="#download">Download</a> — <a href="#bugs_feedback">Bugreports &amp; Feedback</a> — <a href="#thanks">Thanks</a> — <a href="#history">History</a></p>
+<p id="index"><a href="#setup">Setup Options</a> — <a href="#tips">Tips &amp; Tricks</a> — <a href="#download">Download</a> — <a href="#bugs_feedback">Bugreports &amp; Feedback</a> — <a href="#thanks">Thanks</a> — <a href="#history">History</a></p>
 </div>
 <hr />
 <p><br /></p>
 <p>QuickLaunch is a small launcher tool that helps you to quickly start any installed application.</p>
 <p>Simply start to enter the name of an application and QuickLaunch will find all programs matching these initial letters and show them in a list. You choose an app from that list with the <span class="key">CursorUp/Down</span> keys and launch it by hitting <span class="key">RETURN</span>. <span class="key">ESC</span> quits QuickLaunch.</p>
 
-<p>Here's the main window after searching for all applications starting with "me" and behind it the settings window when clicking the <i>Setup</i> button (or pressing <span class="key">ALT</span>+<span class="key">S</span>:</p>
+<p>Here's the main window after searching for all applications starting with "me" and behind it the settings window when clicking the <span class="button">Setup</span> button (or pressing <span class="key">ALT</span>+<span class="key">S</span>:</p>
 <div align = "center">
 <img src="./images/quicklaunch.png" alt="QuickLaunch windows" />
 </div>
 <p>In the main window the context menu was evoked via a right-click. The first item adds the selected app to the ignore list (works also with a drag &amp; drop). More on that in the setup options discussed below. The second item opens the app's location in a Tracker window. The same can be achieved by pressing <span class="key">CTRL</span>+<span class="key">RETURN</span>.</p>
+
+<p>The <span class="button">Help</span> button or pressing <span class="key">ALT</span>+<span class="key">H</span> opens this ReadMe in the browser.</p>
+
+<h2>
+<a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
+<a id="setup" name="setup">Setup Options</a></h2>
+
 <p>The setup window shows these options:</p>
 <ul>
 <li><p><span class="menu">Show Deskbar replicant</span> — puts the QuickLaunch icon into the Deskbar tray. Click on it to start QuickLaunch.</p></li>
@@ -164,7 +171,7 @@ Finally, thanks to everyone that contributed translations for QuickLaunch.</p>
 <p><b>1.0</b> - <i>20-03-2017:</i></p>
 <ul>
 <li>Add a setting to launch applications with a single click.</li>
-<li>Add option to put a replicant in the Deskbar tray for a quick launch of QuickLaunch.</li>
+<li>Add option to put a replicant in the Deskbar tray for a quick launch of QuickLaunch. Removed the "Add to Deskbar.sh" script.</li>
 <li>Have the icon size depend on the font size.</li>
 <li>Fixed layout issues in the setup window and made default main and setup windows a bit bigger. Save the absolute position of the setup window.</li>
 <li>Change resizing of the main window to always fit the number of list items; font sensitive.</li>
@@ -175,8 +182,9 @@ Allow removing multiple items from the "ignore" list. Also via DEL key or a cont
 <li>Apply "Always on top" setting only to the main window when there's no setup window open.<br />
 The "ignore" file dialog had issues when it's modal too: you couldn't drag &amp; drop files/folders into it...</li>
 <li>Open and close the Setup window with ALT+S.</li>
+<li>Add "Help" button to summon this ReadMe. ALT+H works too.</li>
 <li>Show an error dialog if the launch of an application has failed for some reason.</li>
-<li>Added a tip to the ReadMe, showing how to add type and signature to apps and scripts that are missing them.</li>
+<li>Added a tip to the ReadMe, showing how to add type and signature to apps and scripts that lack them.</li>
 <li>Added French localization, thanks Anarchos!</li>
 <li>Added Russian localization, thanks Akujiism!</li>
 <li>Added Spanish localization, thanks un_spacyar!</li>
