@@ -20,8 +20,9 @@
 
 #include <image.h>
 
+// from QuickLaunch.cpp
 extern const char* kApplicationSignature;
-	// from QuickLaunch.cpp
+extern status_t our_image(image_info& image);
 
 
 DeskButton::DeskButton(BRect frame, entry_ref* ref, const char* name,
@@ -50,23 +51,13 @@ DeskButton::DeskButton()
 	:
 	BView(BRect(0, 0, 15, 15), "QuickLaunch", B_FOLLOW_NONE, B_WILL_DRAW)
 {
-	// Black magic by AnEvilYak to avoid using the app_signature
-	// with be_roster->FindApp(kApplicationSignature, &fRef);
-	int32 cookie = 0;
 	image_info info;
 
-	while (get_next_image_info(B_CURRENT_TEAM, &cookie, &info) == B_OK) {
-		if ((addr_t)B_CURRENT_IMAGE_SYMBOL < (addr_t)info.text
-				|| (addr_t)B_CURRENT_IMAGE_SYMBOL
-				> (addr_t)info.text + (addr_t)info.text_size)
-			continue;
-
-		get_ref_for_path(info.name, &fRef);
-		break;
+	if (our_image(info) == B_OK
+			&& get_ref_for_path(info.name, &fRef) == B_OK) {
+		fIcon = new BBitmap(BRect(0, 0, 15, 15), B_RGBA32);
+		BNodeInfo::GetTrackerIcon(&fRef, fIcon, B_MINI_ICON);
 	}
-
-	fIcon = new BBitmap(BRect(0, 0, 15, 15), B_RGBA32);
-	BNodeInfo::GetTrackerIcon(&fRef, fIcon, B_MINI_ICON);
 }
 
 
