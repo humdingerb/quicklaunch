@@ -14,6 +14,7 @@
 
 #include <Deskbar.h>
 #include <Catalog.h>
+#include <storage/NodeMonitor.h>
 
 
 #undef B_TRANSLATION_CONTEXT
@@ -47,6 +48,8 @@ QLApp::QLApp()
 
 QLApp::~QLApp()
 {
+	stop_watching(this);
+
 	BMessenger messengerMain(fMainWindow);
 	if (messengerMain.IsValid() && messengerMain.LockTarget()) {
 		fSettings->SetSearchTerm(fMainWindow->GetSearchString());
@@ -225,13 +228,29 @@ QLApp::MessageReceived(BMessage* message)
 				fSetupWindow->UnlockLooper();
 			}
 			if (fMainWindow->GetStringLength() > 0) {
-
 				fMainWindow->fListView->LockLooper();
 				float position = fMainWindow->GetScrollPosition();
 				const char* searchString = fMainWindow->GetSearchString();
 				fMainWindow->BuildList(searchString);
 				fMainWindow->SetScrollPosition(position);
 				fMainWindow->fListView->UnlockLooper();
+			}
+			break;
+		}
+		case B_NODE_MONITOR:
+		{
+			int32 opcode = message->GetInt32("opcode", -1);
+
+			if ((opcode == B_DEVICE_MOUNTED)
+					|| (opcode == B_DEVICE_UNMOUNTED)) {
+				if (fMainWindow->GetStringLength() > 0) {
+					fMainWindow->fListView->LockLooper();
+					float position = fMainWindow->GetScrollPosition();
+					const char* searchString = fMainWindow->GetSearchString();
+					fMainWindow->BuildList(searchString);
+					fMainWindow->SetScrollPosition(position);
+					fMainWindow->fListView->UnlockLooper();
+				}
 			}
 			break;
 		}
@@ -268,6 +287,8 @@ QLApp::ReadyToRun()
 		BMessage message(NEW_FILTER);
 		messenger.SendMessage(&message);
 	}
+
+	watch_node(NULL, B_WATCH_MOUNT, this);
 }
 
 

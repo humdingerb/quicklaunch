@@ -139,7 +139,7 @@ You can also right-click an app in the main window's result list to add that spe
 <li><p>These folders are ignored by default:<br />
 <span style="font-family: monospace">B_SYSTEM_ADDONS_DIRECTORY and B_TRASH_DIRECTORY</span><br />
 In other words, applications in Trash are ignored, as well as add-ons.<br />
-B_SYSTEM_BIN_DIRECTORY used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, e.g. via <span class="menu">Add to ignore list</span> of the context menu.</p></li>
+B_SYSTEM_BIN_DIRECTORY used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, i.e. via <span class="menu">Add to ignore list</span> of the context menu.</p></li>
 <li><p>If you happen to use an app or a script that doesn't show up in QuickLaunch (and is in a writable location), you can add these atrributes in Terminal to the app or script:<br />
 <span style="font-family: monospace">addattr BEOS:TYPE application/x-vnd.Be-elfexecutable /path/to/your/app-or-script<br />
 addattr BEOS:APP_SIG  application/x-vnd.anything-unique /path/to/your/app-or-script</span>
@@ -168,7 +168,7 @@ Finally, thanks to everyone that contributed translations for QuickLaunch.</p>
 <h2>
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
 <a id="history" name="history">History</a></h2>
-<p><b>1.0</b> - <i>20-03-2017:</i></p>
+<p><b>1.0</b> - <i>21-03-2017:</i></p>
 <ul>
 <li>Add a setting to launch applications with a single click.</li>
 <li>Add option to put a replicant in the Deskbar tray for a quick launch of QuickLaunch. Removed the "Add to Deskbar.sh" script.</li>
@@ -184,7 +184,9 @@ The "ignore" file dialog had issues when it's modal too: you couldn't drag &amp;
 <li>Open and close the Setup window with ALT+S.</li>
 <li>Add "Help" button to summon this ReadMe. ALT+H works too.</li>
 <li>Show an error dialog if the launch of an application has failed for some reason.</li>
+<li>Monitor un/mounting of volumes to update the result list.</li>
 <li>Added a tip to the ReadMe, showing how to add type and signature to apps and scripts that lack them.</li>
+<li>Updated Dutch localization, thanks Begasus!</li>
 <li>Added French localization, thanks Anarchos!</li>
 <li>Added Russian localization, thanks Akujiism!</li>
 <li>Added Spanish localization, thanks un_spacyar!</li>

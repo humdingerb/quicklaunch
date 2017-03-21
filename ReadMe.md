@@ -42,7 +42,7 @@ If you add a folder instead of a file, QuickLaunch will ignore all the files and
 *   These folders are ignored by default:
 `B_SYSTEM_ADDONS_DIRECTORY` and `B_TRASH_DIRECTORY`
 In other words, applications in Trash are ignored, as well as add-ons.
-`B_SYSTEM_BIN_DIRECTORY` used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, e.g. via _Add to ignore list_ of the context menu.
+`B_SYSTEM_BIN_DIRECTORY` used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, i.e. via _Add to ignore list_ of the context menu.
 *	If you happen to use an app or a script that doesn't show up in QuickLaunch (and is in a writable location), you can add these atrributes in Terminal to the app or script:
 `addattr BEOS:TYPE application/x-vnd.Be-elfexecutable /path/to/your/app-or-script`
 `addattr BEOS:APP_SIG  application/x-vnd.anything-unique /path/to/your/app-or-script`
@@ -63,7 +63,7 @@ Finally, thanks to everyone that contributed translations for QuickLaunch.
 
 ### History
 
-**1.0** - _20-03-2017:_
+**1.0** - _21-03-2017:_
 
 *	Add a setting to launch applications with a single click.
 *	Add option to put a replicant in the Deskbar tray for a quick launch of QuickLaunch. Removed the "Add to Deskbar.sh" script.
@@ -78,7 +78,9 @@ Finally, thanks to everyone that contributed translations for QuickLaunch.
 *	Open and close the Setup window with _ALT_+_S_.
 *	Add "Help" button to summon this ReadMe. _ALT_+_H_ works too.
 *	Show an error dialog if the launch of an application has failed for some reason.
+*	Monitor un/mounting of volumes to update the result list.
 *	Added a tip to the ReadMe, showing how to add type and signature to apps and scripts that lack them.
+*	Updated Dutch localization, thanks Begasus!
 *	Added French localization, thanks Anarchos!
 *	Added Russian localization, thanks Akujiism!
 *	Added Spanish localization, thanks un_spacyar!
