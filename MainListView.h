@@ -32,6 +32,7 @@ public:
 						bool wasSelected);
 	virtual	void	MessageReceived(BMessage* message);
 	void			MouseDown(BPoint position);
+	void			MouseUp(BPoint position);
 
 private:
 	void			_ShowPopUpMenu(BPoint screen);
