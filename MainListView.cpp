@@ -6,8 +6,8 @@
  *	Humdinger, humdingerb@gmail.com
  */
 
-#include "MainListView.h"
 #include "MainListItem.h"
+#include "MainListView.h"
 #include "MainWindow.h"
 #include "QLFilter.h"
 #include "QuickLaunch.h"
@@ -45,7 +45,8 @@ PopUpMenu::~PopUpMenu()
 MainListView::MainListView()
 	:
 	BListView("ResultList"),
-	fShowingPopUpMenu(false)
+	fShowingPopUpMenu(false),
+	fPrimaryButton(false)
 {
 }
 
@@ -177,12 +178,12 @@ MainListView::MessageReceived(BMessage* message)
 			fShowingPopUpMenu = false;
 
 			QLApp* app = dynamic_cast<QLApp *> (be_app);
-			entry_ref	*ref = NULL;
-			MainListItem	*item = NULL;
+			entry_ref* ref = NULL;
+			MainListItem* item = NULL;
 
-			int selection = app->fMainWindow->fListView->CurrentSelection();
-			item = dynamic_cast<MainListItem *>
-				(app->fMainWindow->fListView->ItemAt(selection));
+			int selection = CurrentSelection();
+			item = dynamic_cast<MainListItem *> (ItemAt(selection));
+
 			if (item)
 				ref = item->Ref();
 
@@ -198,8 +199,7 @@ MainListView::MessageReceived(BMessage* message)
 		{
 			fShowingPopUpMenu = false;
 
-			QLApp* app = dynamic_cast<QLApp *> (be_app);
-			BMessenger msgr(app->fMainWindow);
+			BMessenger msgr(Window());
 			BMessage refMsg(RETURN_CTRL_KEY);
 			msgr.SendMessage(&refMsg);
 			break;
@@ -215,11 +215,17 @@ void
 MainListView::MouseDown(BPoint position)
 {
 	uint32 buttons = 0;
-	if (Window() != NULL && Window()->CurrentMessage() != NULL)
+	if (Window() != NULL && Window()->CurrentMessage() != NULL) {
 		buttons = Window()->CurrentMessage()->FindInt32("buttons");
-
+		Window()->CurrentMessage()->PrintToStream();
+	}
 	if (buttons == B_SECONDARY_MOUSE_BUTTON)
 		_ShowPopUpMenu(ConvertToScreen(position));
+
+	if (buttons == B_PRIMARY_MOUSE_BUTTON) {
+		fCurrentItemIndex = IndexOf(position);
+		fPrimaryButton = true;
+	}
 
 	BListView::MouseDown(position);
 }
@@ -228,17 +234,15 @@ MainListView::MouseDown(BPoint position)
 void
 MainListView::MouseUp(BPoint position)
 {
-	uint32 buttons = 0;
-	if (Window() != NULL && Window()->CurrentMessage() != NULL)
-		buttons = Window()->CurrentMessage()->FindInt32("buttons");
-
-	if (buttons == B_PRIMARY_MOUSE_BUTTON) {
-		QLApp* app = dynamic_cast<QLApp *> (be_app);
-		BMessenger msgr(app->fMainWindow);
+	if ((fCurrentItemIndex == IndexOf(position) && fPrimaryButton == true)) {
+		BMessenger msgr(Window());
 		BMessage refMsg(SINGLE_CLICK);
 		msgr.SendMessage(&refMsg);
+		fPrimaryButton = false;
+		fCurrentItemIndex = -1;
 	}
-	BListView::MouseDown(position);
+
+	BListView::MouseUp(position);
 }
 
 

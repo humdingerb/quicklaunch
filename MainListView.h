@@ -38,6 +38,8 @@ private:
 	void			_ShowPopUpMenu(BPoint screen);
 
 	bool			fShowingPopUpMenu;
+	bool			fPrimaryButton;
+	int32			fCurrentItemIndex;
 };
 
 #endif // QLLISTVIEW_H
