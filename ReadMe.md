@@ -24,7 +24,7 @@ The setup window shows these options:
 *   _Show the version of an application_ — only really useful when having older and newer versions of an app installed.
 *   _Show the path to an application_ — interesting when you have several copies of an application.
 *   _Wait for a second letter before starting the search_ — starts QuickLaunch with the previous search.
-*   _Remeber last search term_ — probably only useful for slow systems.
+*   _Remember last search term_ — probably only useful for slow systems.
 *   _Launch applications with a single click_ — instead of requiring the usual double-click.
 *   _Window always on top_ — the window floats modally in front of all others. 
 Useful if you start a few apps after another and don't want to lose QuickLauch under the newly opening windows.
