@@ -52,7 +52,7 @@ public:
 	void			MessageReceived(BMessage* message);
 	bool			QuitRequested();
 
-	void			BuildList(const char* string);
+	void			BuildList();
 	float			GetScrollPosition();
 	void			SetScrollPosition(float position);
 	int				GetStringLength()

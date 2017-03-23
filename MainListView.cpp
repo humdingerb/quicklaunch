@@ -173,6 +173,28 @@ MainListView::MessageReceived(BMessage* message)
 			fShowingPopUpMenu = false;
 			break;
 		}
+		case ADDFAVORITE:
+		{
+			fShowingPopUpMenu = false;
+
+			QLApp* app = dynamic_cast<QLApp *> (be_app);
+			entry_ref* ref = NULL;
+			MainListItem* item = NULL;
+
+			int selection = CurrentSelection();
+			item = dynamic_cast<MainListItem *> (ItemAt(selection));
+
+			if (item)
+				ref = item->Ref();
+
+			if (ref) {
+				app->fSettings->fFavoriteList->AddItem(ref);
+//				printf("ADDFAVORITE: %s\n", ref->name);
+//				printf("count: %i\n", app->fSettings->fFavoriteList->CountItems());
+			}
+			break;
+		}
+
 		case ADDIGNORE:
 		{
 			fShowingPopUpMenu = false;
@@ -257,7 +279,11 @@ MainListView::_ShowPopUpMenu(BPoint screen)
 
 	PopUpMenu* menu = new PopUpMenu("PopUpMenu", this);
 
-	BMenuItem* item = new BMenuItem(B_TRANSLATE("Add to ignore list"),
+	BMenuItem* item = new BMenuItem(B_TRANSLATE("Add to favorites"),
+		new BMessage(ADDFAVORITE));
+	menu->AddItem(item);
+
+	item = new BMenuItem(B_TRANSLATE("Add to ignore list"),
 		new BMessage(ADDIGNORE));
 	menu->AddItem(item);
 

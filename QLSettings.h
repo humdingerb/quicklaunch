@@ -9,6 +9,7 @@
 #ifndef QLSETTINGS_H
 #define QLSETTINGS_H
 
+#include <List.h>
 #include <Rect.h>
 #include <String.h>
 
@@ -42,7 +43,9 @@ public:
 	int32	GetSingleClick() { return fSingleClick; };
 	int32	GetOnTop() { return fOnTop; };
 	int32	GetShowIgnore() { return fShowIgnore; };
-	void	InitIgnoreList();
+	void	InitLists();
+
+	BList	*fFavoriteList;
 
 private:
 	BRect	fMainWindowFrame;

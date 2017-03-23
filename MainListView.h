@@ -16,6 +16,7 @@
 
 #include <stdio.h>
 
+#define ADDFAVORITE		'addf'
 #define ADDIGNORE		'addi'
 #define OPENLOCATION	'oloc'
 #define POPCLOSED		'pmcl'

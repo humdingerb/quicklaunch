@@ -37,12 +37,13 @@ QLSettings::QLSettings()
 	fDeskbar = false;
 	fShowVersion = false;
 	fShowPath = true;
-	fDelay = false;
+	fDelay = 0;
 	fSaveSearch = false;
 	fSearchTerm = "";
 	fSingleClick = false;
 	fOnTop = false;
 	fShowIgnore = false;
+	fFavoriteList = new BList();
 
 	path.Append("QuickLaunch_settings");
 	BFile file(path.Path(), B_READ_ONLY);
@@ -131,6 +132,19 @@ QLSettings::~QLSettings()
 			settings.AddString("item", item->GetItem());
 	}
 
+	for (int32 i = 0; i < fFavoriteList->CountItems(); i++)
+	{
+		printf("fFavoriteList->CountItems(): %i\n", fFavoriteList->CountItems());
+		entry_ref* favorite = static_cast<entry_ref *>
+			(fFavoriteList->ItemAt(i));
+
+		if (!favorite)
+			continue;
+
+		printf("save favorite: %s\n", favorite->name);
+		settings.AddRef("favorite", favorite);
+	}
+
 	path.Append("QuickLaunch_settings");
 	BFile file(path.Path(), B_WRITE_ONLY | B_CREATE_FILE | B_ERASE_FILE);
 	if (file.InitCheck() == B_OK)
@@ -139,7 +153,7 @@ QLSettings::~QLSettings()
 
 
 void
-QLSettings::InitIgnoreList()
+QLSettings::InitLists()
 {
 	QLApp* app = dynamic_cast<QLApp *> (be_app);
 
@@ -156,5 +170,12 @@ QLSettings::InitIgnoreList()
 		while (settings.FindString("item", i++, &itemText) == B_OK)
 			app->fSetupWindow->fIgnoreList->AddItem(
 			new SetupListItem(itemText.String()));
+
+		i = 0;
+		entry_ref favorite;
+		while (settings.FindRef("favorite", i++, &favorite) == B_OK) {
+			fFavoriteList->AddItem(new entry_ref(favorite));
+			printf("load favorite: %s\n", favorite.name);
+		}
 	}
 }

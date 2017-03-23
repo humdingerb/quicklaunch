@@ -29,7 +29,8 @@
 
 class MainListItem : public BListItem {
 public:
-					MainListItem(BEntry* entry, int iconSize);
+					MainListItem(BEntry* entry, int iconSize,
+						bool isFav = false);
 					~MainListItem();
 
 	virtual void	DrawItem(BView*, BRect, bool);
@@ -46,6 +47,7 @@ private:
 	version_info	fVersionInfo;
 	BBitmap			*fIcon;
 	int				fIconSize;
+	bool			fIsFavorite;
 };
 
 #endif // QLLISTITEM_H

@@ -12,11 +12,13 @@
 #include "MainListItem.h"
 #include "QuickLaunch.h"
 
-MainListItem::MainListItem(BEntry* entry, int iconSize)
+MainListItem::MainListItem(BEntry* entry, int iconSize, bool isFav)
 	:
 	BListItem()
 {
 	fIconSize = iconSize;
+	fIsFavorite = isFav;
+
 	BNode node;
 	BNodeInfo node_info;
 

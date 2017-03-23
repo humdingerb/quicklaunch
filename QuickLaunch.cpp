@@ -50,12 +50,12 @@ QLApp::~QLApp()
 {
 	stop_watching(this);
 
-	BMessenger messengerMain(fMainWindow);
-	if (messengerMain.IsValid() && messengerMain.LockTarget()) {
-		fSettings->SetSearchTerm(fMainWindow->GetSearchString());
-		fMainWindow->Quit();
-	}
+	fSettings->SetSearchTerm(fMainWindow->GetSearchString());
 	delete fSettings;
+
+	BMessenger messengerMain(fMainWindow);
+	if (messengerMain.IsValid() && messengerMain.LockTarget())
+		fMainWindow->Quit();
 
 	BMessenger messengerSetup(fSetupWindow);
 	if (messengerSetup.IsValid() && messengerSetup.LockTarget())
@@ -205,12 +205,11 @@ QLApp::MessageReceived(BMessage* message)
 			fSettings->SetShowIgnore(value);
 			if (!fSetupWindow->fIgnoreList->IsEmpty()) {
  				fSetupWindow->fChkIgnore->SetValue(value);
-				if (!fMainWindow->fListView->IsEmpty()) {
+//				if (!fMainWindow->fListView->IsEmpty()) {
 					fMainWindow->fListView->LockLooper();
-					const char* searchString = fMainWindow->GetSearchString();
-					fMainWindow->BuildList(searchString);
+					fMainWindow->BuildList();
 					fMainWindow->fListView->UnlockLooper();
-				}
+//				}
 			}
 			break;
 		}
@@ -227,14 +226,13 @@ QLApp::MessageReceived(BMessage* message)
 				fSettings->SetShowIgnore(false);
 				fSetupWindow->UnlockLooper();
 			}
-			if (fMainWindow->GetStringLength() > 0) {
+//			if (fMainWindow->GetStringLength() > 0) {
 				fMainWindow->fListView->LockLooper();
 				float position = fMainWindow->GetScrollPosition();
-				const char* searchString = fMainWindow->GetSearchString();
-				fMainWindow->BuildList(searchString);
+				fMainWindow->BuildList();
 				fMainWindow->SetScrollPosition(position);
 				fMainWindow->fListView->UnlockLooper();
-			}
+//			}
 			break;
 		}
 		case B_NODE_MONITOR:
@@ -243,14 +241,13 @@ QLApp::MessageReceived(BMessage* message)
 
 			if ((opcode == B_DEVICE_MOUNTED)
 					|| (opcode == B_DEVICE_UNMOUNTED)) {
-				if (fMainWindow->GetStringLength() > 0) {
+//				if (fMainWindow->GetStringLength() > 0) {
 					fMainWindow->fListView->LockLooper();
 					float position = fMainWindow->GetScrollPosition();
-					const char* searchString = fMainWindow->GetSearchString();
-					fMainWindow->BuildList(searchString);
+					fMainWindow->BuildList();
 					fMainWindow->SetScrollPosition(position);
 					fMainWindow->fListView->UnlockLooper();
-				}
+//				}
 			}
 			break;
 		}
@@ -278,7 +275,13 @@ QLApp::ReadyToRun()
 	fMainWindow->ResizeTo(frame.right - frame.left, 0);
 	fMainWindow->Show();
 
-	fSettings->InitIgnoreList();
+	fSettings->InitLists();
+
+	fMainWindow->fListView->LockLooper();
+	fMainWindow->BuildList();
+	fMainWindow->fListView->Select(0);
+	fMainWindow->fListView->UnlockLooper();
+
 	fSetupWindow->Hide();
 	fSetupWindow->Show();
 

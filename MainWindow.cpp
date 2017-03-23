@@ -244,17 +244,16 @@ MainWindow::MessageReceived(BMessage* message)
 		}
 		case NEW_FILTER:
 		{
-			QLApp* app = dynamic_cast<QLApp *> (be_app);
-			int letters = GetStringLength();
-			if (letters > app->fSettings->GetDelay()) {
-				const char* searchString = GetSearchString();
-				BuildList(searchString);
+//			QLApp* app = dynamic_cast<QLApp *> (be_app);
+//			int letters = GetStringLength();
+//			if (letters > app->fSettings->GetDelay()) {
+				BuildList();
 				fListView->Select(0);
-			} else {
-				fListView->MakeEmpty();
-				ResizeTo(Bounds().Width(), 0);		// original size
-				fListView->Invalidate();
-			}
+//			} else {
+//				fListView->MakeEmpty();
+//				ResizeTo(Bounds().Width(), 0);		// original size
+//				fListView->Invalidate();
+//			}
 			break;
 		}
 		default:
@@ -277,90 +276,108 @@ MainWindow::QuitRequested()
 
 
 void
-MainWindow::BuildList(const char* predicate)
+MainWindow::BuildList()
 {
+	const char* predicate = GetSearchString();
+	QLApp* app = dynamic_cast<QLApp *> (be_app);
+
 	fListView->MakeEmpty();
 
-	BVolumeRoster volumeRoster;
-	BVolume volume;
-	BQuery query;
+	if (GetStringLength() > app->fSettings->GetDelay()) {
 
-	while (volumeRoster.GetNextVolume(&volume) == B_OK) {
-		if (volume.KnowsQuery())
-		{
-			// Set up the volume and predicate for the query.
-			query.SetVolume(&volume);
-			query.SetPredicate(predicate);
+		BVolumeRoster volumeRoster;
+		BVolume volume;
+		BQuery query;
 
-			status_t status = query.Fetch();
-			char buffer[B_FILE_NAME_LENGTH];
-			volume.GetName(buffer);
-			if (status == B_BAD_VALUE) {
-				query.PushAttr("BEOS:TYPE");
-				query.PushString("application/x-vnd.be-elfexecutable", true);
-				query.PushOp(B_EQ);
+		while (volumeRoster.GetNextVolume(&volume) == B_OK) {
+			if (volume.KnowsQuery())
+			{
+				// Set up the volume and predicate for the query.
+				query.SetVolume(&volume);
+				query.SetPredicate(predicate);
 
-				query.PushAttr("BEOS:APP_SIG");
-				query.PushString("application/x");
-				query.PushOp(B_BEGINS_WITH);
-				query.PushOp(B_AND);
+				status_t status = query.Fetch();
+				char buffer[B_FILE_NAME_LENGTH];
+				volume.GetName(buffer);
+				if (status == B_BAD_VALUE) {
+					query.PushAttr("BEOS:TYPE");
+					query.PushString("application/x-vnd.be-elfexecutable", true);
+					query.PushOp(B_EQ);
 
-				query.PushAttr("name");
-				query.PushString(predicate, true);
-				query.PushOp(B_BEGINS_WITH);
-				query.PushOp(B_AND);
+					query.PushAttr("BEOS:APP_SIG");
+					query.PushString("application/x");
+					query.PushOp(B_BEGINS_WITH);
+					query.PushOp(B_AND);
 
-				status = query.Fetch();
-			}
-			if (status != B_OK)
-				printf("2. what happened? %s\n", strerror(status));
+					query.PushAttr("name");
+					query.PushString(predicate, true);
+					query.PushOp(B_BEGINS_WITH);
+					query.PushOp(B_AND);
 
-			BEntry entry;
-			BPath path;
-			while (query.GetNextEntry(&entry) == B_OK) {
-				if (!entry.IsFile())
-					continue;
-
-				if (entry.GetPath(&path) < B_OK) {
-					fprintf(stderr, "could not get path for entry\n");
-					continue;
+					status = query.Fetch();
 				}
+				if (status != B_OK)
+					printf("2. what happened? %s\n", strerror(status));
 
-				BPath dir;
-				BPath parent;
-				entry.GetPath(&path);
-				path.GetParent(&parent);
+				BEntry entry;
+				BPath path;
+				while (query.GetNextEntry(&entry) == B_OK) {
+					if (!entry.IsFile())
+						continue;
 
-				find_directory(B_SYSTEM_ADDONS_DIRECTORY, &dir);
-				if (strstr(parent.Path(), dir.Path()))
-					continue;
-				// check Trash on all volumes
-				find_directory(B_TRASH_DIRECTORY, &dir, false, &volume);
-				if (strstr(parent.Path(), dir.Path()))
-					continue;
-
-				QLApp* app = dynamic_cast<QLApp *> (be_app);
-				bool ignore = false;
-				if (app->fSettings->GetShowIgnore()) {
-					BString* newItem = new BString(path.Path());
-					for (int i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
-					{
-						SetupListItem* sItem = dynamic_cast<SetupListItem *>
-							(app->fSetupWindow->fIgnoreList->ItemAt(i));
-						BString* ignoreItem = new BString(sItem->GetItem());
-
-						if (newItem->ICompare(*ignoreItem, std::min(newItem->Length(),
-								ignoreItem->Length())) == 0)
-							ignore = true;
+					if (entry.GetPath(&path) < B_OK) {
+						fprintf(stderr, "could not get path for entry\n");
+						continue;
 					}
+
+					BPath dir;
+					BPath parent;
+					entry.GetPath(&path);
+					path.GetParent(&parent);
+
+					find_directory(B_SYSTEM_ADDONS_DIRECTORY, &dir);
+					if (strstr(parent.Path(), dir.Path()))
+						continue;
+					// check Trash on all volumes
+					find_directory(B_TRASH_DIRECTORY, &dir, false, &volume);
+					if (strstr(parent.Path(), dir.Path()))
+						continue;
+
+					bool ignore = false;
+					if (app->fSettings->GetShowIgnore()) {
+						BString* newItem = new BString(path.Path());
+						for (int i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
+						{
+							SetupListItem* sItem = dynamic_cast<SetupListItem *>
+								(app->fSetupWindow->fIgnoreList->ItemAt(i));
+							BString* ignoreItem = new BString(sItem->GetItem());
+
+							if (newItem->ICompare(*ignoreItem, std::min(newItem->Length(),
+									ignoreItem->Length())) == 0)
+								ignore = true;
+						}
+					}
+					if (!ignore)
+						fListView->AddItem(new MainListItem(&entry, fIconHeight));
 				}
-				if (!ignore)
-					fListView->AddItem(new MainListItem(&entry, fIconHeight));
+				query.Clear();
 			}
-			query.Clear();
+		}
+		fListView->SortItems(&compare_items);
+
+	} else if (GetStringLength() == 0) {
+		// show favorites
+		for (int32 i = 0; i < app->fSettings->fFavoriteList->CountItems(); i++)
+		{
+			entry_ref* favorite = static_cast<entry_ref *>
+				(app->fSettings->fFavoriteList->ItemAt(i));
+			if (!favorite)
+				continue;
+			BEntry entry(favorite);
+
+			fListView->AddItem(new MainListItem(&entry, fIconHeight, true));
 		}
 	}
-	fListView->SortItems(&compare_items);
 
 	BRect windowRest = Frame().Height() - fListView->Frame().Height();
 	BRect itemFrame = fListView->ItemFrame(0);
