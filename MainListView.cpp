@@ -46,7 +46,8 @@ MainListView::MainListView()
 	:
 	BListView("ResultList"),
 	fShowingPopUpMenu(false),
-	fPrimaryButton(false)
+	fPrimaryButton(false),
+	fDropRect()
 {
 }
 
@@ -93,6 +94,12 @@ MainListView::Draw(BRect rect)
 		FillRect(bounds);
 	}
 	BListView::Draw(rect);
+
+	// Only for Favorites == empty search field
+	if (fDropRect.IsValid() && letters == 0) {
+		SetHighColor(255, 0, 0, 255);
+		StrokeRect(fDropRect);
+	}
 }
 
 
@@ -133,8 +140,17 @@ MainListView::InitiateDrag(BPoint point, int32 dragIndex, bool wasSelected)
 	if (ref == NULL)
 		return false;
 
-	BMessage message(B_SIMPLE_DATA);
-	message.AddRef("refs", ref);
+	BMessage message;
+	bool isFav = sItem->IsFavorite();
+
+	if (isFav) {
+		message.what = FAV_DRAGGED;
+		message.AddInt32("index", CurrentSelection());
+	} else {
+		message.what = B_SIMPLE_DATA;
+		message.AddRef("refs", ref);
+		message.AddInt32("index", CurrentSelection());
+	}
 
 	BRect dragRect(0.0f, 0.0f, Bounds().Width(), sItem->Height());
 	BBitmap* dragBitmap = new BBitmap(dragRect, B_RGB32, true);
@@ -188,13 +204,48 @@ MainListView::MessageReceived(BMessage* message)
 				ref = item->Ref();
 
 			if (ref) {
-				app->fSettings->fFavoriteList->AddItem(ref);
-//				printf("ADDFAVORITE: %s\n", ref->name);
-//				printf("count: %i\n", app->fSettings->fFavoriteList->CountItems());
+				bool duplicate = false;
+
+				for (int i = 0; i < app->fSettings->fFavoriteList->CountItems(); i++)
+				{
+					entry_ref* favorite = static_cast<entry_ref *>
+						(app->fSettings->fFavoriteList->ItemAt(i));
+					if (*ref == *favorite)
+						duplicate = true;
+				}
+				if (!duplicate)	{
+					app->fSettings->fFavoriteList->AddItem(ref);
+				}
 			}
 			break;
 		}
+		case REMOVEFAVORITE:
+		{
+			fShowingPopUpMenu = false;
 
+			QLApp* app = dynamic_cast<QLApp *> (be_app);
+			entry_ref* ref = NULL;
+			MainListItem* item = NULL;
+			int selection = CurrentSelection();
+			item = dynamic_cast<MainListItem *> (ItemAt(selection));
+
+			if (item) {
+				ref = item->Ref();
+				RemoveItem(selection);
+				Select((selection - 1 < 0) ? 0 : selection - 1);
+			}
+
+			if (ref) {
+				for (int i = 0; i < app->fSettings->fFavoriteList->CountItems(); i++)
+				{
+					entry_ref* favorite = static_cast<entry_ref *>
+						(app->fSettings->fFavoriteList->ItemAt(i));
+					if (*ref == *favorite)
+						app->fSettings->fFavoriteList->RemoveItem(i);
+				}
+			}
+			break;
+		}
 		case ADDIGNORE:
 		{
 			fShowingPopUpMenu = false;
@@ -226,6 +277,28 @@ MainListView::MessageReceived(BMessage* message)
 			msgr.SendMessage(&refMsg);
 			break;
 		}
+		case FAV_DRAGGED:
+		{
+			int32 origIndex;
+			int32 dropIndex;
+			BPoint dropPoint;
+
+			if (message->FindInt32("index", &origIndex) != B_OK)
+				origIndex = CountItems() - 1; // new Fav added at the bottom
+			dropPoint = message->DropPoint();
+			dropIndex = IndexOf(ConvertFromScreen(dropPoint));
+			if (dropIndex > origIndex)
+				dropIndex = dropIndex - 1;
+			if (dropIndex < 0)
+				dropIndex = CountItems() - 1; // move to bottom
+
+			MoveItem(origIndex, dropIndex);
+			Select(dropIndex);
+
+			QLApp* app = dynamic_cast<QLApp *> (be_app);
+			app->fSettings->fFavoriteList->MoveItem(origIndex, dropIndex);
+			break;
+		}
 		default:
 			BView::MessageReceived(message);
 			break;
@@ -236,13 +309,23 @@ MainListView::MessageReceived(BMessage* message)
 void
 MainListView::MouseDown(BPoint position)
 {
+	BRect bounds(Bounds());
+	BRect itemFrame = ItemFrame(CountItems() - 1);
+	bounds.top = itemFrame.bottom;
+	if (bounds.Contains(position))
+		return;
+
 	uint32 buttons = 0;
-	if (Window() != NULL && Window()->CurrentMessage() != NULL) {
+	if (Window() != NULL && Window()->CurrentMessage() != NULL)
 		buttons = Window()->CurrentMessage()->FindInt32("buttons");
-		Window()->CurrentMessage()->PrintToStream();
-	}
-	if (buttons == B_SECONDARY_MOUSE_BUTTON)
+
+	if (buttons == B_SECONDARY_MOUSE_BUTTON) {
+		Select(IndexOf(position));
 		_ShowPopUpMenu(ConvertToScreen(position));
+		fPrimaryButton = false;
+		Invalidate();
+		return;
+	}
 
 	if (buttons == B_PRIMARY_MOUSE_BUTTON) {
 		fCurrentItemIndex = IndexOf(position);
@@ -264,7 +347,51 @@ MainListView::MouseUp(BPoint position)
 		fCurrentItemIndex = -1;
 	}
 
+	fDropRect = BRect(-1, -1, -1, -1);
+	Invalidate();
+
 	BListView::MouseUp(position);
+}
+
+
+void
+MainListView::MouseMoved(BPoint where, uint32 transit, const BMessage* dragMessage)
+{
+	if (dragMessage != NULL) {
+		switch (transit) {
+			case B_ENTERED_VIEW:
+			case B_INSIDE_VIEW:
+			{
+				int32 index = IndexOf(where);
+				if (index < 0)
+					index = CountItems();
+
+				fDropRect = ItemFrame(index);
+				if (fDropRect.IsValid()) {
+					fDropRect.top = fDropRect.top -1;
+					fDropRect.bottom = fDropRect.top + 1;
+				} else {
+					fDropRect = ItemFrame(index - 1);
+					if (fDropRect.IsValid())
+						fDropRect.top = fDropRect.bottom - 1;
+					else {
+						// empty view, show indicator at top
+						fDropRect = Bounds();
+						fDropRect.bottom = fDropRect.top + 1;
+					}
+				}
+				Invalidate();
+				break;
+			}
+			case B_EXITED_VIEW:
+			{
+				fDropRect = BRect(-1, -1, -1, -1);
+				Invalidate();
+				break;
+			}
+		}
+	}
+	BListView::MouseMoved(where, transit, dragMessage);
 }
 
 
@@ -277,15 +404,31 @@ MainListView::_ShowPopUpMenu(BPoint screen)
 	if (fShowingPopUpMenu || IsEmpty())
 		return;
 
+	MainListItem* sItem = dynamic_cast<MainListItem *>
+		(ItemAt(CurrentSelection()));
+
+	bool isFav = false;
+	if (sItem != NULL)
+		isFav = sItem->IsFavorite();
+
 	PopUpMenu* menu = new PopUpMenu("PopUpMenu", this);
 
-	BMenuItem* item = new BMenuItem(B_TRANSLATE("Add to favorites"),
-		new BMessage(ADDFAVORITE));
+	BMenuItem* item;
+
+	if (isFav) {
+		item = new BMenuItem(B_TRANSLATE("Remove"),
+			new BMessage(REMOVEFAVORITE));
+	} else {
+		item = new BMenuItem(B_TRANSLATE("Add to favorites"),
+			new BMessage(ADDFAVORITE));
+	}
 	menu->AddItem(item);
 
+	if (!isFav) {
 	item = new BMenuItem(B_TRANSLATE("Add to ignore list"),
 		new BMessage(ADDIGNORE));
 	menu->AddItem(item);
+	}
 
 	item = new BMenuItem(B_TRANSLATE("Open containing folder"),
 		new BMessage(OPENLOCATION));

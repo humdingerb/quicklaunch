@@ -8,6 +8,8 @@
 
 #include <Application.h>
 #include <ControlLook.h>
+#include <IconUtils.h>
+#include <Resources.h>
 
 #include "MainListItem.h"
 #include "QuickLaunch.h"
@@ -44,6 +46,20 @@ MainListItem::MainListItem(BEntry* entry, int iconSize, bool isFav)
 				fIcon = NULL;
 		}
 
+		// if it's a favorite, cache the star icon
+		if (fIsFavorite) {
+			size_t size;
+		    const void* buf = be_app->AppResources()
+				->LoadResource(B_VECTOR_ICON_TYPE, "FavoriteStar", &size);
+
+		    if (buf != NULL) {
+				fFavoriteIcon = new BBitmap(BRect(0, 0, fIconSize, fIconSize),
+					B_RGBA32);
+				BIconUtils::GetVectorIcon((const uint8*)buf, size,
+					fFavoriteIcon);
+		    }
+		}
+
 		// cache ref
 		entry->GetRef(&fRef);
 		
@@ -66,6 +82,8 @@ MainListItem::MainListItem(BEntry* entry, int iconSize, bool isFav)
 MainListItem::~MainListItem()
 {
 	delete fIcon;
+	if (fIsFavorite)
+		delete fFavoriteIcon;
 }
 
 
@@ -87,8 +105,13 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 	rgb_color bgColor;
 	if (IsSelected())
 		bgColor = ui_color(B_LIST_SELECTED_BACKGROUND_COLOR);
-	else
+	else {
 		bgColor = ui_color(B_LIST_BACKGROUND_COLOR);
+		if (IsFavorite()) {
+			rgb_color favColor = (rgb_color){255, 255, 0, 255};
+			bgColor = mix_color(bgColor, favColor, 16);
+		}
+	}
 
 	view->SetHighColor(bgColor);
 	view->SetLowColor(bgColor);
@@ -97,10 +120,17 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 	// if we have an icon, draw it
 
 	if (fIcon) {
+		view->PushState();
 		view->SetDrawingMode(B_OP_OVER);
 		view->DrawBitmap(fIcon, BPoint(rect.left + spacing / 2,
 			rect.top + (rect.Height() - fIconSize) / 2));
-		view->SetDrawingMode(B_OP_COPY);
+
+		if (fIsFavorite) {
+			view->SetBlendingMode(B_PIXEL_ALPHA, B_ALPHA_OVERLAY);
+			view->DrawBitmap(fFavoriteIcon, BPoint(rect.left + spacing / 2 - 3,
+				rect.top + (rect.Height() - fIconSize) / 2 + 4));
+		}
+		view->PopState();
 		offset = fIcon->Bounds().Width() + offset + spacing;
 	}
 
@@ -138,7 +168,7 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 
 	if (IsSelected())
 		view->SetHighColor(tint_color(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR),
-			0.6));
+			0.7));
 	else
 		view->SetHighColor(tint_color(ui_color(B_LIST_ITEM_TEXT_COLOR), 0.6));
 		

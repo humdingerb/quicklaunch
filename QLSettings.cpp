@@ -134,7 +134,8 @@ QLSettings::~QLSettings()
 
 	for (int32 i = 0; i < fFavoriteList->CountItems(); i++)
 	{
-		printf("fFavoriteList->CountItems(): %i\n", fFavoriteList->CountItems());
+		printf("fFavoriteList->CountItems(): %" B_PRId32 "\n",
+			fFavoriteList->CountItems());
 		entry_ref* favorite = static_cast<entry_ref *>
 			(fFavoriteList->ItemAt(i));
 
