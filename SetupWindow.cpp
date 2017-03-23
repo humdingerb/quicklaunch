@@ -187,9 +187,9 @@ SetupWindow::MessageReceived(BMessage* message)
 		case B_SIMPLE_DATA:
 		case B_REFS_RECEIVED:
 		{
-			int32		ref_num;
-			entry_ref	ref;
-			status_t	err;
+			int32 ref_num;
+			entry_ref ref;
+			status_t err;
 			ref_num = 0;
 
 			while ((err = message->FindRef("refs", ref_num, &ref)) == B_OK) {

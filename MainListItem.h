@@ -39,6 +39,7 @@ public:
 	BBitmap*		Bitmap() { return fIcon; };
 	char*			GetName() { return fName; };
 	entry_ref*		Ref() { return &fRef; };
+	bool			IsFavorite() { return fIsFavorite; };
 		
 private:
 	char			fName[B_FILE_NAME_LENGTH];
@@ -46,6 +47,7 @@ private:
 	BPath			fPath;
 	version_info	fVersionInfo;
 	BBitmap			*fIcon;
+	BBitmap			*fFavoriteIcon;
 	int				fIconSize;
 	bool			fIsFavorite;
 };

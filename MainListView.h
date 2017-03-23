@@ -17,7 +17,9 @@
 #include <stdio.h>
 
 #define ADDFAVORITE		'addf'
+#define REMOVEFAVORITE	'rmfa'
 #define ADDIGNORE		'addi'
+#define FAV_DRAGGED		'fvdr'
 #define OPENLOCATION	'oloc'
 #define POPCLOSED		'pmcl'
 
@@ -34,6 +36,8 @@ public:
 	virtual	void	MessageReceived(BMessage* message);
 	void			MouseDown(BPoint position);
 	void			MouseUp(BPoint position);
+	virtual	void 	MouseMoved(BPoint where, uint32 transit,
+						const BMessage* dragMessage);
 
 private:
 	void			_ShowPopUpMenu(BPoint screen);
@@ -41,6 +45,8 @@ private:
 	bool			fShowingPopUpMenu;
 	bool			fPrimaryButton;
 	int32			fCurrentItemIndex;
+	BRect			fDropRect;
+
 };
 
 #endif // QLLISTVIEW_H
