@@ -203,6 +203,9 @@ MainListView::MessageReceived(BMessage* message)
 			if (item->IsFavorite())
 				break;
 
+			item->SetFavorite(true);
+//			InvalidateItem(selection);
+
 			if (item)
 				ref = item->Ref();
 

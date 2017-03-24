@@ -47,18 +47,8 @@ MainListItem::MainListItem(BEntry* entry, int iconSize, bool isFav)
 		}
 
 		// if it's a favorite, cache the star icon
-		if (fIsFavorite) {
-			size_t size;
-		    const void* buf = be_app->AppResources()
-				->LoadResource(B_VECTOR_ICON_TYPE, "FavoriteStar", &size);
-
-		    if (buf != NULL) {
-				fFavoriteIcon = new BBitmap(BRect(0, 0, fIconSize, fIconSize),
-					B_RGBA32);
-				BIconUtils::GetVectorIcon((const uint8*)buf, size,
-					fFavoriteIcon);
-		    }
-		}
+		if (fIsFavorite)
+			SetFavorite(true);
 
 		// cache ref
 		entry->GetRef(&fRef);
@@ -213,7 +203,8 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 }
 
 
-void MainListItem::Update(BView* owner, const BFont* finfo)
+void
+MainListItem::Update(BView* owner, const BFont* finfo)
 {
 	// we need to override the update method so we can make sure the
 	// list item size doesn't change
@@ -229,4 +220,21 @@ void MainListItem::Update(BView* owner, const BFont* finfo)
 		SetHeight(fIcon->Bounds().Height() + spacing + 4);
 	else
 		SetHeight(height * 2 + 4);
+}
+
+
+void
+MainListItem::SetFavorite(bool state)
+{
+	size_t size;
+    const void* buf = be_app->AppResources()
+		->LoadResource(B_VECTOR_ICON_TYPE, "FavoriteStar", &size);
+
+    if (buf != NULL) {
+		fFavoriteIcon = new BBitmap(BRect(0, 0, fIconSize, fIconSize),
+			B_RGBA32);
+		BIconUtils::GetVectorIcon((const uint8*)buf, size,
+			fFavoriteIcon);
+    }
+    fIsFavorite = true;
 }

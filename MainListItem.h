@@ -40,6 +40,7 @@ public:
 	char*			GetName() { return fName; };
 	entry_ref*		Ref() { return &fRef; };
 	bool			IsFavorite() { return fIsFavorite; };
+	void			SetFavorite(bool state);
 		
 private:
 	char			fName[B_FILE_NAME_LENGTH];
