@@ -41,8 +41,7 @@ MainWindow::MainWindow()
 {
 	QLApp* app = dynamic_cast<QLApp *> (be_app);
 
-	fSearchBox = new BTextControl("SearchBox", NULL, NULL,
-		new BMessage(SEARCH_BOX));
+	fSearchBox = new BTextControl("SearchBox", NULL, NULL, NULL);
 
 	fSetupButton = new BButton ("Setup", B_TRANSLATE("Setup"),
 		new BMessage(SETUP_BUTTON));
@@ -242,11 +241,18 @@ MainWindow::MessageReceived(BMessage* message)
 			be_app->PostMessage(B_QUIT_REQUESTED);
 			break;
 		}
+		case ADDFAVORITE:
+		case REMOVEFAVORITE:
+		case ADDIGNORE:
+		{
+			BMessenger messenger(fListView);
+			messenger.SendMessage(message);
+			break;
+		}
 		case NEW_FILTER:
 		{
 			BuildList();
 			fListView->Select(0);
-
 			break;
 		}
 		default:

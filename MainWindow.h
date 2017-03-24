@@ -37,7 +37,6 @@
 
 
 #define SINGLE_CLICK	'1clk'
-#define SEARCH_BOX		'sbox'
 #define SETUP_BUTTON	'setb'
 #define HELP_BUTTON		'help'
 

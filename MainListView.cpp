@@ -200,6 +200,9 @@ MainListView::MessageReceived(BMessage* message)
 			int selection = CurrentSelection();
 			item = dynamic_cast<MainListItem *> (ItemAt(selection));
 
+			if (item->IsFavorite())
+				break;
+
 			if (item)
 				ref = item->Ref();
 
@@ -217,6 +220,7 @@ MainListView::MessageReceived(BMessage* message)
 					app->fSettings->fFavoriteList->AddItem(ref);
 				}
 			}
+			Invalidate();
 			break;
 		}
 		case REMOVEFAVORITE:
@@ -226,8 +230,12 @@ MainListView::MessageReceived(BMessage* message)
 			QLApp* app = dynamic_cast<QLApp *> (be_app);
 			entry_ref* ref = NULL;
 			MainListItem* item = NULL;
+
 			int selection = CurrentSelection();
 			item = dynamic_cast<MainListItem *> (ItemAt(selection));
+
+			if (!item->IsFavorite())
+				break;
 
 			if (item) {
 				ref = item->Ref();
@@ -244,6 +252,7 @@ MainListView::MessageReceived(BMessage* message)
 						app->fSettings->fFavoriteList->RemoveItem(i);
 				}
 			}
+			Invalidate();
 			break;
 		}
 		case ADDIGNORE:
@@ -256,6 +265,9 @@ MainListView::MessageReceived(BMessage* message)
 
 			int selection = CurrentSelection();
 			item = dynamic_cast<MainListItem *> (ItemAt(selection));
+
+			if (item->IsFavorite())
+				break;
 
 			if (item)
 				ref = item->Ref();
@@ -416,17 +428,17 @@ MainListView::_ShowPopUpMenu(BPoint screen)
 	BMenuItem* item;
 
 	if (isFav) {
-		item = new BMenuItem(B_TRANSLATE("Remove"),
-			new BMessage(REMOVEFAVORITE));
+		item = new BMenuItem(B_TRANSLATE("Remove favorite"),
+			new BMessage(REMOVEFAVORITE), 'R');
 	} else {
 		item = new BMenuItem(B_TRANSLATE("Add to favorites"),
-			new BMessage(ADDFAVORITE));
+			new BMessage(ADDFAVORITE), 'F');
 	}
 	menu->AddItem(item);
 
 	if (!isFav) {
 	item = new BMenuItem(B_TRANSLATE("Add to ignore list"),
-		new BMessage(ADDIGNORE));
+		new BMessage(ADDIGNORE), 'I');
 	menu->AddItem(item);
 	}
 
