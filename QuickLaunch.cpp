@@ -205,11 +205,9 @@ QLApp::MessageReceived(BMessage* message)
 			fSettings->SetShowIgnore(value);
 			if (!fSetupWindow->fIgnoreList->IsEmpty()) {
  				fSetupWindow->fChkIgnore->SetValue(value);
-//				if (!fMainWindow->fListView->IsEmpty()) {
 					fMainWindow->fListView->LockLooper();
 					fMainWindow->BuildList();
 					fMainWindow->fListView->UnlockLooper();
-//				}
 			}
 			break;
 		}
@@ -226,13 +224,11 @@ QLApp::MessageReceived(BMessage* message)
 				fSettings->SetShowIgnore(false);
 				fSetupWindow->UnlockLooper();
 			}
-//			if (fMainWindow->GetStringLength() > 0) {
-				fMainWindow->fListView->LockLooper();
-				float position = fMainWindow->GetScrollPosition();
-				fMainWindow->BuildList();
-				fMainWindow->SetScrollPosition(position);
-				fMainWindow->fListView->UnlockLooper();
-//			}
+			fMainWindow->fListView->LockLooper();
+			float position = fMainWindow->GetScrollPosition();
+			fMainWindow->BuildList();
+			fMainWindow->SetScrollPosition(position);
+			fMainWindow->fListView->UnlockLooper();
 			break;
 		}
 		case B_NODE_MONITOR:
@@ -240,14 +236,12 @@ QLApp::MessageReceived(BMessage* message)
 			int32 opcode = message->GetInt32("opcode", -1);
 
 			if ((opcode == B_DEVICE_MOUNTED)
-					|| (opcode == B_DEVICE_UNMOUNTED)) {
-//				if (fMainWindow->GetStringLength() > 0) {
-					fMainWindow->fListView->LockLooper();
-					float position = fMainWindow->GetScrollPosition();
-					fMainWindow->BuildList();
-					fMainWindow->SetScrollPosition(position);
-					fMainWindow->fListView->UnlockLooper();
-//				}
+				|| (opcode == B_DEVICE_UNMOUNTED)) {
+				fMainWindow->fListView->LockLooper();
+				float position = fMainWindow->GetScrollPosition();
+				fMainWindow->BuildList();
+				fMainWindow->SetScrollPosition(position);
+				fMainWindow->fListView->UnlockLooper();
 			}
 			break;
 		}
@@ -273,6 +267,8 @@ QLApp::ReadyToRun()
 	BRect frame = fSettings->GetMainWindowFrame();
 	fMainWindow->MoveTo(frame.LeftTop());
 	fMainWindow->ResizeTo(frame.right - frame.left, 0);
+
+	fMainWindow->ResizeWindow();
 	fMainWindow->Show();
 
 	fSettings->InitLists();

@@ -41,7 +41,7 @@
 #define SETUP_BUTTON	'setb'
 #define HELP_BUTTON		'help'
 
-#define kMAX_DISPLAYED_ITEMS	9
+#define kMAX_DISPLAYED_ITEMS	10
 
 
 class MainWindow : public BWindow {
@@ -59,6 +59,7 @@ public:
 						{return fSearchBox->TextView()->TextLength();};
 	const char		*GetSearchString()
 						{return fSearchBox->TextView()->Text();};
+	void			ResizeWindow();
 
 	MainListView	*fListView;
 	

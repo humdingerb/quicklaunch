@@ -244,16 +244,9 @@ MainWindow::MessageReceived(BMessage* message)
 		}
 		case NEW_FILTER:
 		{
-//			QLApp* app = dynamic_cast<QLApp *> (be_app);
-//			int letters = GetStringLength();
-//			if (letters > app->fSettings->GetDelay()) {
-				BuildList();
-				fListView->Select(0);
-//			} else {
-//				fListView->MakeEmpty();
-//				ResizeTo(Bounds().Width(), 0);		// original size
-//				fListView->Invalidate();
-//			}
+			BuildList();
+			fListView->Select(0);
+
 			break;
 		}
 		default:
@@ -378,17 +371,7 @@ MainWindow::BuildList()
 			fListView->AddItem(new MainListItem(&entry, fIconHeight, true));
 		}
 	}
-
-	BRect windowRest = Frame().Height() - fListView->Frame().Height();
-	BRect itemFrame = fListView->ItemFrame(0);
-	int32 count = fListView->CountItems();
-	if (count < kMAX_DISPLAYED_ITEMS) {
-		ResizeTo(Bounds().Width(), count * itemFrame.Height()
-			+ windowRest.Height() + count);
-	} else {
-		ResizeTo(Bounds().Width(), kMAX_DISPLAYED_ITEMS * itemFrame.Height()
-			+ windowRest.Height() + kMAX_DISPLAYED_ITEMS);
-	}
+	ResizeWindow();
 }
 
 
@@ -408,6 +391,22 @@ MainWindow::SetScrollPosition(float position)
 	BScrollBar* scrollBar = fScrollView->ScrollBar(B_VERTICAL);
 	scrollBar->SetValue(position);
 	return;
+}
+
+
+void
+MainWindow::ResizeWindow()
+{
+	BRect windowRest = Frame().Height() - fListView->Frame().Height();
+	BRect itemFrame = fListView->ItemFrame(0);
+	int32 count = fListView->CountItems();
+	if (count < kMAX_DISPLAYED_ITEMS) {
+		ResizeTo(Bounds().Width(), count * (itemFrame.Height() + 1)
+			+ windowRest.Height());
+	} else {
+		ResizeTo(Bounds().Width(), kMAX_DISPLAYED_ITEMS * itemFrame.Height()
+			+ windowRest.Height() + kMAX_DISPLAYED_ITEMS);
+	}
 }
 
 
