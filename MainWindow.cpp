@@ -40,6 +40,7 @@ MainWindow::MainWindow()
 		| B_FRAME_EVENTS | B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
 	QLApp* app = dynamic_cast<QLApp *> (be_app);
+	_GetIconHeight();
 
 	fSearchBox = new BTextControl("SearchBox", NULL, NULL, NULL);
 
@@ -51,6 +52,7 @@ MainWindow::MainWindow()
 	fHelpButton->SetTarget(be_app);
 
 	fListView = new MainListView();
+	fListView->SetExplicitMinSize(BSize(B_SIZE_UNSET, fIconHeight + 8));
 
 	fScrollView = new BScrollView("ScrollList", fListView, B_WILL_DRAW,
 		false, true);
@@ -83,8 +85,6 @@ MainWindow::MainWindow()
 
 	int32 value = app->fSettings->GetOnTop();
 	SetFeel(value ?	B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
-
-	_GetIconHeight();
 }
 
 
@@ -273,8 +273,6 @@ MainWindow::BuildList()
 	QLApp* app = dynamic_cast<QLApp *> (be_app);
 
 	fListView->MakeEmpty();
-int len = GetStringLength();
-printf("BuildList() - length: %i\n", len);
 	if (GetStringLength() > app->fSettings->GetDelay()) {
 
 		BVolumeRoster volumeRoster;
