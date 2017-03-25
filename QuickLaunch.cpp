@@ -267,8 +267,6 @@ QLApp::ReadyToRun()
 	BRect frame = fSettings->GetMainWindowFrame();
 	fMainWindow->MoveTo(frame.LeftTop());
 	fMainWindow->ResizeTo(frame.right - frame.left, 0);
-
-	fMainWindow->ResizeWindow();
 	fMainWindow->Show();
 
 	fSettings->InitLists();

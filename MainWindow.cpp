@@ -52,14 +52,6 @@ MainWindow::MainWindow()
 
 	fListView = new MainListView();
 
-	font_height finfo;
-	be_plain_font->GetHeight(&finfo);
-	float fontHeight = finfo.ascent + finfo.descent + finfo.leading;
-	if (fontHeight < 16.0)
-		fontHeight = 16.0;
-	fListView->SetExplicitMinSize(BSize(B_SIZE_UNSET, fontHeight * 2.5));
-	fListView->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
-
 	fScrollView = new BScrollView("ScrollList", fListView, B_WILL_DRAW,
 		false, true);
 
@@ -140,8 +132,8 @@ MainWindow::MessageReceived(BMessage* message)
 
 			if (selection > kMAX_DISPLAYED_ITEMS) {
 				fListView->Select(selection - kMAX_DISPLAYED_ITEMS + 1);
-				fListView->ScrollBy(0.0, -1 * (kMAX_DISPLAYED_ITEMS - 1)
-					* fListView->ItemFrame(0).Height() - 8);
+				fListView->ScrollBy(0.0, -(kMAX_DISPLAYED_ITEMS - 1)
+					* fListView->ItemFrame(0).Height() - kMAX_DISPLAYED_ITEMS + 1);
 			} else
 				fListView->Select(first);
 
@@ -156,7 +148,7 @@ MainWindow::MessageReceived(BMessage* message)
 			if (selection < (fListView->CountItems() - kMAX_DISPLAYED_ITEMS)) {
 				fListView->Select(selection + kMAX_DISPLAYED_ITEMS - 1);
 				fListView->ScrollBy(0.0, (kMAX_DISPLAYED_ITEMS - 1)
-					* fListView->ItemFrame(0).Height() + 8);
+					* fListView->ItemFrame(0).Height() + kMAX_DISPLAYED_ITEMS - 1);
 			} else
 				fListView->Select(last);
 			break;
@@ -281,7 +273,8 @@ MainWindow::BuildList()
 	QLApp* app = dynamic_cast<QLApp *> (be_app);
 
 	fListView->MakeEmpty();
-
+int len = GetStringLength();
+printf("BuildList() - length: %i\n", len);
 	if (GetStringLength() > app->fSettings->GetDelay()) {
 
 		BVolumeRoster volumeRoster;
@@ -356,8 +349,20 @@ MainWindow::BuildList()
 								ignore = true;
 						}
 					}
-					if (!ignore)
-						fListView->AddItem(new MainListItem(&entry, fIconHeight));
+					if (!ignore) {
+						bool isFav = false;
+						for (int32 i = 0; i < app->fSettings->fFavoriteList->CountItems(); i++)
+						{
+							entry_ref* favorite = static_cast<entry_ref *>
+								(app->fSettings->fFavoriteList->ItemAt(i));
+							if (!favorite)
+								continue;
+							BEntry favEntry(favorite);
+							if (favEntry == entry)
+								isFav = true;
+						}
+						fListView->AddItem(new MainListItem(&entry, fIconHeight, isFav));
+					}
 				}
 				query.Clear();
 			}
@@ -403,16 +408,14 @@ MainWindow::SetScrollPosition(float position)
 void
 MainWindow::ResizeWindow()
 {
-	BRect windowRest = Frame().Height() - fListView->Frame().Height();
-	BRect itemFrame = fListView->ItemFrame(0);
 	int32 count = fListView->CountItems();
-	if (count < kMAX_DISPLAYED_ITEMS) {
-		ResizeTo(Bounds().Width(), count * (itemFrame.Height() + 1)
-			+ windowRest.Height());
-	} else {
-		ResizeTo(Bounds().Width(), kMAX_DISPLAYED_ITEMS * itemFrame.Height()
-			+ windowRest.Height() + kMAX_DISPLAYED_ITEMS);
-	}
+	count = (count < kMAX_DISPLAYED_ITEMS) ? count : kMAX_DISPLAYED_ITEMS;
+	BRect itemRect = fListView->ItemFrame(0);
+	float itemHeight = itemRect.Height();
+	float windowRest = Frame().Height() - fListView->Frame().Height();
+
+	ResizeTo(Bounds().Width(), count * itemHeight + windowRest + count - 2);
+//	printf("ResizeWindow() - height: %f , count: %i\n", itemHeight, count);
 }
 
 
@@ -427,7 +430,6 @@ MainWindow::_GetIconHeight()
 	float height = 2 * (fontHeight.ascent + fontHeight.descent
 		+ fontHeight.leading);
 	fIconHeight = int(height * 0.9);
-//	printf("height: %i, fIconHeight: %i\n", (int)height, fIconHeight);
 
 	static int iconSizes[] = { 16, 32, 40, 48, 64, 72, 80, 96, 1000 };
 
@@ -439,7 +441,6 @@ MainWindow::_GetIconHeight()
 			break;
 		}
 	}
-//	printf("After: fIconHeight: %i\n", fIconHeight);
 }
 
 

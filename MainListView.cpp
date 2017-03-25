@@ -204,7 +204,6 @@ MainListView::MessageReceived(BMessage* message)
 				break;
 
 			item->SetFavorite(true);
-//			InvalidateItem(selection);
 
 			if (item)
 				ref = item->Ref();
@@ -240,10 +239,16 @@ MainListView::MessageReceived(BMessage* message)
 			if (!item->IsFavorite())
 				break;
 
+			MainWindow* window = dynamic_cast<MainWindow *> (Window());
+			int letters = window->GetStringLength();
+
 			if (item) {
 				ref = item->Ref();
-				RemoveItem(selection);
-				Select((selection - 1 < 0) ? 0 : selection - 1);
+				item->SetFavorite(false);
+				if (letters == 0) {		// don't remove from result list
+					RemoveItem(selection);
+					Select((selection - 1 < 0) ? 0 : selection - 1);
+				}
 			}
 
 			if (ref) {
@@ -256,6 +261,7 @@ MainListView::MessageReceived(BMessage* message)
 				}
 			}
 			Invalidate();
+			window->ResizeWindow();
 			break;
 		}
 		case ADDIGNORE:

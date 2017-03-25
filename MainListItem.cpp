@@ -210,16 +210,8 @@ MainListItem::Update(BView* owner, const BFont* finfo)
 	// list item size doesn't change
 	BListItem::Update(owner, finfo);
 
-	font_height	fheight;
-	finfo->GetHeight(&fheight);
 	float spacing = be_control_look->DefaultLabelSpacing();
-	float height = ceilf(fheight.ascent + 2 + fheight.leading / 2
-		+ fheight.descent);
-
-	if (Height() < 18)
-		SetHeight(fIcon->Bounds().Height() + spacing + 4);
-	else
-		SetHeight(height * 2 + 4);
+	SetHeight(fIcon->Bounds().Height() + spacing + 4);
 }
 
 
@@ -236,5 +228,5 @@ MainListItem::SetFavorite(bool state)
 		BIconUtils::GetVectorIcon((const uint8*)buf, size,
 			fFavoriteIcon);
     }
-    fIsFavorite = true;
+    fIsFavorite = state;
 }
