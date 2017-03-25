@@ -1,15 +1,15 @@
-1	English	application/x-vnd.humdinger-quicklaunch	3524704484
+1	British	application/x-vnd.humdinger-quicklaunch	3524704484
 Thank you	Application		Thank you
 QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n
-Add to favorites	ListView		Add to favorites
+Add to favorites	ListView		Add to favourites
 Add to ignore list	ListView		Add to ignore list
 Found no matches.	ListView		Found no matches.
-No favorites yet.	ListView		No favorites yet.
+No favorites yet.	ListView		No favourites yet.
 Open containing folder	ListView		Open containing folder
-Remove favorite	ListView		Remove favorite
+Remove favorite	ListView		Remove favourite
 Use '*' as wildcards.	ListView		Use '*' as wildcards.
 Help	MainWindow		Help
-OK	MainWindow		OK
+OK	MainWindow		Alright
 Setup	MainWindow		Setup
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Failed to launch %appname%.\n\nError:
 Add…	SetupWindow		Add…

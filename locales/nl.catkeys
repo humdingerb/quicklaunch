@@ -1,15 +1,17 @@
-1	Dutch	application/x-vnd.humdinger-quicklaunch	2907781149
+1	Dutch	application/x-vnd.humdinger-quicklaunch	3524704484
 Thank you	Application		Bedankt
 QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tgeschreven door Humdinger\n\tCopyright %years%\n\nQuickLaunch start elke geïnstalleerde applicatie snel. Toets gewoon de eerste paar letters van de naam in en kies van de lijst van alle gevonden applicaties.\n
+Add to favorites	ListView		Add to favorites
 Add to ignore list	ListView		Toevoegen aan negeerlijst
 Found no matches.	ListView		Geen resultaten gevonden.
+No favorites yet.	ListView		No favorites yet.
 Open containing folder	ListView		Bijbehorende map openen
+Remove favorite	ListView		Remove favorite
 Use '*' as wildcards.	ListView		Gebruik '*' als wildcard
 Help	MainWindow		Help
 OK	MainWindow		OK
 Setup	MainWindow		Instellingen
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Kan %appname% niet starten.\n\nFout:
-Show Deskbar replicant	SetupWindow		Toon Deskbar replicant
 Add…	SetupWindow		Toevoegen…
 Ignore these files & folders (and their subfolders):	SetupWindow		Negeer deze bestanden & mappen (en submappen):
 Launch applications with a single click	SetupWindow		Toepassingen starten met een enkele klik
@@ -18,6 +20,7 @@ Remove	SetupWindow		Verwijder
 Setup	SetupWindow		Instellingen
 Show application path	SetupWindow		Toon pad van toepassing
 Show application version	SetupWindow		Toon versie van toepassing
+Show Deskbar replicant	SetupWindow		Toon Deskbar replicant
 Wait for a second letter before searching	SetupWindow		Wacht voor een tweede letter voor zoeken
 Window always on top	SetupWindow		Venster atijd bovenop
 QuickLaunch	System name		QuickLaunch
