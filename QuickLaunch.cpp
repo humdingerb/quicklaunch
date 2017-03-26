@@ -225,8 +225,12 @@ QLApp::MessageReceived(BMessage* message)
 				fSetupWindow->UnlockLooper();
 			}
 			fMainWindow->fListView->LockLooper();
+			int32 selection = fMainWindow->fListView->CurrentSelection();
 			float position = fMainWindow->GetScrollPosition();
 			fMainWindow->BuildList();
+			fMainWindow->fListView->Select((selection
+				< fMainWindow->fListView->CountItems())
+				? selection : fMainWindow->fListView->CountItems() - 1);
 			fMainWindow->SetScrollPosition(position);
 			fMainWindow->fListView->UnlockLooper();
 			break;
