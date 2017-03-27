@@ -359,7 +359,8 @@ MainWindow::BuildList()
 							if (favEntry == entry)
 								isFav = true;
 						}
-						fListView->AddItem(new MainListItem(&entry, fIconHeight, isFav));
+						if (entry.InitCheck() == B_OK)
+							fListView->AddItem(new MainListItem(&entry, fIconHeight, isFav));
 					}
 				}
 				query.Clear();
@@ -376,8 +377,8 @@ MainWindow::BuildList()
 			if (!favorite)
 				continue;
 			BEntry entry(favorite);
-
-			fListView->AddItem(new MainListItem(&entry, fIconHeight, true));
+			if (entry.InitCheck() == B_OK)
+				fListView->AddItem(new MainListItem(&entry, fIconHeight, true));
 		}
 	}
 	ResizeWindow();
@@ -413,7 +414,6 @@ MainWindow::ResizeWindow()
 	float windowRest = Frame().Height() - fListView->Frame().Height();
 
 	ResizeTo(Bounds().Width(), count * itemHeight + windowRest + count - 2);
-//	printf("ResizeWindow() - height: %f , count: %i\n", itemHeight, count);
 }
 
 

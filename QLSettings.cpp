@@ -134,16 +134,15 @@ QLSettings::~QLSettings()
 
 	for (int32 i = 0; i < fFavoriteList->CountItems(); i++)
 	{
-		printf("fFavoriteList->CountItems(): %" B_PRId32 "\n",
-			fFavoriteList->CountItems());
 		entry_ref* favorite = static_cast<entry_ref *>
 			(fFavoriteList->ItemAt(i));
 
 		if (!favorite)
 			continue;
 
-		printf("save favorite: %s\n", favorite->name);
-		settings.AddRef("favorite", favorite);
+		BEntry entry(favorite);
+		if (entry.InitCheck() == B_OK)
+			settings.AddRef("favorite", favorite);
 	}
 
 	path.Append("QuickLaunch_settings");
@@ -168,15 +167,17 @@ QLSettings::InitLists()
 	if (file.InitCheck() == B_OK && settings.Unflatten(&file) == B_OK) {
 		BString itemText;
 		int32 i = 0;
-		while (settings.FindString("item", i++, &itemText) == B_OK)
+		while (settings.FindString("item", i++, &itemText) == B_OK) {
 			app->fSetupWindow->fIgnoreList->AddItem(
 			new SetupListItem(itemText.String()));
+		}
 
 		i = 0;
 		entry_ref favorite;
 		while (settings.FindRef("favorite", i++, &favorite) == B_OK) {
-			fFavoriteList->AddItem(new entry_ref(favorite));
-			printf("load favorite: %s\n", favorite.name);
+			BEntry entry(&favorite);
+			if (entry.InitCheck() == B_OK)
+				fFavoriteList->AddItem(new entry_ref(favorite));
 		}
 	}
 }
