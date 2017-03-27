@@ -1,12 +1,12 @@
 1	Japanese	application/x-vnd.humdinger-quicklaunch	3524704484
 Thank you	Application		ありがとう
 QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nは、インストールされたすべてのアプリを素早く立ち上げます。アプリ名の最初の数文字を入力し、見つかったプログラムリストから選択するだけです。\n
-Add to favorites	ListView		Add to favorites
+Add to favorites	ListView		お気に入り
 Add to ignore list	ListView		無視リストに追加
 Found no matches.	ListView		一致するアプリがありません
-No favorites yet.	ListView		No favorites yet.
+No favorites yet.	ListView		何も追加されていません
 Open containing folder	ListView		フォルダーを開く
-Remove favorite	ListView		Remove favorite
+Remove favorite	ListView		お気に入りから削除
 Use '*' as wildcards.	ListView		'*' はワイルドカード
 Help	MainWindow		ヘルプ
 OK	MainWindow		OK

@@ -1,12 +1,12 @@
 1	Polish	application/x-vnd.humdinger-quicklaunch	3524704484
 Thank you	Application		Dziękuję
 QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tnapisany przez Humdingera\n\tCopyright %years%\n\nQuickLaunch błyskawicznie uruchamia dowolną zainstalowaną aplikację. Wystarczy wprowadzić kilka pierwszych liter jej nazwy i wybrać z listy znalezionych programów.\n
-Add to favorites	ListView		Add to favorites
+Add to favorites	ListView		Dodaj do ulubionych
 Add to ignore list	ListView		Dodaj do listy ignorowanych
 Found no matches.	ListView		Nie znaleziono dopasowań.
-No favorites yet.	ListView		No favorites yet.
+No favorites yet.	ListView		Brak ulubionych.
 Open containing folder	ListView		Otwórz katalog docelowy
-Remove favorite	ListView		Remove favorite
+Remove favorite	ListView		Usuń ulubione
 Use '*' as wildcards.	ListView		Użyj „*” jako maski.
 Help	MainWindow		Pomoc
 OK	MainWindow		OK
@@ -24,3 +24,5 @@ Show Deskbar replicant	SetupWindow		Pokaż Deskbara replikant
 Wait for a second letter before searching	SetupWindow		Czekaj na drugą literę przed rozpoczęciem wyszukiwania
 Window always on top	SetupWindow		Okno zawsze na wierzchu
 QuickLaunch	System name		QuickLaunch
+
+

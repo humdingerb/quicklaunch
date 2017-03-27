@@ -1,12 +1,12 @@
 1	Russian	application/x-vnd.humdinger-quicklaunch	3524704484
 Thank you	Application		Спасибо
 QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tразработан Humdinger\n\tCopyright %years%\n\nQuickLaunch позволяет быстро запустить любое установленное приложение. Всего лишь введите первые несколько букв его названия и выберите из списка найденных вариантов.\n
-Add to favorites	ListView		Add to favorites
+Add to favorites	ListView		Добавить в избранное
 Add to ignore list	ListView		Добавить в список игнорирования
 Found no matches.	ListView		Совпадения не найдены.
-No favorites yet.	ListView		No favorites yet.
+No favorites yet.	ListView		Нет избранного.
 Open containing folder	ListView		Открыть папку, содержащую элемент
-Remove favorite	ListView		Remove favorite
+Remove favorite	ListView		Удалить из избранного
 Use '*' as wildcards.	ListView		Используйте '*' для вывода всего списка.
 Help	MainWindow		Помощь
 OK	MainWindow		OK

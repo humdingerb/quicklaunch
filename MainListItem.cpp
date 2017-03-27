@@ -218,15 +218,16 @@ MainListItem::Update(BView* owner, const BFont* finfo)
 void
 MainListItem::SetFavorite(bool state)
 {
-	size_t size;
-    const void* buf = be_app->AppResources()
-		->LoadResource(B_VECTOR_ICON_TYPE, "FavoriteStar", &size);
+	if (state) {
+		size_t size;
+	    const void* buf = be_app->AppResources()
+			->LoadResource(B_VECTOR_ICON_TYPE, "FavoriteStar", &size);
 
-    if (buf != NULL) {
-		fFavoriteIcon = new BBitmap(BRect(0, 0, fIconSize, fIconSize),
-			B_RGBA32);
-		BIconUtils::GetVectorIcon((const uint8*)buf, size,
-			fFavoriteIcon);
-    }
+	    if (buf != NULL) {
+			fFavoriteIcon = new BBitmap(BRect(0, 0, fIconSize, fIconSize),
+				B_RGBA32);
+			BIconUtils::GetVectorIcon((const uint8*)buf, size, fFavoriteIcon);
+	    }
+	}
     fIsFavorite = state;
 }

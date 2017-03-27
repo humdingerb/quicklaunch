@@ -1,12 +1,12 @@
 1	French	application/x-vnd.humdinger-quicklaunch	3524704484
 Thank you	Application		Merci
 QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\técrit par Humdinger\n\tCopyright %years%\n\nQuickLaunch ouvre rapidement n'importe quel programme installé. Tapez juste les premières lettres de son nom et choisissez dans une liste de tous les programmes détectés.\n
-Add to favorites	ListView		Add to favorites
+Add to favorites	ListView		Ajouter aux favoris
 Add to ignore list	ListView		Ajouter à la liste des ignorés
 Found no matches.	ListView		Aucune correspondance.
-No favorites yet.	ListView		No favorites yet.
+No favorites yet.	ListView		Aucun favoris.
 Open containing folder	ListView		Ouvrir le dossier parent
-Remove favorite	ListView		Remove favorite
+Remove favorite	ListView		Supprimer le favori
 Use '*' as wildcards.	ListView		Utiliser  «*» comme joker.
 Help	MainWindow		Aide
 OK	MainWindow		OK

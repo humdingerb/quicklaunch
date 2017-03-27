@@ -12,19 +12,35 @@ Here's the main window after searching for all applications starting with "me" a
 
 ![QuickLaunch windows](./images/quicklaunch.png)
 
-In the main window the context menu was evoked via a right-click. The first item adds the selected app to the ignore list (works also with a drag & drop). More on that in the setup options discussed below. The second item opens the app's location in a Tracker window. The same can be achieved by pressing _CTRL_ + _RETURN_.
+In the main window the context menu was invoked via a right-click.
+The first item adds the selected app to your favorites which will be shown whenever the search field is empty.
+The second item adds the app to the ignore list (works also with a drag & drop into the ignore list of the setup window). More on that in the setup options discussed below.
+The final item opens the app's location in a Tracker window. The same can be achieved by pressing _CTRL_ + _RETURN_.
 
 The _Help_ button or pressing _ALT_+_H_ opens this ReadMe in the browser.
 
-### Setup Options
+### Favorites
 
-The setup window shows these options:
+<p>Your list of favorite applications is shown whenever the search field is empty, e.g. right when you start QuickLaunch.</p>
+
+![QuickLaunch favorites](./images/quicklaunch_favorites.png)
+
+The background of favorites is slightly tinted yellow and a little yellow star is added to their icon to distinguish them from a regular search result.
+
+You add favorites by right-clicking an app's entry in a search result list and choosing _Add to favorites_ or pressing _ALT_ + _F_.
+Similarly, you remove a favorite again by right-clicking it and selecting _Remove favorite_ or with _ALT_ + _R_.
+
+### Setup
+
+The setup window, invoked with the _Setup_ button or _ALT_ + _S_:
+
+![QuickLaunch setup](./images/quicklaunch_setup.png)
 
 *	_Show Deskbar replicant_ — puts the QuickLaunch icon into the Deskbar tray. Click on it to start QuickLaunch.
 *   _Show the version of an application_ — only really useful when having older and newer versions of an app installed.
 *   _Show the path to an application_ — interesting when you have several copies of an application.
-*   _Wait for a second letter before starting the search_ — starts QuickLaunch with the previous search.
-*   _Remember last search term_ — probably only useful for slow systems.
+*   _Wait for a second letter before starting the search_ — probably only useful for slow systems.
+*   _Remember last search term_ — starts QuickLaunch with the previous search.
 *   _Launch applications with a single click_ — instead of requiring the usual double-click.
 *   _Window always on top_ — the window floats modally in front of all others. 
 Useful if you start a few apps after another and don't want to lose QuickLauch under the newly opening windows.
@@ -43,6 +59,9 @@ If you add a folder instead of a file, QuickLaunch will ignore all the files and
 `B_SYSTEM_ADDONS_DIRECTORY` and `B_TRASH_DIRECTORY`
 In other words, applications in Trash are ignored, as well as add-ons.
 `B_SYSTEM_BIN_DIRECTORY` used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, i.e. via _Add to ignore list_ of the context menu.
+*	There are two reasons why an application may not be found by QuickLaunch:
+- The application isn't located on a BFS partition or the BFS partition wasn't formatted to support queries.
+- The application lacks the proper attribute `BEOS:APP_SIG`. In that case, ask the app's developer to add it, or try to apply the following tip.
 *	If you happen to use an app or a script that doesn't show up in QuickLaunch (and is in a writable location), you can add these atrributes in Terminal to the app or script:
 `addattr BEOS:TYPE application/x-vnd.Be-elfexecutable /path/to/your/app-or-script`
 `addattr BEOS:APP_SIG  application/x-vnd.anything-unique /path/to/your/app-or-script`
@@ -63,24 +82,27 @@ Finally, thanks to everyone that contributed translations for QuickLaunch.
 
 ### History
 
-**1.0** - _21-03-2017:_
+**1.0** - _27-03-2017:_
 
-*	Add a setting to launch applications with a single click.
+*	Allow the user to mark applications as favorites and show them whenever the search text box is emtpy.
 *	Add option to put a replicant in the Deskbar tray for a quick launch of QuickLaunch. Removed the "Add to Deskbar.sh" script.
-*	Have the icon size depend on the font size.
+*	Automatically scale the icon size with the system font size..
 *	Fixed layout issues in the setup window and made default main and setup windows a bit bigger. Save the absolute position of the setup window.
-*	Change resizing of the main window to always fit the number of list items; font sensitive.
+*	Automatically change the main window size to always fit the number of list items; font sensitive.
 *	Allow drag & drop of files from Tracker or items from the main window to the "ignore" list.
 	Allow removing multiple items from the "ignore" list. Also via _DEL_ key or a context menu.
 *	Show a "*" and make the item italic in the ignore list, if it's not a file, but a folder+subfolders that gets ignored.
 *	Improved page up/down scrolling.
+*	Add a setting to launch applications with a single click.
 *	Apply "Always on top" setting only to the main window when there's no setup window open. The "ignore" file dialog has issues when it's modal too: you couldn't drag & drop files/folders into it...
 *	Open and close the Setup window with _ALT_+_S_.
 *	Add "Help" button to summon this ReadMe. _ALT_+_H_ works too.
 *	Show an error dialog if the launch of an application has failed for some reason.
 *	Monitor un/mounting of volumes to update the result list.
 *	Added a tip to the ReadMe, showing how to add type and signature to apps and scripts that lack them.
-*	Updated Dutch localization, thanks Begasus!
+*	Updated localizations, thanks Begasus, Barrett, KapiX, macadoum, un_spacyar, Yowane_Haku!
+*	Added British English localization.
+*	Added Lithuanian localization, thanks damoklas!
 *	Added French localization, thanks Anarchos!
 *	Added Russian localization, thanks Akujiism!
 *	Added Spanish localization, thanks un_spacyar!
