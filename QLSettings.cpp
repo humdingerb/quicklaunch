@@ -141,8 +141,11 @@ QLSettings::~QLSettings()
 			continue;
 
 		BEntry entry(favorite);
-		if (entry.InitCheck() == B_OK)
-			settings.AddRef("favorite", favorite);
+		if (entry.InitCheck() == B_OK) {
+			BPath path;
+			entry.GetPath(&path);
+			settings.AddString("favorite", path.Path());
+		}
 	}
 
 	path.Append("QuickLaunch_settings");
@@ -171,12 +174,11 @@ QLSettings::InitLists()
 			app->fSetupWindow->fIgnoreList->AddItem(
 			new SetupListItem(itemText.String()));
 		}
-
 		i = 0;
-		entry_ref favorite;
-		while (settings.FindRef("favorite", i++, &favorite) == B_OK) {
-			BEntry entry(&favorite);
-			if (entry.InitCheck() == B_OK)
+		while (settings.FindString("favorite", i++, &itemText) == B_OK) {
+			entry_ref favorite;
+			status_t err = get_ref_for_path(itemText.String(), &favorite);
+			if (err == B_OK)
 				fFavoriteList->AddItem(new entry_ref(favorite));
 		}
 	}
