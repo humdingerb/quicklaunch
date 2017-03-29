@@ -13,27 +13,32 @@
 #include <Entry.h>
 
 
-class DeskButton : public BView {
-	public:
-		DeskButton(BRect frame, entry_ref* ref, const char* name,
-			uint32 resizeMask = B_FOLLOW_ALL, 
-			uint32 flags = B_WILL_DRAW | B_NAVIGABLE);
-		DeskButton(BMessage* archive);
-		DeskButton();
-		virtual ~DeskButton();
+class DeskButton
+	: public BView {
+public:
+	DeskButton(BRect frame, entry_ref* ref, const char* name,
+		uint32 resizeMask = B_FOLLOW_ALL, 
+		uint32 flags = B_WILL_DRAW | B_NAVIGABLE);
+	DeskButton(BMessage* archive);
+	DeskButton();
+	virtual ~DeskButton();
 
-		// archiving overrides
-		static DeskButton* Instantiate(BMessage* data);
-		virtual	status_t Archive(BMessage* data, bool deep = true) const;
+	// archiving overrides
+	static DeskButton* Instantiate(BMessage* data);
+	virtual	status_t Archive(BMessage* data, bool deep = true) const;
 
-		// misc BView overrides
-		virtual void AttachedToWindow();
-		virtual void MouseDown(BPoint);
-		virtual void Draw(BRect updateRect);
+	// misc BView overrides
+	virtual void AttachedToWindow();
+	virtual void MessageReceived(BMessage* message);
+	virtual void MouseDown(BPoint);
+	virtual void Draw(BRect updateRect);
 
-	private:
-		BBitmap*	fIcon;
-		entry_ref	fRef;
+private:
+	void		_GetFavoriteList();
+
+	BBitmap*	fIcon;
+	entry_ref	fRef;
+	BList*		fFavoriteList;
 };
 
 #endif	// DESK_BUTTON_H

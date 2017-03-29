@@ -152,6 +152,8 @@ QLSettings::~QLSettings()
 	BFile file(path.Path(), B_WRITE_ONLY | B_CREATE_FILE | B_ERASE_FILE);
 	if (file.InitCheck() == B_OK)
 		settings.Flatten(&file);
+
+	delete fFavoriteList;
 }
 
 

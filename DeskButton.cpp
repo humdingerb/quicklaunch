@@ -14,16 +14,22 @@
 #include "QuickLaunch.h"
 
 #include <Bitmap.h>
+#include <Catalog.h>
 #include <Message.h>
 #include <NodeInfo.h>
+#include <Path.h>
 #include <Roster.h>
 
 #include <image.h>
+
+#define OPEN_REF	'opre'
 
 // from QuickLaunch.cpp
 extern const char* kApplicationSignature;
 extern status_t our_image(image_info& image);
 
+#undef B_TRANSLATION_CONTEXT
+#define B_TRANSLATION_CONTEXT "Replicant"
 
 DeskButton::DeskButton(BRect frame, entry_ref* ref, const char* name,
 		uint32 resizeMask, uint32 flags)
@@ -113,7 +119,85 @@ DeskButton::Draw(BRect rect)
 
 
 void
+DeskButton::MessageReceived(BMessage *message)
+{
+	switch (message->what) {
+		case OPEN_REF:
+		{
+			entry_ref ref;
+			message->FindRef("refs", &ref);
+			be_roster->Launch(&ref);
+			break;
+		}
+		default:
+			BView::MessageReceived(message);
+			break;
+	}
+}
+
+
+void
 DeskButton::MouseDown(BPoint point)
 {
-	be_roster->Launch(&fRef);
+	uint32 mouseButtons = 0;
+	if (Window()->CurrentMessage() != NULL)
+		mouseButtons = Window()->CurrentMessage()->FindInt32("buttons");
+
+	BPoint where = ConvertToScreen(point);
+
+	if (mouseButtons & B_SECONDARY_MOUSE_BUTTON) {
+		_GetFavoriteList();
+
+		BPopUpMenu *menu = new BPopUpMenu("", false, false);
+		menu->SetFont(be_plain_font);
+
+		if (!fFavoriteList->IsEmpty()) {
+			for (int i = 0; i < fFavoriteList->CountItems(); i++)
+			{
+				entry_ref* favorite = static_cast<entry_ref *>
+					(fFavoriteList->ItemAt(i));
+				BMessage* message = new BMessage(OPEN_REF);
+				message->AddRef("refs", favorite);
+				menu->AddItem(new BMenuItem(favorite->name, message));
+			}
+		menu->AddSeparatorItem();
+		}
+		BMessage* message = new BMessage(OPEN_REF);
+		message->AddRef("refs", &fRef);
+		menu->AddItem(new BMenuItem(B_TRANSLATE("Open QuickLaunch"), message));
+
+		menu->SetTargetForItems(this);
+		menu->Go(where, true, true, BRect(where - BPoint(4, 4), 
+			where + BPoint(4, 4)));
+
+		delete fFavoriteList;
+
+	} else if (mouseButtons & B_PRIMARY_MOUSE_BUTTON)
+		be_roster->Launch(&fRef);
+}
+
+
+void
+DeskButton::_GetFavoriteList()
+{
+	BPath path;
+	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path) != B_OK)
+		return;
+
+	path.Append("QuickLaunch_settings");
+	BFile file(path.Path(), B_READ_ONLY);
+
+	fFavoriteList = new BList();
+
+	BMessage settings;
+	if (file.InitCheck() == B_OK && settings.Unflatten(&file) == B_OK) {
+		int32 i = 0;
+		BString itemText;
+		while (settings.FindString("favorite", i++, &itemText) == B_OK) {
+			entry_ref favorite;
+			status_t err = get_ref_for_path(itemText.String(), &favorite);
+			if (err == B_OK)
+				fFavoriteList->AddItem(new entry_ref(favorite));
+		}
+	}
 }
