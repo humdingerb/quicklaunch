@@ -1,4 +1,4 @@
-1	Ukrainian	application/x-vnd.humdinger-quicklaunch	3524704484
+1	Ukrainian	application/x-vnd.humdinger-quicklaunch	2984286795
 Thank you	Application		Дякуємо
 QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tрозроблений Humdinger\n\tCopyright %years%\n\nQuickLaunch дозволить швидко запустити будь-яку встановлену програму. Просто введіть перші кілька літер її назви і виберіть зі списку знайдених.\n
 Add to favorites	ListView		Додати до обраного
@@ -12,6 +12,7 @@ Help	MainWindow		Довідка
 OK	MainWindow		OK
 Setup	MainWindow		Налаштування
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Не вдалося запустити %appname%.\n\nНомер помилки .:
+Open QuickLaunch	Replicant		Відкрити QuickLaunch
 Add…	SetupWindow		Додати…
 Ignore these files & folders (and their subfolders):	SetupWindow		Ігнорувати ці файли і папки (та їх підпапки):
 Launch applications with a single click	SetupWindow		Запуск додатків з одним натисненням кнопки
