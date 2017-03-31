@@ -29,7 +29,7 @@ extern const char* kApplicationSignature;
 extern status_t our_image(image_info& image);
 
 #undef B_TRANSLATION_CONTEXT
-#define B_TRANSLATION_CONTEXT "Replicant"
+#define B_TRANSLATION_CONTEXT "Application"
 
 DeskButton::DeskButton(BRect frame, entry_ref* ref, const char* name,
 		uint32 resizeMask, uint32 flags)
@@ -84,6 +84,35 @@ DeskButton::Instantiate(BMessage* data)
 }
 
 
+void
+DeskButton::AboutRequested()
+{
+	BString text = B_TRANSLATE_COMMENT(
+		"QuickLaunch %version%\n"
+		"\twritten by Humdinger\n"
+		"\tCopyright %years%\n\n"
+		"QuickLaunch quickly starts any installed application. "
+		"Just enter the first few letters of its name and choose "
+		"from a list of all found programs.\n",
+		"Don't change the variables %years% and %version%.");
+	text.ReplaceAll("%version%", kVersion);
+	text.ReplaceAll("%years%", kCopyright);
+
+	BAlert* alert = new BAlert("about", text.String(),
+		B_TRANSLATE("Thank you"));
+
+	BTextView* view = alert->TextView();
+	BFont font;
+
+	view->SetStylable(true);
+	view->GetFont(&font);
+	font.SetSize(font.Size()+4);
+	font.SetFace(B_BOLD_FACE);
+	view->SetFontAndColor(0, 11, &font);
+	alert->Go();
+}
+
+
 status_t 
 DeskButton::Archive(BMessage* data, bool deep) const
 {
@@ -122,6 +151,11 @@ void
 DeskButton::MessageReceived(BMessage *message)
 {
 	switch (message->what) {
+		case B_ABOUT_REQUESTED:
+		{
+			AboutRequested();
+			break;
+		}
 		case OPEN_REF:
 		{
 			entry_ref ref;
@@ -165,6 +199,8 @@ DeskButton::MouseDown(BPoint point)
 		BMessage* message = new BMessage(OPEN_REF);
 		message->AddRef("refs", &fRef);
 		menu->AddItem(new BMenuItem(B_TRANSLATE("Open QuickLaunch"), message));
+		menu->AddItem(new BMenuItem(B_TRANSLATE("About QuickLaunch"),
+			new BMessage(B_ABOUT_REQUESTED)));
 
 		menu->SetTargetForItems(this);
 		menu->Go(where, true, true, BRect(where - BPoint(4, 4), 

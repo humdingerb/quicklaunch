@@ -1,4 +1,5 @@
-1	Lithuanian	application/x-vnd.humdinger-quicklaunch	2984286795
+1	Lithuanian	application/x-vnd.humdinger-quicklaunch	1309431571
+About QuickLaunch	Application		Apie QuickLaunch
 Thank you	Application		Ačiū
 QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tparašyta Humdinger’io\n\tCopyright %years%\n\nQuickLaunch greit paleidžia bet kurią įdiegtą programą. Tiesiog įveskite pirmąsias pavadinimo raides ir rinkitės iš rastų programų sąrašo.\n
 Add to favorites	ListView		Pridėti prie mėgstamų
@@ -12,7 +13,7 @@ Help	MainWindow		Pagalba
 OK	MainWindow		Gerai
 Setup	MainWindow		Sąranka
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Nepavyko paleisti %appname%.\n\nKlaida:
-Open QuickLaunch	Replicant		Atverti QuickLaunch
+Open QuickLaunch	Application		Atverti QuickLaunch
 Add…	SetupWindow		Pridėti…
 Ignore these files & folders (and their subfolders):	SetupWindow		Nepaisyti šių bylų ir aplankų (ir jų poaplankių):
 Launch applications with a single click	SetupWindow		Paleisti programą vienu spustelėjimu

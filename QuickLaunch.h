@@ -1,5 +1,5 @@
 /*
- * Copyright 2010. All rights reserved.
+ * Copyright 2010-2017. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -16,6 +16,9 @@
 #include "MainWindow.h"
 #include "QLSettings.h"
 #include "SetupWindow.h"
+
+static const char kVersion[] = "v1.1";
+static const char kCopyright[] = "2010-2017";
 
 
 class QLApp : public BApplication {

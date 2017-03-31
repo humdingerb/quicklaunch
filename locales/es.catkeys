@@ -1,4 +1,5 @@
-1	Spanish	application/x-vnd.humdinger-quicklaunch	2984286795
+1	Spanish	application/x-vnd.humdinger-quicklaunch	1309431571
+About QuickLaunch	Application		Acerca de QuickLaunch
 Thank you	Application		Gracias
 QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tescrito por Humdinger\n\tCopyright %years%\n\nQuickLaunch permite iniciar rápidamente cualquier aplicación instalada. Sólo ingrese las primeras letras del nombre y elija de la lista de resultados encontrados.\n
 Add to favorites	ListView		Agregar a favoritos
@@ -12,7 +13,7 @@ Help	MainWindow		Ayuda
 OK	MainWindow		OK
 Setup	MainWindow		Configuración
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Error al iniciar %appname%.\n\nError:
-Open QuickLaunch	Replicant		Abrir QuickLaunch
+Open QuickLaunch	Application		Abrir QuickLaunch
 Add…	SetupWindow		Agregar…
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignorar estos archivos y carpetas (y sus correspondientes subcarpetas):
 Launch applications with a single click	SetupWindow		Iniciar aplicaciones con un solo clic

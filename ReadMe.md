@@ -1,5 +1,5 @@
 ![QuickLaunch icon](./images/quicklaunch_icon_64.png)
-**QuickLaunch v1.0**
+**QuickLaunch v1.1**
 for [Haiku](https://www.haiku-os.org)
 
 * * *
@@ -21,7 +21,7 @@ The _Help_ button or pressing _ALT_+_H_ opens this ReadMe in the browser.
 
 ### Favorites
 
-<p>Your list of favorite applications is shown whenever the search field is empty, e.g. right when you start QuickLaunch.</p>
+Your list of favorite applications is shown whenever the search field is empty, e.g. right when you start QuickLaunch.
 
 ![QuickLaunch favorites](./images/quicklaunch_favorites.png)
 
@@ -30,13 +30,19 @@ The background of favorites is slightly tinted yellow and a little yellow star i
 You add favorites by right-clicking an app's entry in a search result list and choosing _Add to favorites_ or pressing _ALT_ + _F_.
 Similarly, you remove a favorite again by right-clicking it and selecting _Remove favorite_ or with _ALT_ + _R_.
 
+The Deskbar replicant can be activated from the Setup window (see below). It installs the QuickLaunch icon into the Deskbar tray, alongside the clock and the replicants of other applications.
+A right-click on it also offers quick access to your favorites.
+
+![QuickLaunch replicant favorites](./images/quicklaunch_replicant.png)
+
+
 ### Setup
 
 The setup window, invoked with the _Setup_ button or _ALT_ + _S_:
 
 ![QuickLaunch setup](./images/quicklaunch_setup.png)
 
-*	_Show Deskbar replicant_ — puts the QuickLaunch icon into the Deskbar tray. Click on it to start QuickLaunch.
+*	_Show Deskbar replicant_ — puts the QuickLaunch icon into the Deskbar tray. A left-click on it starts QuickLaunch, with a right-click you can start your favorite applications directly from the context menu.
 *   _Show the version of an application_ — only really useful when having older and newer versions of an app installed.
 *   _Show the path to an application_ — interesting when you have several copies of an application.
 *   _Wait for a second letter before starting the search_ — probably only useful for slow systems.
@@ -81,6 +87,13 @@ AnEvilYak provided valuable hints and code when I got stuck.
 Finally, thanks to everyone that contributed translations for QuickLaunch.
 
 ### History
+
+**1.1** - _31-03-2017:_
+
+*	Fix disappearing favorites.
+*	Add context menu with quick access to favorites and QuickLaunch's "About" to Deskbar replicant.
+*	Updated localization and documentation.
+*	Tiny tweaks to the QuickLaunch icon.
 
 **1.0** - _27-03-2017:_
 
