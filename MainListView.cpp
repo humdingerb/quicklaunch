@@ -143,16 +143,10 @@ MainListView::InitiateDrag(BPoint point, int32 dragIndex, bool wasSelected)
 		return false;
 
 	BMessage message;
-	bool isFav = sItem->IsFavorite();
-
-	if (isFav) {
-		message.what = FAV_DRAGGED;
-		message.AddInt32("index", CurrentSelection());
-	} else {
-		message.what = B_SIMPLE_DATA;
-		message.AddRef("refs", ref);
-		message.AddInt32("index", CurrentSelection());
-	}
+	message.what = B_SIMPLE_DATA;
+	message.AddRef("refs", ref);
+	message.AddInt32("index", CurrentSelection());
+	message.AddBool("isfav", sItem->IsFavorite());
 
 	BRect dragRect(0.0f, 0.0f, Bounds().Width(), sItem->Height());
 	BBitmap* dragBitmap = new BBitmap(dragRect, B_RGB32, true);
@@ -300,8 +294,20 @@ MainListView::MessageReceived(BMessage* message)
 			msgr.SendMessage(&refMsg);
 			break;
 		}
-		case FAV_DRAGGED:
+		case B_SIMPLE_DATA:
 		{
+			bool fav = false;
+			if (message->FindBool("isfav", &fav) != B_OK)
+				break;
+
+			if (!fav)
+				break;
+
+			QLApp* app = dynamic_cast<QLApp *> (be_app);
+			// see if we're dragging a Favorite in a result list
+			if (app->fMainWindow->GetStringLength() > 0)
+				break;
+
 			int32 origIndex;
 			int32 dropIndex;
 			BPoint dropPoint;
@@ -318,7 +324,6 @@ MainListView::MessageReceived(BMessage* message)
 			MoveItem(origIndex, dropIndex);
 			Select(dropIndex);
 
-			QLApp* app = dynamic_cast<QLApp *> (be_app);
 			app->fSettings->fFavoriteList->MoveItem(origIndex, dropIndex);
 			break;
 		}
