@@ -194,8 +194,18 @@ MainWindow::MessageReceived(BMessage* message)
 				BMessage refMsg(B_REFS_RECEIVED);
 				refMsg.AddRef("refs", &folderRef);
 				msgr.SendMessage(&refMsg);
-			}
 			// End DW code
+			// select the app in the opened folder (thanks, opentargetfolder)
+				BMessage selectMessage('Tsel');
+				entry_ref target;
+				if (entry.GetRef(&target) != B_OK) {
+					// don't alert, selection is not critical
+					break;
+				}
+				selectMessage.AddRef("refs", &target);
+				snooze(300000);	// wait 0.3 sec to give Tracker time to populate
+				msgr.SendMessage(&selectMessage);
+			}
 			QLApp* app = dynamic_cast<QLApp *> (be_app);
 			app->fSettings->SetSearchTerm(GetSearchString());
 
