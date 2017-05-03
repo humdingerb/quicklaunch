@@ -32,7 +32,7 @@ public:
 
 	virtual void	DrawItem(BView*, BRect, bool);
 	
-	BString			GetItem() { return fItemString; };
+	const BString&	GetItem() const { return fItemString; };
 		
 private:
 	BPath*			fPath;

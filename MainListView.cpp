@@ -74,15 +74,18 @@ MainListView::Draw(BRect rect)
 		FillRect(rect);
 
 		QLSettings* settings = my_app->Settings();
-
 		BString string;
-		if (letters == 0)
-			string = B_TRANSLATE("No favorites yet.");
-		else if (letters <= settings->GetDelay())
-			string = B_TRANSLATE("Use '*' as wildcards.");
-		else
-			string = B_TRANSLATE("Found no matches.");
 
+		if (settings->Lock()) {
+			if (letters == 0)
+				string = B_TRANSLATE("No favorites yet.");
+			else if (letters <= settings->GetDelay())
+				string = B_TRANSLATE("Use '*' as wildcards.");
+			else
+				string = B_TRANSLATE("Found no matches.");
+
+			settings->Unlock();
+		}
 		float strwidth = font.StringWidth(string);
 		GetPreferredSize(&width, &height);
 		GetFont(&font);
@@ -208,15 +211,18 @@ MainListView::MessageReceived(BMessage* message)
 			if (ref) {
 				bool duplicate = false;
 
-				for (int i = 0; i < settings->fFavoriteList->CountItems(); i++)
-				{
-					entry_ref* favorite = static_cast<entry_ref *>
-						(settings->fFavoriteList->ItemAt(i));
-					if (*ref == *favorite)
-						duplicate = true;
-				}
-				if (!duplicate)	{
-					settings->fFavoriteList->AddItem(ref);
+				if (settings->Lock()) {
+					for (int i = 0; i < settings->fFavoriteList->CountItems(); i++)
+					{
+						entry_ref* favorite = static_cast<entry_ref *>
+							(settings->fFavoriteList->ItemAt(i));
+						if (*ref == *favorite)
+							duplicate = true;
+					}
+					if (!duplicate)
+						settings->fFavoriteList->AddItem(ref);
+
+					settings->Unlock();
 				}
 			}
 			Invalidate();
@@ -247,12 +253,15 @@ MainListView::MessageReceived(BMessage* message)
 			}
 
 			if (ref) {
-				for (int i = 0; i < settings->fFavoriteList->CountItems(); i++)
-				{
-					entry_ref* favorite = static_cast<entry_ref *>
-						(settings->fFavoriteList->ItemAt(i));
-					if (*ref == *favorite)
-						settings->fFavoriteList->RemoveItem(i);
+				if (settings->Lock()) {
+					for (int i = 0; i < settings->fFavoriteList->CountItems(); i++)
+					{
+						entry_ref* favorite = static_cast<entry_ref *>
+							(settings->fFavoriteList->ItemAt(i));
+						if (*ref == *favorite)
+							settings->fFavoriteList->RemoveItem(i);
+					}
+					settings->Unlock();
 				}
 			}
 			Invalidate();
@@ -320,7 +329,10 @@ MainListView::MessageReceived(BMessage* message)
 			MoveItem(origIndex, dropIndex);
 			Select(dropIndex);
 
-			settings->fFavoriteList->MoveItem(origIndex, dropIndex);
+			if (settings->Lock()) {
+				settings->fFavoriteList->MoveItem(origIndex, dropIndex);
+				settings->Unlock();
+			}
 			break;
 		}
 		default:

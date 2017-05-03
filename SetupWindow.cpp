@@ -37,8 +37,11 @@ SetupWindow::SetupWindow(BRect frame)
 		| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
 	fSettings = my_app->Settings();
-	fIgnoreList = fSettings->IgnoreList();
 
+	if (fSettings->Lock()) {
+		fIgnoreList = fSettings->IgnoreList();
+		fSettings->Unlock();
+	}
 	fChkDeskbar = new BCheckBox("DeskbarChk",
 		B_TRANSLATE("Show Deskbar replicant"),
 		new BMessage(DESKBAR_CHK), B_WILL_DRAW | B_NAVIGABLE);
@@ -129,15 +132,18 @@ SetupWindow::SetupWindow(BRect frame)
 		.End()
 	.End();
 
-	fChkDeskbar->SetValue(fSettings->GetDeskbar());
-	fChkVersion->SetValue(fSettings->GetShowVersion());
-	fChkPath->SetValue(fSettings->GetShowPath());
-	fChkDelay->SetValue(fSettings->GetDelay());
-	fChkSaveSearch->SetValue(fSettings->GetSaveSearch());
-	fChkSingleClick->SetValue(fSettings->GetSingleClick());
-	fChkOnTop->SetValue(fSettings->GetOnTop());
-	fChkIgnore->SetValue(fSettings->GetShowIgnore());
+	if (fSettings->Lock()) {
+		fChkDeskbar->SetValue(fSettings->GetDeskbar());
+		fChkVersion->SetValue(fSettings->GetShowVersion());
+		fChkPath->SetValue(fSettings->GetShowPath());
+		fChkDelay->SetValue(fSettings->GetDelay());
+		fChkSaveSearch->SetValue(fSettings->GetSaveSearch());
+		fChkSingleClick->SetValue(fSettings->GetSingleClick());
+		fChkOnTop->SetValue(fSettings->GetOnTop());
+		fChkIgnore->SetValue(fSettings->GetShowIgnore());
 
+		fSettings->Unlock();
+	}
 	fIgnoreList->SetViewColor(B_TRANSPARENT_COLOR);
 
 	fOpenPanel = new BFilePanel(B_OPEN_PANEL, NULL, NULL,
@@ -162,9 +168,12 @@ SetupWindow::QuitRequested()
 {
 	this->Hide();
 
-	int32 value = fSettings->GetOnTop();
-	my_app->SetWindowsFeel(value);
+	if (fSettings->Lock()) {
+		int32 value = fSettings->GetOnTop();
+		my_app->SetWindowsFeel(value);
 
+		fSettings->Unlock();
+	}
 	return false;
 }
 
