@@ -7,7 +7,7 @@
  */
 
 #include "QuickLaunch.h"
-#include "SetupListView.h"
+#include "IgnoreListView.h"
 #include "SetupWindow.h"
 
 #include <Catalog.h>
@@ -16,7 +16,7 @@
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "SetupWindow"
 
-SetupListView::SetupListView()
+IgnoreListView::IgnoreListView()
 	:
 	BListView("IgnoreList", B_MULTIPLE_SELECTION_LIST),
 	fShowingPopUpMenu(false)
@@ -24,7 +24,7 @@ SetupListView::SetupListView()
 }
 
 
-SetupListView::~SetupListView()
+IgnoreListView::~IgnoreListView()
 {
 }
 
@@ -33,7 +33,7 @@ SetupListView::~SetupListView()
 
 
 void
-SetupListView::Draw(BRect rect)
+IgnoreListView::Draw(BRect rect)
 {
 	SetHighColor(ui_color(B_LIST_BACKGROUND_COLOR));
 	BRect bounds(Bounds());
@@ -46,7 +46,7 @@ SetupListView::Draw(BRect rect)
 
 
 void
-SetupListView::FrameResized(float w, float h)
+IgnoreListView::FrameResized(float w, float h)
 {
 	BListView::FrameResized(w, h);
 
@@ -59,7 +59,7 @@ SetupListView::FrameResized(float w, float h)
 
 
 void
-SetupListView::KeyDown(const char* bytes, int32 numBytes)
+IgnoreListView::KeyDown(const char* bytes, int32 numBytes)
 {
 	switch (bytes[0]) {
 		case B_DELETE:
@@ -79,7 +79,7 @@ SetupListView::KeyDown(const char* bytes, int32 numBytes)
 
 
 void
-SetupListView::MessageReceived(BMessage* message)
+IgnoreListView::MessageReceived(BMessage* message)
 {
 	switch (message->what) {
 		case POPCLOSE:
@@ -97,7 +97,7 @@ SetupListView::MessageReceived(BMessage* message)
 
 
 void
-SetupListView::MouseDown(BPoint position)
+IgnoreListView::MouseDown(BPoint position)
 {
 	if (!IsEmpty()) {
 		bool onSelection = false;
@@ -126,7 +126,7 @@ SetupListView::MouseDown(BPoint position)
 
 
 void
-SetupListView::SelectionChanged()
+IgnoreListView::SelectionChanged()
 {
 	SetupWindow* window = dynamic_cast<SetupWindow *> (Window());
 	if (CurrentSelection() < 0)
@@ -140,7 +140,7 @@ SetupListView::SelectionChanged()
 
 
 void
-SetupListView::_ShowPopUpMenu(BPoint screen)
+IgnoreListView::_ShowPopUpMenu(BPoint screen)
 {
 	if (fShowingPopUpMenu)
 		return;

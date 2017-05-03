@@ -36,12 +36,10 @@ QLApp::QLApp()
 	:
 	BApplication(kApplicationSignature)
 {
-	fSettings = new QLSettings();
-
-	if (fSettings->GetDeskbar())	// make sure the replicant is shown
+	if (fSettings.GetDeskbar())	// make sure the replicant is shown
 		_AddToDeskbar();
 
-	fSetupWindow = new SetupWindow(fSettings->GetSetupWindowFrame());
+	fSetupWindow = new SetupWindow(fSettings.GetSetupWindowFrame());
 	fMainWindow = new MainWindow();
 }
 
@@ -50,8 +48,11 @@ QLApp::~QLApp()
 {
 	stop_watching(this);
 
-	fSettings->SetSearchTerm(fMainWindow->GetSearchString());
-	delete fSettings;
+	if (fSettings.Lock()) {
+		fSettings.SetSearchTerm(fMainWindow->GetSearchString());
+		fSettings.SaveSettings();
+		fSettings.Unlock();
+	}
 
 	BMessenger messengerMain(fMainWindow);
 	if (messengerMain.IsValid() && messengerMain.LockTarget())
@@ -129,7 +130,12 @@ QLApp::MessageReceived(BMessage* message)
 		{
 			int32 value;
 			message->FindInt32("be:value", &value);
-			fSettings->SetDeskbar(value);
+
+			if (fSettings.Lock()) {
+				fSettings.SetDeskbar(value);
+				fSettings.Unlock();
+			}
+
 			if (value)
 				_AddToDeskbar();
 			else
@@ -140,7 +146,12 @@ QLApp::MessageReceived(BMessage* message)
 		{
 			int32 value;
 			message->FindInt32("be:value", &value);
-			fSettings->SetShowVersion(value);
+
+			if (fSettings.Lock()) {
+				fSettings.SetShowVersion(value);
+				fSettings.Unlock();
+			}
+
 			if (!fMainWindow->fListView->IsEmpty()) {
 				fMainWindow->LockLooper();
 				fMainWindow->fListView->Invalidate();
@@ -152,7 +163,12 @@ QLApp::MessageReceived(BMessage* message)
 		{
 			int32 value;
 			message->FindInt32("be:value", &value);
-			fSettings->SetShowPath(value);
+
+			if (fSettings.Lock()) {
+				fSettings.SetShowPath(value);
+				fSettings.Unlock();
+			}
+
 			if (!fMainWindow->fListView->IsEmpty()) {
 				fMainWindow->LockLooper();
 				fMainWindow->fListView->Invalidate();
@@ -164,7 +180,12 @@ QLApp::MessageReceived(BMessage* message)
 		{
 			int32 value;
 			message->FindInt32("be:value", &value);
-			fSettings->SetDelay(value);
+
+			if (fSettings.Lock()) {
+				fSettings.SetDelay(value);
+				fSettings.Unlock();
+			}
+
 			fMainWindow->LockLooper();
 			fMainWindow->PostMessage('fltr');
 			fMainWindow->UnlockLooper();
@@ -174,36 +195,57 @@ QLApp::MessageReceived(BMessage* message)
 		{
 			int32 value;
 			message->FindInt32("be:value", &value);
-			fSettings->SetSaveSearch(value);
+
+			if (fSettings.Lock()) {
+				fSettings.SetSaveSearch(value);
+				fSettings.Unlock();
+			}
 			break;
 		}
 		case SINGLECLICK_CHK:
 		{
 			int32 value;
 			message->FindInt32("be:value", &value);
-			fSettings->SetSingleClick(value);
+			if (fSettings.Lock()) {
+				fSettings.SetSingleClick(value);
+				fSettings.Unlock();
+			}
 			break;
 		}
 		case ONTOP_CHK:
 		{
 			int32 value;
 			message->FindInt32("be:value", &value);
-			fSettings->SetOnTop(value);
+
+			if (fSettings.Lock()) {
+				fSettings.SetOnTop(value);
+				fSettings.Unlock();
+			}
 			break;
 		}
 		case IGNORE_CHK:
 		{
-			if (fSetupWindow->fIgnoreList->IsEmpty()) {
+			if (fSettings.fIgnoreList->IsEmpty()) {
 				fSetupWindow->LockLooper();
 				fSetupWindow->fChkIgnore->SetValue(false);
-				fSettings->SetShowIgnore(false);
+
+				if (fSettings.Lock()) {
+					fSettings.SetShowIgnore(false);
+					fSettings.Unlock();
+				}
+
 				fSetupWindow->UnlockLooper();
 				break;
 			}
 			int32 value;
 			message->FindInt32("be:value", &value);
-			fSettings->SetShowIgnore(value);
-			if (!fSetupWindow->fIgnoreList->IsEmpty()) {
+
+			if (fSettings.Lock()) {
+				fSettings.SetShowIgnore(value);
+				fSettings.Unlock();
+			}
+
+			if (!fSettings.fIgnoreList->IsEmpty()) {
  				fSetupWindow->fChkIgnore->SetValue(value);
 					fMainWindow->fListView->LockLooper();
 					fMainWindow->BuildList();
@@ -213,15 +255,21 @@ QLApp::MessageReceived(BMessage* message)
 		}
 		case FILEPANEL:
 		{
-			if (!fSetupWindow->fIgnoreList->IsEmpty()) {
+			if (!fSettings.fIgnoreList->IsEmpty()) {
 				fSetupWindow->LockLooper();
 				fSetupWindow->fChkIgnore->SetValue(true);
-				fSettings->SetShowIgnore(true);
+				if (fSettings.Lock()) {
+					fSettings.SetShowIgnore(true);
+					fSettings.Unlock();
+				}
 				fSetupWindow->UnlockLooper();
 			} else {
 				fSetupWindow->LockLooper();
 				fSetupWindow->fChkIgnore->SetValue(false);
-				fSettings->SetShowIgnore(false);
+				if (fSettings.Lock()) {
+					fSettings.SetShowIgnore(false);
+					fSettings.Unlock();
+				}
 				fSetupWindow->UnlockLooper();
 			}
 			fMainWindow->fListView->LockLooper();
@@ -268,12 +316,12 @@ QLApp::QuitRequested()
 void
 QLApp::ReadyToRun()
 {
-	BRect frame = fSettings->GetMainWindowFrame();
+	BRect frame = fSettings.GetMainWindowFrame();
 	fMainWindow->MoveTo(frame.LeftTop());
 	fMainWindow->ResizeTo(frame.right - frame.left, 0);
 	fMainWindow->Show();
 
-	fSettings->InitLists();
+	fSettings.InitLists();
 
 	fMainWindow->fListView->LockLooper();
 	fMainWindow->BuildList();
@@ -283,7 +331,7 @@ QLApp::ReadyToRun()
 	fSetupWindow->Hide();
 	fSetupWindow->Show();
 
-	if (fSettings->GetSaveSearch()) {
+	if (fSettings.GetSaveSearch()) {
 		BMessenger messenger(fMainWindow);
 		BMessage message(NEW_FILTER);
 		messenger.SendMessage(&message);

@@ -8,7 +8,7 @@
 
 #include "QuickLaunch.h"
 #include "QLSettings.h"
-#include "SetupListItem.h"
+#include "IgnoreListItem.h"
 #include "SetupWindow.h"
 
 #include <Catalog.h>
@@ -23,8 +23,8 @@
 static int
 compare_items(const void* a, const void* b)
 {
-	SetupListItem* stringA = *(SetupListItem**)a;
-	SetupListItem* stringB = *(SetupListItem**)b;
+	IgnoreListItem* stringA = *(IgnoreListItem**)a;
+	IgnoreListItem* stringB = *(IgnoreListItem**)b;
 
 	return strcmp(stringA->GetItem(), stringB->GetItem());
 }
@@ -36,6 +36,9 @@ SetupWindow::SetupWindow(BRect frame)
 		B_NORMAL_WINDOW_FEEL, B_NOT_ZOOMABLE | B_FRAME_EVENTS
 		| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
+	fSettings = my_app->Settings();
+	fIgnoreList = fSettings->IgnoreList();
+
 	fChkDeskbar = new BCheckBox("DeskbarChk",
 		B_TRANSLATE("Show Deskbar replicant"),
 		new BMessage(DESKBAR_CHK), B_WILL_DRAW | B_NAVIGABLE);
@@ -69,7 +72,6 @@ SetupWindow::SetupWindow(BRect frame)
 		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkIgnore->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
-	fIgnoreList = new SetupListView();
 	fIgnoreScroll = new BScrollView("IgnoreList", fIgnoreList,
 		B_WILL_DRAW | B_NAVIGABLE, false, true, B_FANCY_BORDER);
 	fIgnoreScroll->SetExplicitMinSize(BSize(B_SIZE_UNSET, 48));
@@ -127,15 +129,14 @@ SetupWindow::SetupWindow(BRect frame)
 		.End()
 	.End();
 
-	QLApp* app = dynamic_cast<QLApp *> (be_app);
-	fChkDeskbar->SetValue(app->fSettings->GetDeskbar());
-	fChkVersion->SetValue(app->fSettings->GetShowVersion());
-	fChkPath->SetValue(app->fSettings->GetShowPath());
-	fChkDelay->SetValue(app->fSettings->GetDelay());
-	fChkSaveSearch->SetValue(app->fSettings->GetSaveSearch());
-	fChkSingleClick->SetValue(app->fSettings->GetSingleClick());
-	fChkOnTop->SetValue(app->fSettings->GetOnTop());
-	fChkIgnore->SetValue(app->fSettings->GetShowIgnore());
+	fChkDeskbar->SetValue(fSettings->GetDeskbar());
+	fChkVersion->SetValue(fSettings->GetShowVersion());
+	fChkPath->SetValue(fSettings->GetShowPath());
+	fChkDelay->SetValue(fSettings->GetDelay());
+	fChkSaveSearch->SetValue(fSettings->GetSaveSearch());
+	fChkSingleClick->SetValue(fSettings->GetSingleClick());
+	fChkOnTop->SetValue(fSettings->GetOnTop());
+	fChkIgnore->SetValue(fSettings->GetShowIgnore());
 
 	fIgnoreList->SetViewColor(B_TRANSPARENT_COLOR);
 
@@ -161,9 +162,8 @@ SetupWindow::QuitRequested()
 {
 	this->Hide();
 
-	QLApp* app = dynamic_cast<QLApp *> (be_app);
-	int32 value = app->fSettings->GetOnTop();
-	app->SetWindowsFeel(value);
+	int32 value = fSettings->GetOnTop();
+	my_app->SetWindowsFeel(value);
 
 	return false;
 }
@@ -192,25 +192,28 @@ SetupWindow::MessageReceived(BMessage* message)
 			status_t err;
 			ref_num = 0;
 
-			while ((err = message->FindRef("refs", ref_num, &ref)) == B_OK) {
-				BPath path;
-				BEntry* entry = new BEntry(&ref);
-				entry->GetPath(&path);
-				SetupListItem* newitem = new SetupListItem(path.Path());
-				bool duplicate = false;
+			if (fSettings->Lock()) {
+				while ((err = message->FindRef("refs", ref_num, &ref)) == B_OK) {
+					BPath path;
+					BEntry* entry = new BEntry(&ref);
+					entry->GetPath(&path);
+					IgnoreListItem* newitem = new IgnoreListItem(path.Path());
+					bool duplicate = false;
 
-				for (int i = 0; i < fIgnoreList->CountItems(); i++)
-				{
-					SetupListItem* sItem = dynamic_cast<SetupListItem *>
-						(fIgnoreList->ItemAt(i));
-					if (strcmp(sItem->GetItem(), newitem->GetItem()) == 0)
-						duplicate = true;
+					for (int i = 0; i < fIgnoreList->CountItems(); i++)
+					{
+						IgnoreListItem* sItem = dynamic_cast<IgnoreListItem *>
+							(fIgnoreList->ItemAt(i));
+						if (strcmp(sItem->GetItem(), newitem->GetItem()) == 0)
+							duplicate = true;
+					}
+					if (!duplicate)	{
+						fIgnoreList->AddItem(newitem);
+						fIgnoreList->SortItems(&compare_items);
+					}
+					ref_num++;
 				}
-				if (!duplicate)	{
-					fIgnoreList->AddItem(newitem);
-					fIgnoreList->SortItems(&compare_items);
-				}
-				ref_num++;
+			fSettings->Unlock();
 			}
 			be_app->PostMessage(FILEPANEL);
 		}
@@ -224,12 +227,15 @@ SetupWindow::MessageReceived(BMessage* message)
 void
 SetupWindow::_GetSelectedItems(BList& indices)
 {
-	for (int32 i = 0; true; i++) {
-		int32 index = fIgnoreList->CurrentSelection(i);
-		if (index < 0)
-			break;
-		if (!indices.AddItem((void*)(addr_t)index))
-			break;
+	if (fSettings->Lock()) {
+		for (int32 i = 0; true; i++) {
+			int32 index = fIgnoreList->CurrentSelection(i);
+			if (index < 0)
+				break;
+			if (!indices.AddItem((void*)(addr_t)index))
+				break;
+		}
+		fSettings->Unlock();
 	}
 }
 
@@ -238,19 +244,26 @@ void
 SetupWindow::_RemoveSelected()
 {
 	BList indices;
+	int32 index;
 	_GetSelectedItems(indices);
-	int32 index = fIgnoreList->CurrentSelection() - 1;
 
-	fIgnoreList->DeselectAll();
+	if (fSettings->Lock()) {
+		index = fIgnoreList->CurrentSelection() - 1;
+		fIgnoreList->DeselectAll();
+		fSettings->Unlock();
+	}
 
 	if (indices.CountItems() > 0)
 		_RemoveItemList(indices);
 
-	if (fIgnoreList->CountItems() > 0) {
-		if (index < 0)
-			index = 0;
+	if (fSettings->Lock()) {
+		if (fIgnoreList->CountItems() > 0) {
+			if (index < 0)
+				index = 0;
 
-		fIgnoreList->Select(index);
+			fIgnoreList->Select(index);
+		}
+		fSettings->Unlock();
 	}
 }
 
@@ -259,8 +272,11 @@ void
 SetupWindow::_RemoveItemList(const BList& indices)
 {
 	int32 count = indices.CountItems();
-	for (int32 i = 0; i < count; i++) {
-		int32 index = (int32)(addr_t)indices.ItemAtFast(i) - i;
-		delete fIgnoreList->RemoveItem(index);
+	if (fSettings->Lock()) {
+		for (int32 i = 0; i < count; i++) {
+			int32 index = (int32)(addr_t)indices.ItemAtFast(i) - i;
+			delete fIgnoreList->RemoveItem(index);
+		}
+		fSettings->Unlock();
 	}
 }

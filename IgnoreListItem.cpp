@@ -9,9 +9,9 @@
 #include <ControlLook.h>
 #include <sys/stat.h>
 
-#include "SetupListItem.h"
+#include "IgnoreListItem.h"
 
-SetupListItem::SetupListItem(BString item)
+IgnoreListItem::IgnoreListItem(BString item)
 	:
 	BListItem(),
 	fItemString(item)
@@ -24,7 +24,7 @@ SetupListItem::SetupListItem(BString item)
 }
 
 
-SetupListItem::~SetupListItem()
+IgnoreListItem::~IgnoreListItem()
 {
 }
 
@@ -33,7 +33,7 @@ SetupListItem::~SetupListItem()
 
 
 void
-SetupListItem::DrawItem(BView* view, BRect rect, bool complete)
+IgnoreListItem::DrawItem(BView* view, BRect rect, bool complete)
 {
 	// set background color
 

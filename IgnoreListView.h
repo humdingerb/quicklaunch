@@ -15,10 +15,10 @@
 
 #include <stdio.h>
 
-class SetupListView : public BListView {
+class IgnoreListView : public BListView {
 public:
-					SetupListView();
-					~SetupListView();
+					IgnoreListView();
+					~IgnoreListView();
 
 	virtual void	Draw(BRect rect);
 	virtual	void	FrameResized(float w, float h);

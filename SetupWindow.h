@@ -9,7 +9,8 @@
 #ifndef SETUP_WINDOW_H
 #define SETUP_WINDOW_H
 
-#include "SetupListView.h"
+#include "IgnoreListView.h"
+#include "QLSettings.h"
 
 #include <Application.h>
 #include <Button.h>
@@ -62,7 +63,6 @@ public:
 	BCheckBox		*fChkSingleClick;
 	BCheckBox		*fChkOnTop;
 	BCheckBox		*fChkIgnore;
-	SetupListView	*fIgnoreList;
 	BButton			*fButRem;
 
 private:
@@ -75,6 +75,8 @@ private:
 	BButton			*fButAdd;
 	BFilePanel		*fOpenPanel;
 
+	QLSettings* 	fSettings;
+	IgnoreListView*	fIgnoreList;
 };
 
 #endif // SETUP_WINDOW_H

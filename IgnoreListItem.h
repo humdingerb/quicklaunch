@@ -6,8 +6,8 @@
  *	Humdinger, humdingerb@gmail.com
  */
 
-#ifndef SETUPLISTITEM_H
-#define SETUPLISTITEM_H
+#ifndef IgnoreListItem_H
+#define IgnoreListItem_H
 
 #include <Entry.h>
 #include <File.h>
@@ -25,10 +25,10 @@
 #include <string.h>
 
 
-class SetupListItem : public BListItem {
+class IgnoreListItem : public BListItem {
 public:
-					SetupListItem(BString item);
-					~SetupListItem();
+					IgnoreListItem(BString item);
+					~IgnoreListItem();
 
 	virtual void	DrawItem(BView*, BRect, bool);
 	
@@ -40,4 +40,4 @@ private:
 	bool			fIsDirectory;
 };
 
-#endif // SETUPLISTITEM_H
+#endif // IgnoreListItem_H

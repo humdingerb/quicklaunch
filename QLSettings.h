@@ -9,7 +9,10 @@
 #ifndef QLSETTINGS_H
 #define QLSETTINGS_H
 
+#include "IgnoreListView.h"
+
 #include <List.h>
+#include <Locker.h>
 #include <Rect.h>
 #include <String.h>
 
@@ -18,6 +21,10 @@ class QLSettings {
 public:
 			QLSettings();
 			~QLSettings();
+
+	bool	Lock();
+	void	Unlock();
+	void	SaveSettings();
 
 	void 	SetMainWindowFrame(BRect frame) { fMainWindowFrame = frame; };
 	void 	SetSetupWindowFrame(BRect setupframe)
@@ -43,9 +50,12 @@ public:
 	int32	GetSingleClick() { return fSingleClick; };
 	int32	GetOnTop() { return fOnTop; };
 	int32	GetShowIgnore() { return fShowIgnore; };
+
 	void	InitLists();
+	IgnoreListView* 	IgnoreList() { return fIgnoreList; }
 
 	BList	*fFavoriteList;
+	IgnoreListView	*fIgnoreList;
 
 private:
 	BRect	fMainWindowFrame;
@@ -59,6 +69,8 @@ private:
 	int32	fSingleClick;
 	int32	fOnTop;
 	int32	fShowIgnore;
+
+	BLocker	fLock;
 };
 
 #endif	// QLSETTINGS_H

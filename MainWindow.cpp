@@ -9,7 +9,7 @@
 #include "QLFilter.h"
 #include "QuickLaunch.h"
 #include "MainWindow.h"
-#include "SetupListItem.h"
+#include "IgnoreListItem.h"
 
 #include <Catalog.h>
 #include <ControlLook.h>
@@ -39,7 +39,7 @@ MainWindow::MainWindow()
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE
 		| B_FRAME_EVENTS | B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
-	QLApp* app = dynamic_cast<QLApp *> (be_app);
+	QLSettings* settings = my_app->Settings();
 	_GetIconHeight();
 
 	fSearchBox = new BTextControl("SearchBox", NULL, NULL, NULL);
@@ -80,10 +80,10 @@ MainWindow::MainWindow()
 	fListView->SetInvocationMessage(new BMessage(RETURN_KEY));
 	fListView->SetViewColor(B_TRANSPARENT_COLOR);
 
-	if (app->fSettings->GetSaveSearch())
-		fSearchBox->SetText(app->fSettings->GetSearchTerm());
+	if (settings->GetSaveSearch())
+		fSearchBox->SetText(settings->GetSearchTerm());
 
-	int32 value = app->fSettings->GetOnTop();
+	int32 value = settings->GetOnTop();
 	SetFeel(value ?	B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
 }
 
@@ -99,6 +99,8 @@ MainWindow::~MainWindow()
 void
 MainWindow::MessageReceived(BMessage* message)
 {
+	QLSettings* settings = my_app->Settings();
+
 	switch (message->what) {
 		case CURSOR_UP:
 		{
@@ -206,8 +208,10 @@ MainWindow::MessageReceived(BMessage* message)
 				snooze(300000);	// wait 0.3 sec to give Tracker time to populate
 				msgr.SendMessage(&selectMessage);
 			}
-			QLApp* app = dynamic_cast<QLApp *> (be_app);
-			app->fSettings->SetSearchTerm(GetSearchString());
+			if (settings->Lock()) {
+				settings->SetSearchTerm(GetSearchString());
+				settings->Unlock();
+			}
 
 			be_app->PostMessage(B_QUIT_REQUESTED);
 			break;
@@ -223,8 +227,7 @@ MainWindow::MessageReceived(BMessage* message)
 		}
 		case SINGLE_CLICK:
 		{
-			QLApp* app = dynamic_cast<QLApp *> (be_app);
-			if (app->fSettings->GetSingleClick() == false)
+			if (settings->GetSingleClick() == false)
 				break;
 		}	// intentional fall-through
 		case RETURN_KEY:
@@ -237,8 +240,10 @@ MainWindow::MessageReceived(BMessage* message)
 			if (item != NULL)
 				_LaunchApp(item);
 
-			QLApp* app = dynamic_cast<QLApp *> (be_app);
-			app->fSettings->SetSearchTerm(GetSearchString());
+			if (settings->Lock()) {
+				settings->SetSearchTerm(GetSearchString());
+				settings->Unlock();
+			}
 
 			be_app->PostMessage(B_QUIT_REQUESTED);
 			break;
@@ -280,10 +285,10 @@ void
 MainWindow::BuildList()
 {
 	const char* predicate = GetSearchString();
-	QLApp* app = dynamic_cast<QLApp *> (be_app);
+	QLSettings* settings = my_app->Settings();
 
 	fListView->MakeEmpty();
-	if (GetStringLength() > app->fSettings->GetDelay()) {
+	if (GetStringLength() > settings->GetDelay()) {
 
 		BVolumeRoster volumeRoster;
 		BVolume volume;
@@ -344,12 +349,13 @@ MainWindow::BuildList()
 						continue;
 
 					bool ignore = false;
-					if (app->fSettings->GetShowIgnore()) {
+					if (settings->GetShowIgnore()) {
 						BString* newItem = new BString(path.Path());
-						for (int i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
+						for (int i = 0; i < settings->fIgnoreList->CountItems(); i++)
 						{
-							SetupListItem* sItem = dynamic_cast<SetupListItem *>
-								(app->fSetupWindow->fIgnoreList->ItemAt(i));
+							IgnoreListItem* sItem = dynamic_cast<IgnoreListItem *>
+								(settings->fIgnoreList->ItemAt(i));
+
 							BString* ignoreItem = new BString(sItem->GetItem());
 
 							if (newItem->ICompare(*ignoreItem, std::min(newItem->Length(),
@@ -359,10 +365,11 @@ MainWindow::BuildList()
 					}
 					if (!ignore) {
 						bool isFav = false;
-						for (int32 i = 0; i < app->fSettings->fFavoriteList->CountItems(); i++)
+						for (int32 i = 0; i < settings->fFavoriteList->CountItems(); i++)
 						{
 							entry_ref* favorite = static_cast<entry_ref *>
-								(app->fSettings->fFavoriteList->ItemAt(i));
+								(settings->fFavoriteList->ItemAt(i));
+
 							if (!favorite)
 								continue;
 							BEntry favEntry(favorite);
@@ -380,10 +387,10 @@ MainWindow::BuildList()
 
 	} else if (GetStringLength() == 0) {
 		// show favorites
-		for (int32 i = 0; i < app->fSettings->fFavoriteList->CountItems(); i++)
+		for (int32 i = 0; i < settings->fFavoriteList->CountItems(); i++)
 		{
 			entry_ref* favorite = static_cast<entry_ref *>
-				(app->fSettings->fFavoriteList->ItemAt(i));
+				(settings->fFavoriteList->ItemAt(i));
 			if (!favorite)
 				continue;
 			BEntry entry(favorite);

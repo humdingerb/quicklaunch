@@ -20,6 +20,8 @@
 static const char kVersion[] = "v1.1";
 static const char kCopyright[] = "2010-2017";
 
+#define my_app dynamic_cast<QLApp*>(be_app)
+
 
 class QLApp : public BApplication {
 public:
@@ -31,15 +33,17 @@ public:
 	virtual bool	QuitRequested();
 	virtual void	ReadyToRun();
 
+	QLSettings* 	Settings() { return &fSettings; }
 	void			SetWindowsFeel(int32 value);
 
-	SetupWindow		*fSetupWindow;
-	QLSettings		*fSettings;
-	MainWindow		*fMainWindow;
+	SetupWindow*	fSetupWindow;
+	MainWindow*		fMainWindow;
 
 private:
 	void			_AddToDeskbar();
 	void			_RemoveFromDeskbar();
+
+	QLSettings		fSettings;
 };
 
 #endif	// QUICKLAUNCH_H

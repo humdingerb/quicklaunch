@@ -67,17 +67,18 @@ MainListView::Draw(BRect rect)
 	int letters = window->GetStringLength();
 	float width, height;
 	BFont font;
-	QLApp* app = dynamic_cast<QLApp *> (be_app);
 
 	if (IsEmpty()) {
 		SetLowColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
 		SetHighColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
 		FillRect(rect);
 
+		QLSettings* settings = my_app->Settings();
+
 		BString string;
 		if (letters == 0)
 			string = B_TRANSLATE("No favorites yet.");
-		else if (letters <= app->fSettings->GetDelay())
+		else if (letters <= settings->GetDelay())
 			string = B_TRANSLATE("Use '*' as wildcards.");
 		else
 			string = B_TRANSLATE("Found no matches.");
@@ -179,6 +180,8 @@ MainListView::InitiateDrag(BPoint point, int32 dragIndex, bool wasSelected)
 void
 MainListView::MessageReceived(BMessage* message)
 {
+	QLSettings* settings = my_app->Settings();
+
 	switch (message->what) {
 		case POPCLOSED:
 		{
@@ -188,8 +191,6 @@ MainListView::MessageReceived(BMessage* message)
 		case ADDFAVORITE:
 		{
 			fShowingPopUpMenu = false;
-
-			QLApp* app = dynamic_cast<QLApp *> (be_app);
 			entry_ref* ref = NULL;
 			MainListItem* item = NULL;
 
@@ -207,15 +208,15 @@ MainListView::MessageReceived(BMessage* message)
 			if (ref) {
 				bool duplicate = false;
 
-				for (int i = 0; i < app->fSettings->fFavoriteList->CountItems(); i++)
+				for (int i = 0; i < settings->fFavoriteList->CountItems(); i++)
 				{
 					entry_ref* favorite = static_cast<entry_ref *>
-						(app->fSettings->fFavoriteList->ItemAt(i));
+						(settings->fFavoriteList->ItemAt(i));
 					if (*ref == *favorite)
 						duplicate = true;
 				}
 				if (!duplicate)	{
-					app->fSettings->fFavoriteList->AddItem(ref);
+					settings->fFavoriteList->AddItem(ref);
 				}
 			}
 			Invalidate();
@@ -224,8 +225,6 @@ MainListView::MessageReceived(BMessage* message)
 		case REMOVEFAVORITE:
 		{
 			fShowingPopUpMenu = false;
-
-			QLApp* app = dynamic_cast<QLApp *> (be_app);
 			entry_ref* ref = NULL;
 			MainListItem* item = NULL;
 
@@ -248,12 +247,12 @@ MainListView::MessageReceived(BMessage* message)
 			}
 
 			if (ref) {
-				for (int i = 0; i < app->fSettings->fFavoriteList->CountItems(); i++)
+				for (int i = 0; i < settings->fFavoriteList->CountItems(); i++)
 				{
 					entry_ref* favorite = static_cast<entry_ref *>
-						(app->fSettings->fFavoriteList->ItemAt(i));
+						(settings->fFavoriteList->ItemAt(i));
 					if (*ref == *favorite)
-						app->fSettings->fFavoriteList->RemoveItem(i);
+						settings->fFavoriteList->RemoveItem(i);
 				}
 			}
 			Invalidate();
@@ -263,8 +262,6 @@ MainListView::MessageReceived(BMessage* message)
 		case ADDIGNORE:
 		{
 			fShowingPopUpMenu = false;
-
-			QLApp* app = dynamic_cast<QLApp *> (be_app);
 			entry_ref* ref = NULL;
 			MainListItem* item = NULL;
 
@@ -278,7 +275,7 @@ MainListView::MessageReceived(BMessage* message)
 				ref = item->Ref();
 
 			if (ref) {
-				BMessenger msgr(app->fSetupWindow);
+				BMessenger msgr(my_app->fSetupWindow);
 				BMessage refMsg(B_REFS_RECEIVED);
 				refMsg.AddRef("refs",ref);
 				msgr.SendMessage(&refMsg);
@@ -303,9 +300,8 @@ MainListView::MessageReceived(BMessage* message)
 			if (!fav)
 				break;
 
-			QLApp* app = dynamic_cast<QLApp *> (be_app);
 			// see if we're dragging a Favorite in a result list
-			if (app->fMainWindow->GetStringLength() > 0)
+			if (my_app->fMainWindow->GetStringLength() > 0)
 				break;
 
 			int32 origIndex;
@@ -324,7 +320,7 @@ MainListView::MessageReceived(BMessage* message)
 			MoveItem(origIndex, dropIndex);
 			Select(dropIndex);
 
-			app->fSettings->fFavoriteList->MoveItem(origIndex, dropIndex);
+			settings->fFavoriteList->MoveItem(origIndex, dropIndex);
 			break;
 		}
 		default:

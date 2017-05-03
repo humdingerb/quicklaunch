@@ -8,7 +8,7 @@
 
 #include "QLSettings.h"
 #include "QuickLaunch.h"
-#include "SetupListItem.h"
+#include "IgnoreListItem.h"
 
 #include <Application.h>
 #include <FindDirectory.h>
@@ -44,6 +44,7 @@ QLSettings::QLSettings()
 	fOnTop = false;
 	fShowIgnore = false;
 	fFavoriteList = new BList();
+	fIgnoreList = new IgnoreListView();
 
 	path.Append("QuickLaunch_settings");
 	BFile file(path.Path(), B_READ_ONLY);
@@ -101,16 +102,22 @@ QLSettings::QLSettings()
 
 QLSettings::~QLSettings()
 {
-	QLApp* app = dynamic_cast<QLApp *> (be_app);
+	delete fFavoriteList;
+	delete fIgnoreList;
+}
 
+
+void
+QLSettings::SaveSettings()
+{
 	BPath path;
 	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path) < B_OK)
 		return;
 
 	BMessage settings;
-	settings.AddRect("main window frame", app->fMainWindow->Frame());
+	settings.AddRect("main window frame", my_app->fMainWindow->Frame());
 	settings.AddRect("setup window frame",
-		app->fSetupWindow->ConvertToScreen(app->fSetupWindow->Bounds()));
+		my_app->fSetupWindow->ConvertToScreen(my_app->fSetupWindow->Bounds()));
 	settings.AddInt32("deskbar", fDeskbar);
 	settings.AddInt32("show version", fShowVersion);
 	settings.AddInt32("show path", fShowPath);
@@ -121,10 +128,10 @@ QLSettings::~QLSettings()
 	settings.AddInt32("ontop", fOnTop);
 	settings.AddInt32("show ignore", fShowIgnore);
 
-	for (int32 i = 0; i < app->fSetupWindow->fIgnoreList->CountItems(); i++)
+	for (int32 i = 0; i < fIgnoreList->CountItems(); i++)
 	{
-		SetupListItem* item = dynamic_cast<SetupListItem *>
-			(app->fSetupWindow->fIgnoreList->ItemAt(i));
+		IgnoreListItem* item = dynamic_cast<IgnoreListItem *>
+			(fIgnoreList->ItemAt(i));
 		if (!item)
 			continue;
 
@@ -152,16 +159,12 @@ QLSettings::~QLSettings()
 	BFile file(path.Path(), B_WRITE_ONLY | B_CREATE_FILE | B_ERASE_FILE);
 	if (file.InitCheck() == B_OK)
 		settings.Flatten(&file);
-
-	delete fFavoriteList;
 }
 
 
 void
 QLSettings::InitLists()
 {
-	QLApp* app = dynamic_cast<QLApp *> (be_app);
-
 	BPath path;
 	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path) != B_OK)
 		return;
@@ -173,8 +176,7 @@ QLSettings::InitLists()
 		BString itemText;
 		int32 i = 0;
 		while (settings.FindString("item", i++, &itemText) == B_OK) {
-			app->fSetupWindow->fIgnoreList->AddItem(
-			new SetupListItem(itemText.String()));
+			fIgnoreList->AddItem(new IgnoreListItem(itemText.String()));
 		}
 		i = 0;
 		while (settings.FindString("favorite", i++, &itemText) == B_OK) {
@@ -184,4 +186,18 @@ QLSettings::InitLists()
 				fFavoriteList->AddItem(new entry_ref(favorite));
 		}
 	}
+}
+
+
+bool
+QLSettings::Lock()
+{
+	return fLock.Lock();
+}
+
+
+void
+QLSettings::Unlock()
+{
+	fLock.Unlock();
 }

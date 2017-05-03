@@ -83,7 +83,6 @@ MainListItem::~MainListItem()
 void
 MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 {
-	QLApp* app = dynamic_cast<QLApp *> (be_app);
 	float spacing = be_control_look->DefaultLabelSpacing();
 	float offset = spacing;
 	BFont appfont;
@@ -135,7 +134,9 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 	appfont.SetFace(B_BOLD_FACE);
 	view->SetFont(&appfont);
 
-	if (app->fSettings->GetShowVersion() || app->fSettings->GetShowPath()) {
+	QLSettings* settings = my_app->Settings();
+
+	if (settings->GetShowVersion() || settings->GetShowPath()) {
 		view->MovePenTo(offset,
 			rect.top + ((rect.Height() - (finfo.ascent
 			+ finfo.descent + finfo.leading)) / 2)
@@ -176,7 +177,7 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 	string = "";
 	
 	char text[256];
-	if (app->fSettings->GetShowVersion()) {
+	if (settings->GetShowVersion()) {
 		snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.major);
 		string << "v" << text << ".";
 		snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.middle);
@@ -184,10 +185,10 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 		snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.minor);
 		string << text;
 	}
-	if (app->fSettings->GetShowVersion() && app->fSettings->GetShowPath())
+	if (settings->GetShowVersion() && settings->GetShowPath())
 		string << " - ";
 		
-	if (app->fSettings->GetShowPath()) {
+	if (settings->GetShowPath()) {
 		string << parent.Path();
 		string << "/";
 	}
