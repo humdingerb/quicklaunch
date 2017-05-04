@@ -47,8 +47,8 @@ private:
 	entry_ref		fRef;
 	BPath			fPath;
 	version_info	fVersionInfo;
-	BBitmap			*fIcon;
-	BBitmap			*fFavoriteIcon;
+	BBitmap*		fIcon;
+	BBitmap*		fFavoriteIcon;
 	int				fIconSize;
 	bool			fIsFavorite;
 };

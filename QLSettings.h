@@ -51,11 +51,11 @@ public:
 	int32	GetOnTop() { return fOnTop; };
 	int32	GetShowIgnore() { return fShowIgnore; };
 
-	void	InitLists();
-	IgnoreListView* 	IgnoreList() { return fIgnoreList; };
+	void			InitLists();
+	IgnoreListView* IgnoreList() { return fIgnoreList; };
 
-	BList	*fFavoriteList;
-	IgnoreListView	*fIgnoreList;
+	BList*			fFavoriteList;
+	IgnoreListView*	fIgnoreList;
 
 private:
 	BRect	fMainWindowFrame;

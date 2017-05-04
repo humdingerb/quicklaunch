@@ -55,15 +55,15 @@ public:
 	bool			QuitRequested();
 	void			MessageReceived(BMessage* message);
 
-	BCheckBox		*fChkDeskbar;
-	BCheckBox		*fChkVersion;
-	BCheckBox		*fChkPath;
-	BCheckBox		*fChkDelay;
-	BCheckBox		*fChkSaveSearch;
-	BCheckBox		*fChkSingleClick;
-	BCheckBox		*fChkOnTop;
-	BCheckBox		*fChkIgnore;
-	BButton			*fButRem;
+	BCheckBox*		fChkDeskbar;
+	BCheckBox*		fChkVersion;
+	BCheckBox*		fChkPath;
+	BCheckBox*		fChkDelay;
+	BCheckBox*		fChkSaveSearch;
+	BCheckBox*		fChkSingleClick;
+	BCheckBox*		fChkOnTop;
+	BCheckBox*		fChkIgnore;
+	BButton*		fButRem;
 
 private:
 
@@ -71,9 +71,9 @@ private:
 			void	_RemoveSelected(); // uses RemoveItemList()
 	virtual	void	_RemoveItemList(const BList& indices);
 
-	BScrollView		*fIgnoreScroll;
-	BButton			*fButAdd;
-	BFilePanel		*fOpenPanel;
+	BScrollView*	fIgnoreScroll;
+	BButton*		fButAdd;
+	BFilePanel*		fOpenPanel;
 
 	IgnoreListView*	fIgnoreList;
 };

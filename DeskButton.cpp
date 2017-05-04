@@ -148,7 +148,7 @@ DeskButton::Draw(BRect rect)
 
 
 void
-DeskButton::MessageReceived(BMessage *message)
+DeskButton::MessageReceived(BMessage* message)
 {
 	switch (message->what) {
 		case B_ABOUT_REQUESTED:
@@ -182,7 +182,7 @@ DeskButton::MouseDown(BPoint point)
 	if (mouseButtons & B_SECONDARY_MOUSE_BUTTON) {
 		_GetFavoriteList();
 
-		BPopUpMenu *menu = new BPopUpMenu("", false, false);
+		BPopUpMenu* menu = new BPopUpMenu("", false, false);
 		menu->SetFont(be_plain_font);
 
 		if (!fFavoriteList->IsEmpty()) {

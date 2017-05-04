@@ -56,21 +56,21 @@ public:
 	void			SetScrollPosition(float position);
 	int				GetStringLength()
 						{return fSearchBox->TextView()->TextLength();};
-	const char		*GetSearchString()
+	const char*		GetSearchString()
 						{return fSearchBox->TextView()->Text();};
 	void			ResizeWindow();
 
-	MainListView	*fListView;
+	MainListView*	fListView;
 	
 private:
 	void			_GetIconHeight();
 	void			_LaunchApp(MainListItem* item);
 
 	int				fIconHeight;
-	BTextControl	*fSearchBox;
-	BButton			*fSetupButton;
-	BButton			*fHelpButton;
-	BScrollView		*fScrollView;
+	BTextControl*	fSearchBox;
+	BButton*		fSetupButton;
+	BButton*		fHelpButton;
+	BScrollView*	fScrollView;
 };
 
 #endif // QL_WINDOW_H

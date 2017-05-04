@@ -97,7 +97,7 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 	else {
 		bgColor = ui_color(B_LIST_BACKGROUND_COLOR);
 		if (IsFavorite()) {
-			rgb_color favColor = (rgb_color){255, 255, 0, 255};
+			rgb_color favColor = (rgb_color) {255, 255, 0, 255};
 			bgColor = mix_color(bgColor, favColor, 16);
 		}
 	}
@@ -223,14 +223,14 @@ MainListItem::SetFavorite(bool state)
 {
 	if (state) {
 		size_t size;
-	    const void* buf = be_app->AppResources()
+		const void* buf = be_app->AppResources()
 			->LoadResource(B_VECTOR_ICON_TYPE, "FavoriteStar", &size);
 
-	    if (buf != NULL) {
+		if (buf != NULL) {
 			fFavoriteIcon = new BBitmap(BRect(0, 0, fIconSize, fIconSize),
 				B_RGBA32);
 			BIconUtils::GetVectorIcon((const uint8*)buf, size, fFavoriteIcon);
-	    }
+		}
 	}
-    fIsFavorite = state;
+	fIsFavorite = state;
 }

@@ -391,7 +391,8 @@ MainListView::MouseUp(BPoint position)
 
 
 void
-MainListView::MouseMoved(BPoint where, uint32 transit, const BMessage* dragMessage)
+MainListView::MouseMoved(BPoint where, uint32 transit,
+	const BMessage* dragMessage)
 {
 	if (dragMessage != NULL) {
 		switch (transit) {
