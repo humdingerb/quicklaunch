@@ -33,7 +33,7 @@ public:
 	virtual bool	QuitRequested();
 	virtual void	ReadyToRun();
 
-	QLSettings* 	Settings() { return &fSettings; }
+	QLSettings& 	Settings() { return fSettings; }
 	void			SetWindowsFeel(int32 value);
 
 	SetupWindow*	fSetupWindow;

@@ -52,7 +52,7 @@ public:
 	int32	GetShowIgnore() { return fShowIgnore; };
 
 	void	InitLists();
-	IgnoreListView* 	IgnoreList() { return fIgnoreList; }
+	IgnoreListView* 	IgnoreList() { return fIgnoreList; };
 
 	BList	*fFavoriteList;
 	IgnoreListView	*fIgnoreList;

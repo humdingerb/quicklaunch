@@ -75,7 +75,6 @@ private:
 	BButton			*fButAdd;
 	BFilePanel		*fOpenPanel;
 
-	QLSettings* 	fSettings;
 	IgnoreListView*	fIgnoreList;
 };
 

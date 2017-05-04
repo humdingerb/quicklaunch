@@ -39,7 +39,7 @@ MainWindow::MainWindow()
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE
 		| B_FRAME_EVENTS | B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
-	QLSettings* settings = my_app->Settings();
+	QLSettings& settings = my_app->Settings();
 	_GetIconHeight();
 
 	fSearchBox = new BTextControl("SearchBox", NULL, NULL, NULL);
@@ -80,14 +80,14 @@ MainWindow::MainWindow()
 	fListView->SetInvocationMessage(new BMessage(RETURN_KEY));
 	fListView->SetViewColor(B_TRANSPARENT_COLOR);
 
-	if (settings->Lock()) {
-		if (settings->GetSaveSearch())
-			fSearchBox->SetText(settings->GetSearchTerm());
+	if (settings.Lock()) {
+		if (settings.GetSaveSearch())
+			fSearchBox->SetText(settings.GetSearchTerm());
 
-		int32 value = settings->GetOnTop();
+		int32 value = settings.GetOnTop();
 		SetFeel(value ?	B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
 
-		settings->Unlock();
+		settings.Unlock();
 	}
 }
 
@@ -103,7 +103,7 @@ MainWindow::~MainWindow()
 void
 MainWindow::MessageReceived(BMessage* message)
 {
-	QLSettings* settings = my_app->Settings();
+	QLSettings& settings = my_app->Settings();
 
 	switch (message->what) {
 		case CURSOR_UP:
@@ -212,9 +212,9 @@ MainWindow::MessageReceived(BMessage* message)
 				snooze(300000);	// wait 0.3 sec to give Tracker time to populate
 				msgr.SendMessage(&selectMessage);
 			}
-			if (settings->Lock()) {
-				settings->SetSearchTerm(GetSearchString());
-				settings->Unlock();
+			if (settings.Lock()) {
+				settings.SetSearchTerm(GetSearchString());
+				settings.Unlock();
 			}
 
 			be_app->PostMessage(B_QUIT_REQUESTED);
@@ -231,7 +231,7 @@ MainWindow::MessageReceived(BMessage* message)
 		}
 		case SINGLE_CLICK:
 		{
-			if (settings->GetSingleClick() == false)
+			if (settings.GetSingleClick() == false)
 				break;
 		}	// intentional fall-through
 		case RETURN_KEY:
@@ -244,9 +244,9 @@ MainWindow::MessageReceived(BMessage* message)
 			if (item != NULL)
 				_LaunchApp(item);
 
-			if (settings->Lock()) {
-				settings->SetSearchTerm(GetSearchString());
-				settings->Unlock();
+			if (settings.Lock()) {
+				settings.SetSearchTerm(GetSearchString());
+				settings.Unlock();
 			}
 
 			be_app->PostMessage(B_QUIT_REQUESTED);
@@ -289,11 +289,11 @@ void
 MainWindow::BuildList()
 {
 	const char* predicate = GetSearchString();
-	QLSettings* settings = my_app->Settings();
+	QLSettings& settings = my_app->Settings();
 
 	fListView->MakeEmpty();
-	if (settings->Lock()) {
-		if (GetStringLength() > settings->GetDelay()) {
+	if (settings.Lock()) {
+		if (GetStringLength() > settings.GetDelay()) {
 
 			BVolumeRoster volumeRoster;
 			BVolume volume;
@@ -354,12 +354,12 @@ MainWindow::BuildList()
 							continue;
 
 						bool ignore = false;
-						if (settings->GetShowIgnore()) {
+						if (settings.GetShowIgnore()) {
 							BString* newItem = new BString(path.Path());
-							for (int i = 0; i < settings->fIgnoreList->CountItems(); i++)
+							for (int i = 0; i < settings.fIgnoreList->CountItems(); i++)
 							{
 								IgnoreListItem* sItem = dynamic_cast<IgnoreListItem *>
-									(settings->fIgnoreList->ItemAt(i));
+									(settings.fIgnoreList->ItemAt(i));
 
 								if (newItem->ICompare(sItem->GetItem(),
 										std::min(newItem->Length(),
@@ -369,10 +369,10 @@ MainWindow::BuildList()
 						}
 						if (!ignore) {
 							bool isFav = false;
-							for (int32 i = 0; i < settings->fFavoriteList->CountItems(); i++)
+							for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++)
 							{
 								entry_ref* favorite = static_cast<entry_ref *>
-									(settings->fFavoriteList->ItemAt(i));
+									(settings.fFavoriteList->ItemAt(i));
 
 								if (!favorite)
 									continue;
@@ -391,10 +391,10 @@ MainWindow::BuildList()
 
 		} else if (GetStringLength() == 0) {
 			// show favorites
-			for (int32 i = 0; i < settings->fFavoriteList->CountItems(); i++)
+			for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++)
 			{
 				entry_ref* favorite = static_cast<entry_ref *>
-					(settings->fFavoriteList->ItemAt(i));
+					(settings.fFavoriteList->ItemAt(i));
 				if (!favorite)
 					continue;
 				BEntry entry(favorite);
@@ -402,7 +402,7 @@ MainWindow::BuildList()
 					fListView->AddItem(new MainListItem(&entry, fIconHeight, true));
 			}
 		}
-		settings->Unlock();
+		settings.Unlock();
 	}
 	ResizeWindow();
 }

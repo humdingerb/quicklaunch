@@ -36,11 +36,10 @@ SetupWindow::SetupWindow(BRect frame)
 		B_NORMAL_WINDOW_FEEL, B_NOT_ZOOMABLE | B_FRAME_EVENTS
 		| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
-	fSettings = my_app->Settings();
-
-	if (fSettings->Lock()) {
-		fIgnoreList = fSettings->IgnoreList();
-		fSettings->Unlock();
+	QLSettings& settings = my_app->Settings();
+	if (settings.Lock()) {
+		fIgnoreList = settings.IgnoreList();
+		settings.Unlock();
 	}
 	fChkDeskbar = new BCheckBox("DeskbarChk",
 		B_TRANSLATE("Show Deskbar replicant"),
@@ -132,17 +131,17 @@ SetupWindow::SetupWindow(BRect frame)
 		.End()
 	.End();
 
-	if (fSettings->Lock()) {
-		fChkDeskbar->SetValue(fSettings->GetDeskbar());
-		fChkVersion->SetValue(fSettings->GetShowVersion());
-		fChkPath->SetValue(fSettings->GetShowPath());
-		fChkDelay->SetValue(fSettings->GetDelay());
-		fChkSaveSearch->SetValue(fSettings->GetSaveSearch());
-		fChkSingleClick->SetValue(fSettings->GetSingleClick());
-		fChkOnTop->SetValue(fSettings->GetOnTop());
-		fChkIgnore->SetValue(fSettings->GetShowIgnore());
+	if (settings.Lock()) {
+		fChkDeskbar->SetValue(settings.GetDeskbar());
+		fChkVersion->SetValue(settings.GetShowVersion());
+		fChkPath->SetValue(settings.GetShowPath());
+		fChkDelay->SetValue(settings.GetDelay());
+		fChkSaveSearch->SetValue(settings.GetSaveSearch());
+		fChkSingleClick->SetValue(settings.GetSingleClick());
+		fChkOnTop->SetValue(settings.GetOnTop());
+		fChkIgnore->SetValue(settings.GetShowIgnore());
 
-		fSettings->Unlock();
+		settings.Unlock();
 	}
 	fIgnoreList->SetViewColor(B_TRANSPARENT_COLOR);
 
@@ -168,11 +167,12 @@ SetupWindow::QuitRequested()
 {
 	this->Hide();
 
-	if (fSettings->Lock()) {
-		int32 value = fSettings->GetOnTop();
+	QLSettings& settings = my_app->Settings();
+	if (settings.Lock()) {
+		int32 value = settings.GetOnTop();
 		my_app->SetWindowsFeel(value);
 
-		fSettings->Unlock();
+		settings.Unlock();
 	}
 	return false;
 }
@@ -201,7 +201,8 @@ SetupWindow::MessageReceived(BMessage* message)
 			status_t err;
 			ref_num = 0;
 
-			if (fSettings->Lock()) {
+			QLSettings& settings = my_app->Settings();
+			if (settings.Lock()) {
 				while ((err = message->FindRef("refs", ref_num, &ref)) == B_OK) {
 					BPath path;
 					BEntry* entry = new BEntry(&ref);
@@ -222,7 +223,7 @@ SetupWindow::MessageReceived(BMessage* message)
 					}
 					ref_num++;
 				}
-			fSettings->Unlock();
+			settings.Unlock();
 			}
 			be_app->PostMessage(FILEPANEL);
 		}
@@ -236,7 +237,8 @@ SetupWindow::MessageReceived(BMessage* message)
 void
 SetupWindow::_GetSelectedItems(BList& indices)
 {
-	if (fSettings->Lock()) {
+	QLSettings& settings = my_app->Settings();
+	if (settings.Lock()) {
 		for (int32 i = 0; true; i++) {
 			int32 index = fIgnoreList->CurrentSelection(i);
 			if (index < 0)
@@ -244,7 +246,7 @@ SetupWindow::_GetSelectedItems(BList& indices)
 			if (!indices.AddItem((void*)(addr_t)index))
 				break;
 		}
-		fSettings->Unlock();
+		settings.Unlock();
 	}
 }
 
@@ -256,23 +258,24 @@ SetupWindow::_RemoveSelected()
 	int32 index;
 	_GetSelectedItems(indices);
 
-	if (fSettings->Lock()) {
+	QLSettings& settings = my_app->Settings();
+	if (settings.Lock()) {
 		index = fIgnoreList->CurrentSelection() - 1;
 		fIgnoreList->DeselectAll();
-		fSettings->Unlock();
+		settings.Unlock();
 	}
 
 	if (indices.CountItems() > 0)
 		_RemoveItemList(indices);
 
-	if (fSettings->Lock()) {
+	if (settings.Lock()) {
 		if (fIgnoreList->CountItems() > 0) {
 			if (index < 0)
 				index = 0;
 
 			fIgnoreList->Select(index);
 		}
-		fSettings->Unlock();
+		settings.Unlock();
 	}
 }
 
@@ -281,11 +284,13 @@ void
 SetupWindow::_RemoveItemList(const BList& indices)
 {
 	int32 count = indices.CountItems();
-	if (fSettings->Lock()) {
+
+	QLSettings& settings = my_app->Settings();
+	if (settings.Lock()) {
 		for (int32 i = 0; i < count; i++) {
 			int32 index = (int32)(addr_t)indices.ItemAtFast(i) - i;
 			delete fIgnoreList->RemoveItem(index);
 		}
-		fSettings->Unlock();
+		settings.Unlock();
 	}
 }

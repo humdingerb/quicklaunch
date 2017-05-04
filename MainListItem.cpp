@@ -134,9 +134,9 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 	appfont.SetFace(B_BOLD_FACE);
 	view->SetFont(&appfont);
 
-	QLSettings* settings = my_app->Settings();
-	if (settings->Lock()) {
-		if (settings->GetShowVersion() || settings->GetShowPath()) {
+	QLSettings& settings = my_app->Settings();
+	if (settings.Lock()) {
+		if (settings.GetShowVersion() || settings.GetShowPath()) {
 			view->MovePenTo(offset,
 				rect.top + ((rect.Height() - (finfo.ascent
 				+ finfo.descent + finfo.leading)) / 2)
@@ -177,7 +177,7 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 		string = "";
 
 		char text[256];
-		if (settings->GetShowVersion()) {
+		if (settings.GetShowVersion()) {
 			snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.major);
 			string << "v" << text << ".";
 			snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.middle);
@@ -185,10 +185,10 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 			snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.minor);
 			string << text;
 		}
-		if (settings->GetShowVersion() && settings->GetShowPath())
+		if (settings.GetShowVersion() && settings.GetShowPath())
 			string << " - ";
 
-		if (settings->GetShowPath()) {
+		if (settings.GetShowPath()) {
 			string << parent.Path();
 			string << "/";
 		}
@@ -196,7 +196,7 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 		view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - fIconSize
 			- offset / 2);
 		view->DrawString(string.String());
-			settings->Unlock();
+			settings.Unlock();
 	}
 	// draw lines
 
