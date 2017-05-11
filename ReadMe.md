@@ -1,5 +1,5 @@
 ![QuickLaunch icon](./images/quicklaunch_icon_64.png)
-**QuickLaunch v1.1**
+**QuickLaunch v1.2**
 for [Haiku](https://www.haiku-os.org)
 
 * * *
@@ -80,13 +80,22 @@ QuickLaunch is directly available through HaikuDepot from the HaikuPorts reposit
 
 Please use GitHubs's [issue tracker](https://github.com/humdingerb/quicklaunch/issues) if you experience unusual difficulties or email your general feedback to [me](mailto:humdingerb@gmail.com). Also, email me if you'd like to provide more localizations.
 
+I'd be very grateful for any further translations for QuickLaunch and other applications at [pootle's '3rd party apps' project](https://i18n.haiku-os.org/pootle/projects/3rd_party/).
+
 ### Thanks
 
 I have to thank DarkWyrm for some helpful hints and for some of the code I re-used from his RunProgram app and his EscapeCancelFilter. Equally useful was Robert Polic's EZLauncher of BeNewsletter 3-46 and the help I got on the #haiku IRC channel.
 AnEvilYak provided valuable hints and code when I got stuck.
-Finally, thanks to everyone that contributed translations for QuickLaunch.
+Finally, thanks to everyone that contributed translations and bug reports for QuickLaunch.
 
 ### History
+
+**1.2** - _11-05-2017:_
+
+* Favorites can now be drag & dropped on apps that accept a program, like LaunchBox - or in fact the ignore list of the Setup window.
+* Favorites cannot be moved any longer in a result list, only in the favorites list.
+* When opening an app's containing folder, scroll to and select the app.
+* Fix crash due to a race condition.
 
 **1.1** - _31-03-2017:_
 

@@ -255,7 +255,7 @@ void
 SetupWindow::_RemoveSelected()
 {
 	BList indices;
-	int32 index;
+	int32 index = 0;
 	_GetSelectedItems(indices);
 
 	QLSettings& settings = my_app->Settings();
