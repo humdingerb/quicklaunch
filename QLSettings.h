@@ -38,6 +38,7 @@ public:
 	void	SetOnTop(int32 ontop) { fOnTop = ontop; };
 	void	SetSingleClick(bool singleclick) { fSingleClick = singleclick; };
 	void	SetShowIgnore(int32 ignore) { fShowIgnore = ignore; };
+	void	SetUseContains(int32 usecontains) { fUseContains = usecontains; };
 
 	BRect	GetMainWindowFrame() { return fMainWindowFrame; };
 	BRect	GetSetupWindowFrame() { return fSetupWindowFrame; };
@@ -50,6 +51,7 @@ public:
 	int32	GetSingleClick() { return fSingleClick; };
 	int32	GetOnTop() { return fOnTop; };
 	int32	GetShowIgnore() { return fShowIgnore; };
+	int32	GetUseContains() { return fUseContains; };
 
 	void			InitLists();
 	IgnoreListView* IgnoreList() { return fIgnoreList; };
@@ -69,6 +71,7 @@ private:
 	int32	fSingleClick;
 	int32	fOnTop;
 	int32	fShowIgnore;
+	int32	fUseContains;
 
 	BLocker	fLock;
 };

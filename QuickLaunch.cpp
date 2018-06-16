@@ -223,6 +223,23 @@ QLApp::MessageReceived(BMessage* message)
 			}
 			break;
 		}
+		case USECONTAINS_CHK:
+		{
+			int32 value;
+			message->FindInt32("be:value", &value);
+
+			if (fSettings.Lock()) {
+				fSettings.SetUseContains(value);
+				fSettings.Unlock();
+			}
+
+			if (!fMainWindow->fListView->IsEmpty()) {
+				fMainWindow->LockLooper();
+				fMainWindow->fListView->Invalidate();
+				fMainWindow->UnlockLooper();
+			}
+			break;
+		}
 		case IGNORE_CHK:
 		{
 			if (fSettings.fIgnoreList->IsEmpty()) {

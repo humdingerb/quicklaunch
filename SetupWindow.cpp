@@ -69,11 +69,14 @@ SetupWindow::SetupWindow(BRect frame)
 		B_TRANSLATE("Window always on top"),
 		new BMessage(ONTOP_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkOnTop->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+	fChkUseContains = new BCheckBox("UseContainsChk",
+		B_TRANSLATE("Search using Contains, instead of Begins With"),
+		new BMessage(USECONTAINS_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkUseContains->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 	fChkIgnore = new BCheckBox("IgnoreChk",
 		B_TRANSLATE("Ignore these files & folders (and their subfolders):"),
 		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkIgnore->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
-
 	fIgnoreScroll = new BScrollView("IgnoreList", fIgnoreList,
 		B_WILL_DRAW | B_NAVIGABLE, false, true, B_FANCY_BORDER);
 	fIgnoreScroll->SetExplicitMinSize(BSize(B_SIZE_UNSET, 48));
@@ -92,10 +95,11 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkPath->SetTarget(be_app);
 	fChkDelay->SetTarget(be_app);
 	fChkSaveSearch->SetTarget(be_app);
-	fChkOnTop->SetTarget(be_app);
 	fChkSingleClick->SetTarget(be_app);
+	fChkOnTop->SetTarget(be_app);
+	fChkUseContains->SetTarget(be_app);
 	fChkIgnore->SetTarget(be_app);
-
+	
 	// Build the layout
 
 	float spacing = be_control_look->DefaultItemSpacing();
@@ -115,6 +119,7 @@ SetupWindow::SetupWindow(BRect frame)
 			.Add(fChkSaveSearch)
 			.Add(fChkSingleClick)
 			.Add(fChkOnTop)
+			.Add(fChkUseContains)
 			.SetInsets(spacing, spacing, spacing, 0)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
@@ -140,6 +145,7 @@ SetupWindow::SetupWindow(BRect frame)
 		fChkSingleClick->SetValue(settings.GetSingleClick());
 		fChkOnTop->SetValue(settings.GetOnTop());
 		fChkIgnore->SetValue(settings.GetShowIgnore());
+		fChkUseContains->SetValue(settings.GetUseContains());
 
 		settings.Unlock();
 	}

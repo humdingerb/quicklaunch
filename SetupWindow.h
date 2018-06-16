@@ -45,7 +45,7 @@
 #define REM_BUT			'remb'
 #define FILEPANEL		'file'
 #define POPCLOSE		'clpo'
-
+#define USECONTAINS_CHK	'chuc' 
 
 class SetupWindow : public BWindow {
 public:
@@ -63,6 +63,7 @@ public:
 	BCheckBox*		fChkSingleClick;
 	BCheckBox*		fChkOnTop;
 	BCheckBox*		fChkIgnore;
+	BCheckBox*		fChkUseContains;
 	BButton*		fButRem;
 
 private:
