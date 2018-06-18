@@ -322,14 +322,10 @@ MainWindow::BuildList()
 						query.PushAttr("name");
 						query.PushString(predicate, true);
 
-						if (settings.GetUseContains()) 
-						{
-							query.PushOp(B_CONTAINS);		
-						}
+						if (settings.GetSearchStart()) 
+							query.PushOp(B_BEGINS_WITH);		
 						else 
-						{
-							query.PushOp(B_BEGINS_WITH);					
-						}
+							query.PushOp(B_CONTAINS);					
 						
 						query.PushOp(B_AND);
 

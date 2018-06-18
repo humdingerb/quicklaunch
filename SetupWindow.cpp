@@ -61,6 +61,10 @@ SetupWindow::SetupWindow(BRect frame)
 		B_TRANSLATE("Remember last search term"),
 		new BMessage(SAVESEARCH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkSaveSearch->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+	fChkSearchStart = new BCheckBox("SearchStartChk",
+		B_TRANSLATE("Search from start of application name"),
+		new BMessage(SEARCHSTART_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkSearchStart->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));	
 	fChkSingleClick = new BCheckBox("SingleClickChk",
 		B_TRANSLATE("Launch applications with a single click"),
 		new BMessage(SINGLECLICK_CHK), B_WILL_DRAW | B_NAVIGABLE);
@@ -69,10 +73,6 @@ SetupWindow::SetupWindow(BRect frame)
 		B_TRANSLATE("Window always on top"),
 		new BMessage(ONTOP_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkOnTop->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
-	fChkUseContains = new BCheckBox("UseContainsChk",
-		B_TRANSLATE("Search using Contains, instead of Begins With"),
-		new BMessage(USECONTAINS_CHK), B_WILL_DRAW | B_NAVIGABLE);
-	fChkUseContains->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 	fChkIgnore = new BCheckBox("IgnoreChk",
 		B_TRANSLATE("Ignore these files & folders (and their subfolders):"),
 		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE);
@@ -95,11 +95,11 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkPath->SetTarget(be_app);
 	fChkDelay->SetTarget(be_app);
 	fChkSaveSearch->SetTarget(be_app);
+	fChkSearchStart->SetTarget(be_app);
 	fChkSingleClick->SetTarget(be_app);
 	fChkOnTop->SetTarget(be_app);
-	fChkUseContains->SetTarget(be_app);
 	fChkIgnore->SetTarget(be_app);
-	
+
 	// Build the layout
 
 	float spacing = be_control_look->DefaultItemSpacing();
@@ -117,9 +117,12 @@ SetupWindow::SetupWindow(BRect frame)
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkDelay)
 			.Add(fChkSaveSearch)
+			.Add(fChkSearchStart)
+			.SetInsets(spacing, spacing, spacing, 0)
+		.End()
+		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkSingleClick)
 			.Add(fChkOnTop)
-			.Add(fChkUseContains)
 			.SetInsets(spacing, spacing, spacing, 0)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
@@ -142,10 +145,10 @@ SetupWindow::SetupWindow(BRect frame)
 		fChkPath->SetValue(settings.GetShowPath());
 		fChkDelay->SetValue(settings.GetDelay());
 		fChkSaveSearch->SetValue(settings.GetSaveSearch());
+		fChkSearchStart->SetValue(settings.GetSearchStart());
 		fChkSingleClick->SetValue(settings.GetSingleClick());
 		fChkOnTop->SetValue(settings.GetOnTop());
 		fChkIgnore->SetValue(settings.GetShowIgnore());
-		fChkUseContains->SetValue(settings.GetUseContains());
 
 		settings.Unlock();
 	}

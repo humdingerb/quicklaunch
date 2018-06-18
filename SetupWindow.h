@@ -45,7 +45,7 @@
 #define REM_BUT			'remb'
 #define FILEPANEL		'file'
 #define POPCLOSE		'clpo'
-#define USECONTAINS_CHK	'chuc' 
+#define SEARCHSTART_CHK	'chst' 
 
 class SetupWindow : public BWindow {
 public:
@@ -60,10 +60,10 @@ public:
 	BCheckBox*		fChkPath;
 	BCheckBox*		fChkDelay;
 	BCheckBox*		fChkSaveSearch;
+	BCheckBox*		fChkSearchStart;
 	BCheckBox*		fChkSingleClick;
 	BCheckBox*		fChkOnTop;
 	BCheckBox*		fChkIgnore;
-	BCheckBox*		fChkUseContains;
 	BButton*		fButRem;
 
 private:

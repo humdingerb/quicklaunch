@@ -40,12 +40,12 @@ QLSettings::QLSettings()
 	fDelay = 0;
 	fSaveSearch = false;
 	fSearchTerm = "";
+	fSearchStart = true;
 	fSingleClick = false;
 	fOnTop = false;
 	fShowIgnore = false;
 	fFavoriteList = new BList();
 	fIgnoreList = new IgnoreListView();
-	fUseContains = false;
 
 	path.Append("QuickLaunch_settings");
 	BFile file(path.Path(), B_READ_ONLY);
@@ -98,9 +98,9 @@ QLSettings::QLSettings()
 		if (settings.FindInt32("show ignore", &ignore) == B_OK)
 			fShowIgnore = ignore;
 			
-		int32 usecontains;
-		if (settings.FindInt32("usecontains", &usecontains) == B_OK)
-			fUseContains = usecontains;	
+		int32 searchstart;
+		if (settings.FindInt32("searchstart", &searchstart) == B_OK)
+			fSearchStart = searchstart;	
 	}
 }
 
@@ -132,7 +132,7 @@ QLSettings::SaveSettings()
 	settings.AddInt32("singleclick", fSingleClick);
 	settings.AddInt32("ontop", fOnTop);
 	settings.AddInt32("show ignore", fShowIgnore);
-	settings.AddInt32("usecontains", fUseContains);
+	settings.AddInt32("searchstart", fSearchStart);
 
 	for (int32 i = 0; i < fIgnoreList->CountItems(); i++)
 	{

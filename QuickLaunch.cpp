@@ -223,13 +223,13 @@ QLApp::MessageReceived(BMessage* message)
 			}
 			break;
 		}
-		case USECONTAINS_CHK:
+		case SEARCHSTART_CHK:
 		{
 			int32 value;
 			message->FindInt32("be:value", &value);
 
 			if (fSettings.Lock()) {
-				fSettings.SetUseContains(value);
+				fSettings.SetSearchStart(value);
 				fSettings.Unlock();
 			}
 
