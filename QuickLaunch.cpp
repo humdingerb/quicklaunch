@@ -188,7 +188,7 @@ QLApp::MessageReceived(BMessage* message)
 
 			if (!fMainWindow->fListView->IsEmpty()) {
 				fMainWindow->LockLooper();
-				fMainWindow->fListView->Invalidate();
+				fMainWindow->BuildList();
 				fMainWindow->UnlockLooper();
 			}
 			break;
