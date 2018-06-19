@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017. All rights reserved.
+ * Copyright 2010-2018. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -37,10 +37,10 @@ QLSettings::QLSettings()
 	fDeskbar = false;
 	fShowVersion = false;
 	fShowPath = true;
+	fSearchStart = true;
 	fDelay = 0;
 	fSaveSearch = false;
 	fSearchTerm = "";
-	fSearchStart = true;
 	fSingleClick = false;
 	fOnTop = false;
 	fShowIgnore = false;
@@ -74,6 +74,10 @@ QLSettings::QLSettings()
 		if (settings.FindInt32("show path", &path) == B_OK)
 			fShowPath = path;
 
+		int32 searchstart;
+		if (settings.FindInt32("searchstart", &searchstart) == B_OK)
+			fSearchStart = searchstart;	
+
 		int32 delay;
 		if (settings.FindInt32("delay", &delay) == B_OK)
 			fDelay = delay;
@@ -97,10 +101,6 @@ QLSettings::QLSettings()
 		int32 ignore;
 		if (settings.FindInt32("show ignore", &ignore) == B_OK)
 			fShowIgnore = ignore;
-			
-		int32 searchstart;
-		if (settings.FindInt32("searchstart", &searchstart) == B_OK)
-			fSearchStart = searchstart;	
 	}
 }
 
@@ -126,13 +126,13 @@ QLSettings::SaveSettings()
 	settings.AddInt32("deskbar", fDeskbar);
 	settings.AddInt32("show version", fShowVersion);
 	settings.AddInt32("show path", fShowPath);
+	settings.AddInt32("searchstart", fSearchStart);
 	settings.AddInt32("delay", fDelay);
 	settings.AddInt32("savesearch", fSaveSearch);
 	settings.AddString("searchterm", fSearchTerm);
 	settings.AddInt32("singleclick", fSingleClick);
 	settings.AddInt32("ontop", fOnTop);
 	settings.AddInt32("show ignore", fShowIgnore);
-	settings.AddInt32("searchstart", fSearchStart);
 
 	for (int32 i = 0; i < fIgnoreList->CountItems(); i++)
 	{

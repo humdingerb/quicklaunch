@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017. All rights reserved.
+ * Copyright 2010-2018. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -53,6 +53,10 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkPath = new BCheckBox("PathChk", B_TRANSLATE("Show application path"),
 		new BMessage(PATH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkPath->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+	fChkSearchStart = new BCheckBox("SearchStartChk",
+		B_TRANSLATE("Search from start of application name"),
+		new BMessage(SEARCHSTART_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkSearchStart->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));	
 	fChkDelay = new BCheckBox("DelayChk",
 		B_TRANSLATE("Wait for a second letter before searching"),
 		new BMessage(DELAY_CHK), B_WILL_DRAW | B_NAVIGABLE);
@@ -61,10 +65,6 @@ SetupWindow::SetupWindow(BRect frame)
 		B_TRANSLATE("Remember last search term"),
 		new BMessage(SAVESEARCH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkSaveSearch->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
-	fChkSearchStart = new BCheckBox("SearchStartChk",
-		B_TRANSLATE("Search from start of application name"),
-		new BMessage(SEARCHSTART_CHK), B_WILL_DRAW | B_NAVIGABLE);
-	fChkSearchStart->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));	
 	fChkSingleClick = new BCheckBox("SingleClickChk",
 		B_TRANSLATE("Launch applications with a single click"),
 		new BMessage(SINGLECLICK_CHK), B_WILL_DRAW | B_NAVIGABLE);
@@ -93,9 +93,9 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkDeskbar->SetTarget(be_app);
 	fChkVersion->SetTarget(be_app);
 	fChkPath->SetTarget(be_app);
+	fChkSearchStart->SetTarget(be_app);
 	fChkDelay->SetTarget(be_app);
 	fChkSaveSearch->SetTarget(be_app);
-	fChkSearchStart->SetTarget(be_app);
 	fChkSingleClick->SetTarget(be_app);
 	fChkOnTop->SetTarget(be_app);
 	fChkIgnore->SetTarget(be_app);
@@ -115,9 +115,9 @@ SetupWindow::SetupWindow(BRect frame)
 			.SetInsets(spacing, spacing, spacing, 0)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
+			.Add(fChkSearchStart)
 			.Add(fChkDelay)
 			.Add(fChkSaveSearch)
-			.Add(fChkSearchStart)
 			.SetInsets(spacing, spacing, spacing, 0)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
@@ -143,9 +143,9 @@ SetupWindow::SetupWindow(BRect frame)
 		fChkDeskbar->SetValue(settings.GetDeskbar());
 		fChkVersion->SetValue(settings.GetShowVersion());
 		fChkPath->SetValue(settings.GetShowPath());
+		fChkSearchStart->SetValue(settings.GetSearchStart());
 		fChkDelay->SetValue(settings.GetDelay());
 		fChkSaveSearch->SetValue(settings.GetSaveSearch());
-		fChkSearchStart->SetValue(settings.GetSearchStart());
 		fChkSingleClick->SetValue(settings.GetSingleClick());
 		fChkOnTop->SetValue(settings.GetOnTop());
 		fChkIgnore->SetValue(settings.GetShowIgnore());

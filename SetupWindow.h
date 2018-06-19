@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017. All rights reserved.
+ * Copyright 2010-2018. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -37,6 +37,7 @@
 #define VERSION_CHK		'chve'
 #define PATH_CHK		'chpa'
 #define DELAY_CHK		'chde'
+#define SEARCHSTART_CHK	'chst'
 #define SAVESEARCH_CHK	'chss'
 #define SINGLECLICK_CHK	'ch1c'
 #define ONTOP_CHK		'chot'
@@ -44,8 +45,7 @@
 #define ADD_BUT			'addb'
 #define REM_BUT			'remb'
 #define FILEPANEL		'file'
-#define POPCLOSE		'clpo'
-#define SEARCHSTART_CHK	'chst' 
+#define POPCLOSE		'clpo' 
 
 class SetupWindow : public BWindow {
 public:
@@ -58,9 +58,9 @@ public:
 	BCheckBox*		fChkDeskbar;
 	BCheckBox*		fChkVersion;
 	BCheckBox*		fChkPath;
+	BCheckBox*		fChkSearchStart;
 	BCheckBox*		fChkDelay;
 	BCheckBox*		fChkSaveSearch;
-	BCheckBox*		fChkSearchStart;
 	BCheckBox*		fChkSingleClick;
 	BCheckBox*		fChkOnTop;
 	BCheckBox*		fChkIgnore;
