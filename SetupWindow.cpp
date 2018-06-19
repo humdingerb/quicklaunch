@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017. All rights reserved.
+ * Copyright 2010-2018. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -53,6 +53,10 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkPath = new BCheckBox("PathChk", B_TRANSLATE("Show application path"),
 		new BMessage(PATH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkPath->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+	fChkSearchStart = new BCheckBox("SearchStartChk",
+		B_TRANSLATE("Search from start of application name"),
+		new BMessage(SEARCHSTART_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkSearchStart->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));	
 	fChkDelay = new BCheckBox("DelayChk",
 		B_TRANSLATE("Wait for a second letter before searching"),
 		new BMessage(DELAY_CHK), B_WILL_DRAW | B_NAVIGABLE);
@@ -73,7 +77,6 @@ SetupWindow::SetupWindow(BRect frame)
 		B_TRANSLATE("Ignore these files & folders (and their subfolders):"),
 		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkIgnore->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
-
 	fIgnoreScroll = new BScrollView("IgnoreList", fIgnoreList,
 		B_WILL_DRAW | B_NAVIGABLE, false, true, B_FANCY_BORDER);
 	fIgnoreScroll->SetExplicitMinSize(BSize(B_SIZE_UNSET, 48));
@@ -90,10 +93,11 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkDeskbar->SetTarget(be_app);
 	fChkVersion->SetTarget(be_app);
 	fChkPath->SetTarget(be_app);
+	fChkSearchStart->SetTarget(be_app);
 	fChkDelay->SetTarget(be_app);
 	fChkSaveSearch->SetTarget(be_app);
-	fChkOnTop->SetTarget(be_app);
 	fChkSingleClick->SetTarget(be_app);
+	fChkOnTop->SetTarget(be_app);
 	fChkIgnore->SetTarget(be_app);
 
 	// Build the layout
@@ -111,8 +115,12 @@ SetupWindow::SetupWindow(BRect frame)
 			.SetInsets(spacing, spacing, spacing, 0)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
+			.Add(fChkSearchStart)
 			.Add(fChkDelay)
 			.Add(fChkSaveSearch)
+			.SetInsets(spacing, spacing, spacing, 0)
+		.End()
+		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkSingleClick)
 			.Add(fChkOnTop)
 			.SetInsets(spacing, spacing, spacing, 0)
@@ -135,6 +143,7 @@ SetupWindow::SetupWindow(BRect frame)
 		fChkDeskbar->SetValue(settings.GetDeskbar());
 		fChkVersion->SetValue(settings.GetShowVersion());
 		fChkPath->SetValue(settings.GetShowPath());
+		fChkSearchStart->SetValue(settings.GetSearchStart());
 		fChkDelay->SetValue(settings.GetDelay());
 		fChkSaveSearch->SetValue(settings.GetSaveSearch());
 		fChkSingleClick->SetValue(settings.GetSingleClick());

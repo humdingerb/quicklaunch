@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017. All rights reserved.
+ * Copyright 2010-2018. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -172,6 +172,23 @@ QLApp::MessageReceived(BMessage* message)
 			if (!fMainWindow->fListView->IsEmpty()) {
 				fMainWindow->LockLooper();
 				fMainWindow->fListView->Invalidate();
+				fMainWindow->UnlockLooper();
+			}
+			break;
+		}
+		case SEARCHSTART_CHK:
+		{
+			int32 value;
+			message->FindInt32("be:value", &value);
+
+			if (fSettings.Lock()) {
+				fSettings.SetSearchStart(value);
+				fSettings.Unlock();
+			}
+
+			if (!fMainWindow->fListView->IsEmpty()) {
+				fMainWindow->LockLooper();
+				fMainWindow->BuildList();
 				fMainWindow->UnlockLooper();
 			}
 			break;

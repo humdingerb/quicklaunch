@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017. All rights reserved.
+ * Copyright 2010-2018. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -32,6 +32,7 @@ public:
 	void	SetDeskbar(int32 deskbar) { fDeskbar = deskbar; };
 	void	SetShowVersion(int32 version) { fShowVersion = version; };
 	void	SetShowPath(int32 path) { fShowPath = path; };
+	void	SetSearchStart(int32 searchstart) { fSearchStart = searchstart; };
 	void	SetDelay(int32 delay) { fDelay = delay; };
 	void	SetSaveSearch(int32 savesearch) { fSaveSearch = savesearch; };
 	void	SetSearchTerm(BString searchterm) { fSearchTerm = searchterm; };
@@ -44,6 +45,7 @@ public:
 	int32	GetDeskbar() { return fDeskbar; };
 	int32	GetShowVersion() { return fShowVersion; };
 	int32	GetShowPath() { return fShowPath; };
+	int32	GetSearchStart() { return fSearchStart; };
 	int32	GetDelay() { return fDelay; };
 	int32	GetSaveSearch() { return fSaveSearch; };
 	BString	GetSearchTerm() { return fSearchTerm; };
@@ -63,6 +65,7 @@ private:
 	int32	fDeskbar;
 	int32	fShowVersion;
 	int32	fShowPath;
+	int32	fSearchStart;
 	int32	fDelay;
 	int32	fSaveSearch;
 	BString	fSearchTerm;

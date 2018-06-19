@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017. All rights reserved.
+ * Copyright 2010-2018. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -321,7 +321,12 @@ MainWindow::BuildList()
 
 						query.PushAttr("name");
 						query.PushString(predicate, true);
-						query.PushOp(B_BEGINS_WITH);
+
+						if (settings.GetSearchStart()) 
+							query.PushOp(B_BEGINS_WITH);		
+						else 
+							query.PushOp(B_CONTAINS);					
+						
 						query.PushOp(B_AND);
 
 						status = query.Fetch();
