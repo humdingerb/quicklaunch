@@ -1,28 +1,29 @@
-1	English	application/x-vnd.humdinger-quicklaunch	1309431571
-About QuickLaunch	Application		About QuickLaunch
-Open QuickLaunch	Application		Open QuickLaunch
-Thank you	Application		Thank you
-QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n
-Add to favorites	ListView		Add to favorites
-Add to ignore list	ListView		Add to ignore list
-Found no matches.	ListView		Found no matches.
-No favorites yet.	ListView		No favorites yet.
-Open containing folder	ListView		Open containing folder
-Remove favorite	ListView		Remove favorite
-Use '*' as wildcards.	ListView		Use '*' as wildcards.
-Help	MainWindow		Help
+1	English	application/x-vnd.humdinger-quicklaunch	966321901
 OK	MainWindow		OK
-Setup	MainWindow		Setup
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Failed to launch %appname%.\n\nError:
-Add…	SetupWindow		Add…
-Ignore these files & folders (and their subfolders):	SetupWindow		Ignore these files & folders (and their subfolders):
-Launch applications with a single click	SetupWindow		Launch applications with a single click
-Remember last search term	SetupWindow		Remember last search term
-Remove	SetupWindow		Remove
-Setup	SetupWindow		Setup
-Show application path	SetupWindow		Show application path
-Show application version	SetupWindow		Show application version
-Show Deskbar replicant	SetupWindow		Show Deskbar replicant
-Wait for a second letter before searching	SetupWindow		Wait for a second letter before searching
 Window always on top	SetupWindow		Window always on top
+Add to ignore list	ListView		Add to ignore list
+QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n
+Wait for a second letter before searching	SetupWindow		Wait for a second letter before searching
+Found no matches.	ListView		Found no matches.
+Add to favorites	ListView		Add to favorites
+Remove favorite	ListView		Remove favorite
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Failed to launch %appname%.\n\nError:
+About QuickLaunch	Application		About QuickLaunch
+Setup	SetupWindow		Setup
+Search from start of application name	SetupWindow		Search from start of application name
+Show application version	SetupWindow		Show application version
+Setup	MainWindow		Setup
+Show Deskbar replicant	SetupWindow		Show Deskbar replicant
+Open containing folder	ListView		Open containing folder
+Use '*' as wildcards.	ListView		Use '*' as wildcards.
+Open QuickLaunch	Application		Open QuickLaunch
+Launch applications with a single click	SetupWindow		Launch applications with a single click
+Help	MainWindow		Help
+Show application path	SetupWindow		Show application path
+Thank you	Application		Thank you
+Ignore these files & folders (and their subfolders):	SetupWindow		Ignore these files & folders (and their subfolders):
+Remember last search term	SetupWindow		Remember last search term
+No favorites yet.	ListView		No favorites yet.
+Add…	SetupWindow		Add…
 QuickLaunch	System name		QuickLaunch
+Remove	SetupWindow		Remove
