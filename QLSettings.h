@@ -2,8 +2,9 @@
  * Copyright 2010-2018. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
- * Author:
+ * Authors:
  *	Humdinger, humdingerb@gmail.com
+ *  Kevin Adams
  */
 
 #ifndef QLSETTINGS_H
