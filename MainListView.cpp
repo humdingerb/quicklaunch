@@ -113,7 +113,7 @@ void
 MainListView::FrameResized(float w, float h)
 {
 	BListView::FrameResized(w, h);
-	
+
 	for (int32 i = 0; i < CountItems(); i++) {
 		BListItem* item = ItemAt(i);
 		item->Update(this, be_plain_font);
@@ -132,15 +132,8 @@ MainListView::InitiateDrag(BPoint point, int32 dragIndex, bool wasSelected)
 	if ((buttons & B_SECONDARY_MOUSE_BUTTON) != 0)
 		return false;
 
-	MainListItem* sItem = dynamic_cast<MainListItem *>
-		(ItemAt(CurrentSelection()));
-	if (sItem == NULL) {
-		// workaround for a timing problem (see Locale prefs)
-		sItem = dynamic_cast<MainListItem *> (ItemAt(dragIndex));
-		Select(dragIndex);
-		if (sItem == NULL)
-			return false;
-	}
+	MainListItem* sItem = dynamic_cast<MainListItem *> (ItemAt(dragIndex));
+
 	entry_ref* ref = NULL;
 	ref = sItem->Ref();
 	if (ref == NULL)
@@ -149,7 +142,7 @@ MainListView::InitiateDrag(BPoint point, int32 dragIndex, bool wasSelected)
 	BMessage message;
 	message.what = B_SIMPLE_DATA;
 	message.AddRef("refs", ref);
-	message.AddInt32("index", CurrentSelection());
+	message.AddInt32("index", dragIndex);
 	message.AddBool("isfav", sItem->IsFavorite());
 
 	BRect dragRect(0.0f, 0.0f, Bounds().Width(), sItem->Height());
