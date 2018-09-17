@@ -301,37 +301,31 @@ MainWindow::BuildList()
 			BQuery query;
 
 			while (volumeRoster.GetNextVolume(&volume) == B_OK) {
-				if (volume.KnowsQuery())
-				{
+				if (volume.KnowsQuery()) {
 					// Set up the volume and predicate for the query.
 					query.SetVolume(&volume);
-					query.SetPredicate(predicate);
+
+					query.PushAttr("BEOS:TYPE");
+					query.PushString("application/x-vnd.be-elfexecutable", true);
+					query.PushOp(B_EQ);
+
+					query.PushAttr("BEOS:APP_SIG");
+					query.PushString("application/x");
+					query.PushOp(B_BEGINS_WITH);
+					query.PushOp(B_AND);
+
+					query.PushAttr("name");
+					query.PushString(predicate, true);
+
+					if (settings.GetSearchStart())
+						query.PushOp(B_BEGINS_WITH);
+					else
+						query.PushOp(B_CONTAINS);
+
+					query.PushOp(B_AND);
 
 					status_t status = query.Fetch();
-					char buffer[B_FILE_NAME_LENGTH];
-					volume.GetName(buffer);
-					if (status == B_BAD_VALUE) {
-						query.PushAttr("BEOS:TYPE");
-						query.PushString("application/x-vnd.be-elfexecutable", true);
-						query.PushOp(B_EQ);
 
-						query.PushAttr("BEOS:APP_SIG");
-						query.PushString("application/x");
-						query.PushOp(B_BEGINS_WITH);
-						query.PushOp(B_AND);
-
-						query.PushAttr("name");
-						query.PushString(predicate, true);
-
-						if (settings.GetSearchStart()) 
-							query.PushOp(B_BEGINS_WITH);		
-						else 
-							query.PushOp(B_CONTAINS);					
-						
-						query.PushOp(B_AND);
-
-						status = query.Fetch();
-					}
 					if (status != B_OK)
 						printf("2. what happened? %s\n", strerror(status));
 
