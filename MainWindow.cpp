@@ -311,6 +311,7 @@ MainWindow::ShowFavorites()
 void
 MainWindow::FilterList()
 {
+	QLSettings& settings = my_app->Settings();
 	BString term = GetSearchString();
 
 	if (term.CountChars() == 0 || fAllList->IsEmpty()) {
@@ -325,8 +326,13 @@ MainWindow::FilterList()
 		MainListItem* sItem = dynamic_cast<MainListItem *>
 			(fAllList->ItemAt(i));
 
-		if (term.ICompare(sItem->GetName(), term.Length()) == 0)
-			fListView->AddItem(sItem);
+		if (settings.GetSearchStart()) {
+			if (term.ICompare(sItem->GetName(), term.Length()) == 0)
+				fListView->AddItem(sItem);
+		} else {
+			if (strstr(sItem->GetName(), term.String()) != NULL)
+				fListView->AddItem(sItem);
+		}
 	}
 	fListView->SortItems(&compare_items);
 	ResizeWindow();
