@@ -51,33 +51,36 @@ SetupWindow::SetupWindow(BRect frame)
 		B_TRANSLATE("Show application version"),
 		new BMessage(VERSION_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkVersion->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
 	fChkPath = new BCheckBox("PathChk", B_TRANSLATE("Show application path"),
 		new BMessage(PATH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkPath->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
 	fChkSearchStart = new BCheckBox("SearchStartChk",
 		B_TRANSLATE("Search from start of application name"),
 		new BMessage(SEARCHSTART_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkSearchStart->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));	
-	fChkDelay = new BCheckBox("DelayChk",
-		B_TRANSLATE("Wait for a second letter before searching"),
-		new BMessage(DELAY_CHK), B_WILL_DRAW | B_NAVIGABLE);
-	fChkDelay->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
 	fChkSaveSearch = new BCheckBox("SaveSearchChk",
 		B_TRANSLATE("Remember last search term"),
 		new BMessage(SAVESEARCH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkSaveSearch->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
 	fChkSingleClick = new BCheckBox("SingleClickChk",
 		B_TRANSLATE("Launch applications with a single click"),
 		new BMessage(SINGLECLICK_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkSingleClick->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
 	fChkOnTop = new BCheckBox("OnTopChk",
 		B_TRANSLATE("Window always on top"),
 		new BMessage(ONTOP_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkOnTop->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
 	fChkIgnore = new BCheckBox("IgnoreChk",
 		B_TRANSLATE("Ignore these files & folders (and their subfolders):"),
 		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkIgnore->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
 	fIgnoreScroll = new BScrollView("IgnoreList", fIgnoreList,
 		B_WILL_DRAW | B_NAVIGABLE, false, true, B_FANCY_BORDER);
 	fIgnoreScroll->SetExplicitMinSize(BSize(B_SIZE_UNSET, 48));
@@ -86,6 +89,7 @@ SetupWindow::SetupWindow(BRect frame)
 	fButAdd = new BButton("AddButton", B_TRANSLATE("Add" B_UTF8_ELLIPSIS),
 		new BMessage(ADD_BUT));
 	fButAdd->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
 	fButRem = new BButton("RemButton", B_TRANSLATE("Remove"),
 		new BMessage(REM_BUT));
 	fButRem->SetEnabled(false);
@@ -95,7 +99,6 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkVersion->SetTarget(be_app);
 	fChkPath->SetTarget(be_app);
 	fChkSearchStart->SetTarget(be_app);
-	fChkDelay->SetTarget(be_app);
 	fChkSaveSearch->SetTarget(be_app);
 	fChkSingleClick->SetTarget(be_app);
 	fChkOnTop->SetTarget(be_app);
@@ -117,7 +120,6 @@ SetupWindow::SetupWindow(BRect frame)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkSearchStart)
-			.Add(fChkDelay)
 			.Add(fChkSaveSearch)
 			.SetInsets(spacing, spacing, spacing, 0)
 		.End()
@@ -145,7 +147,6 @@ SetupWindow::SetupWindow(BRect frame)
 		fChkVersion->SetValue(settings.GetShowVersion());
 		fChkPath->SetValue(settings.GetShowPath());
 		fChkSearchStart->SetValue(settings.GetSearchStart());
-		fChkDelay->SetValue(settings.GetDelay());
 		fChkSaveSearch->SetValue(settings.GetSaveSearch());
 		fChkSingleClick->SetValue(settings.GetSingleClick());
 		fChkOnTop->SetValue(settings.GetOnTop());

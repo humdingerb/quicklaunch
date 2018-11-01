@@ -189,24 +189,10 @@ QLApp::MessageReceived(BMessage* message)
 
 			if (!fMainWindow->fListView->IsEmpty()) {
 				fMainWindow->LockLooper();
+				fMainWindow->BuildAllList();
 				fMainWindow->FilterList();
 				fMainWindow->UnlockLooper();
 			}
-			break;
-		}
-		case DELAY_CHK:
-		{
-			int32 value;
-			message->FindInt32("be:value", &value);
-
-			if (fSettings.Lock()) {
-				fSettings.SetDelay(value);
-				fSettings.Unlock();
-			}
-
-			fMainWindow->LockLooper();
-			fMainWindow->PostMessage('fltr');
-			fMainWindow->UnlockLooper();
 			break;
 		}
 		case SAVESEARCH_CHK:
@@ -267,6 +253,7 @@ QLApp::MessageReceived(BMessage* message)
  				fSetupWindow->fChkIgnore->SetValue(value);
 					fMainWindow->fListView->LockLooper();
 					fMainWindow->BuildAllList();
+					fMainWindow->FilterList();
 					fMainWindow->fListView->UnlockLooper();
 			}
 			break;
@@ -294,6 +281,7 @@ QLApp::MessageReceived(BMessage* message)
 			int32 selection = fMainWindow->fListView->CurrentSelection();
 			float position = fMainWindow->GetScrollPosition();
 			fMainWindow->BuildAllList();
+			fMainWindow->FilterList();
 			fMainWindow->fListView->Select((selection
 				< fMainWindow->fListView->CountItems())
 				? selection : fMainWindow->fListView->CountItems() - 1);
@@ -310,6 +298,7 @@ QLApp::MessageReceived(BMessage* message)
 				fMainWindow->fListView->LockLooper();
 				float position = fMainWindow->GetScrollPosition();
 				fMainWindow->BuildAllList();
+				fMainWindow->FilterList();
 				fMainWindow->SetScrollPosition(position);
 				fMainWindow->fListView->UnlockLooper();
 			}

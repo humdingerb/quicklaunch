@@ -79,8 +79,6 @@ MainListView::Draw(BRect rect)
 		if (settings.Lock()) {
 			if (letters == 0)
 				string = B_TRANSLATE("No favorites yet.");
-			else if (letters <= settings.GetDelay())
-				string = B_TRANSLATE("Use '*' as wildcards.");
 			else
 				string = B_TRANSLATE("Found no matches.");
 

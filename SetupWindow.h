@@ -37,7 +37,6 @@
 #define DESKBAR_CHK		'chdb'
 #define VERSION_CHK		'chve'
 #define PATH_CHK		'chpa'
-#define DELAY_CHK		'chde'
 #define SEARCHSTART_CHK	'chst'
 #define SAVESEARCH_CHK	'chss'
 #define SINGLECLICK_CHK	'ch1c'
@@ -60,7 +59,6 @@ public:
 	BCheckBox*		fChkVersion;
 	BCheckBox*		fChkPath;
 	BCheckBox*		fChkSearchStart;
-	BCheckBox*		fChkDelay;
 	BCheckBox*		fChkSaveSearch;
 	BCheckBox*		fChkSingleClick;
 	BCheckBox*		fChkOnTop;
