@@ -189,7 +189,7 @@ QLApp::MessageReceived(BMessage* message)
 
 			if (!fMainWindow->fListView->IsEmpty()) {
 				fMainWindow->LockLooper();
-				fMainWindow->BuildList();
+				fMainWindow->FilterList();
 				fMainWindow->UnlockLooper();
 			}
 			break;
@@ -266,7 +266,7 @@ QLApp::MessageReceived(BMessage* message)
 			if (!fSettings.fIgnoreList->IsEmpty()) {
  				fSetupWindow->fChkIgnore->SetValue(value);
 					fMainWindow->fListView->LockLooper();
-					fMainWindow->BuildList();
+					fMainWindow->BuildAllList();
 					fMainWindow->fListView->UnlockLooper();
 			}
 			break;
@@ -293,7 +293,7 @@ QLApp::MessageReceived(BMessage* message)
 			fMainWindow->fListView->LockLooper();
 			int32 selection = fMainWindow->fListView->CurrentSelection();
 			float position = fMainWindow->GetScrollPosition();
-			fMainWindow->BuildList();
+			fMainWindow->BuildAllList();
 			fMainWindow->fListView->Select((selection
 				< fMainWindow->fListView->CountItems())
 				? selection : fMainWindow->fListView->CountItems() - 1);
@@ -309,7 +309,7 @@ QLApp::MessageReceived(BMessage* message)
 				|| (opcode == B_DEVICE_UNMOUNTED)) {
 				fMainWindow->fListView->LockLooper();
 				float position = fMainWindow->GetScrollPosition();
-				fMainWindow->BuildList();
+				fMainWindow->BuildAllList();
 				fMainWindow->SetScrollPosition(position);
 				fMainWindow->fListView->UnlockLooper();
 			}
@@ -334,26 +334,19 @@ QLApp::QuitRequested()
 void
 QLApp::ReadyToRun()
 {
+	fSettings.InitLists();
+
 	BRect frame = fSettings.GetMainWindowFrame();
 	fMainWindow->MoveTo(frame.LeftTop());
 	fMainWindow->ResizeTo(frame.right - frame.left, 0);
 	fMainWindow->Show();
 
-	fSettings.InitLists();
-
-	fMainWindow->fListView->LockLooper();
-	fMainWindow->BuildList();
-	fMainWindow->fListView->Select(0);
-	fMainWindow->fListView->UnlockLooper();
-
 	fSetupWindow->Hide();
 	fSetupWindow->Show();
 
-	if (fSettings.GetSaveSearch()) {
-		BMessenger messenger(fMainWindow);
-		BMessage message(NEW_FILTER);
-		messenger.SendMessage(&message);
-	}
+	BMessenger messenger(fMainWindow);
+	BMessage message(NEW_FILTER);
+	messenger.SendMessage(&message);
 
 	watch_node(NULL, B_WATCH_MOUNT, this);
 }
