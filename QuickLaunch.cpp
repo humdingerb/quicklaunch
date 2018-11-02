@@ -251,10 +251,10 @@ QLApp::MessageReceived(BMessage* message)
 
 			if (!fSettings.fIgnoreList->IsEmpty()) {
  				fSetupWindow->fChkIgnore->SetValue(value);
-					fMainWindow->fListView->LockLooper();
-					fMainWindow->BuildAllList();
-					fMainWindow->FilterList();
-					fMainWindow->fListView->UnlockLooper();
+				fMainWindow->fListView->LockLooper();
+				fMainWindow->BuildAllList();
+				fMainWindow->FilterList();
+				fMainWindow->fListView->UnlockLooper();
 			}
 			break;
 		}
@@ -287,6 +287,7 @@ QLApp::MessageReceived(BMessage* message)
 				? selection : fMainWindow->fListView->CountItems() - 1);
 			fMainWindow->SetScrollPosition(position);
 			fMainWindow->fListView->UnlockLooper();
+
 			break;
 		}
 		case B_NODE_MONITOR:
@@ -294,7 +295,7 @@ QLApp::MessageReceived(BMessage* message)
 			int32 opcode = message->GetInt32("opcode", -1);
 
 			if ((opcode == B_DEVICE_MOUNTED)
-				|| (opcode == B_DEVICE_UNMOUNTED)) {
+					|| (opcode == B_DEVICE_UNMOUNTED)) {
 				fMainWindow->fListView->LockLooper();
 				float position = fMainWindow->GetScrollPosition();
 				fMainWindow->BuildAllList();
