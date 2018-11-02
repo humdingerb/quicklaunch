@@ -90,7 +90,7 @@ h3 {
 <body>
 <div align = "center">
 <img width="64" height="64" src="./images/quicklaunch_icon_64.png" alt="QuickLaunch icon" />
-<p><span style="font-size: 1.5em; font-weight:bold">QuickLaunch v1.3</span><br />
+<p><span style="font-size: 1.5em; font-weight:bold">QuickLaunch</span><br />
 for <a href="https://www.haiku-os.org">Haiku</a><br />
 <i>by Humdinger</i></p>
 <hr />
@@ -100,7 +100,7 @@ for <a href="https://www.haiku-os.org">Haiku</a><br />
 <hr />
 <p><br /></p>
 <p>QuickLaunch is a small launcher tool that helps you to quickly start any installed application.</p>
-<p>Simply start to enter the name of an application and QuickLaunch will find all programs matching these initial letters and show them in a list. You choose an app from that list with the <span class="key">CursorUp/Down</span> keys and launch it by hitting <span class="key">RETURN</span>. <span class="key">ESC</span> quits QuickLaunch.</p>
+<p>Simply start to enter the name of an application and QuickLaunch will find all programs matching these initial letters and show them in a list. You choose an app from that list with the <span class="key">↑</span> <span class="key">↓</span> keys and launch it by hitting <span class="key">RETURN</span>. <span class="key">ESC</span> quits QuickLaunch.</p>
 
 <p>Here's the main window after searching for all applications starting with "me" and behind it the settings window when clicking the <span class="button">Setup</span> button (or pressing <span class="key">ALT</span>+<span class="key">S</span>:</p>
 <div align = "center">
@@ -144,7 +144,6 @@ A right-click on it also offers quick access to your favorites.</p>
 <li><p><span class="menu">Show the version of an application</span> — only really useful when having older and newer versions of an app installed.</p></li>
 <li><p><span class="menu">Show the path to an application</span> —  interesting when you have several copies of an application.</p></li>
 <li><p><span class="menu">Search from start of application name</span> —  when unchecked, finds all applications with the search term anywhere in their name, not only with those initial letters. Same as starting a search with a '*' as first letter.</p></li>
-<li><p><span class="menu">Wait for a second letter before starting the search</span> — probably only useful for slow systems.</p></li>
 <li><p><span class="menu">Remember last search term</span> — starts QuickLaunch with the previous search.</p></li>
 <li><p><span class="menu">Launch applications with a single click</span> —  instead of requiring the usual double-click.</p></li>
 <li><p><span class="menu">Window always on top</span> — the window floats modally in front of all others. Useful if you start a few apps after another and don't want to lose QuickLauch under the newly opening windows.</p></li>
@@ -159,7 +158,7 @@ You can also right-click an app in the main window's result list to add that spe
 <a id="tips" name="tips">Tips &amp; Tricks</a></h2>
 <ul>
 <li><p>Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like <span class="key">OPT</span>+<span class="key">SPACEBAR</span>, for even quicker QuickLaunching apps.</p></li>
-<li><p>Use '*' as wildcards, e.g. "*play" for all apps with "play" in their name. </p></li>
+<li><p>Enter '*' to show a list of all installed applications.</p></li>
 <li><p><span class="key">SHIFT</span>+<span class="key">RETURN</span> will keep the QuickLaunch window open after launching the app.</p></li>
 <li><p><span class="key">CTRL</span>+<span class="key">RETURN</span> will open an app's location in Tracker instead of launching it.</p></li>
 <li><p>These folders are ignored by default:<br />
@@ -199,14 +198,16 @@ Finally, thanks to everyone that contributed translations and bug reports for Qu
 <a id="history" name="history">History</a></h2>
 <p><b>1.3</b> - <i>:</i></p>
 <ul>
-<li>Add option to look for applications with the search term anywhere in their name, not just as their initial letters. Thanks to Kevin Adams for the patch. 
-</li>
+<li>Add option to look for applications with the search term anywhere in their name, not just as their initial letters. Thanks to Kevin Adams for the patch.</li>
+<li>Support localized application names (has to be activated in Locale preferences' 3rd tab).</li>
+<li>Remove "Wait for a second letter before searching". Supporting localized app names needed changes that removed the need to do a query for every entered character. Any previous gain in performance (if there ever was one) would be gone now.</li>
+<li>Remove '*' as a wildcard in application names. As we're not using a query anymore to filter appplications, and supporting wildcards is more trouble than it's worth.<br />
+Enter '*' to get a list of all installed applications.</li>
 </ul>
 
 <p><b>1.2</b> - <i>11-05-2017:</i></p>
 <ul>
-<li>Favorites can now be drag &amp; dropped on apps that accept a program, like LaunchBox - or in fact the ignore list of the Setup window.
-</li>
+<li>Favorites can now be drag &amp; dropped on apps that accept a program, like LaunchBox - or in fact the ignore list of the Setup window.</li>
 <li>Favorites cannot be moved any longer in a result list, only in the favorites list.</li>
 <li>When opening an app's containing folder, scroll to and select the app.</li>
 <li>Fix crash due to a race condition.</li>
