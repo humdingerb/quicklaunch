@@ -314,6 +314,7 @@ MainWindow::FilterList()
 	QLSettings& settings = my_app->Settings();
 	BString term = GetSearchString();
 
+	//Search string empty -> show favourites
 	if (term.CountChars() == 0) {
 		fListView->MakeEmpty();
 		ShowFavorites();
@@ -330,11 +331,19 @@ MainWindow::FilterList()
 		MainListItem* sItem = dynamic_cast<MainListItem *>
 			(fAllList->ItemAt(i));
 
+		// Search string is "*" -> Show all apps
+		if (term.Compare("*", 1) == 0) {
+			fListView->AddItem(sItem);
+			continue;
+		}
+
 		if (settings.GetSearchStart()) {
+			// Match from start of app name
 			if (term.ICompare(sItem->GetName(), term.Length()) == 0)
 				fListView->AddItem(sItem);
 		} else {
-			if (strstr(sItem->GetName(), term.String()) != NULL)
+			// Match anywhere in app name
+			if (strcasestr(sItem->GetName(), term.String()) != NULL)
 				fListView->AddItem(sItem);
 		}
 	}

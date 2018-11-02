@@ -78,7 +78,7 @@ MainListView::Draw(BRect rect)
 
 		if (settings.Lock()) {
 			if (letters == 0)
-				string = B_TRANSLATE("No favorites yet.");
+				string = B_TRANSLATE("No favorites yet.  Use '*' for all apps.");
 			else
 				string = B_TRANSLATE("Found no matches.");
 
