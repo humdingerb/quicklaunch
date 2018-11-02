@@ -42,6 +42,7 @@ public:
 private:
 	void			_AddToDeskbar();
 	void			_RemoveFromDeskbar();
+	void			_RestorePositionAndSelection();
 
 	QLSettings		fSettings;
 };

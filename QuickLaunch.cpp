@@ -187,12 +187,9 @@ QLApp::MessageReceived(BMessage* message)
 				fSettings.Unlock();
 			}
 
-			if (!fMainWindow->fListView->IsEmpty()) {
-				fMainWindow->LockLooper();
-				fMainWindow->BuildAllList();
-				fMainWindow->FilterList();
-				fMainWindow->UnlockLooper();
-			}
+			if (!fMainWindow->fListView->IsEmpty())
+				_RestorePositionAndSelection();
+
 			break;
 		}
 		case SAVESEARCH_CHK:
@@ -251,10 +248,7 @@ QLApp::MessageReceived(BMessage* message)
 
 			if (!fSettings.fIgnoreList->IsEmpty()) {
  				fSetupWindow->fChkIgnore->SetValue(value);
-				fMainWindow->fListView->LockLooper();
-				fMainWindow->BuildAllList();
-				fMainWindow->FilterList();
-				fMainWindow->fListView->UnlockLooper();
+				_RestorePositionAndSelection();
 			}
 			break;
 		}
@@ -277,16 +271,7 @@ QLApp::MessageReceived(BMessage* message)
 				}
 				fSetupWindow->UnlockLooper();
 			}
-			fMainWindow->fListView->LockLooper();
-			int32 selection = fMainWindow->fListView->CurrentSelection();
-			float position = fMainWindow->GetScrollPosition();
-			fMainWindow->BuildAllList();
-			fMainWindow->FilterList();
-			fMainWindow->fListView->Select((selection
-				< fMainWindow->fListView->CountItems())
-				? selection : fMainWindow->fListView->CountItems() - 1);
-			fMainWindow->SetScrollPosition(position);
-			fMainWindow->fListView->UnlockLooper();
+			_RestorePositionAndSelection();
 
 			break;
 		}
@@ -295,14 +280,9 @@ QLApp::MessageReceived(BMessage* message)
 			int32 opcode = message->GetInt32("opcode", -1);
 
 			if ((opcode == B_DEVICE_MOUNTED)
-					|| (opcode == B_DEVICE_UNMOUNTED)) {
-				fMainWindow->fListView->LockLooper();
-				float position = fMainWindow->GetScrollPosition();
-				fMainWindow->BuildAllList();
-				fMainWindow->FilterList();
-				fMainWindow->SetScrollPosition(position);
-				fMainWindow->fListView->UnlockLooper();
-			}
+					|| (opcode == B_DEVICE_UNMOUNTED))
+				_RestorePositionAndSelection();
+
 			break;
 		}
 		default:
@@ -409,6 +389,22 @@ QLApp::_RemoveFromDeskbar()
 				"%" B_PRId32 ": %s\n", found_id, strerror(err));
 		}
 	}
+}
+
+
+void
+QLApp::_RestorePositionAndSelection()
+{
+	fMainWindow->fListView->LockLooper();
+	int32 selection = fMainWindow->fListView->CurrentSelection();
+	float position = fMainWindow->GetScrollPosition();
+	fMainWindow->BuildAllList();
+	fMainWindow->FilterList();
+	fMainWindow->fListView->Select((selection
+		< fMainWindow->fListView->CountItems())
+		? selection : fMainWindow->fListView->CountItems() - 1);
+	fMainWindow->SetScrollPosition(position);
+	fMainWindow->fListView->UnlockLooper();
 }
 
 
