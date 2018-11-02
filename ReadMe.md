@@ -12,4 +12,4 @@ Here's the main window after searching for all applications starting with "me" a
 
 ![QuickLaunch windows](./images/quicklaunch.png)
 
-For more information, please see the [QuickLaunch help file](http://rawgit.com/HaikuArchives/quicklaunch/master/ReadMe.html).
+For more information, please see the [QuickLaunch help file](http://htmlpreview.github.io/?https://github.com/humdingerb/quicklaunch/master/ReadMe.html).
