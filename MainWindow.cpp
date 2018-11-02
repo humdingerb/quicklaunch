@@ -91,7 +91,7 @@ MainWindow::MainWindow()
 
 		settings.Unlock();
 	}
-	BuildAllList();
+	ShowFavorites();
 }
 
 
@@ -314,11 +314,15 @@ MainWindow::FilterList()
 	QLSettings& settings = my_app->Settings();
 	BString term = GetSearchString();
 
-	if (term.CountChars() == 0 || fAllList->IsEmpty()) {
+	if (term.CountChars() == 0) {
 		fListView->MakeEmpty();
 		ShowFavorites();
 		return;
 	}
+
+	if (fAllList->IsEmpty())
+		BuildAllList();
+
 	fListView->MakeEmpty();
 
 	for (int i = 0; i < fAllList->CountItems(); i++)
