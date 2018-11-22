@@ -91,7 +91,6 @@ MainWindow::MainWindow()
 
 		settings.Unlock();
 	}
-	ShowFavorites();
 }
 
 
