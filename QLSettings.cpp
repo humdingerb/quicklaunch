@@ -182,8 +182,9 @@ QLSettings::InitLists()
 		i = 0;
 		while (settings.FindString("favorite", i++, &itemText) == B_OK) {
 			entry_ref favorite;
-			status_t err = get_ref_for_path(itemText.String(), &favorite);
-			if (err == B_OK)
+			get_ref_for_path(itemText.String(), &favorite);
+			BEntry entry(&favorite);
+			if (entry.Exists())
 				fFavoriteList->AddItem(new entry_ref(favorite));
 		}
 	}
