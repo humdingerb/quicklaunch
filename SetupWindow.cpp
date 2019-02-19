@@ -76,6 +76,11 @@ SetupWindow::SetupWindow(BRect frame)
 		new BMessage(ONTOP_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkOnTop->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
+	fChkTitlebar = new BCheckBox("OnTopChk",
+		B_TRANSLATE("Show window titlebar"),
+		new BMessage(TITLEBAR_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkTitlebar->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
 	fChkIgnore = new BCheckBox("IgnoreChk",
 		B_TRANSLATE("Ignore these files & folders (and their subfolders):"),
 		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE);
@@ -102,6 +107,7 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkSaveSearch->SetTarget(be_app);
 	fChkSingleClick->SetTarget(be_app);
 	fChkOnTop->SetTarget(be_app);
+	fChkTitlebar->SetTarget(be_app);
 	fChkIgnore->SetTarget(be_app);
 
 	// Build the layout
@@ -123,6 +129,7 @@ SetupWindow::SetupWindow(BRect frame)
 			.Add(fChkSaveSearch)
 			.Add(fChkSingleClick)
 			.Add(fChkOnTop)
+			.Add(fChkTitlebar)
 			.SetInsets(spacing, spacing, spacing, 0)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
@@ -147,6 +154,7 @@ SetupWindow::SetupWindow(BRect frame)
 		fChkSaveSearch->SetValue(settings.GetSaveSearch());
 		fChkSingleClick->SetValue(settings.GetSingleClick());
 		fChkOnTop->SetValue(settings.GetOnTop());
+		fChkTitlebar->SetValue(settings.GetShowTitlebar());
 		fChkIgnore->SetValue(settings.GetShowIgnore());
 
 		settings.Unlock();
@@ -179,6 +187,9 @@ SetupWindow::QuitRequested()
 	if (settings.Lock()) {
 		int32 value = settings.GetOnTop();
 		my_app->SetWindowsFeel(value);
+
+		value = settings.GetShowTitlebar();
+		my_app->SetWindowsLook(value);
 
 		settings.Unlock();
 	}

@@ -41,6 +41,7 @@
 #define SAVESEARCH_CHK	'chss'
 #define SINGLECLICK_CHK	'ch1c'
 #define ONTOP_CHK		'chot'
+#define	TITLEBAR_CHK		'chtb'
 #define IGNORE_CHK		'chig'
 #define ADD_BUT			'addb'
 #define REM_BUT			'remb'
@@ -62,6 +63,7 @@ public:
 	BCheckBox*		fChkSaveSearch;
 	BCheckBox*		fChkSingleClick;
 	BCheckBox*		fChkOnTop;
+	BCheckBox*		fChkTitlebar;
 	BCheckBox*		fChkIgnore;
 	BButton*		fButRem;
 

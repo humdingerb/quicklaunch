@@ -89,6 +89,9 @@ MainWindow::MainWindow()
 		int32 value = settings.GetOnTop();
 		SetFeel(value ?	B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
 
+		value = settings.GetShowTitlebar();
+		SetLook(value ? B_TITLED_WINDOW_LOOK : B_MODAL_WINDOW_LOOK);
+
 		settings.Unlock();
 	}
 	ShowFavorites();

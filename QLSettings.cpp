@@ -44,6 +44,7 @@ QLSettings::QLSettings()
 	fSingleClick = false;
 	fOnTop = false;
 	fShowIgnore = false;
+	fShowTitlebar = true;
 	fFavoriteList = new BList();
 	fIgnoreList = new IgnoreListView();
 
@@ -94,6 +95,10 @@ QLSettings::QLSettings()
 		if (settings.FindInt32("ontop", &ontop) == B_OK)
 			fOnTop = ontop;
 
+		int32 titlebar;
+		if (settings.FindInt32("titlebar", &titlebar) == B_OK)
+			fShowTitlebar = titlebar;
+
 		int32 ignore;
 		if (settings.FindInt32("show ignore", &ignore) == B_OK)
 			fShowIgnore = ignore;
@@ -127,6 +132,7 @@ QLSettings::SaveSettings()
 	settings.AddString("searchterm", fSearchTerm);
 	settings.AddInt32("singleclick", fSingleClick);
 	settings.AddInt32("ontop", fOnTop);
+	settings.AddInt32("titlebar", fShowTitlebar);
 	settings.AddInt32("show ignore", fShowIgnore);
 
 	for (int32 i = 0; i < fIgnoreList->CountItems(); i++)

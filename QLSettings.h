@@ -37,6 +37,7 @@ public:
 	void	SetSaveSearch(int32 savesearch) { fSaveSearch = savesearch; };
 	void	SetSearchTerm(BString searchterm) { fSearchTerm = searchterm; };
 	void	SetOnTop(int32 ontop) { fOnTop = ontop; };
+	void    SetShowTitlebar(int32 titlebar) { fShowTitlebar = titlebar; };
 	void	SetSingleClick(bool singleclick) { fSingleClick = singleclick; };
 	void	SetShowIgnore(int32 ignore) { fShowIgnore = ignore; };
 
@@ -50,6 +51,7 @@ public:
 	BString	GetSearchTerm() { return fSearchTerm; };
 	int32	GetSingleClick() { return fSingleClick; };
 	int32	GetOnTop() { return fOnTop; };
+	int32   GetShowTitlebar() { return fShowTitlebar; };
 	int32	GetShowIgnore() { return fShowIgnore; };
 
 	void			InitLists();
@@ -69,6 +71,7 @@ private:
 	BString	fSearchTerm;
 	int32	fSingleClick;
 	int32	fOnTop;
+	int32   fShowTitlebar;
 	int32	fShowIgnore;
 
 	BLocker	fLock;

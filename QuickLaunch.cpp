@@ -224,6 +224,18 @@ QLApp::MessageReceived(BMessage* message)
 			}
 			break;
 		}
+		case TITLEBAR_CHK:
+		{
+			int32 value;
+			message->FindInt32("be:value", &value);
+
+			if (fSettings.Lock()) {
+				fSettings.SetShowTitlebar(value);
+				fSettings.Unlock();
+			}
+			break;
+		}
+
 		case IGNORE_CHK:
 		{
 			if (fSettings.fIgnoreList->IsEmpty()) {
@@ -334,6 +346,14 @@ QLApp::SetWindowsFeel(int32 value)
 	fMainWindow->UnlockLooper();
 }
 
+void
+QLApp::SetWindowsLook(int32 value)
+{
+	fMainWindow->LockLooper();
+	fMainWindow->SetLook(value
+			? B_TITLED_WINDOW_LOOK : B_MODAL_WINDOW_LOOK);
+	fMainWindow->UnlockLooper();
+}
 
 #pragma mark -- Private Methods --
 

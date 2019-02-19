@@ -35,6 +35,7 @@ public:
 
 	QLSettings& 	Settings() { return fSettings; }
 	void			SetWindowsFeel(int32 value);
+	void                    SetWindowsLook(int32 value);
 
 	SetupWindow*	fSetupWindow;
 	MainWindow*		fMainWindow;
