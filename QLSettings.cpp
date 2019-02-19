@@ -38,7 +38,6 @@ QLSettings::QLSettings()
 	fDeskbar = false;
 	fShowVersion = false;
 	fShowPath = true;
-	fSearchStart = true;
 	fSaveSearch = false;
 	fSearchTerm = "";
 	fSingleClick = false;
@@ -73,10 +72,6 @@ QLSettings::QLSettings()
 		int32 path;
 		if (settings.FindInt32("show path", &path) == B_OK)
 			fShowPath = path;
-
-		int32 searchstart;
-		if (settings.FindInt32("searchstart", &searchstart) == B_OK)
-			fSearchStart = searchstart;	
 
 		int32 savesearch;
 		if (settings.FindInt32("savesearch", &savesearch) == B_OK)
@@ -122,7 +117,6 @@ QLSettings::SaveSettings()
 	settings.AddInt32("deskbar", fDeskbar);
 	settings.AddInt32("show version", fShowVersion);
 	settings.AddInt32("show path", fShowPath);
-	settings.AddInt32("searchstart", fSearchStart);
 	settings.AddInt32("savesearch", fSaveSearch);
 	settings.AddString("searchterm", fSearchTerm);
 	settings.AddInt32("singleclick", fSingleClick);
