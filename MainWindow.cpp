@@ -294,8 +294,19 @@ MainWindow::BuildList()
 
 	fListView->MakeEmpty();
 	if (settings.Lock()) {
-		if (GetStringLength() > settings.GetDelay()) {
-
+		if (GetStringLength() == 0) {
+			// show favorites
+			for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++)
+			{
+				entry_ref* favorite = static_cast<entry_ref *>
+					(settings.fFavoriteList->ItemAt(i));
+				if (!favorite)
+					continue;
+				BEntry entry(favorite);
+				if (entry.InitCheck() == B_OK)
+					fListView->AddItem(new MainListItem(&entry, fIconHeight, true));
+			}
+		} else {
 			BVolumeRoster volumeRoster;
 			BVolume volume;
 			BQuery query;
@@ -387,19 +398,6 @@ MainWindow::BuildList()
 				}
 			}
 			fListView->SortItems(&compare_items);
-
-		} else if (GetStringLength() == 0) {
-			// show favorites
-			for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++)
-			{
-				entry_ref* favorite = static_cast<entry_ref *>
-					(settings.fFavoriteList->ItemAt(i));
-				if (!favorite)
-					continue;
-				BEntry entry(favorite);
-				if (entry.InitCheck() == B_OK)
-					fListView->AddItem(new MainListItem(&entry, fIconHeight, true));
-			}
 		}
 		settings.Unlock();
 	}

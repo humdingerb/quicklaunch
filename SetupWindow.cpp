@@ -59,7 +59,7 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkSearchStart = new BCheckBox("SearchStartChk",
 		B_TRANSLATE("Search from start of application name"),
 		new BMessage(SEARCHSTART_CHK), B_WILL_DRAW | B_NAVIGABLE);
-	fChkSearchStart->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));	
+	fChkSearchStart->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
 	fChkSaveSearch = new BCheckBox("SaveSearchChk",
 		B_TRANSLATE("Remember last search term"),

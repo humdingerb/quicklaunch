@@ -195,13 +195,6 @@ QLApp::MessageReceived(BMessage* message)
 			}
 			break;
 		}
-		case DELAY_CHK:
-		{
-			int32 value;
-			message->FindInt32("be:value", &value);
-
-			break;
-		}
 		case SAVESEARCH_CHK:
 		{
 			int32 value;
