@@ -9,7 +9,6 @@
 #include <Application.h>
 #include <ControlLook.h>
 #include <IconUtils.h>
-#include <LocaleRoster.h>
 #include <Resources.h>
 
 #include "MainListItem.h"
@@ -30,19 +29,7 @@ MainListItem::MainListItem(BEntry* entry, int iconSize, bool isFav)
 		&& (node_info.SetTo(&node) == B_NO_ERROR)) {
 
 		// cache name and path
-		entry_ref ref;
-		entry->GetRef(&ref);
-		bool localized = BLocaleRoster::Default()->IsFilesystemTranslationPreferred();
-		BString title;
-		if (localized) {
-			BLocaleRoster::Default()->GetLocalizedFileName(title, ref, false);
-			if (title != "")
-				snprintf(fName, sizeof(fName), "%s", title.String());
-			else
-				entry->GetName(fName);
-		} else
-			entry->GetName(fName);
-
+		entry->GetName(fName);
 		entry->GetPath(&fPath);
 		
 		// create bitmap large enough for icon
