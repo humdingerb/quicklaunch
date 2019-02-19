@@ -51,9 +51,7 @@ public:
 	void			MessageReceived(BMessage* message);
 	bool			QuitRequested();
 
-	void			FilterList();
-	void			ShowFavorites();
-	void			BuildAllList();
+	void			BuildList();
 	float			GetScrollPosition();
 	void			SetScrollPosition(float position);
 	int				GetStringLength()
@@ -63,7 +61,6 @@ public:
 	void			ResizeWindow();
 
 	MainListView*	fListView;
-	MainListView*	fAllList;
 	
 private:
 	void			_GetIconHeight();

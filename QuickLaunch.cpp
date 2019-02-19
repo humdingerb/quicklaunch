@@ -187,8 +187,18 @@ QLApp::MessageReceived(BMessage* message)
 				fSettings.Unlock();
 			}
 
-			if (!fMainWindow->fListView->IsEmpty())
+			if (!fMainWindow->fListView->IsEmpty()) {
 				_RestorePositionAndSelection();
+				fMainWindow->LockLooper();
+				fMainWindow->BuildList();
+				fMainWindow->UnlockLooper();
+			}
+			break;
+		}
+		case DELAY_CHK:
+		{
+			int32 value;
+			message->FindInt32("be:value", &value);
 
 			break;
 		}
@@ -248,7 +258,11 @@ QLApp::MessageReceived(BMessage* message)
 
 			if (!fSettings.fIgnoreList->IsEmpty()) {
  				fSetupWindow->fChkIgnore->SetValue(value);
+
 				_RestorePositionAndSelection();
+				fMainWindow->fListView->LockLooper();
+				fMainWindow->BuildList();
+				fMainWindow->fListView->UnlockLooper();
 			}
 			break;
 		}
@@ -271,8 +285,17 @@ QLApp::MessageReceived(BMessage* message)
 				}
 				fSetupWindow->UnlockLooper();
 			}
-			_RestorePositionAndSelection();
 
+			fMainWindow->fListView->LockLooper();
+			_RestorePositionAndSelection();
+			int32 selection = fMainWindow->fListView->CurrentSelection();
+			float position = fMainWindow->GetScrollPosition();
+			fMainWindow->BuildList();
+			fMainWindow->fListView->Select((selection
+				< fMainWindow->fListView->CountItems())
+				? selection : fMainWindow->fListView->CountItems() - 1);
+			fMainWindow->SetScrollPosition(position);
+			fMainWindow->fListView->UnlockLooper();
 			break;
 		}
 		case B_NODE_MONITOR:
@@ -280,9 +303,14 @@ QLApp::MessageReceived(BMessage* message)
 			int32 opcode = message->GetInt32("opcode", -1);
 
 			if ((opcode == B_DEVICE_MOUNTED)
-					|| (opcode == B_DEVICE_UNMOUNTED))
+					|| (opcode == B_DEVICE_UNMOUNTED)) {
 				_RestorePositionAndSelection();
-
+				fMainWindow->fListView->LockLooper();
+				float position = fMainWindow->GetScrollPosition();
+				fMainWindow->BuildList();
+				fMainWindow->SetScrollPosition(position);
+				fMainWindow->fListView->UnlockLooper();
+			}
 			break;
 		}
 		default:
@@ -304,19 +332,26 @@ QLApp::QuitRequested()
 void
 QLApp::ReadyToRun()
 {
-	fSettings.InitLists();
-
 	BRect frame = fSettings.GetMainWindowFrame();
 	fMainWindow->MoveTo(frame.LeftTop());
 	fMainWindow->ResizeTo(frame.right - frame.left, 0);
 	fMainWindow->Show();
 
+	fSettings.InitLists();
+
+	fMainWindow->fListView->LockLooper();
+	fMainWindow->BuildList();
+	fMainWindow->fListView->Select(0);
+	fMainWindow->fListView->UnlockLooper();
+
 	fSetupWindow->Hide();
 	fSetupWindow->Show();
 
-	BMessenger messenger(fMainWindow);
-	BMessage message(NEW_FILTER);
-	messenger.SendMessage(&message);
+	if (fSettings.GetSaveSearch()) {
+		BMessenger messenger(fMainWindow);
+		BMessage message(NEW_FILTER);
+		messenger.SendMessage(&message);
+	}
 
 	watch_node(NULL, B_WATCH_MOUNT, this);
 }
@@ -398,7 +433,6 @@ QLApp::_RestorePositionAndSelection()
 	fMainWindow->fListView->LockLooper();
 	int32 selection = fMainWindow->fListView->CurrentSelection();
 	float position = fMainWindow->GetScrollPosition();
-	fMainWindow->BuildAllList();
 	fMainWindow->FilterList();
 	fMainWindow->fListView->Select((selection
 		< fMainWindow->fListView->CountItems())

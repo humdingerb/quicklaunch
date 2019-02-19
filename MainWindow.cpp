@@ -52,7 +52,6 @@ MainWindow::MainWindow()
 		new BMessage(HELP_BUTTON));
 	fHelpButton->SetTarget(be_app);
 
-	fAllList = new MainListView();
 	fListView = new MainListView();
 	fListView->SetExplicitMinSize(BSize(B_SIZE_UNSET, fIconHeight + 8));
 
@@ -264,7 +263,7 @@ MainWindow::MessageReceived(BMessage* message)
 		}
 		case NEW_FILTER:
 		{
-			FilterList();
+			BuildList();
 			fListView->Select(0);
 			break;
 		}
@@ -288,159 +287,123 @@ MainWindow::QuitRequested()
 
 
 void
-MainWindow::ShowFavorites()
+MainWindow::BuildList()
 {
+	const char* predicate = GetSearchString();
 	QLSettings& settings = my_app->Settings();
-	for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++)
-	{
-		entry_ref* favorite = static_cast<entry_ref *>
-			(settings.fFavoriteList->ItemAt(i));
-
-		if (!favorite)
-			continue;
-		BEntry favEntry(favorite);
-
-		if (favEntry.InitCheck() == B_OK)
-			fListView->AddItem(new MainListItem(&favEntry, fIconHeight, true));
-	}
-	ResizeWindow();
-}
-
-
-void
-MainWindow::FilterList()
-{
-	QLSettings& settings = my_app->Settings();
-	BString term = GetSearchString();
-
-	//Search string empty -> show favourites
-	if (term.CountChars() == 0) {
-		fListView->MakeEmpty();
-		ShowFavorites();
-		return;
-	}
-
-	if (fAllList->IsEmpty())
-		BuildAllList();
 
 	fListView->MakeEmpty();
-
-	for (int i = 0; i < fAllList->CountItems(); i++)
-	{
-		MainListItem* sItem = dynamic_cast<MainListItem *>
-			(fAllList->ItemAt(i));
-
-		// Search string is "*" -> Show all apps
-		if (term.Compare("*", 1) == 0) {
-			fListView->AddItem(sItem);
-			continue;
-		}
-
-		if (settings.GetSearchStart()) {
-			// Match from start of app name
-			if (term.ICompare(sItem->GetName(), term.Length()) == 0)
-				fListView->AddItem(sItem);
-		} else {
-			// Match anywhere in app name
-			if (strcasestr(sItem->GetName(), term.String()) != NULL)
-				fListView->AddItem(sItem);
-		}
-	}
-	fListView->SortItems(&compare_items);
-	ResizeWindow();
-}
-
-
-void
-MainWindow::BuildAllList()
-{
-	QLSettings& settings = my_app->Settings();
-
-	fAllList->MakeEmpty();
 	if (settings.Lock()) {
-		BVolumeRoster volumeRoster;
-		BVolume volume;
-		BQuery query;
+		if (GetStringLength() > settings.GetDelay()) {
 
-		while (volumeRoster.GetNextVolume(&volume) == B_OK) {
-			if (volume.KnowsQuery()) {
-				// Set up the volume and predicate for the query.
-				query.SetVolume(&volume);
+			BVolumeRoster volumeRoster;
+			BVolume volume;
+			BQuery query;
 
-				query.PushAttr("BEOS:TYPE");
-				query.PushString("application/x-vnd.be-elfexecutable", true);
-				query.PushOp(B_EQ);
+			while (volumeRoster.GetNextVolume(&volume) == B_OK) {
+				if (volume.KnowsQuery()) {
+					// Set up the volume and predicate for the query.
+					query.SetVolume(&volume);
+					query.PushAttr("BEOS:TYPE");
+					query.PushString("application/x-vnd.be-elfexecutable", true);
+					query.PushOp(B_EQ);
 
-				query.PushAttr("BEOS:APP_SIG");
-				query.PushString("application/x");
-				query.PushOp(B_BEGINS_WITH);
-				query.PushOp(B_AND);
+					query.PushAttr("BEOS:APP_SIG");
+					query.PushString("application/x");
+					query.PushOp(B_BEGINS_WITH);
+					query.PushOp(B_AND);
 
-				status_t status = query.Fetch();
+					query.PushAttr("name");
+					query.PushString(predicate, true);
 
-				if (status != B_OK)
-					printf("2. what happened? %s\n", strerror(status));
+					if (settings.GetSearchStart())
+						query.PushOp(B_BEGINS_WITH);
+					else
+						query.PushOp(B_CONTAINS);
 
-				BEntry entry;
-				BPath path;
-				while (query.GetNextEntry(&entry) == B_OK) {
-					if (!entry.IsFile())
-						continue;
+					query.PushOp(B_AND);
 
-					if (entry.GetPath(&path) < B_OK) {
-						fprintf(stderr, "could not get path for entry\n");
-						continue;
-					}
+					status_t status = query.Fetch();
 
-					BPath dir;
-					BPath parent;
-					entry.GetPath(&path);
-					path.GetParent(&parent);
+					if (status != B_OK)
+						printf("2. what happened? %s\n", strerror(status));
 
-					find_directory(B_SYSTEM_ADDONS_DIRECTORY, &dir);
-					if (strstr(parent.Path(), dir.Path()))
-						continue;
-					// check Trash on all volumes
-					find_directory(B_TRASH_DIRECTORY, &dir, false, &volume);
-					if (strstr(parent.Path(), dir.Path()))
-						continue;
+					BEntry entry;
+					BPath path;
+					while (query.GetNextEntry(&entry) == B_OK) {
+						if (!entry.IsFile())
+							continue;
 
-					bool ignore = false;
-					if (settings.GetShowIgnore()) {
-						BString* newItem = new BString(path.Path());
-						for (int i = 0; i < settings.fIgnoreList->CountItems(); i++)
-						{
-							IgnoreListItem* sItem = dynamic_cast<IgnoreListItem *>
-								(settings.fIgnoreList->ItemAt(i));
+						if (entry.GetPath(&path) < B_OK) {
+							fprintf(stderr, "could not get path for entry\n");
+							continue;
+						}
 
-							if (newItem->ICompare(sItem->GetItem(),
-									std::min(newItem->Length(),
-									sItem->GetItem().Length())) == 0)
-								ignore = true;
+						BPath dir;
+						BPath parent;
+						entry.GetPath(&path);
+						path.GetParent(&parent);
+
+						find_directory(B_SYSTEM_ADDONS_DIRECTORY, &dir);
+						if (strstr(parent.Path(), dir.Path()))
+							continue;
+						// check Trash on all volumes
+						find_directory(B_TRASH_DIRECTORY, &dir, false, &volume);
+						if (strstr(parent.Path(), dir.Path()))
+							continue;
+
+						bool ignore = false;
+						if (settings.GetShowIgnore()) {
+							BString* newItem = new BString(path.Path());
+							for (int i = 0; i < settings.fIgnoreList->CountItems(); i++)
+							{
+								IgnoreListItem* sItem = dynamic_cast<IgnoreListItem *>
+									(settings.fIgnoreList->ItemAt(i));
+
+								if (newItem->ICompare(sItem->GetItem(),
+										std::min(newItem->Length(),
+										sItem->GetItem().Length())) == 0)
+									ignore = true;
+							}
+						}
+						if (!ignore) {
+							bool isFav = false;
+							for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++)
+							{
+								entry_ref* favorite = static_cast<entry_ref *>
+									(settings.fFavoriteList->ItemAt(i));
+
+								if (!favorite)
+									continue;
+								BEntry favEntry(favorite);
+								if (favEntry == entry)
+									isFav = true;
+							}
+							if (entry.InitCheck() == B_OK)
+								fListView->AddItem(new MainListItem(&entry, fIconHeight, isFav));
 						}
 					}
-					if (!ignore) {
-						bool isFav = false;
-						for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++)
-						{
-							entry_ref* favorite = static_cast<entry_ref *>
-								(settings.fFavoriteList->ItemAt(i));
-
-							if (!favorite)
-								continue;
-							BEntry favEntry(favorite);
-							if (favEntry == entry)
-								isFav = true;
-						}
-						if (entry.InitCheck() == B_OK)
-							fAllList->AddItem(new MainListItem(&entry, fIconHeight, isFav));
-					}
+					query.Clear();
 				}
-				query.Clear();
+			}
+			fListView->SortItems(&compare_items);
+
+		} else if (GetStringLength() == 0) {
+			// show favorites
+			for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++)
+			{
+				entry_ref* favorite = static_cast<entry_ref *>
+					(settings.fFavoriteList->ItemAt(i));
+				if (!favorite)
+					continue;
+				BEntry entry(favorite);
+				if (entry.InitCheck() == B_OK)
+					fListView->AddItem(new MainListItem(&entry, fIconHeight, true));
 			}
 		}
 		settings.Unlock();
 	}
+	ResizeWindow();
 }
 
 
@@ -471,7 +434,8 @@ MainWindow::ResizeWindow()
 	BRect itemRect = fListView->ItemFrame(0);
 	float itemHeight = itemRect.Height();
 	float windowRest = Frame().Height() - fListView->Frame().Height();
-	ResizeTo(Bounds().Width(), count * (itemHeight + 1) + windowRest  - 2);
+
+	ResizeTo(Bounds().Width(), count * itemHeight + windowRest + count - 2);
 }
 
 
