@@ -76,7 +76,7 @@ SetupWindow::SetupWindow(BRect frame)
 		new BMessage(ONTOP_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkOnTop->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
-	fChkTitlebar = new BCheckBox("OnTopChk",
+	fChkTitlebar = new BCheckBox("TitlebarChk",
 		B_TRANSLATE("Show window titlebar"),
 		new BMessage(TITLEBAR_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkTitlebar->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
