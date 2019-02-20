@@ -97,31 +97,17 @@ QLFilter::Filter(BMessage* message, BHandler** target)
 		case B_RETURN:
 		{
 			int message;
-			if (mod & B_SHIFT_KEY) 
+			if (mod & B_SHIFT_KEY)
 				message = RETURN_SHIFT_KEY;
-			else if (mod & B_CONTROL_KEY) 
+			else if (mod & B_CONTROL_KEY)
 				message = RETURN_CTRL_KEY;
 			else
 				message = RETURN_KEY;
-		
+
 			BLooper* loop = (*target)->Looper();
 			if (loop) {
 				BMessenger msgr(loop);
 				msgr.SendMessage(message);
-				return B_SKIP_MESSAGE;
-			}
-		}
-		case 'h':
-		{
-			if (mod & B_COMMAND_KEY) {
-				be_app->PostMessage(HELP_BUTTON);
-				return B_SKIP_MESSAGE;
-			}
-		}
-		case 's':
-		{
-			if (mod & B_COMMAND_KEY) {
-				be_app->PostMessage(SETUP_BUTTON);
 				return B_SKIP_MESSAGE;
 			}
 		}
@@ -132,6 +118,24 @@ QLFilter::Filter(BMessage* message, BHandler** target)
 				if (loop) {
 					BMessenger msgr(loop);
 					msgr.SendMessage(ADDFAVORITE);
+					return B_SKIP_MESSAGE;
+				}
+			}
+		}
+		case 'h':
+		{
+			if (mod & B_COMMAND_KEY) {
+				be_app->PostMessage(HELP_BUTTON);
+				return B_SKIP_MESSAGE;
+			}
+		}
+		case 'i':
+		{
+			if (mod & B_COMMAND_KEY) {
+				BLooper* loop = (*target)->Looper();
+				if (loop) {
+					BMessenger msgr(loop);
+					msgr.SendMessage(ADDIGNORE);
 					return B_SKIP_MESSAGE;
 				}
 			}
@@ -147,15 +151,11 @@ QLFilter::Filter(BMessage* message, BHandler** target)
 				}
 			}
 		}
-		case 'i':
+		case 's':
 		{
 			if (mod & B_COMMAND_KEY) {
-				BLooper* loop = (*target)->Looper();
-				if (loop) {
-					BMessenger msgr(loop);
-					msgr.SendMessage(ADDIGNORE);
-					return B_SKIP_MESSAGE;
-				}
+				be_app->PostMessage(SETUP_BUTTON);
+				return B_SKIP_MESSAGE;
 			}
 		}
 		default:
@@ -168,4 +168,4 @@ QLFilter::Filter(BMessage* message, BHandler** target)
 		}
 	}
 	return B_DISPATCH_MESSAGE;
-}	
+}
