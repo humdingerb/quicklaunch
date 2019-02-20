@@ -233,11 +233,7 @@ QLApp::MessageReceived(BMessage* message)
 
 			if (!fSettings.fIgnoreList->IsEmpty()) {
  				fSetupWindow->fChkIgnore->SetValue(value);
-
 				_RestorePositionAndSelection();
-				fMainWindow->fListView->LockLooper();
-				fMainWindow->BuildList();
-				fMainWindow->fListView->UnlockLooper();
 			}
 			break;
 		}
@@ -263,29 +259,14 @@ QLApp::MessageReceived(BMessage* message)
 
 			fMainWindow->fListView->LockLooper();
 			_RestorePositionAndSelection();
-			int32 selection = fMainWindow->fListView->CurrentSelection();
-			float position = fMainWindow->GetScrollPosition();
-			fMainWindow->BuildList();
-			fMainWindow->fListView->Select((selection
-				< fMainWindow->fListView->CountItems())
-				? selection : fMainWindow->fListView->CountItems() - 1);
-			fMainWindow->SetScrollPosition(position);
-			fMainWindow->fListView->UnlockLooper();
 			break;
 		}
 		case B_NODE_MONITOR:
 		{
 			int32 opcode = message->GetInt32("opcode", -1);
 
-			if ((opcode == B_DEVICE_MOUNTED)
-					|| (opcode == B_DEVICE_UNMOUNTED)) {
+			if ((opcode == B_DEVICE_MOUNTED) || (opcode == B_DEVICE_UNMOUNTED))
 				_RestorePositionAndSelection();
-				fMainWindow->fListView->LockLooper();
-				float position = fMainWindow->GetScrollPosition();
-				fMainWindow->BuildList();
-				fMainWindow->SetScrollPosition(position);
-				fMainWindow->fListView->UnlockLooper();
-			}
 			break;
 		}
 		default:
@@ -408,7 +389,7 @@ QLApp::_RestorePositionAndSelection()
 	fMainWindow->fListView->LockLooper();
 	int32 selection = fMainWindow->fListView->CurrentSelection();
 	float position = fMainWindow->GetScrollPosition();
-	fMainWindow->FilterList();
+	fMainWindow->BuildList();
 	fMainWindow->fListView->Select((selection
 		< fMainWindow->fListView->CountItems())
 		? selection : fMainWindow->fListView->CountItems() - 1);
