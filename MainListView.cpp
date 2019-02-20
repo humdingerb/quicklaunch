@@ -459,7 +459,7 @@ MainListView::_ShowPopUpMenu(BPoint screen)
 	}
 
 	item = new BMenuItem(B_TRANSLATE("Open containing folder"),
-		new BMessage(OPENLOCATION));
+		new BMessage(OPENLOCATION), 'O');
 	menu->AddItem(item);
 
 	menu->SetTargetForItems(this);

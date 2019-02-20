@@ -140,6 +140,17 @@ QLFilter::Filter(BMessage* message, BHandler** target)
 				}
 			}
 		}
+		case 'o':
+		{
+			if (mod & B_COMMAND_KEY) {
+				BLooper* loop = (*target)->Looper();
+				if (loop) {
+					BMessenger msgr(loop);
+					msgr.SendMessage(RETURN_CTRL_KEY);
+					return B_SKIP_MESSAGE;
+				}
+			}
+		}
 		case 'r':
 		{
 			if (mod & B_COMMAND_KEY) {
