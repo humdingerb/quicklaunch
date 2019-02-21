@@ -18,7 +18,7 @@
 #include <String.h>
 
 
-class QLSettings { 
+class QLSettings {
 public:
 			QLSettings();
 			~QLSettings();
@@ -33,6 +33,7 @@ public:
 	void	SetDeskbar(int32 deskbar) { fDeskbar = deskbar; };
 	void	SetShowVersion(int32 version) { fShowVersion = version; };
 	void	SetShowPath(int32 path) { fShowPath = path; };
+	void	SetSearchStart(int32 searchstart) { fSearchStart = searchstart; };
 	void	SetSaveSearch(int32 savesearch) { fSaveSearch = savesearch; };
 	void	SetSearchTerm(BString searchterm) { fSearchTerm = searchterm; };
 	void	SetOnTop(int32 ontop) { fOnTop = ontop; };
@@ -44,6 +45,7 @@ public:
 	int32	GetDeskbar() { return fDeskbar; };
 	int32	GetShowVersion() { return fShowVersion; };
 	int32	GetShowPath() { return fShowPath; };
+	int32	GetSearchStart() { return fSearchStart; };
 	int32	GetSaveSearch() { return fSaveSearch; };
 	BString	GetSearchTerm() { return fSearchTerm; };
 	int32	GetSingleClick() { return fSingleClick; };
@@ -62,6 +64,7 @@ private:
 	int32	fDeskbar;
 	int32	fShowVersion;
 	int32	fShowPath;
+	int32	fSearchStart;
 	int32	fSaveSearch;
 	BString	fSearchTerm;
 	int32	fSingleClick;

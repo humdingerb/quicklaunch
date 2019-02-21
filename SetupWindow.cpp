@@ -56,6 +56,11 @@ SetupWindow::SetupWindow(BRect frame)
 		new BMessage(PATH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkPath->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
+	fChkSearchStart = new BCheckBox("SearchStartChk",
+		B_TRANSLATE("Search from start of application name"),
+		new BMessage(SEARCHSTART_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkSearchStart->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
 	fChkSaveSearch = new BCheckBox("SaveSearchChk",
 		B_TRANSLATE("Remember last search term"),
 		new BMessage(SAVESEARCH_CHK), B_WILL_DRAW | B_NAVIGABLE);
@@ -93,6 +98,7 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkDeskbar->SetTarget(be_app);
 	fChkVersion->SetTarget(be_app);
 	fChkPath->SetTarget(be_app);
+	fChkSearchStart->SetTarget(be_app);
 	fChkSaveSearch->SetTarget(be_app);
 	fChkSingleClick->SetTarget(be_app);
 	fChkOnTop->SetTarget(be_app);
@@ -113,6 +119,7 @@ SetupWindow::SetupWindow(BRect frame)
 			.SetInsets(spacing, spacing, spacing, 0)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
+			.Add(fChkSearchStart)
 			.Add(fChkSaveSearch)
 			.Add(fChkSingleClick)
 			.Add(fChkOnTop)
@@ -136,6 +143,7 @@ SetupWindow::SetupWindow(BRect frame)
 		fChkDeskbar->SetValue(settings.GetDeskbar());
 		fChkVersion->SetValue(settings.GetShowVersion());
 		fChkPath->SetValue(settings.GetShowPath());
+		fChkSearchStart->SetValue(settings.GetSearchStart());
 		fChkSaveSearch->SetValue(settings.GetSaveSearch());
 		fChkSingleClick->SetValue(settings.GetSingleClick());
 		fChkOnTop->SetValue(settings.GetOnTop());

@@ -177,6 +177,24 @@ QLApp::MessageReceived(BMessage* message)
 			}
 			break;
 		}
+		case SEARCHSTART_CHK:
+		{
+			int32 value;
+			message->FindInt32("be:value", &value);
+
+			if (fSettings.Lock()) {
+				fSettings.SetSearchStart(value);
+				fSettings.Unlock();
+			}
+
+			if (!fMainWindow->fListView->IsEmpty()) {
+				_RestorePositionAndSelection();
+				fMainWindow->LockLooper();
+				fMainWindow->BuildList();
+				fMainWindow->UnlockLooper();
+			}
+			break;
+		}
 		case SAVESEARCH_CHK:
 		{
 			int32 value;
