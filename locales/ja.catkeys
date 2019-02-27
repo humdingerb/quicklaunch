@@ -1,28 +1,27 @@
-1	Japanese	application/x-vnd.humdinger-quicklaunch	1309431571
-About QuickLaunch	Application		QuickLaunch について
-Thank you	Application		ありがとう
-QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nは、インストールされたすべてのアプリを素早く立ち上げます。アプリ名の最初の数文字を入力し、見つかったプログラムリストから選択するだけです。\n
-Add to favorites	ListView		お気に入り
-Add to ignore list	ListView		無視リストに追加
-Found no matches.	ListView		一致するアプリがありません
-No favorites yet.	ListView		何も追加されていません
-Open containing folder	ListView		フォルダーを開く
-Remove favorite	ListView		お気に入りから削除
-Use '*' as wildcards.	ListView		'*' はワイルドカード
-Help	MainWindow		ヘルプ
-OK	MainWindow		OK
-Setup	MainWindow		設定
+1	English	application/x-vnd.humdinger-quicklaunch	2634611479
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	％appname％の起動に失敗しました。\n\nエラー：
-Open QuickLaunch	Application		QuickLaunch を開く
-Add…	SetupWindow		追加…
-Ignore these files & folders (and their subfolders):	SetupWindow		以下のファイルとフォルダー (およびサブフォルダー) を無視する:
-Launch applications with a single click	SetupWindow		ワンクリックでアプリケーションを起動
-Remember last search term	SetupWindow		最後の検索語を覚えている
-Remove	SetupWindow		削除
-Setup	SetupWindow		設定
-Show application path	SetupWindow		アプリのパスを表示
-Show application version	SetupWindow		アプリのバージョンを表示
+Found no matches.	ListView		一致するアプリがありません
+OK	MainWindow		OK
 Show Deskbar replicant	SetupWindow		Deskbarレプリカントを表示
-Wait for a second letter before searching	SetupWindow		2 文字入力してから検索
-Window always on top	SetupWindow		ウィンドウ 常に手前に
+Setup	MainWindow		設定
+QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nは、インストールされたすべてのアプリを素早く立ち上げます。アプリ名の最初の数文字を入力し、見つかったプログラムリストから選択するだけです。\n
+Show application path	SetupWindow		アプリのパスを表示
 QuickLaunch	System name		QuickLaunch
+Remove	SetupWindow		削除
+Search from start of application name	SetupWindow		アプリケーション名の初めから検索
+Ignore these files & folders (and their subfolders):	SetupWindow		以下のファイルとフォルダー (およびサブフォルダー) を無視する:
+Setup	SetupWindow		設定
+Add…	SetupWindow		追加…
+Help	MainWindow		ヘルプ
+Show application version	SetupWindow		アプリのバージョンを表示
+Add to favorites	ListView		お気に入り
+Launch applications with a single click	SetupWindow		ワンクリックでアプリケーションを起動
+Open containing folder	ListView		フォルダーを開く
+Remember last search term	SetupWindow		最後の検索語を覚えている
+Window always on top	SetupWindow		ウィンドウ 常に手前に
+Remove favorite	ListView		お気に入りから削除
+Open QuickLaunch	Application		QuickLaunch を開く
+Add to ignore list	ListView		無視リストに追加
+Use '*' as wildcards.	ListView		'*' はワイルドカード
+Thank you	Application		ありがとう
+About QuickLaunch	Application		QuickLaunch について

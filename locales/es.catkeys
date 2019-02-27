@@ -1,28 +1,27 @@
-1	Spanish	application/x-vnd.humdinger-quicklaunch	1309431571
-About QuickLaunch	Application		Acerca de QuickLaunch
-Thank you	Application		Gracias
-QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tescrito por Humdinger\n\tCopyright %years%\n\nQuickLaunch permite iniciar rápidamente cualquier aplicación instalada. Sólo ingrese las primeras letras del nombre y elija de la lista de resultados encontrados.\n
-Add to favorites	ListView		Agregar a favoritos
-Add to ignore list	ListView		Agregar a la lista de ignorados
-Found no matches.	ListView		No se encontraron coincidencias.
-No favorites yet.	ListView		No hay favoritos.
-Open containing folder	ListView		Abrir carpeta contenedora
-Remove favorite	ListView		Quitar de favoritos
-Use '*' as wildcards.	ListView		Usar '*' como caracter comodín.
-Help	MainWindow		Ayuda
-OK	MainWindow		OK
-Setup	MainWindow		Configuración
+1	English	application/x-vnd.humdinger-quicklaunch	2634611479
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Error al iniciar %appname%.\n\nError:
-Open QuickLaunch	Application		Abrir QuickLaunch
-Add…	SetupWindow		Agregar…
-Ignore these files & folders (and their subfolders):	SetupWindow		Ignorar estos archivos y carpetas (y sus correspondientes subcarpetas):
-Launch applications with a single click	SetupWindow		Iniciar aplicaciones con un solo clic
-Remember last search term	SetupWindow		Recordar la última búsqueda
-Remove	SetupWindow		Quitar
-Setup	SetupWindow		Configuración
-Show application path	SetupWindow		Mostrar la ruta de la aplicación
-Show application version	SetupWindow		Mostrar versión de la aplicación
+Found no matches.	ListView		No se encontraron coincidencias.
+OK	MainWindow		OK
 Show Deskbar replicant	SetupWindow		Mostrar replicante de la barra de escritorio
-Wait for a second letter before searching	SetupWindow		Esperar por una segunda letra antes de iniciar la búsqueda
-Window always on top	SetupWindow		Ventana siempre en primer plano
+Setup	MainWindow		Configuración
+QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tescrito por Humdinger\n\tCopyright %years%\n\nQuickLaunch permite iniciar rápidamente cualquier aplicación instalada. Sólo ingrese las primeras letras del nombre y elija de la lista de resultados encontrados.\n
+Show application path	SetupWindow		Mostrar la ruta de la aplicación
 QuickLaunch	System name		QuickLaunch
+Remove	SetupWindow		Quitar
+Search from start of application name	SetupWindow		Buscar desde el inicio del nombre de la aplicación
+Ignore these files & folders (and their subfolders):	SetupWindow		Ignorar estos archivos y carpetas (y sus correspondientes subcarpetas):
+Setup	SetupWindow		Configuración
+Add…	SetupWindow		Agregar…
+Help	MainWindow		Ayuda
+Show application version	SetupWindow		Mostrar versión de la aplicación
+Add to favorites	ListView		Agregar a favoritos
+Launch applications with a single click	SetupWindow		Iniciar aplicaciones con un solo clic
+Open containing folder	ListView		Abrir carpeta contenedora
+Remember last search term	SetupWindow		Recordar la última búsqueda
+Window always on top	SetupWindow		Ventana siempre en primer plano
+Remove favorite	ListView		Quitar de favoritos
+Open QuickLaunch	Application		Abrir QuickLaunch
+Add to ignore list	ListView		Agregar a la lista de ignorados
+Use '*' as wildcards.	ListView		Usar '*' como caracter comodín.
+Thank you	Application		Gracias
+About QuickLaunch	Application		Acerca de QuickLaunch

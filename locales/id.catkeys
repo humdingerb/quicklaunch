@@ -1,0 +1,29 @@
+1	English	application/x-vnd.humdinger-quicklaunch	2634611479
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Gagal meluncurkan %appname%.\n\nKesalahan:
+Found no matches.	ListView		Tak ditemukan kecocokan.
+OK	MainWindow		OKE
+Show Deskbar replicant	SetupWindow		Tampilkan Deskbar replicant
+Setup	MainWindow		Mempersiapkan
+QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tditulis oleh Humdinger\n\tHakcipta %years%\n\nQuickLaunch Secara cepat menjalankan aplikasi apa saja yang terpasang. Cukup masukkan beberapa huruf awalan aplikasi dan pilih dari daftar semua program yang ditemukan.\n
+Show application path	SetupWindow		Tampilkan jalur aplikasi
+QuickLaunch	System name		QuickLaunch.
+Remove	SetupWindow		Hapus
+Search from start of application name	SetupWindow		Cari dari awal nama aplikasi
+Ignore these files & folders (and their subfolders):	SetupWindow		Abaikan berkas & folder (dan sub-folder):
+Setup	SetupWindow		Menyiapkan
+Add…	SetupWindow		Tambah…
+Help	MainWindow		Tolong
+Show application version	SetupWindow		Tampilkan versi aplikasi
+Add to favorites	ListView		Tambah ke favorit
+Launch applications with a single click	SetupWindow		Jalankan aplikasi dengan sekali-klik
+Open containing folder	ListView		Buka folder yang berisi
+Remember last search term	SetupWindow		Ingat pencarian terakhir
+Window always on top	SetupWindow		Jendela selalu di atas
+Remove favorite	ListView		Hapus favorit
+Open QuickLaunch	Application		Buka QuickLaunch
+Add to ignore list	ListView		Tambah ke daftar yang diabaikan
+Use '*' as wildcards.	ListView		Use '*' as wildcards.
+Thank you	Application		Terima kasih
+About QuickLaunch	Application		Tentang QuickLaunch
+kLaunch
+

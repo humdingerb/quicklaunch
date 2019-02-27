@@ -1,0 +1,27 @@
+1	English	application/x-vnd.humdinger-quicklaunch	2634611479
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Ocorreu uma falha ao iniciar %appname%.\n\nErro:
+Found no matches.	ListView		Não foram encontradas correspondências.
+OK	MainWindow		OK
+Show Deskbar replicant	SetupWindow		Mostrar replicante na Deskbar
+Setup	MainWindow		Definições
+QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tescrito por Humdinger\n\tCopyright %years%\n\nO QuickLaunch inicia rapidamente qualquer aplicação instalada. Basta introduzir as primeiras letras do seu nome e escolher a partir da lista de todos os programas encontrados.\n
+Show application path	SetupWindow		Mostrar o caminho da aplicação
+QuickLaunch	System name		QuickLaunch
+Remove	SetupWindow		Remover
+Search from start of application name	SetupWindow		Pesquisar a partir do início do nome da aplicação
+Ignore these files & folders (and their subfolders):	SetupWindow		Ignorar estes ficheiros e pastas (e as suas sub-pastas):
+Setup	SetupWindow		Definições
+Add…	SetupWindow		Adicionar…
+Help	MainWindow		Ajuda
+Show application version	SetupWindow		Mostrar a versão da aplicação
+Add to favorites	ListView		Adicionar aos favoritos
+Launch applications with a single click	SetupWindow		Iniciar aplicações com um único clique
+Open containing folder	ListView		Mostrar na respetiva pasta
+Remember last search term	SetupWindow		Lembrar o último termo pesquisado
+Window always on top	SetupWindow		Janela sempre na frente
+Remove favorite	ListView		Remover favorito
+Open QuickLaunch	Application		Abrir QuickLaunch
+Add to ignore list	ListView		Adicionar à lista a ignorar
+Use '*' as wildcards.	ListView		Use '*' as wildcards.
+Thank you	Application		Obrigado
+About QuickLaunch	Application		Acerca do QuickLaunch
