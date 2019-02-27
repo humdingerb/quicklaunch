@@ -36,8 +36,6 @@ public:
 	void	SetSearchStart(int32 searchstart) { fSearchStart = searchstart; };
 	void	SetSaveSearch(int32 savesearch) { fSaveSearch = savesearch; };
 	void	SetSearchTerm(BString searchterm) { fSearchTerm = searchterm; };
-	void	SetOnTop(int32 ontop) { fOnTop = ontop; };
-	void	SetSingleClick(bool singleclick) { fSingleClick = singleclick; };
 	void	SetShowIgnore(int32 ignore) { fShowIgnore = ignore; };
 
 	BRect	GetMainWindowFrame() { return fMainWindowFrame; };
@@ -48,8 +46,6 @@ public:
 	int32	GetSearchStart() { return fSearchStart; };
 	int32	GetSaveSearch() { return fSaveSearch; };
 	BString	GetSearchTerm() { return fSearchTerm; };
-	int32	GetSingleClick() { return fSingleClick; };
-	int32	GetOnTop() { return fOnTop; };
 	int32	GetShowIgnore() { return fShowIgnore; };
 
 	void			InitLists();
@@ -67,8 +63,6 @@ private:
 	int32	fSearchStart;
 	int32	fSaveSearch;
 	BString	fSearchTerm;
-	int32	fSingleClick;
-	int32	fOnTop;
 	int32	fShowIgnore;
 
 	BLocker	fLock;

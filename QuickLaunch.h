@@ -34,7 +34,6 @@ public:
 	virtual void	ReadyToRun();
 
 	QLSettings& 	Settings() { return fSettings; }
-	void			SetWindowsFeel(int32 value);
 
 	SetupWindow*	fSetupWindow;
 	MainWindow*		fMainWindow;

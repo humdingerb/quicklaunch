@@ -39,13 +39,11 @@
 #define PATH_CHK		'chpa'
 #define SEARCHSTART_CHK	'chst'
 #define SAVESEARCH_CHK	'chss'
-#define SINGLECLICK_CHK	'ch1c'
-#define ONTOP_CHK		'chot'
 #define IGNORE_CHK		'chig'
 #define ADD_BUT			'addb'
 #define REM_BUT			'remb'
 #define FILEPANEL		'file'
-#define POPCLOSE		'clpo' 
+#define POPCLOSE		'clpo'
 
 class SetupWindow : public BWindow {
 public:
@@ -60,8 +58,6 @@ public:
 	BCheckBox*		fChkPath;
 	BCheckBox*		fChkSearchStart;
 	BCheckBox*		fChkSaveSearch;
-	BCheckBox*		fChkSingleClick;
-	BCheckBox*		fChkOnTop;
 	BCheckBox*		fChkIgnore;
 	BButton*		fButRem;
 

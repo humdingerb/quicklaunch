@@ -36,7 +36,7 @@ compare_items(const void* a, const void* b)
 MainWindow::MainWindow()
 	:
 	BWindow(BRect(), B_TRANSLATE_SYSTEM_NAME("QuickLaunch"),
-		B_TITLED_WINDOW_LOOK, B_NORMAL_WINDOW_FEEL,
+		B_TITLED_WINDOW_LOOK, B_MODAL_ALL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE
 		| B_FRAME_EVENTS | B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
@@ -84,10 +84,6 @@ MainWindow::MainWindow()
 	if (settings.Lock()) {
 		if (settings.GetSaveSearch())
 			fSearchBox->SetText(settings.GetSearchTerm());
-
-		int32 value = settings.GetOnTop();
-		SetFeel(value ?	B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
-
 		settings.Unlock();
 	}
 }
@@ -231,10 +227,6 @@ MainWindow::MessageReceived(BMessage* message)
 			break;
 		}
 		case SINGLE_CLICK:
-		{
-			if (settings.GetSingleClick() == false)
-				break;
-		}	// intentional fall-through
 		case RETURN_KEY:
 		{
 			Hide();

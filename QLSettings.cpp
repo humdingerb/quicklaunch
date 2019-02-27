@@ -41,8 +41,6 @@ QLSettings::QLSettings()
 	fSearchStart = true;
 	fSaveSearch = false;
 	fSearchTerm = "";
-	fSingleClick = false;
-	fOnTop = false;
 	fShowIgnore = false;
 	fFavoriteList = new BList();
 	fIgnoreList = new IgnoreListView();
@@ -86,14 +84,6 @@ QLSettings::QLSettings()
 		if (settings.FindString("searchterm", &searchterm) == B_OK)
 			fSearchTerm = searchterm;
 
-		int32 singleclick;
-		if (settings.FindInt32("singleclick", &singleclick) == B_OK)
-			fSingleClick = singleclick;
-
-		int32 ontop;
-		if (settings.FindInt32("ontop", &ontop) == B_OK)
-			fOnTop = ontop;
-
 		int32 ignore;
 		if (settings.FindInt32("show ignore", &ignore) == B_OK)
 			fShowIgnore = ignore;
@@ -125,8 +115,6 @@ QLSettings::SaveSettings()
 	settings.AddInt32("searchstart", fSearchStart);
 	settings.AddInt32("savesearch", fSaveSearch);
 	settings.AddString("searchterm", fSearchTerm);
-	settings.AddInt32("singleclick", fSingleClick);
-	settings.AddInt32("ontop", fOnTop);
 	settings.AddInt32("show ignore", fShowIgnore);
 
 	for (int32 i = 0; i < fIgnoreList->CountItems(); i++)

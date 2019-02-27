@@ -5,7 +5,7 @@
  * Author:
  *	Humdinger, humdingerb@gmail.com
  */
- 
+
 #ifndef QL_WINDOW_H
 #define QL_WINDOW_H
 
@@ -47,7 +47,7 @@ class MainWindow : public BWindow {
 public:
 					MainWindow();
 	virtual			~MainWindow();
-	
+
 	void			MessageReceived(BMessage* message);
 	bool			QuitRequested();
 
@@ -61,7 +61,7 @@ public:
 	void			ResizeWindow();
 
 	MainListView*	fListView;
-	
+
 private:
 	void			_GetIconHeight();
 	void			_LaunchApp(MainListItem* item);

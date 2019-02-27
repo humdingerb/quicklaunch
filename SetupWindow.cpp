@@ -34,7 +34,7 @@ compare_items(const void* a, const void* b)
 SetupWindow::SetupWindow(BRect frame)
 	:
 	BWindow(frame, B_TRANSLATE("Setup"), B_TITLED_WINDOW_LOOK,
-		B_NORMAL_WINDOW_FEEL, B_NOT_ZOOMABLE | B_FRAME_EVENTS
+		B_MODAL_ALL_WINDOW_FEEL, B_NOT_ZOOMABLE | B_FRAME_EVENTS
 		| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
 	QLSettings& settings = my_app->Settings();
@@ -66,16 +66,6 @@ SetupWindow::SetupWindow(BRect frame)
 		new BMessage(SAVESEARCH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkSaveSearch->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
-	fChkSingleClick = new BCheckBox("SingleClickChk",
-		B_TRANSLATE("Launch applications with a single click"),
-		new BMessage(SINGLECLICK_CHK), B_WILL_DRAW | B_NAVIGABLE);
-	fChkSingleClick->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
-
-	fChkOnTop = new BCheckBox("OnTopChk",
-		B_TRANSLATE("Window always on top"),
-		new BMessage(ONTOP_CHK), B_WILL_DRAW | B_NAVIGABLE);
-	fChkOnTop->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
-
 	fChkIgnore = new BCheckBox("IgnoreChk",
 		B_TRANSLATE("Ignore these files & folders (and their subfolders):"),
 		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE);
@@ -100,8 +90,6 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkPath->SetTarget(be_app);
 	fChkSearchStart->SetTarget(be_app);
 	fChkSaveSearch->SetTarget(be_app);
-	fChkSingleClick->SetTarget(be_app);
-	fChkOnTop->SetTarget(be_app);
 	fChkIgnore->SetTarget(be_app);
 
 	// Build the layout
@@ -121,8 +109,6 @@ SetupWindow::SetupWindow(BRect frame)
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkSearchStart)
 			.Add(fChkSaveSearch)
-			.Add(fChkSingleClick)
-			.Add(fChkOnTop)
 			.SetInsets(spacing, spacing, spacing, 0)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
@@ -145,8 +131,6 @@ SetupWindow::SetupWindow(BRect frame)
 		fChkPath->SetValue(settings.GetShowPath());
 		fChkSearchStart->SetValue(settings.GetSearchStart());
 		fChkSaveSearch->SetValue(settings.GetSaveSearch());
-		fChkSingleClick->SetValue(settings.GetSingleClick());
-		fChkOnTop->SetValue(settings.GetOnTop());
 		fChkIgnore->SetValue(settings.GetShowIgnore());
 
 		settings.Unlock();
@@ -174,14 +158,6 @@ bool
 SetupWindow::QuitRequested()
 {
 	this->Hide();
-
-	QLSettings& settings = my_app->Settings();
-	if (settings.Lock()) {
-		int32 value = settings.GetOnTop();
-		my_app->SetWindowsFeel(value);
-
-		settings.Unlock();
-	}
 	return false;
 }
 

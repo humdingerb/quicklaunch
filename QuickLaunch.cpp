@@ -103,10 +103,9 @@ QLApp::MessageReceived(BMessage* message)
 	switch (message->what) {
 		case SETUP_BUTTON:
 		{
-			if (fSetupWindow->IsHidden()) {
-				SetWindowsFeel(0);
+			if (fSetupWindow->IsHidden())
 				fSetupWindow->Show();
-			} else
+			else
 				fSetupWindow->Hide();
 			break;
 		}
@@ -202,27 +201,6 @@ QLApp::MessageReceived(BMessage* message)
 
 			if (fSettings.Lock()) {
 				fSettings.SetSaveSearch(value);
-				fSettings.Unlock();
-			}
-			break;
-		}
-		case SINGLECLICK_CHK:
-		{
-			int32 value;
-			message->FindInt32("be:value", &value);
-			if (fSettings.Lock()) {
-				fSettings.SetSingleClick(value);
-				fSettings.Unlock();
-			}
-			break;
-		}
-		case ONTOP_CHK:
-		{
-			int32 value;
-			message->FindInt32("be:value", &value);
-
-			if (fSettings.Lock()) {
-				fSettings.SetOnTop(value);
 				fSettings.Unlock();
 			}
 			break;
@@ -328,19 +306,6 @@ QLApp::ReadyToRun()
 	}
 
 	watch_node(NULL, B_WATCH_MOUNT, this);
-}
-
-
-#pragma mark -- Public Methods --
-
-
-void
-QLApp::SetWindowsFeel(int32 value)
-{
-	fMainWindow->LockLooper();
-	fMainWindow->SetFeel(value
-		? B_MODAL_ALL_WINDOW_FEEL : B_NORMAL_WINDOW_FEEL);
-	fMainWindow->UnlockLooper();
 }
 
 
