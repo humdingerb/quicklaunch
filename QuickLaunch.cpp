@@ -186,12 +186,9 @@ QLApp::MessageReceived(BMessage* message)
 				fSettings.Unlock();
 			}
 
-			if (!fMainWindow->fListView->IsEmpty()) {
+			if (!fMainWindow->fListView->IsEmpty())
 				_RestorePositionAndSelection();
-				fMainWindow->LockLooper();
-				fMainWindow->BuildList();
-				fMainWindow->UnlockLooper();
-			}
+
 			break;
 		}
 		case SAVESEARCH_CHK:
@@ -373,9 +370,13 @@ QLApp::_RestorePositionAndSelection()
 	int32 selection = fMainWindow->fListView->CurrentSelection();
 	float position = fMainWindow->GetScrollPosition();
 	fMainWindow->BuildList();
-	fMainWindow->fListView->Select((selection
-		< fMainWindow->fListView->CountItems())
-		? selection : fMainWindow->fListView->CountItems() - 1);
+	if (selection >= 0) {
+		fMainWindow->fListView->Select((selection
+			< fMainWindow->fListView->CountItems())
+			? selection : fMainWindow->fListView->CountItems() - 1);
+	} else if (!fMainWindow->fListView->IsEmpty())
+		fMainWindow->fListView->Select(0);
+
 	fMainWindow->SetScrollPosition(position);
 	fMainWindow->fListView->UnlockLooper();
 }
