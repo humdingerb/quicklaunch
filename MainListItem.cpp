@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017. All rights reserved.
+ * Copyright 2010-2019. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -31,7 +31,7 @@ MainListItem::MainListItem(BEntry* entry, int iconSize, bool isFav)
 		// cache name and path
 		entry->GetName(fName);
 		entry->GetPath(&fPath);
-		
+
 		// create bitmap large enough for icon
 		fIcon = new BBitmap(
 			BRect(0, 0, fIconSize, fIconSize), 0, B_RGBA32);
@@ -52,7 +52,7 @@ MainListItem::MainListItem(BEntry* entry, int iconSize, bool isFav)
 
 		// cache ref
 		entry->GetRef(&fRef);
-		
+
 		// cache version info
 		BFile file(entry, B_READ_ONLY);
 		if (file.InitCheck() != B_OK)

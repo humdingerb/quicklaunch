@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017. All rights reserved.
+ * Copyright 2010-2019. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
@@ -17,8 +17,8 @@
 #include "QLSettings.h"
 #include "SetupWindow.h"
 
-static const char kVersion[] = "v1.2";
-static const char kCopyright[] = "2010-2017";
+static const char kVersion[] = "v1.3";
+static const char kCopyright[] = "2010-2019";
 
 #define my_app dynamic_cast<QLApp*>(be_app)
 
