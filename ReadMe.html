@@ -107,11 +107,11 @@ for <a href="https://www.haiku-os.org">Haiku</a><br />
 <img src="./images/quicklaunch.png" alt="QuickLaunch windows" />
 </div>
 <p>In the main window the context menu was invoked via a right-click.<br />
-The first item adds the selected app to your favorites which will be shown whenever the search field is empty.<br />
-The second item adds the app to the ignore list (works also with a drag &amp; drop into the ignore list of the setup window). More on that in the setup options discussed below.<br />
-The final item opens the app's location in a Tracker window. The same can be achieved by pressing <span class="key">CTRL</span>+<span class="key">RETURN</span>.</p>
+The first item adds the selected app to your favorites which will be shown whenever the search field is empty (key-combo: <span class="key">ALT</span>+<span class="key">F</span>).<br />
+The second item adds the app to the ignore list (key-combo: <span class="key">ALT</span>+<span class="key">I</span>; works also with a drag &amp; drop into the ignore list of the setup window). More on that in the setup options discussed below.<br />
+The final item opens the app's location in a Tracker window (key-combo: <span class="key">ALT</span>+<span class="key">O</span> or <span class="key">CTRL</span>+<span class="key">RETURN</span>).</p>
 
-<p>The <span class="button">Help</span> button or pressing <span class="key">ALT</span>+<span class="key">H</span> opens this ReadMe in the browser.</p>
+<p>The <span class="button">Help</span> button, or pressing <span class="key">ALT</span>+<span class="key">H</span>, opens this ReadMe in the browser.</p>
 
 <h2>
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
@@ -145,8 +145,6 @@ A right-click on it also offers quick access to your favorites.</p>
 <li><p><span class="menu">Show the path to an application</span> —  interesting when you have several copies of an application.</p></li>
 <li><p><span class="menu">Search from start of application name</span> —  when unchecked, finds all applications with the search term anywhere in their name, not only with those initial letters. Same as starting a search with a '*' as first letter.</p></li>
 <li><p><span class="menu">Remember last search term</span> — starts QuickLaunch with the previous search.</p></li>
-<li><p><span class="menu">Launch applications with a single click</span> —  instead of requiring the usual double-click.</p></li>
-<li><p><span class="menu">Window always on top</span> — the window floats modally in front of all others. Useful if you start a few apps after another and don't want to lose QuickLauch under the newly opening windows.</p></li>
 <li><p><span class="menu">Ignore these files &amp; folders (and their subfolders)</span> that you can add and remove from the list with the buttons at the bottom.<br />
 You can also right-click an app in the main window's result list to add that specific app to the ignore list or drag &amp; drop any application or folder from Tracker or an app from QuickLaunch's main window into it.<br />
 <span class="key">DEL</span> removes the selected items from the ignore list.</p>
@@ -158,16 +156,17 @@ You can also right-click an app in the main window's result list to add that spe
 <a id="tips" name="tips">Tips &amp; Tricks</a></h2>
 <ul>
 <li><p>Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like <span class="key">OPT</span>+<span class="key">SPACEBAR</span>, for even quicker QuickLaunching apps.</p></li>
-<li><p>Enter '*' to show a list of all installed applications.</p></li>
+<li><p>If you don't want to deactivate the option <span class="menu">Search from start of application name</span> in general, but just once in a while would like to search within an app name, you can use a '<tt>*</tt>' as a wildcard. E.g. "<tt>*player</tt>" will find '<tt>MediaPlayer</tt>' and '<tt>MidiPlayer</tt>'.</p></li>
 <li><p><span class="key">SHIFT</span>+<span class="key">RETURN</span> will keep the QuickLaunch window open after launching the app.</p></li>
-<li><p><span class="key">CTRL</span>+<span class="key">RETURN</span> will open an app's location in Tracker instead of launching it.</p></li>
-<li><p>These folders are ignored by default:<br />
-<span style="font-family: monospace">B_SYSTEM_ADDONS_DIRECTORY and B_TRASH_DIRECTORY</span><br />
+<li><p>These two folders are ignored by default: <span style="font-family: monospace">/system/add-ons/</span> and <span style="font-family: monospace">Trash</span><br />
 In other words, applications in Trash are ignored, as well as add-ons.<br />
-B_SYSTEM_BIN_DIRECTORY used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, i.e. via <span class="menu">Add to ignore list</span> of the context menu.</p></li>
-<li><p>There are two reasons why an application may not be found by QuickLaunch:</p>
-<p>- The application isn't located on a BFS partition or the BFS partition wasn't formatted to support queries.<br />
-- The application lacks the proper attribute <span style="font-family: monospace">BEOS:APP_SIG</span>. In that case, ask the app's developer to add it, or try to apply the following tip.</p></li>
+<span style="font-family: monospace">/system/bin/</span> used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, i.e. via <span class="menu">Add to ignore list</span> of the context menu.</p></li>
+<li>There are two reasons why an application may not be found by QuickLaunch:
+<ol>
+<li><p>The application isn't located on a BFS partition or the BFS partition wasn't formatted to support queries.</p></li>
+<li><p>The application lacks the proper attribute <span style="font-family: monospace">BEOS:APP_SIG</span>. In that case, ask the app's developer to add it, or try to apply the following tip.</p></li>
+</ol>
+</li>
 <li><p>If you happen to use an app or a script that doesn't show up in QuickLaunch (and is in a writable location), you can add these atrributes in Terminal to the app or script:<br />
 <span style="font-family: monospace">addattr BEOS:TYPE application/x-vnd.Be-elfexecutable /path/to/your/app-or-script<br />
 addattr BEOS:APP_SIG  application/x-vnd.anything-unique /path/to/your/app-or-script</span>
@@ -183,15 +182,16 @@ You can also build it yourself using <a href="https://github.com/haikuports">Hai
 <h2>
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
 <a id="bugs_feedback" name="bugs_feedback">Bugreports &amp; Feedback</a></h2>
-<p>Please use GitHub's <a href="https://github.com/humdingerb/quicklaunch/issues">issue tracker</a> if you experience unusual difficulties or email your general feedback to <a href="mailto:humdingerb@gmail.com">me</a>. Also, email me if you'd like to provide more localizations.</p>
+<p>Please use GitHub's <a href="https://github.com/humdingerb/quicklaunch/issues">issue tracker</a> if you experience unusual difficulties or email your general feedback to <a href="mailto:humdingerb@gmail.com">me</a>.</p>
 <p>I'd be very grateful for further translations for QuickLaunch and other applications at <a href="https://i18n.kacperkasper.pl/">Polyglot</a>.</p>
 <h2>
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
 <a id="thanks" name="thanks">Thanks</a></h2>
 <p>	I have to thank DarkWyrm for some helpful hints and for some of the	code I re-used from his RunProgram app and his EscapeCancelFilter.<br />
 Equally useful was Robert Polic's EZLauncher of BeNewsletter 3-46 and the help I got on the #haiku IRC channel.<br />
-AnEvilYak provided valuable hints and code when I got stuck.<br />
-Finally, thanks to everyone that contributed translations and bug reports for QuickLaunch.</p>
+AnEvilYak provided valuable hints and code when I got stuck.</p>
+<p>Finally, thanks to everyone that contributed bug reports and translations for QuickLaunch:<br />
+Alexey Lugin&nbsp;(uk), Briseur&nbsp;(fr), deejam&nbsp;(sv), Floren&nbsp;(ro), Gabriele Baldassarre&nbsp;(it), KapiX&nbsp;(pl), Knezzen&nbsp;(sv), mazbrili&nbsp;(id), miqlas&nbsp;(hu), Murai Takashi&nbsp;(ja), no-act&nbsp;(nl), oco27&nbsp;(fr), Sergei Reznikov&nbsp;(ru), unspacyar&nbsp;(es), Victor Domingos&nbsp;(pt)</p>
 
 <h2>
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
@@ -199,10 +199,12 @@ Finally, thanks to everyone that contributed translations and bug reports for Qu
 <p><b>1.3</b> - <i>:</i></p>
 <ul>
 <li>Add option to look for applications with the search term anywhere in their name, not just as their initial letters. Thanks to Kevin Adams for the patch.</li>
-<li>Support localized application names (has to be activated in Locale preferences' 3rd tab).</li>
-<li>Remove "Wait for a second letter before searching". Supporting localized app names needed changes that removed the need to do a query for every entered character. Any previous gain in performance (if there ever was one) would be gone now.</li>
-<li>Remove '*' as a wildcard in application names. As we're not using a query anymore to filter appplications, and supporting wildcards is more trouble than it's worth.<br />
-Enter '*' to get a list of all installed applications.</li>
+<li>Remove "Wait for a second letter before searching". My tests on very slow systems showed that Haiku's queries should be fast enough for short turn-around times.</li>
+<li>Remove "Launch applications with a single click" and "Window always on top". These are now default behavior.</li>
+<li>Add ALT+O as key-combo to open an app's parent folder.</li>
+<li>Restore selection and scroll position when changing a setting that will alter the result list.</li>
+<li>Fix crash when Favorites are missing.</li>
+<li>Fix freeze when entering a "%" character.</li>
 </ul>
 
 <p><b>1.2</b> - <i>11-05-2017:</i></p>
