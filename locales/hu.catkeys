@@ -1,27 +1,27 @@
-1	English	application/x-vnd.humdinger-quicklaunch	2634611479
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	%appname%-t nem sikerült megnyitni.\n\nHiba:
-Found no matches.	ListView		Nincs egyezés
-OK	MainWindow		OK
-Show Deskbar replicant	SetupWindow		Deskbar replikáns megjelenítése
-Setup	MainWindow		Beállítás
-QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tírta Humdinger\n\tCopyright %years%\n\nQuickLaunch gyorsan elindít bármilyen telepített programot. Csak írja be a program nevének első pár betüjét és válasszon a talált programok listájából.\n
-Show application path	SetupWindow		Program elérési útjának megjelenítése
-QuickLaunch	System name		QuickLaunch
-Remove	SetupWindow		Eltávolít
-Search from start of application name	SetupWindow		Programok nevének elejétől keressen
-Ignore these files & folders (and their subfolders):	SetupWindow		Hagyja figyelmen kívül ezeket a fájlokat és könyvtárakat (és azok alkönyvtárait):
-Setup	SetupWindow		Beállítás
-Add…	SetupWindow		Hozzáad…
-Help	MainWindow		Súgó
-Show application version	SetupWindow		Programverzió megjelenítése
-Add to favorites	ListView		Kedvencekhez ad
-Launch applications with a single click	SetupWindow		Program indítása egy kattintásra
-Open containing folder	ListView		Tartalmazó mappa megnyitása
-Remember last search term	SetupWindow		Emlékezzen az utolsó keresőkifejezésre
-Window always on top	SetupWindow		Ablak mindig felül
-Remove favorite	ListView		Kedvenc eltávolítása
-Open QuickLaunch	Application		QuickLaunch megnyitása
-Add to ignore list	ListView		Figyelmen kívül hagy
-Use '*' as wildcards.	ListView		Use '*' as wildcards.
-Thank you	Application		Köszönöm
+1	Hungarian	application/x-vnd.humdinger-quicklaunch	2634611479
 About QuickLaunch	Application		A QuickLaunch névjegye
+Open QuickLaunch	Application		QuickLaunch megnyitása
+Thank you	Application		Köszönöm
+QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tírta Humdinger\n\tCopyright %years%\n\nQuickLaunch gyorsan elindít bármilyen telepített programot. Csak írja be a program nevének első pár betüjét és válasszon a talált programok listájából.\n
+Add to favorites	ListView		Kedvencekhez ad
+Add to ignore list	ListView		Figyelmen kívül hagy
+Found no matches.	ListView		Nincs egyezés
+Open containing folder	ListView		Tartalmazó mappa megnyitása
+Remove favorite	ListView		Kedvenc eltávolítása
+Use '*' as wildcards.	ListView		'*' használata helyettesítőként.
+Help	MainWindow		Súgó
+OK	MainWindow		OK
+Setup	MainWindow		Beállítás
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	%appname%-t nem sikerült megnyitni.\n\nHiba:
+Add…	SetupWindow		Hozzáad…
+Ignore these files & folders (and their subfolders):	SetupWindow		Hagyja figyelmen kívül ezeket a fájlokat és könyvtárakat (és azok alkönyvtárait):
+Launch applications with a single click	SetupWindow		Program indítása egy kattintásra
+Remember last search term	SetupWindow		Emlékezzen az utolsó keresőkifejezésre
+Remove	SetupWindow		Eltávolít
+Setup	SetupWindow		Beállítás
+Show application path	SetupWindow		Program elérési útjának megjelenítése
+Show application version	SetupWindow		Programverzió megjelenítése
+Show Deskbar replicant	SetupWindow		Deskbar replikáns megjelenítése
+Window always on top	SetupWindow		Ablak mindig felül
+Search from start of application name	SetupWindow		Programok nevének elejétől keressen
+QuickLaunch	System name		QuickLaunch

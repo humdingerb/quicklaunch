@@ -1,27 +1,27 @@
-1	English	application/x-vnd.humdinger-quicklaunch	2634611479
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Kan %appname% niet starten.\n\nFout:
-Found no matches.	ListView		Geen resultaten gevonden.
-OK	MainWindow		OK
-Show Deskbar replicant	SetupWindow		Toon Deskbar replicant
-Setup	MainWindow		Instellingen
-QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tgeschreven door Humdinger\n\tCopyright %years%\n\nQuickLaunch start elke geïnstalleerde applicatie snel. Toets gewoon de eerste paar letters van de naam in en kies van de lijst van alle gevonden applicaties.\n
-Show application path	SetupWindow		Toon pad van toepassing
-QuickLaunch	System name		QuickLaunch
-Remove	SetupWindow		Verwijder
-Search from start of application name	SetupWindow		Zoek vanaf begin van applicatienaam
-Ignore these files & folders (and their subfolders):	SetupWindow		Negeer deze bestanden & mappen (en submappen):
-Setup	SetupWindow		Instellingen
-Add…	SetupWindow		Toevoegen…
-Help	MainWindow		Help
-Show application version	SetupWindow		Toon versie van toepassing
-Add to favorites	ListView		Toevoegen aan favorieten
-Launch applications with a single click	SetupWindow		Toepassingen starten met een enkele klik
-Open containing folder	ListView		Bijbehorende map openen
-Remember last search term	SetupWindow		Herinner mijn vorige zoekterm
-Window always on top	SetupWindow		Venster atijd bovenop
-Remove favorite	ListView		Favoriet verwijderen
-Open QuickLaunch	Application		QuickLaunch openen
-Add to ignore list	ListView		Toevoegen aan negeerlijst
-Use '*' as wildcards.	ListView		Gebruik '*' als wildcard
-Thank you	Application		Bedankt
+1	Dutch	application/x-vnd.humdinger-quicklaunch	2634611479
 About QuickLaunch	Application		Over QuickLaunch
+Open QuickLaunch	Application		QuickLaunch openen
+Thank you	Application		Bedankt
+QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tgeschreven door Humdinger\n\tCopyright %years%\n\nQuickLaunch start elke geïnstalleerde applicatie snel. Toets gewoon de eerste paar letters van de naam in en kies van de lijst van alle gevonden applicaties.\n
+Add to favorites	ListView		Toevoegen aan favorieten
+Add to ignore list	ListView		Toevoegen aan negeerlijst
+Found no matches.	ListView		Geen resultaten gevonden.
+Open containing folder	ListView		Bijbehorende map openen
+Remove favorite	ListView		Favoriet verwijderen
+Use '*' as wildcards.	ListView		Gebruik '*' als wildcard
+Help	MainWindow		Help
+OK	MainWindow		OK
+Setup	MainWindow		Instellingen
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Kan %appname% niet starten.\n\nFout:
+Add…	SetupWindow		Toevoegen…
+Ignore these files & folders (and their subfolders):	SetupWindow		Negeer deze bestanden & mappen (en submappen):
+Launch applications with a single click	SetupWindow		Toepassingen starten met een enkele klik
+Remember last search term	SetupWindow		Herinner mijn vorige zoekterm
+Remove	SetupWindow		Verwijder
+Setup	SetupWindow		Instellingen
+Show application path	SetupWindow		Toon pad van toepassing
+Show application version	SetupWindow		Toon versie van toepassing
+Show Deskbar replicant	SetupWindow		Toon Deskbar replicant
+Window always on top	SetupWindow		Venster atijd bovenop
+Search from start of application name	SetupWindow		Zoek vanaf begin van applicatienaam
+QuickLaunch	System name		QuickLaunch

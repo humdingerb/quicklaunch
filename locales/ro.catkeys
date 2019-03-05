@@ -1,27 +1,27 @@
-1	English	application/x-vnd.humdinger-quicklaunch	2634611479
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	A eșuat lansarea a %appname%.\n\nEroare:
-Found no matches.	ListView		Nu s-au găsit potriviri.
-OK	MainWindow		OK
-Show Deskbar replicant	SetupWindow		Afișează replicant Deskbar
-Setup	MainWindow		Configurare
-QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tscris de Humdinger\n\tDrepturi de autor %years%\n\nQuickLaunch pornește rapid orice aplicație instalată. Introduceți doar primele câteva litere din numele acesteia și alegeți dintr-o listă a tuturor programelor găsite.\n
-Show application path	SetupWindow		Afișează calea aplicației
-QuickLaunch	System name		QuickLaunch
-Remove	SetupWindow		Elimină
-Search from start of application name	SetupWindow		Caută de la începutul numelui aplicației
-Ignore these files & folders (and their subfolders):	SetupWindow		Ignoră aceste fișiere și dosare (și subdosarele lor)
-Setup	SetupWindow		Configurare
-Add…	SetupWindow		Adaugă...
-Help	MainWindow		Ajutor
-Show application version	SetupWindow		Afișează versiunea aplicației
-Add to favorites	ListView		Adaugă la favorite
-Launch applications with a single click	SetupWindow		Lansează aplicații cu un singur clic
-Open containing folder	ListView		Deschide dosarul conținător
-Remember last search term	SetupWindow		Ține minte ultimul termen căutat
-Window always on top	SetupWindow		Fereastră totdeauna deasupra
-Remove favorite	ListView		Elimină favoritul
-Open QuickLaunch	Application		Deschide QuickLaunch
-Add to ignore list	ListView		Adaugă la lista de ignorat
-Use '*' as wildcards.	ListView		Use '*' as wildcards.
-Thank you	Application		Mulțumesc
+1	Romanian	application/x-vnd.humdinger-quicklaunch	2634611479
 About QuickLaunch	Application		Despre QuickLaunch
+Open QuickLaunch	Application		Deschide QuickLaunch
+Thank you	Application		Mulțumesc
+QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tscris de Humdinger\n\tDrepturi de autor %years%\n\nQuickLaunch pornește rapid orice aplicație instalată. Introduceți doar primele câteva litere din numele acesteia și alegeți dintr-o listă a tuturor programelor găsite.\n
+Add to favorites	ListView		Adaugă la favorite
+Add to ignore list	ListView		Adaugă la lista de ignorat
+Found no matches.	ListView		Nu s-au găsit potriviri.
+Open containing folder	ListView		Deschide dosarul conținător
+Remove favorite	ListView		Elimină favoritul
+Use '*' as wildcards.	ListView		Folosește '*' ca metacaracter.
+Help	MainWindow		Ajutor
+OK	MainWindow		OK
+Setup	MainWindow		Configurare
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	A eșuat lansarea a %appname%.\n\nEroare:
+Add…	SetupWindow		Adaugă...
+Ignore these files & folders (and their subfolders):	SetupWindow		Ignoră aceste fișiere și dosare (și subdosarele lor)
+Launch applications with a single click	SetupWindow		Lansează aplicații cu un singur clic
+Remember last search term	SetupWindow		Ține minte ultimul termen căutat
+Remove	SetupWindow		Elimină
+Setup	SetupWindow		Configurare
+Show application path	SetupWindow		Afișează calea aplicației
+Show application version	SetupWindow		Afișează versiunea aplicației
+Show Deskbar replicant	SetupWindow		Afișează replicant Deskbar
+Window always on top	SetupWindow		Fereastră totdeauna deasupra
+Search from start of application name	SetupWindow		Caută de la începutul numelui aplicației
+QuickLaunch	System name		QuickLaunch

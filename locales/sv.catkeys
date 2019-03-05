@@ -1,27 +1,27 @@
-1	English	application/x-vnd.humdinger-quicklaunch	2634611479
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Kunde inte starta %appname%.\n\nFel:
-Found no matches.	ListView		Hittade inga matchningar.
-OK	MainWindow		OK
-Show Deskbar replicant	SetupWindow		Visa ikon i Deskbar
-Setup	MainWindow		Inställningar
-QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tskriven av Humdinger\n\tUpphovsrätt %years%\n\nQuickLaunch startar snabbt dina installerade applikationer. Skriv dom första bokstäverna av namnet och välj från listan över hittade program.\n
-Show application path	SetupWindow		Visa applikationens sökväg
-QuickLaunch	System name		QuickLaunch
-Remove	SetupWindow		Ta bort
-Search from start of application name	SetupWindow		Sök från början av applikationsnamnet
-Ignore these files & folders (and their subfolders):	SetupWindow		Ignorera dessa filer och mappar (inklusive undermappar):
-Setup	SetupWindow		Inställningar
-Add…	SetupWindow		Lägg till…
-Help	MainWindow		Hjälp
-Show application version	SetupWindow		Visa applikationens version
-Add to favorites	ListView		Lägg till i favoriter
-Launch applications with a single click	SetupWindow		Starta applikationer med enkelklick
-Open containing folder	ListView		Öppna målmapp
-Remember last search term	SetupWindow		Kom ihåg den senaste sökningen
-Window always on top	SetupWindow		Fönstret alltid högst upp
-Remove favorite	ListView		Ta bort från favoriter
-Open QuickLaunch	Application		Öppna QuickLaunch
-Add to ignore list	ListView		Lägg till i ignoreringslista
-Use '*' as wildcards.	ListView		Use '*' as wildcards.
-Thank you	Application		Tack så mycket
+1	Swedish	application/x-vnd.humdinger-quicklaunch	2634611479
 About QuickLaunch	Application		Om QuickLaunch
+Open QuickLaunch	Application		Öppna QuickLaunch
+Thank you	Application		Tack så mycket
+QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tskriven av Humdinger\n\tUpphovsrätt %years%\n\nQuickLaunch startar snabbt dina installerade applikationer. Skriv dom första bokstäverna av namnet och välj från listan över hittade program.\n
+Add to favorites	ListView		Lägg till i favoriter
+Add to ignore list	ListView		Lägg till i ignoreringslista
+Found no matches.	ListView		Hittade inga matchningar.
+Open containing folder	ListView		Öppna målmapp
+Remove favorite	ListView		Ta bort från favoriter
+Use '*' as wildcards.	ListView		Använd '*' som jokertecken.
+Help	MainWindow		Hjälp
+OK	MainWindow		OK
+Setup	MainWindow		Inställningar
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Kunde inte starta %appname%.\n\nFel:
+Add…	SetupWindow		Lägg till…
+Ignore these files & folders (and their subfolders):	SetupWindow		Ignorera dessa filer och mappar (inklusive undermappar):
+Launch applications with a single click	SetupWindow		Starta applikationer med enkelklick
+Remember last search term	SetupWindow		Kom ihåg den senaste sökningen
+Remove	SetupWindow		Ta bort
+Setup	SetupWindow		Inställningar
+Show application path	SetupWindow		Visa applikationens sökväg
+Show application version	SetupWindow		Visa applikationens version
+Show Deskbar replicant	SetupWindow		Visa ikon i Deskbar
+Window always on top	SetupWindow		Fönstret alltid högst upp
+Search from start of application name	SetupWindow		Sök från början av applikationsnamnet
+QuickLaunch	System name		QuickLaunch

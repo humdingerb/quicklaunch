@@ -1,27 +1,27 @@
-1	English	application/x-vnd.humdinger-quicklaunch	2634611479
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Nie udało się uruchomić%appname%.\n\nBłąd::
-Found no matches.	ListView		Nie znaleziono dopasowań.
-OK	MainWindow		OK
-Show Deskbar replicant	SetupWindow		Pokaż Deskbara replikant
-Setup	MainWindow		Ustawienia
-QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tnapisany przez Humdingera\n\tCopyright %years%\n\nQuickLaunch błyskawicznie uruchamia dowolną zainstalowaną aplikację. Wystarczy wprowadzić kilka pierwszych liter jej nazwy i wybrać z listy znalezionych programów.\n
-Show application path	SetupWindow		Pokaż ścieżkę aplikacji
-QuickLaunch	System name		QuickLaunch
-Remove	SetupWindow		Usuń
-Search from start of application name	SetupWindow		Szukaj od początku nazwy aplikacji
-Ignore these files & folders (and their subfolders):	SetupWindow		Ignoruj te pliki i katalogi (oraz ich podkatalogi):
-Setup	SetupWindow		Ustawienia
-Add…	SetupWindow		Dodaj…
-Help	MainWindow		Pomoc
-Show application version	SetupWindow		Pokaż wersję aplikacji
-Add to favorites	ListView		Dodaj do ulubionych
-Launch applications with a single click	SetupWindow		Uruchamianie aplikacji za pomocą jednego kliknięcia
-Open containing folder	ListView		Otwórz katalog docelowy
-Remember last search term	SetupWindow		Pamiętaj ostatni wyszukiwane hasło
-Window always on top	SetupWindow		Okno zawsze na wierzchu
-Remove favorite	ListView		Usuń ulubione
-Open QuickLaunch	Application		Otwórz QuickLaunch
-Add to ignore list	ListView		Dodaj do listy ignorowanych
-Use '*' as wildcards.	ListView		Użyj „*” jako maski.
-Thank you	Application		Dziękuję
+1	Polish	application/x-vnd.humdinger-quicklaunch	2634611479
 About QuickLaunch	Application		O QuickLaunch
+Open QuickLaunch	Application		Otwórz QuickLaunch
+Thank you	Application		Dziękuję
+QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tnapisany przez Humdingera\n\tCopyright %years%\n\nQuickLaunch błyskawicznie uruchamia dowolną zainstalowaną aplikację. Wystarczy wprowadzić kilka pierwszych liter jej nazwy i wybrać z listy znalezionych programów.\n
+Add to favorites	ListView		Dodaj do ulubionych
+Add to ignore list	ListView		Dodaj do listy ignorowanych
+Found no matches.	ListView		Nie znaleziono dopasowań.
+Open containing folder	ListView		Otwórz katalog docelowy
+Remove favorite	ListView		Usuń ulubione
+Use '*' as wildcards.	ListView		Użyj „*” jako maski.
+Help	MainWindow		Pomoc
+OK	MainWindow		OK
+Setup	MainWindow		Ustawienia
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Nie udało się uruchomić%appname%.\n\nBłąd::
+Add…	SetupWindow		Dodaj…
+Ignore these files & folders (and their subfolders):	SetupWindow		Ignoruj te pliki i katalogi (oraz ich podkatalogi):
+Launch applications with a single click	SetupWindow		Uruchamianie aplikacji za pomocą jednego kliknięcia
+Remember last search term	SetupWindow		Pamiętaj ostatni wyszukiwane hasło
+Remove	SetupWindow		Usuń
+Setup	SetupWindow		Ustawienia
+Show application path	SetupWindow		Pokaż ścieżkę aplikacji
+Show application version	SetupWindow		Pokaż wersję aplikacji
+Show Deskbar replicant	SetupWindow		Pokaż Deskbara replikant
+Window always on top	SetupWindow		Okno zawsze na wierzchu
+Search from start of application name	SetupWindow		Szukaj od początku nazwy aplikacji
+QuickLaunch	System name		QuickLaunch
