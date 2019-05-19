@@ -94,7 +94,6 @@ QLSettings::QLSettings()
 QLSettings::~QLSettings()
 {
 	delete fFavoriteList;
-	delete fIgnoreList;
 }
 
 
