@@ -91,6 +91,12 @@ MainWindow::MainWindow()
 
 MainWindow::~MainWindow()
 {
+	QLSettings& settings = my_app->Settings();
+	if (settings.Lock()) {
+		settings.SetSearchTerm(GetSearchString());
+		settings.SaveSettings();
+		settings.Unlock();
+	}
 }
 
 

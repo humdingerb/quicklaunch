@@ -49,12 +49,6 @@ QLApp::~QLApp()
 {
 	stop_watching(this);
 
-	if (fSettings.Lock()) {
-		fSettings.SetSearchTerm(fMainWindow->GetSearchString());
-		fSettings.SaveSettings();
-		fSettings.Unlock();
-	}
-
 	BMessenger messengerMain(fMainWindow);
 	if (messengerMain.IsValid() && messengerMain.LockTarget())
 		fMainWindow->Quit();
