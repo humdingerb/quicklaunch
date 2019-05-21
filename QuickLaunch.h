@@ -17,7 +17,7 @@
 #include "QLSettings.h"
 #include "SetupWindow.h"
 
-static const char kVersion[] = "v1.3";
+static const char kVersion[] = "v1.3.1";
 static const char kCopyright[] = "2010-2019";
 
 #define my_app dynamic_cast<QLApp*>(be_app)
