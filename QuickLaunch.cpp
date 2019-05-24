@@ -243,8 +243,6 @@ QLApp::MessageReceived(BMessage* message)
 				}
 				fSetupWindow->UnlockLooper();
 			}
-
-			fMainWindow->fListView->LockLooper();
 			_RestorePositionAndSelection();
 			break;
 		}
