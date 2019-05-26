@@ -34,7 +34,7 @@ compare_items(const void* a, const void* b)
 SetupWindow::SetupWindow(BRect frame)
 	:
 	BWindow(frame, B_TRANSLATE("Setup"), B_TITLED_WINDOW_LOOK,
-		B_MODAL_ALL_WINDOW_FEEL, B_NOT_ZOOMABLE | B_FRAME_EVENTS
+		B_NORMAL_WINDOW_FEEL, B_NOT_ZOOMABLE | B_FRAME_EVENTS
 		| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
 	QLSettings& settings = my_app->Settings();
@@ -158,6 +158,11 @@ bool
 SetupWindow::QuitRequested()
 {
 	this->Hide();
+
+	if (fOpenPanel->Window()->IsHidden() == false)
+		fOpenPanel->Hide();
+
+	my_app->SetWindowsFeel(B_MODAL_ALL_WINDOW_FEEL);
 	return false;
 }
 
