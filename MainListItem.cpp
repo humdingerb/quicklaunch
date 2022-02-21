@@ -60,7 +60,11 @@ MainListItem::MainListItem(BEntry* entry, int iconSize, bool isFav)
 		BAppFileInfo info(&file);
 		if (info.InitCheck() != B_OK)
 			return;
-		info.GetVersionInfo(&fVersionInfo, B_APP_VERSION_KIND);
+		if (info.GetVersionInfo(&fVersionInfo, B_APP_VERSION_KIND) != B_OK) {
+			fVersionInfo.major = 0;
+			fVersionInfo.middle = 0;
+			fVersionInfo.minor = 0;
+		}
 
 	} else {
 		fIcon = NULL;
