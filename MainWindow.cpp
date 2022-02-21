@@ -33,6 +33,21 @@ compare_items(const void* a, const void* b)
 }
 
 
+static int
+compare_favorite_items(const void* a, const void* b)
+{
+	MainListItem* stringA = *(MainListItem**)a;
+	MainListItem* stringB = *(MainListItem**)b;
+
+	if (stringA->IsFavorite() && !stringB->IsFavorite())
+		return -1;
+	else if (stringB->IsFavorite() && !stringA->IsFavorite())
+		return 1;
+
+	return compare_items(a, b);
+}
+
+
 MainWindow::MainWindow()
 	:
 	BWindow(BRect(), B_TRANSLATE_SYSTEM_NAME("QuickLaunch"),
@@ -395,7 +410,10 @@ MainWindow::BuildList()
 					query.Clear();
 				}
 			}
-			fListView->SortItems(&compare_items);
+			if (settings.GetSortFavorites())
+				fListView->SortItems(&compare_favorite_items);
+			else
+				fListView->SortItems(&compare_items);
 		}
 		settings.Unlock();
 	}

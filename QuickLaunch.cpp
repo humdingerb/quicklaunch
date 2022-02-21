@@ -197,6 +197,17 @@ QLApp::MessageReceived(BMessage* message)
 			}
 			break;
 		}
+		case SORTFAVS_CHK:
+		{
+			int32 value;
+			message->FindInt32("be:value", &value);
+
+			if (fSettings.Lock()) {
+				fSettings.SetSortFavorites(value);
+				fSettings.Unlock();
+			}
+			break;
+		}
 		case IGNORE_CHK:
 		{
 			if (fSettings.fIgnoreList->IsEmpty()) {

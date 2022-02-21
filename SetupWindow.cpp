@@ -66,6 +66,11 @@ SetupWindow::SetupWindow(BRect frame)
 		new BMessage(SAVESEARCH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkSaveSearch->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
+	fChkSortFavorites = new BCheckBox("SortFavoritesChk",
+	B_TRANSLATE("Sort favorite items to the top"),
+	new BMessage(SORTFAVS_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkSortFavorites->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
 	fChkIgnore = new BCheckBox("IgnoreChk",
 		B_TRANSLATE("Ignore these files & folders (and their subfolders):"),
 		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE);
@@ -90,6 +95,7 @@ SetupWindow::SetupWindow(BRect frame)
 	fChkPath->SetTarget(be_app);
 	fChkSearchStart->SetTarget(be_app);
 	fChkSaveSearch->SetTarget(be_app);
+	fChkSortFavorites->SetTarget(be_app);
 	fChkIgnore->SetTarget(be_app);
 
 	// Build the layout
@@ -109,6 +115,7 @@ SetupWindow::SetupWindow(BRect frame)
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkSearchStart)
 			.Add(fChkSaveSearch)
+			.Add(fChkSortFavorites)
 			.SetInsets(spacing, spacing, spacing, 0)
 		.End()
 		.AddGroup(B_VERTICAL, 0)
@@ -131,6 +138,7 @@ SetupWindow::SetupWindow(BRect frame)
 		fChkPath->SetValue(settings.GetShowPath());
 		fChkSearchStart->SetValue(settings.GetSearchStart());
 		fChkSaveSearch->SetValue(settings.GetSaveSearch());
+		fChkSortFavorites->SetValue(settings.GetSortFavorites());
 		fChkIgnore->SetValue(settings.GetShowIgnore());
 
 		settings.Unlock();
