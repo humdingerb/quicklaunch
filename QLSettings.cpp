@@ -1,10 +1,11 @@
 /*
- * Copyright 2010-2019. All rights reserved.
+ * Copyright 2010-2022. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Authors:
  *	Humdinger, humdingerb@gmail.com
  *  Kevin Adams
+ *  Chris Roberts
  */
 
 #include "QLSettings.h"
