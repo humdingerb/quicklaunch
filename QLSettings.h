@@ -37,6 +37,7 @@ public:
 	void	SetSaveSearch(int32 savesearch) { fSaveSearch = savesearch; };
 	void	SetSearchTerm(BString searchterm) { fSearchTerm = searchterm; };
 	void	SetShowIgnore(int32 ignore) { fShowIgnore = ignore; };
+	void	SetSortFavorites(int32 sortfavs) { fSortFavorites = sortfavs; };
 
 	BRect	GetMainWindowFrame() { return fMainWindowFrame; };
 	BRect	GetSetupWindowFrame() { return fSetupWindowFrame; };
@@ -47,6 +48,7 @@ public:
 	int32	GetSaveSearch() { return fSaveSearch; };
 	BString	GetSearchTerm() { return fSearchTerm; };
 	int32	GetShowIgnore() { return fShowIgnore; };
+	int32	GetSortFavorites() { return fSortFavorites; };
 
 	void			InitLists();
 	IgnoreListView* IgnoreList() { return fIgnoreList; };
@@ -64,6 +66,7 @@ private:
 	int32	fSaveSearch;
 	BString	fSearchTerm;
 	int32	fShowIgnore;
+	int32	fSortFavorites;
 
 	BLocker	fLock;
 };

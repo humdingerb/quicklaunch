@@ -40,6 +40,7 @@ QLSettings::QLSettings()
 	fShowPath = true;
 	fSearchStart = true;
 	fSaveSearch = false;
+	fSortFavorites = false;
 	fSearchTerm = "";
 	fShowIgnore = false;
 	fFavoriteList = new BList();
@@ -87,6 +88,10 @@ QLSettings::QLSettings()
 		int32 ignore;
 		if (settings.FindInt32("show ignore", &ignore) == B_OK)
 			fShowIgnore = ignore;
+
+		int32 sortfavs;
+		if (settings.FindInt32("sort favorites", &sortfavs) == B_OK)
+			fSortFavorites = sortfavs;
 	}
 }
 
@@ -115,6 +120,7 @@ QLSettings::SaveSettings()
 	settings.AddInt32("savesearch", fSaveSearch);
 	settings.AddString("searchterm", fSearchTerm);
 	settings.AddInt32("show ignore", fShowIgnore);
+	settings.AddInt32("sort favorites", fSortFavorites);
 
 	for (int32 i = 0; i < fIgnoreList->CountItems(); i++)
 	{
