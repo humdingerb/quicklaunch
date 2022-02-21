@@ -206,6 +206,12 @@ QLApp::MessageReceived(BMessage* message)
 				fSettings.SetSortFavorites(value);
 				fSettings.Unlock();
 			}
+
+			if (!fMainWindow->fListView->IsEmpty()) {
+				fMainWindow->LockLooper();
+				fMainWindow->BuildList();
+				fMainWindow->UnlockLooper();
+			}
 			break;
 		}
 		case IGNORE_CHK:
