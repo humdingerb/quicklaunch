@@ -14,15 +14,17 @@
 #include "QLFilter.h"
 #include "QuickLaunch.h"
 
+#include <AboutWindow.h>
 #include <Deskbar.h>
 #include <Catalog.h>
 #include <storage/NodeMonitor.h>
 
+const char* kApplicationSignature = "application/x-vnd.humdinger-quicklaunch";
+const char* kApplicationName = "QuickLaunch";
+
 
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "Application"
-
-const char* kApplicationSignature = "application/x-vnd.humdinger-quicklaunch";
 
 
 QLApp::QLApp()
@@ -57,29 +59,21 @@ QLApp::~QLApp()
 void
 QLApp::AboutRequested()
 {
-	BString text = B_TRANSLATE_COMMENT(
-		"QuickLaunch %version%\n"
-		"\twritten by Humdinger\n"
-		"\tCopyright %years%\n\n"
+	const char* authors[] = {
+		"Humdinger",
+		"Chris Roberts",
+		"David Murphy",
+		"Kevin Adams",
+		NULL
+	};
+	BAboutWindow* aboutW = new BAboutWindow(kApplicationName, kApplicationSignature);
+	aboutW->AddDescription(B_TRANSLATE(
 		"QuickLaunch quickly starts any installed application. "
 		"Just enter the first few letters of its name and choose "
-		"from a list of all found programs.\n",
-		"Don't change the variables %years% and %version%.");
-	text.ReplaceAll("%version%", kVersion);
-	text.ReplaceAll("%years%", kCopyright);
-
-	BAlert* alert = new BAlert("about", text.String(),
-		B_TRANSLATE("Thank you"));
-
-	BTextView* view = alert->TextView();
-	BFont font;
-
-	view->SetStylable(true);
-	view->GetFont(&font);
-	font.SetSize(font.Size()+4);
-	font.SetFace(B_BOLD_FACE);
-	view->SetFontAndColor(0, 11, &font);
-	alert->Go();
+		"from a list of all found programs."));
+	aboutW->AddCopyright(2022, "Humdinger");
+	aboutW->AddAuthors(authors);
+	aboutW->Show();
 }
 
 
@@ -331,7 +325,7 @@ QLApp::_AddToDeskbar()
 	if (!deskbar.IsRunning())
 		return;
 
-	if (deskbar.HasItem("QuickLaunch"))
+	if (deskbar.HasItem(kApplicationName))
 		_RemoveFromDeskbar();
 
 	status_t res = deskbar.AddItem(&appInfo.ref);
@@ -346,7 +340,7 @@ QLApp::_RemoveFromDeskbar()
 	BDeskbar deskbar;
 	int32 found_id;
 
-	if (deskbar.GetItemInfo("QuickLaunch", &found_id) == B_OK) {
+	if (deskbar.GetItemInfo(kApplicationName, &found_id) == B_OK) {
 		status_t err = deskbar.RemoveItem(found_id);
 		if (err != B_OK) {
 			printf("QuickLaunch: Error removing replicant id "

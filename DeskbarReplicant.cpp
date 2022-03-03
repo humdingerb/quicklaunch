@@ -11,8 +11,8 @@
 
 #include "DeskbarReplicant.h"
 #include "QuickLaunch.h"
-#include <Alert.h>
 
+#include <AboutWindow.h>
 #include <Application.h>
 #include <Bitmap.h>
 #include <Catalog.h>
@@ -23,7 +23,6 @@
 #include <PopUpMenu.h>
 #include <Resources.h>
 #include <Roster.h>
-// #include <String.h>
 
 
 extern "C" _EXPORT BView *instantiate_deskbar_item(float maxWidth, float maxHeight);
@@ -31,8 +30,8 @@ status_t our_image(image_info& image);
 
 // from QuickLaunch.cpp
 extern const char* kApplicationSignature;
+extern const char* kApplicationName;
 
-const char* kDeskbarItemName = "QuickLaunch";
 const char* kClassName = "DeskbarReplicant";
 
 #define OPEN_REF	'opre'
@@ -47,7 +46,7 @@ const char* kClassName = "DeskbarReplicant";
 
 
 DeskbarReplicant::DeskbarReplicant(BRect frame, int32 resizingMode)
-	: BView(frame, kDeskbarItemName, resizingMode,
+	: BView(frame, kApplicationName, resizingMode,
 		B_WILL_DRAW | B_TRANSPARENT_BACKGROUND | B_FRAME_EVENTS)
 {
 	_Init();
@@ -123,28 +122,21 @@ DeskbarReplicant::Archive(BMessage* archive, bool deep) const
 void
 DeskbarReplicant::AboutRequested()
 {
-	BString text = B_TRANSLATE_COMMENT(
-		"QuickLaunch %version%\n"
-		"\twritten by Humdinger\n"
-		"\tCopyright %years%\n\n"
+	const char* authors[] = {
+		"Humdinger",
+		"Chris Roberts",
+		"David Murphy",
+		"Kevin Adams",
+		NULL
+	};
+	BAboutWindow* aboutW = new BAboutWindow(kApplicationName, kApplicationSignature);
+	aboutW->AddDescription(B_TRANSLATE(
 		"QuickLaunch quickly starts any installed application. "
 		"Just enter the first few letters of its name and choose "
-		"from a list of all found programs.\n",
-		"Don't change the variables %years% and %version%.");
-	text.ReplaceAll("%version%", kVersion);
-	text.ReplaceAll("%years%", kCopyright);
-
-	BAlert* alert = new BAlert("about", text.String(), B_TRANSLATE("Thank you"));
-
-	BTextView* view = alert->TextView();
-	BFont font;
-
-	view->SetStylable(true);
-	view->GetFont(&font);
-	font.SetSize(font.Size()+4);
-	font.SetFace(B_BOLD_FACE);
-	view->SetFontAndColor(0, 11, &font);
-	alert->Go();
+		"from a list of all found programs."));
+	aboutW->AddCopyright(2022, "Humdinger");
+	aboutW->AddAuthors(authors);
+	aboutW->Show();
 }
 
 

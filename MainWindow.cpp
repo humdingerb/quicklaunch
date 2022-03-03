@@ -20,6 +20,8 @@
 
 #include <algorithm>
 
+// from QuickLaunch.cpp
+extern const char* kApplicationName;
 
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "MainWindow"
@@ -51,7 +53,7 @@ compare_favorite_items(const void* a, const void* b)
 
 MainWindow::MainWindow()
 	:
-	BWindow(BRect(), B_TRANSLATE_SYSTEM_NAME("QuickLaunch"),
+	BWindow(BRect(), B_TRANSLATE_SYSTEM_NAME(kApplicationName),
 		B_TITLED_WINDOW_LOOK, B_MODAL_ALL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE
 		| B_FRAME_EVENTS | B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
