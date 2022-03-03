@@ -21,7 +21,7 @@ APP_MIME_SIG = application/x-vnd.humdinger-quicklaunch
 #	so that Pe and Eddie can fill them in for you.
 #%{
 SRCS = \
-	 DeskButton.cpp  \
+	 DeskbarReplicant.cpp  \
 	 MainListItem.cpp  \
 	 MainListView.cpp  \
 	 MainWindow.cpp  \
