@@ -70,7 +70,7 @@ QLApp::AboutRequested()
 	aboutW->AddDescription(B_TRANSLATE(
 		"QuickLaunch quickly starts any installed application. "
 		"Just enter the first few letters of its name and choose "
-		"from a list of all found programs."));
+		"from a list of all found applications."));
 	aboutW->AddCopyright(2022, "Humdinger");
 	aboutW->AddAuthors(authors);
 	aboutW->Show();
