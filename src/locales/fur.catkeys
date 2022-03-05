@@ -1,0 +1,24 @@
+1	Friulian	application/x-vnd.humdinger-quicklaunch	3994280092
+About QuickLaunch	Application		Informazions su QuickLaunch
+Open QuickLaunch	Application		Vierç QuickLaunch
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch al invie subite cualsisei aplicazion instalade. Al baste inserî lis primis letaris dal lôr non e sielzi de liste di ducj i programs cjatâts.
+Add to favorites	ListView		Zonte tai preferîts
+Add to ignore list	ListView		Zonte te liste di ignorâ
+Found no matches.	ListView		Nissune corispondence cjatade.
+Open containing folder	ListView		Mostre inte so cartele
+Remove favorite	ListView		Gjave preferît
+Use '*' as wildcards.	ListView		Dopre '*' come mate.
+Add…	SetupWindow		Zonte…
+Ignore these files & folders (and their subfolders):	SetupWindow		Ignore chescj file e cartelis (e lis lôr sotcartelis):
+Remember last search term	SetupWindow		Visâsi dal ultin tiermin cirût
+Remove	SetupWindow		Gjave
+Search from start of application name	SetupWindow		Cîr dal inizi dal non de aplicazion
+Setup	SetupWindow		Configurazion
+Show application path	SetupWindow		Mostre percors de aplicazion
+Show application version	SetupWindow		Mostre version de aplicazion
+Show Deskbar replicant	SetupWindow		Mostre replicant dal Scritori
+Sort favorite items to the top	SetupWindow		Sort favorite items to the top
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	No si è rivâts a inviâ %appname%.\n\nErôr:
+Help	MainWindow		Jutori
+OK	MainWindow		Va ben
+Setup	MainWindow		Configurazion

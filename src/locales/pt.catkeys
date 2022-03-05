@@ -1,27 +1,24 @@
-1	Portuguese	application/x-vnd.humdinger-quicklaunch	2634611479
+1	Portuguese	application/x-vnd.humdinger-quicklaunch	3994280092
 About QuickLaunch	Application		Acerca do QuickLaunch
 Open QuickLaunch	Application		Abrir QuickLaunch
-Thank you	Application		Obrigado
-QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tescrito por Humdinger\n\tCopyright %years%\n\nO QuickLaunch inicia rapidamente qualquer aplicação instalada. Basta introduzir as primeiras letras do seu nome e escolher a partir da lista de todos os programas encontrados.\n
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		O QuickLaunch inicia rapidamente qualquer aplicação instalada. Basta introduzir as primeiras letras do seu nome e escolher a partir da lista de todos os programas encontrados.
 Add to favorites	ListView		Adicionar aos favoritos
 Add to ignore list	ListView		Adicionar à lista a ignorar
 Found no matches.	ListView		Não foram encontradas correspondências.
 Open containing folder	ListView		Mostrar na respetiva pasta
 Remove favorite	ListView		Remover favorito
 Use '*' as wildcards.	ListView		Usar '*' como caracteres genéricos.
-Help	MainWindow		Ajuda
-OK	MainWindow		OK
-Setup	MainWindow		Definições
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Ocorreu uma falha ao iniciar %appname%.\n\nErro:
 Add…	SetupWindow		Adicionar…
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignorar estes ficheiros e pastas (e as suas sub-pastas):
-Launch applications with a single click	SetupWindow		Iniciar aplicações com um único clique
 Remember last search term	SetupWindow		Lembrar o último termo pesquisado
 Remove	SetupWindow		Remover
+Search from start of application name	SetupWindow		Pesquisar a partir do início do nome da aplicação
 Setup	SetupWindow		Definições
 Show application path	SetupWindow		Mostrar o caminho da aplicação
 Show application version	SetupWindow		Mostrar a versão da aplicação
 Show Deskbar replicant	SetupWindow		Mostrar replicante na Deskbar
-Window always on top	SetupWindow		Janela sempre na frente
-Search from start of application name	SetupWindow		Pesquisar a partir do início do nome da aplicação
-QuickLaunch	System name		QuickLaunch
+Sort favorite items to the top	SetupWindow		Sort favorite items to the top
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Ocorreu uma falha ao iniciar %appname%.\n\nErro:
+Help	MainWindow		Ajuda
+OK	MainWindow		OK
+Setup	MainWindow		Definições

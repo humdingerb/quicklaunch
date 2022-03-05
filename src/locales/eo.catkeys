@@ -1,0 +1,24 @@
+1	Esperanto	application/x-vnd.humdinger-quicklaunch	3994280092
+About QuickLaunch	Application		Pri RapidLanĉilo
+Open QuickLaunch	Application		Malfermi RapidLanĉilo
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch rapide lanĉas ian instalitan aplikaĵon. Simple tajpu la unuajn literojn de ĝia nomo kaj elektu el listo de ĉiaj trovitaj programoj.
+Add to favorites	ListView		Doni al legosignon
+Add to ignore list	ListView		Doni al malatentan liston
+Found no matches.	ListView		Kongruoj ne estis trovitaj.
+Open containing folder	ListView		Malfermi enhavatan dosierujon
+Remove favorite	ListView		Forigi legosignon
+Use '*' as wildcards.	ListView		Uzi '*' kiel ĵokeroj.
+Add…	SetupWindow		Aldoni…
+Ignore these files & folders (and their subfolders):	SetupWindow		Ignori ĉi tiujn dosierojn & dosierujojn (kaj iliajn subdosierujojn)
+Remember last search term	SetupWindow		Memori antaŭan serĉvorton
+Remove	SetupWindow		Forigi
+Search from start of application name	SetupWindow		Serĉi el komenco de aplikaĵa nomo
+Setup	SetupWindow		Agordo
+Show application path	SetupWindow		Monti aplikaĵa dosierindiko
+Show application version	SetupWindow		Montri aplikaĵa versio
+Show Deskbar replicant	SetupWindow		Montri Deskbara replikanto
+Sort favorite items to the top	SetupWindow		Sort favorite items to the top
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Lanĉado de %appname% fiaskis.\n\nEraro:
+Help	MainWindow		Helpo
+OK	MainWindow		Bone
+Setup	MainWindow		Agordo

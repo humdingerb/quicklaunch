@@ -1,27 +1,24 @@
-1	Lithuanian	application/x-vnd.humdinger-quicklaunch	2634611479
+1	Lithuanian	application/x-vnd.humdinger-quicklaunch	3994280092
 About QuickLaunch	Application		Apie QuickLaunch
 Open QuickLaunch	Application		Atverti QuickLaunch
-Thank you	Application		Ačiū
-QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tparašyta Humdinger’io\n\tCopyright %years%\n\nQuickLaunch greit paleidžia bet kurią įdiegtą programą. Tiesiog įveskite pirmąsias pavadinimo raides ir rinkitės iš rastų programų sąrašo.\n
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch greit paleidžia bet kurią įdiegtą programą. Tiesiog įveskite pirmąsias pavadinimo raides ir rinkitės iš rastų programų sąrašo.
 Add to favorites	ListView		Pridėti prie mėgstamų
 Add to ignore list	ListView		Pridėti prie nepaisomų sąrašo
 Found no matches.	ListView		Atitikmenų nerasta.
 Open containing folder	ListView		Atverti turinio aplanką
 Remove favorite	ListView		Šalinti iš mėgstamų
 Use '*' as wildcards.	ListView		Pakaitai naudokite „*“.
-Help	MainWindow		Pagalba
-OK	MainWindow		Gerai
-Setup	MainWindow		Sąranka
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Nepavyko paleisti %appname%.\n\nKlaida:
 Add…	SetupWindow		Pridėti…
 Ignore these files & folders (and their subfolders):	SetupWindow		Nepaisyti šių bylų ir aplankų (ir jų poaplankių):
-Launch applications with a single click	SetupWindow		Paleisti programą vienu spustelėjimu
 Remember last search term	SetupWindow		Atminti paskutinę paiešką
 Remove	SetupWindow		Šalinti
+Search from start of application name	SetupWindow		Ieškoti nuo programos pavadinimo pradžios
 Setup	SetupWindow		Sąranka
 Show application path	SetupWindow		Rodyti programos kelią
 Show application version	SetupWindow		Rodyti programos versiją
 Show Deskbar replicant	SetupWindow		Rodyti Deskbar’o lipduką
-Window always on top	SetupWindow		Langas visada viršuje
-Search from start of application name	SetupWindow		Ieškoti nuo programos pavadinimo pradžios
-QuickLaunch	System name		QuickLaunch
+Sort favorite items to the top	SetupWindow		Sort favorite items to the top
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Nepavyko paleisti %appname%.\n\nKlaida:
+Help	MainWindow		Pagalba
+OK	MainWindow		Gerai
+Setup	MainWindow		Sąranka

@@ -1,0 +1,24 @@
+1	Catalan	application/x-vnd.humdinger-quicklaunch	3994280092
+About QuickLaunch	Application		Quant a QuickLaunch
+Open QuickLaunch	Application		Obre el Llançament ràpid
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		El QuickLaunch inicia ràpidament qualsevol aplicació instal·lada. Només cal introduir les primeres lletres del nom i triar d'una llista de tots els programes trobats.
+Add to favorites	ListView		Afegeix als preferits
+Add to ignore list	ListView		Afegeix a la llista per ignorar
+Found no matches.	ListView		No se n'ha trobat cap coincidència.
+Open containing folder	ListView		Obre la carpeta que el conté
+Remove favorite	ListView		Suprimeix el preferit
+Use '*' as wildcards.	ListView		Useu * com a comodí.
+Add…	SetupWindow		Afegeix...
+Ignore these files & folders (and their subfolders):	SetupWindow		Ignora aquests fitxers i carpetes (i les subcarpetes):
+Remember last search term	SetupWindow		Recorda l’últim terme de cerca.
+Remove	SetupWindow		Suprimeix
+Search from start of application name	SetupWindow		Cerca des del començament del nom de l'aplicació.
+Setup	SetupWindow		Configuració
+Show application path	SetupWindow		Mostra el camí de l'aplicació.
+Show application version	SetupWindow		Mostra la versió de l'aplicació.
+Show Deskbar replicant	SetupWindow		Mostra el replicant de la barra d'escriptori.
+Sort favorite items to the top	SetupWindow		Sort favorite items to the top
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Ha fallat obrir %appname%.\n\nError:
+Help	MainWindow		Ajuda
+OK	MainWindow		D'acord
+Setup	MainWindow		Configuració

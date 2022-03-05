@@ -1,27 +1,24 @@
-1	Spanish	application/x-vnd.humdinger-quicklaunch	2634611479
+1	Spanish	application/x-vnd.humdinger-quicklaunch	3994280092
 About QuickLaunch	Application		Acerca de QuickLaunch
 Open QuickLaunch	Application		Abrir QuickLaunch
-Thank you	Application		Gracias
-QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tescrito por Humdinger\n\tCopyright %years%\n\nQuickLaunch permite iniciar rápidamente cualquier aplicación instalada. Sólo ingrese las primeras letras del nombre y elija de la lista de resultados encontrados.\n
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch permite iniciar rápidamente cualquier aplicación instalada. Sólo ingrese las primeras letras del nombre y elija de la lista de resultados encontrados.
 Add to favorites	ListView		Agregar a favoritos
 Add to ignore list	ListView		Agregar a la lista de ignorados
 Found no matches.	ListView		No se encontraron coincidencias.
 Open containing folder	ListView		Abrir carpeta contenedora
 Remove favorite	ListView		Quitar de favoritos
 Use '*' as wildcards.	ListView		Usar '*' como caracter comodín.
-Help	MainWindow		Ayuda
-OK	MainWindow		OK
-Setup	MainWindow		Configuración
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Error al iniciar %appname%.\n\nError:
 Add…	SetupWindow		Agregar…
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignorar estos archivos y carpetas (y sus correspondientes subcarpetas):
-Launch applications with a single click	SetupWindow		Iniciar aplicaciones con un solo clic
 Remember last search term	SetupWindow		Recordar la última búsqueda
 Remove	SetupWindow		Quitar
+Search from start of application name	SetupWindow		Buscar desde el inicio del nombre de la aplicación
 Setup	SetupWindow		Configuración
 Show application path	SetupWindow		Mostrar la ruta de la aplicación
 Show application version	SetupWindow		Mostrar versión de la aplicación
 Show Deskbar replicant	SetupWindow		Mostrar replicante de la barra de escritorio
-Window always on top	SetupWindow		Ventana siempre en primer plano
-Search from start of application name	SetupWindow		Buscar desde el inicio del nombre de la aplicación
-QuickLaunch	System name		QuickLaunch
+Sort favorite items to the top	SetupWindow		Mover entradas favoritas a la parte superior
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Error al iniciar %appname%.\n\nError:
+Help	MainWindow		Ayuda
+OK	MainWindow		OK
+Setup	MainWindow		Configuración

@@ -1,27 +1,24 @@
-1	Hungarian	application/x-vnd.humdinger-quicklaunch	2634611479
+1	Hungarian	application/x-vnd.humdinger-quicklaunch	3994280092
 About QuickLaunch	Application		A QuickLaunch névjegye
 Open QuickLaunch	Application		QuickLaunch megnyitása
-Thank you	Application		Köszönöm
-QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tírta Humdinger\n\tCopyright %years%\n\nQuickLaunch gyorsan elindít bármilyen telepített programot. Csak írja be a program nevének első pár betüjét és válasszon a talált programok listájából.\n
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch gyorsan elindít bármilyen telepített programot. Csak írja be a program nevének első pár betüjét és válasszon a talált programok listájából.
 Add to favorites	ListView		Kedvencekhez ad
 Add to ignore list	ListView		Figyelmen kívül hagy
 Found no matches.	ListView		Nincs egyezés
 Open containing folder	ListView		Tartalmazó mappa megnyitása
 Remove favorite	ListView		Kedvenc eltávolítása
 Use '*' as wildcards.	ListView		'*' használata helyettesítőként.
-Help	MainWindow		Súgó
-OK	MainWindow		OK
-Setup	MainWindow		Beállítás
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	%appname%-t nem sikerült megnyitni.\n\nHiba:
 Add…	SetupWindow		Hozzáad…
 Ignore these files & folders (and their subfolders):	SetupWindow		Hagyja figyelmen kívül ezeket a fájlokat és könyvtárakat (és azok alkönyvtárait):
-Launch applications with a single click	SetupWindow		Program indítása egy kattintásra
 Remember last search term	SetupWindow		Emlékezzen az utolsó keresőkifejezésre
 Remove	SetupWindow		Eltávolít
+Search from start of application name	SetupWindow		Programok nevének elejétől keressen
 Setup	SetupWindow		Beállítás
 Show application path	SetupWindow		Program elérési útjának megjelenítése
 Show application version	SetupWindow		Programverzió megjelenítése
 Show Deskbar replicant	SetupWindow		Deskbar replikáns megjelenítése
-Window always on top	SetupWindow		Ablak mindig felül
-Search from start of application name	SetupWindow		Programok nevének elejétől keressen
-QuickLaunch	System name		QuickLaunch
+Sort favorite items to the top	SetupWindow		Rendezze a kedvenceket legfelülre
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	%appname%-t nem sikerült megnyitni.\n\nHiba:
+Help	MainWindow		Súgó
+OK	MainWindow		OK
+Setup	MainWindow		Beállítás

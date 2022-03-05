@@ -1,27 +1,24 @@
-1	Romanian	application/x-vnd.humdinger-quicklaunch	2634611479
+1	Romanian	application/x-vnd.humdinger-quicklaunch	3994280092
 About QuickLaunch	Application		Despre QuickLaunch
 Open QuickLaunch	Application		Deschide QuickLaunch
-Thank you	Application		Mulțumesc
-QuickLaunch %version%\n\twritten by Humdinger\n\tCopyright %years%\n\nQuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found programs.\n	Application	Don't change the variables %years% and %version%.	QuickLaunch %version%\n\tscris de Humdinger\n\tDrepturi de autor %years%\n\nQuickLaunch pornește rapid orice aplicație instalată. Introduceți doar primele câteva litere din numele acesteia și alegeți dintr-o listă a tuturor programelor găsite.\n
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch pornește rapid orice aplicație instalată. Introduceți doar primele câteva litere din numele acesteia și alegeți dintr-o listă a tuturor programelor găsite.
 Add to favorites	ListView		Adaugă la favorite
 Add to ignore list	ListView		Adaugă la lista de ignorat
 Found no matches.	ListView		Nu s-au găsit potriviri.
 Open containing folder	ListView		Deschide dosarul conținător
 Remove favorite	ListView		Elimină favoritul
 Use '*' as wildcards.	ListView		Folosește '*' ca metacaracter.
-Help	MainWindow		Ajutor
-OK	MainWindow		OK
-Setup	MainWindow		Configurare
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	A eșuat lansarea a %appname%.\n\nEroare:
 Add…	SetupWindow		Adaugă...
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignoră aceste fișiere și dosare (și subdosarele lor)
-Launch applications with a single click	SetupWindow		Lansează aplicații cu un singur clic
 Remember last search term	SetupWindow		Ține minte ultimul termen căutat
 Remove	SetupWindow		Elimină
+Search from start of application name	SetupWindow		Caută de la începutul numelui aplicației
 Setup	SetupWindow		Configurare
 Show application path	SetupWindow		Afișează calea aplicației
 Show application version	SetupWindow		Afișează versiunea aplicației
 Show Deskbar replicant	SetupWindow		Afișează replicant Deskbar
-Window always on top	SetupWindow		Fereastră totdeauna deasupra
-Search from start of application name	SetupWindow		Caută de la începutul numelui aplicației
-QuickLaunch	System name		QuickLaunch
+Sort favorite items to the top	SetupWindow		Sortează articolele preferate în partea de sus
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	A eșuat lansarea a %appname%.\n\nEroare:
+Help	MainWindow		Ajutor
+OK	MainWindow		OK
+Setup	MainWindow		Configurare
