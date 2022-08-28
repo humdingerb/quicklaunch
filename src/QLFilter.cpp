@@ -25,9 +25,18 @@ QLFilter::~QLFilter()
 filter_result
 QLFilter::Filter(BMessage* message, BHandler** target)
 {
-	int32 rawchar, mod;
+	int32 key, rawchar, mod;
+	message->FindInt32("key", &key);
 	message->FindInt32("raw_char", &rawchar);
 	message->FindInt32("modifiers", &mod);
+
+	if (mod & B_NUM_LOCK) {		// NumLock's on, interpret as numbers
+		if (   key == 0x37 || key == 0x38 || key == 0x39
+			|| key == 0x49 || key == 0x49 || key == 0x4a
+			|| key == 0x58 || key == 0x59 || key == 0x5a
+						   || key == 0x64)
+			return B_DISPATCH_MESSAGE;
+	}
 
 	switch (rawchar) {
 		case B_SPACE: case B_LEFT_ARROW: case B_RIGHT_ARROW: case B_INSERT:
