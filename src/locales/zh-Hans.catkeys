@@ -1,0 +1,24 @@
+1	Chinese (simplified)	application/x-vnd.humdinger-quicklaunch	3994280092
+About QuickLaunch	Application		关于 QuickLaunch
+Open QuickLaunch	Application		打开 QuickLaunch
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch 可快速启动任何已安装的应用程序。只需输入其名称的前几个字母，然后在所有找到的应用程序列表中进行选择。 
+Add to favorites	ListView		添加至收藏
+Add to ignore list	ListView		添加至忽略列表
+Found no matches.	ListView		未找到匹配项。
+Open containing folder	ListView		打开所在文件夹
+Remove favorite	ListView		从收藏中移除
+Use '*' as wildcards.	ListView		使用 “*” 号作为通配符。
+Add…	SetupWindow		添加…
+Ignore these files & folders (and their subfolders):	SetupWindow		忽略这些文件和文件夹（以及它们的子文件夹）：
+Remember last search term	SetupWindow		记住最后一个搜索词
+Remove	SetupWindow		移除
+Search from start of application name	SetupWindow		从应用程序名称的开头搜索
+Setup	SetupWindow		设置
+Show application path	SetupWindow		显示应用程序路径
+Show application version	SetupWindow		显示应用程序版本
+Show Deskbar replicant	SetupWindow		显示桌面栏副本
+Sort favorite items to the top	SetupWindow		将喜欢的项目排在最前面
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	运行 %appname% 失败。\n\n错误:
+Help	MainWindow		帮助
+OK	MainWindow		确定
+Setup	MainWindow		设置

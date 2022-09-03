@@ -1,0 +1,24 @@
+1	Greek (Modern)	application/x-vnd.humdinger-quicklaunch	3994280092
+About QuickLaunch	Application		Σχετικά με το QuickLaunch
+Open QuickLaunch	Application		Άνοιγμα του QuickLaunch
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		Το QuickLaunch ξεκινά στιγμιαία οποιαδήποτε εγκατεστημένη εφαρμογή. Απλώς πληκτρολογήστε λίγα από τα πρώτα γράμματα του ονόματός της και επιλέξτε από μια λίστα των ταιριασμένων εφαρμογών.
+Add to favorites	ListView		Προσθήκη στα αγαπημένα
+Add to ignore list	ListView		Προσθήκη στη λίστα παράβλεψης
+Found no matches.	ListView		Δεν βρέθηκε τίποτα.
+Open containing folder	ListView		Άνοιγμα σχετικού καταλόγου
+Remove favorite	ListView		Αφαίρεση από αγαπημένα
+Use '*' as wildcards.	ListView		Χρησιμοποιήστε το '*' για ελεύθερο ταίριασμα
+Add…	SetupWindow		Προσθήκη...
+Ignore these files & folders (and their subfolders):	SetupWindow		Παράβλεψη των εξής αρχείων και καταλόγων (και υποκαταλόγων επίσης):
+Remember last search term	SetupWindow		Να θυμάσαι την τελευταία αναζήτηση
+Remove	SetupWindow		Αφαίρεση
+Search from start of application name	SetupWindow		Αναζήτηση με βάση τα αρχικά του ονόματος εφαρμογής
+Setup	SetupWindow		Ρυθμίσεις
+Show application path	SetupWindow		Εμφάνιση διαδρομής εφαρμογής
+Show application version	SetupWindow		Εμφάνιση έκδοσης εφαρμογής
+Show Deskbar replicant	SetupWindow		Εμφάνιση ρεπλίκας Deskbar
+Sort favorite items to the top	SetupWindow		Εμφάνιση των αγαπημένων στην κορυφή
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Αδύνατη η εκκίνηση της εφαρμογής %appname%.\n\Σφάλμα:
+Help	MainWindow		Βοήθεια
+OK	MainWindow		Εντάξει
+Setup	MainWindow		Ρυθμίσεις
