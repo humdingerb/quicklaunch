@@ -17,7 +17,7 @@ Setup	SetupWindow		Configuració
 Show application path	SetupWindow		Mostra el camí de l'aplicació.
 Show application version	SetupWindow		Mostra la versió de l'aplicació.
 Show Deskbar replicant	SetupWindow		Mostra el replicant de la barra d'escriptori.
-Sort favorite items to the top	SetupWindow		Sort favorite items to the top
+Sort favorite items to the top	SetupWindow		Ordena els elements preferits a la part superior
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Ha fallat obrir %appname%.\n\nError:
 Help	MainWindow		Ajuda
 OK	MainWindow		D'acord

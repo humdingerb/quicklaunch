@@ -1,18 +1,18 @@
 1	Turkish	application/x-vnd.humdinger-quicklaunch	3994280092
 About QuickLaunch	Application		QuickLaunch hakkında
-Open QuickLaunch	Application		QuickLaunch'u aç
-QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		Hızlı Başlat yüklü uygulamaları hızlıca çalıştırır. Yalnızca uygulamanın ilk birkaç harfini girin ve açılan listeden uygulamayı seçin.
-Add to favorites	ListView		Yer imlerine ekle
-Add to ignore list	ListView		Yok sayılacaklar listesine ekle
+Open QuickLaunch	Application		QuickLaunch’u aç
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch, kurulu uygulamaları hızlıca çalıştırır. Yalnızca uygulamanın ilk birkaç harfini girin ve açılan listeden uygulamayı seçin.
+Add to favorites	ListView		Sık kullanılanlara ekle
+Add to ignore list	ListView		Yok sayılanlar listesine ekle
 Found no matches.	ListView		Eşleşme bulunamadı
 Open containing folder	ListView		İçeren klasörü aç
-Remove favorite	ListView		Yer imini kaldır
-Use '*' as wildcards.	ListView		Joker karakter olarak '*' kullanın
+Remove favorite	ListView		Sık kullanılanlardan kaldır
+Use '*' as wildcards.	ListView		Joker karakter olarak '*' kullan
 Add…	SetupWindow		Ekle…
-Ignore these files & folders (and their subfolders):	SetupWindow		Bu klasörleri (ve onların alt klasörlerini) ve dosyaları yok say:
+Ignore these files & folders (and their subfolders):	SetupWindow		Bu klasörleri, alt klasörlerini ve dosyaları yok say:
 Remember last search term	SetupWindow		Son aramayı hatırla
 Remove	SetupWindow		Kaldır
-Search from start of application name	SetupWindow		Aramaya uygulama adının başından başla
+Search from start of application name	SetupWindow		Aramayı, uygulama adının başından başlat
 Setup	SetupWindow		Ayarlar
 Show application path	SetupWindow		Uygulama yolunu göster
 Show application version	SetupWindow		Uygulama sürümünü göster

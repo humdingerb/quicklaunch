@@ -17,7 +17,7 @@ Setup	SetupWindow		Configurazion
 Show application path	SetupWindow		Mostre percors de aplicazion
 Show application version	SetupWindow		Mostre version de aplicazion
 Show Deskbar replicant	SetupWindow		Mostre replicant dal Scritori
-Sort favorite items to the top	SetupWindow		Sort favorite items to the top
+Sort favorite items to the top	SetupWindow		Met i elements preferîts parsore
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	No si è rivâts a inviâ %appname%.\n\nErôr:
 Help	MainWindow		Jutori
 OK	MainWindow		Va ben

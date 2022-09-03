@@ -17,7 +17,7 @@ Setup	SetupWindow		設定
 Show application path	SetupWindow		アプリのパスを表示
 Show application version	SetupWindow		アプリのバージョンを表示
 Show Deskbar replicant	SetupWindow		Deskbarレプリカントを表示
-Sort favorite items to the top	SetupWindow		Sort favorite items to the top
+Sort favorite items to the top	SetupWindow		お気に入りを先頭に表示
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	％appname％の起動に失敗しました。\n\nエラー：
 Help	MainWindow		ヘルプ
 OK	MainWindow		OK

@@ -1,7 +1,7 @@
 1	Portuguese (Brazil)	application/x-vnd.humdinger-quicklaunch	3994280092
 About QuickLaunch	Application		Sobre QuickLaunch
 Open QuickLaunch	Application		Abrir QuickLaunch
-QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch inicia rapidamente qualquer aplicação instalada. Basta digitar as primeiras letras do nome e escolher da lista de todos os programas encontrandos.
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch inicia rapidamente qualquer aplicativo instalado. Basta digitar as primeiras letras do nome e escolher da lista de todos os aplicativos encontrandos.
 Add to favorites	ListView		Adicionar aos favoritos
 Add to ignore list	ListView		Adicionar à lista de ignorados
 Found no matches.	ListView		Nenhum resultado encontrado.
@@ -12,13 +12,13 @@ Add…	SetupWindow		Adicionar…
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignorar estes arquivos & pastas (e suas subpastas):
 Remember last search term	SetupWindow		Lembrar último termo pesquisado
 Remove	SetupWindow		Remover
-Search from start of application name	SetupWindow		Pesquisar a partir do início do nome da aplicação
+Search from start of application name	SetupWindow		Pesquisar a partir do início do nome do aplicativo
 Setup	SetupWindow		Configurações
-Show application path	SetupWindow		Exibir caminho da aplicação
-Show application version	SetupWindow		Exibir versão da aplicação
+Show application path	SetupWindow		Exibir localização do aplicativo
+Show application version	SetupWindow		Exibir versão do aplicativo
 Show Deskbar replicant	SetupWindow		Exibir replicante na Deskbar
 Sort favorite items to the top	SetupWindow		Ordernar itens favoritos para o topo
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Falha ao iniciar %appname%.\n\nError:
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Falha ao iniciar %appname%.\n\nErro:
 Help	MainWindow		Ajuda
 OK	MainWindow		OK
 Setup	MainWindow		Configurações
