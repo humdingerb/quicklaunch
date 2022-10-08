@@ -10,13 +10,13 @@
  * A graphical launch panel finding an app via a query.
  */
 
+#include "QuickLaunch.h"
 #include "DeskbarReplicant.h"
 #include "QLFilter.h"
-#include "QuickLaunch.h"
 
 #include <AboutWindow.h>
-#include <Deskbar.h>
 #include <Catalog.h>
+#include <Deskbar.h>
 #include <storage/NodeMonitor.h>
 
 const char* kApplicationSignature = "application/x-vnd.humdinger-quicklaunch";
@@ -31,7 +31,7 @@ QLApp::QLApp()
 	:
 	BApplication(kApplicationSignature)
 {
-	if (fSettings.GetDeskbar())	// make sure the replicant is shown
+	if (fSettings.GetDeskbar()) // make sure the replicant is shown
 		_AddToDeskbar();
 
 	fSetupWindow = new SetupWindow(fSettings.GetSetupWindowFrame());
@@ -53,7 +53,7 @@ QLApp::~QLApp()
 }
 
 
-#pragma mark -- BApplication Overrides --
+#pragma mark-- BApplication Overrides --
 
 
 void
@@ -223,7 +223,7 @@ QLApp::MessageReceived(BMessage* message)
 			}
 
 			if (!fSettings.fIgnoreList->IsEmpty()) {
- 				fSetupWindow->fChkIgnore->SetValue(value);
+				fSetupWindow->fChkIgnore->SetValue(value);
 				_RestorePositionAndSelection();
 			}
 			break;
@@ -311,7 +311,7 @@ QLApp::SetWindowsFeel(window_feel feel)
 }
 
 
-#pragma mark -- Private Methods --
+#pragma mark-- Private Methods --
 
 
 void
@@ -344,7 +344,8 @@ QLApp::_RemoveFromDeskbar()
 		status_t err = deskbar.RemoveItem(found_id);
 		if (err != B_OK) {
 			printf("QuickLaunch: Error removing replicant id "
-				"%" B_PRId32 ": %s\n", found_id, strerror(err));
+				   "%" B_PRId32 ": %s\n",
+				found_id, strerror(err));
 		}
 	}
 }
@@ -358,9 +359,9 @@ QLApp::_RestorePositionAndSelection()
 	float position = fMainWindow->GetScrollPosition();
 	fMainWindow->BuildList();
 	if (selection >= 0) {
-		fMainWindow->fListView->Select((selection
-			< fMainWindow->fListView->CountItems())
-			? selection : fMainWindow->fListView->CountItems() - 1);
+		fMainWindow->fListView->Select((selection < fMainWindow->fListView->CountItems())
+				? selection
+				: fMainWindow->fListView->CountItems() - 1);
 	} else if (!fMainWindow->fListView->IsEmpty())
 		fMainWindow->fListView->Select(0);
 
@@ -369,7 +370,7 @@ QLApp::_RestorePositionAndSelection()
 }
 
 
-#pragma mark -- main --
+#pragma mark-- main --
 
 
 int

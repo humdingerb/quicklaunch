@@ -8,10 +8,10 @@
  *  Chris Roberts
  */
 
-#include "QuickLaunch.h"
-#include "QLSettings.h"
-#include "IgnoreListItem.h"
 #include "SetupWindow.h"
+#include "IgnoreListItem.h"
+#include "QLSettings.h"
+#include "QuickLaunch.h"
 
 #include <Catalog.h>
 #include <ControlLook.h>
@@ -34,22 +34,19 @@ compare_items(const void* a, const void* b)
 
 SetupWindow::SetupWindow(BRect frame)
 	:
-	BWindow(frame, B_TRANSLATE("Setup"), B_TITLED_WINDOW_LOOK,
-		B_NORMAL_WINDOW_FEEL, B_NOT_ZOOMABLE | B_FRAME_EVENTS
-		| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
+	BWindow(frame, B_TRANSLATE("Setup"), B_TITLED_WINDOW_LOOK, B_NORMAL_WINDOW_FEEL,
+		B_NOT_ZOOMABLE | B_FRAME_EVENTS | B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
 	QLSettings& settings = my_app->Settings();
 	if (settings.Lock()) {
 		fIgnoreList = settings.IgnoreList();
 		settings.Unlock();
 	}
-	fChkDeskbar = new BCheckBox("DeskbarChk",
-		B_TRANSLATE("Show Deskbar replicant"),
+	fChkDeskbar = new BCheckBox("DeskbarChk", B_TRANSLATE("Show Deskbar replicant"),
 		new BMessage(DESKBAR_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkDeskbar->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
-	fChkVersion = new BCheckBox("VersionChk",
-		B_TRANSLATE("Show application version"),
+	fChkVersion = new BCheckBox("VersionChk", B_TRANSLATE("Show application version"),
 		new BMessage(VERSION_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkVersion->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
@@ -57,19 +54,18 @@ SetupWindow::SetupWindow(BRect frame)
 		new BMessage(PATH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkPath->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
-	fChkSearchStart = new BCheckBox("SearchStartChk",
-		B_TRANSLATE("Search from start of application name"),
-		new BMessage(SEARCHSTART_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkSearchStart
+		= new BCheckBox("SearchStartChk", B_TRANSLATE("Search from start of application name"),
+			new BMessage(SEARCHSTART_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkSearchStart->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
-	fChkSaveSearch = new BCheckBox("SaveSearchChk",
-		B_TRANSLATE("Remember last search term"),
+	fChkSaveSearch = new BCheckBox("SaveSearchChk", B_TRANSLATE("Remember last search term"),
 		new BMessage(SAVESEARCH_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkSaveSearch->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
-	fChkSortFavorites = new BCheckBox("SortFavoritesChk",
-	B_TRANSLATE("Sort favorite items to the top"),
-	new BMessage(SORTFAVS_CHK), B_WILL_DRAW | B_NAVIGABLE);
+	fChkSortFavorites
+		= new BCheckBox("SortFavoritesChk", B_TRANSLATE("Sort favorite items to the top"),
+			new BMessage(SORTFAVS_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkSortFavorites->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
 	fChkIgnore = new BCheckBox("IgnoreChk",
@@ -77,17 +73,15 @@ SetupWindow::SetupWindow(BRect frame)
 		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkIgnore->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
-	fIgnoreScroll = new BScrollView("IgnoreList", fIgnoreList,
-		B_WILL_DRAW | B_NAVIGABLE, false, true, B_FANCY_BORDER);
+	fIgnoreScroll = new BScrollView(
+		"IgnoreList", fIgnoreList, B_WILL_DRAW | B_NAVIGABLE, false, true, B_FANCY_BORDER);
 	fIgnoreScroll->SetExplicitMinSize(BSize(B_SIZE_UNSET, 48));
 	fIgnoreScroll->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
-	fButAdd = new BButton("AddButton", B_TRANSLATE("Add" B_UTF8_ELLIPSIS),
-		new BMessage(ADD_BUT));
+	fButAdd = new BButton("AddButton", B_TRANSLATE("Add" B_UTF8_ELLIPSIS), new BMessage(ADD_BUT));
 	fButAdd->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
-	fButRem = new BButton("RemButton", B_TRANSLATE("Remove"),
-		new BMessage(REM_BUT));
+	fButRem = new BButton("RemButton", B_TRANSLATE("Remove"), new BMessage(REM_BUT));
 	fButRem->SetEnabled(false);
 	fButRem->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
@@ -107,31 +101,31 @@ SetupWindow::SetupWindow(BRect frame)
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkDeskbar)
 			.SetInsets(spacing, spacing, spacing, 0)
-		.End()
+			.End()
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkVersion)
 			.Add(fChkPath)
 			.SetInsets(spacing, spacing, spacing, 0)
-		.End()
+			.End()
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkSearchStart)
 			.Add(fChkSaveSearch)
 			.Add(fChkSortFavorites)
 			.SetInsets(spacing, spacing, spacing, 0)
-		.End()
+			.End()
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkIgnore)
 			.Add(fIgnoreScroll)
 			.SetInsets(spacing, spacing, spacing, 0)
-		.End()
+			.End()
 		.AddGroup(B_HORIZONTAL, spacing)
 			.AddGlue()
 			.Add(fButAdd)
 			.Add(fButRem)
 			.AddGlue()
 			.SetInsets(0, spacing, spacing, spacing)
-		.End()
-	.End();
+			.End()
+		.End();
 
 	if (settings.Lock()) {
 		fChkDeskbar->SetValue(settings.GetDeskbar());
@@ -146,8 +140,7 @@ SetupWindow::SetupWindow(BRect frame)
 	}
 	fIgnoreList->SetViewColor(B_TRANSPARENT_COLOR);
 
-	fOpenPanel = new BFilePanel(B_OPEN_PANEL, NULL, NULL,
-		B_FILE_NODE | B_DIRECTORY_NODE);
+	fOpenPanel = new BFilePanel(B_OPEN_PANEL, NULL, NULL, B_FILE_NODE | B_DIRECTORY_NODE);
 	fOpenPanel->SetTarget(this);
 
 	AddShortcut('S', B_COMMAND_KEY, new BMessage(B_QUIT_REQUESTED));
@@ -160,7 +153,7 @@ SetupWindow::~SetupWindow()
 }
 
 
-#pragma mark -- BWindow Overrides --
+#pragma mark-- BWindow Overrides --
 
 
 bool
@@ -208,20 +201,19 @@ SetupWindow::MessageReceived(BMessage* message)
 					IgnoreListItem* newitem = new IgnoreListItem(path.Path());
 					bool duplicate = false;
 
-					for (int i = 0; i < fIgnoreList->CountItems(); i++)
-					{
-						IgnoreListItem* sItem = dynamic_cast<IgnoreListItem *>
-							(fIgnoreList->ItemAt(i));
+					for (int i = 0; i < fIgnoreList->CountItems(); i++) {
+						IgnoreListItem* sItem
+							= dynamic_cast<IgnoreListItem*>(fIgnoreList->ItemAt(i));
 						if (strcmp(sItem->GetItem(), newitem->GetItem()) == 0)
 							duplicate = true;
 					}
-					if (!duplicate)	{
+					if (!duplicate) {
 						fIgnoreList->AddItem(newitem);
 						fIgnoreList->SortItems(&compare_items);
 					}
 					ref_num++;
 				}
-			settings.Unlock();
+				settings.Unlock();
 			}
 			be_app->PostMessage(FILEPANEL);
 		}
@@ -229,7 +221,7 @@ SetupWindow::MessageReceived(BMessage* message)
 }
 
 
-#pragma mark -- Private Methods --
+#pragma mark-- Private Methods --
 
 
 void
@@ -286,7 +278,7 @@ SetupWindow::_RemoveItemList(const BList& indices)
 	QLSettings& settings = my_app->Settings();
 	if (settings.Lock()) {
 		for (int32 i = 0; i < count; i++) {
-			int32 index = (int32)(addr_t)indices.ItemAtFast(i) - i;
+			int32 index = (int32)(addr_t) indices.ItemAtFast(i) - i;
 			delete fIgnoreList->RemoveItem(index);
 		}
 		settings.Unlock();

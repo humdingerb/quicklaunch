@@ -15,6 +15,7 @@
 #include "MainListItem.h"
 #include "QuickLaunch.h"
 
+
 MainListItem::MainListItem(BEntry* entry, int iconSize, bool isFav)
 	:
 	BListItem()
@@ -26,16 +27,14 @@ MainListItem::MainListItem(BEntry* entry, int iconSize, bool isFav)
 	BNodeInfo node_info;
 
 	// try to get node info for this entry
-	if ((node.SetTo(entry) == B_NO_ERROR)
-		&& (node_info.SetTo(&node) == B_NO_ERROR)) {
+	if ((node.SetTo(entry) == B_NO_ERROR) && (node_info.SetTo(&node) == B_NO_ERROR)) {
 
 		// cache name and path
 		entry->GetName(fName);
 		entry->GetPath(&fPath);
 
 		// create bitmap large enough for icon
-		fIcon = new BBitmap(
-			BRect(0, 0, fIconSize, fIconSize), 0, B_RGBA32);
+		fIcon = new BBitmap(BRect(0, 0, fIconSize, fIconSize), 0, B_RGBA32);
 
 		// cache the icon
 		status_t result = node_info.GetIcon(fIcon, icon_size(fIconSize));
@@ -82,7 +81,7 @@ MainListItem::~MainListItem()
 }
 
 
-#pragma mark -- BListItem Overrides --
+#pragma mark-- BListItem Overrides --
 
 
 void
@@ -102,7 +101,7 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 	else {
 		bgColor = ui_color(B_LIST_BACKGROUND_COLOR);
 		if (IsFavorite()) {
-			rgb_color favColor = (rgb_color) {255, 255, 0, 255};
+			rgb_color favColor = (rgb_color){255, 255, 0, 255};
 			bgColor = mix_color(bgColor, favColor, 16);
 		}
 	}
@@ -116,13 +115,14 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 	if (fIcon) {
 		view->PushState();
 		view->SetDrawingMode(B_OP_OVER);
-		view->DrawBitmap(fIcon, BPoint(rect.left + spacing / 2,
-			rect.top + (rect.Height() - fIconSize) / 2));
+		view->DrawBitmap(
+			fIcon, BPoint(rect.left + spacing / 2, rect.top + (rect.Height() - fIconSize) / 2));
 
 		if (fIsFavorite) {
 			view->SetBlendingMode(B_PIXEL_ALPHA, B_ALPHA_OVERLAY);
-			view->DrawBitmap(fFavoriteIcon, BPoint(rect.left + spacing / 2 - 3,
-				rect.top + (rect.Height() - fIconSize) / 2 + 4));
+			view->DrawBitmap(fFavoriteIcon,
+				BPoint(
+					rect.left + spacing / 2 - 3, rect.top + (rect.Height() - fIconSize) / 2 + 4));
 		}
 		view->PopState();
 		offset = fIcon->Bounds().Width() + offset + spacing;
@@ -143,28 +143,25 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 	if (settings.Lock()) {
 		if (settings.GetShowVersion() || settings.GetShowPath()) {
 			view->MovePenTo(offset,
-				rect.top + ((rect.Height() - (finfo.ascent
-				+ finfo.descent + finfo.leading)) / 2)
-				+ (finfo.ascent + finfo.descent) - appfont.Size() + 2 + 3);
+				rect.top + ((rect.Height() - (finfo.ascent + finfo.descent + finfo.leading)) / 2)
+					+ (finfo.ascent + finfo.descent) - appfont.Size() + 2 + 3);
 		} else {
 			view->MovePenTo(offset,
-				rect.top - 2 + ((rect.Height() - (finfo.ascent
-				+ finfo.descent + finfo.leading)) / 2)
-				+ (finfo.ascent + finfo.descent));
+				rect.top - 2
+					+ ((rect.Height() - (finfo.ascent + finfo.descent + finfo.leading)) / 2)
+					+ (finfo.ascent + finfo.descent));
 		}
 
 		float width, height;
 		view->GetPreferredSize(&width, &height);
 		BString string(fName);
-		view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - fIconSize
-			- offset / 2);
+		view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - fIconSize - offset / 2);
 		view->DrawString(string.String());
 
 		// application path and version
 
 		if (IsSelected())
-			view->SetHighColor(tint_color(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR),
-				0.7));
+			view->SetHighColor(tint_color(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR), 0.7));
 		else
 			view->SetHighColor(tint_color(ui_color(B_LIST_ITEM_TEXT_COLOR), 0.6));
 
@@ -173,9 +170,9 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 		view->SetFont(&pathfont);
 
 		view->MovePenTo(offset,
-			rect.top + appfont.Size() - pathfont.Size() + 3 + ((rect.Height()
-			- (finfo.ascent + finfo.descent + finfo.leading)) / 2)
-			+ (finfo.ascent + finfo.descent));
+			rect.top + appfont.Size() - pathfont.Size() + 3
+				+ ((rect.Height() - (finfo.ascent + finfo.descent + finfo.leading)) / 2)
+				+ (finfo.ascent + finfo.descent));
 
 		BPath parent;
 		fPath.GetParent(&parent);
@@ -198,15 +195,13 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 			string << "/";
 		}
 
-		view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - fIconSize
-			- offset / 2);
+		view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - fIconSize - offset / 2);
 		view->DrawString(string.String());
-			settings.Unlock();
+		settings.Unlock();
 	}
 	// draw lines
 
-	view->SetHighColor(tint_color(ui_color(B_CONTROL_BACKGROUND_COLOR),
-		B_DARKEN_1_TINT));
+	view->SetHighColor(tint_color(ui_color(B_CONTROL_BACKGROUND_COLOR), B_DARKEN_1_TINT));
 	view->StrokeLine(rect.LeftBottom(), rect.RightBottom());
 }
 
@@ -228,12 +223,11 @@ MainListItem::SetFavorite(bool state)
 {
 	if (state) {
 		size_t size;
-		const void* buf = be_app->AppResources()
-			->LoadResource(B_VECTOR_ICON_TYPE, "FavoriteStar", &size);
+		const void* buf
+			= be_app->AppResources()->LoadResource(B_VECTOR_ICON_TYPE, "FavoriteStar", &size);
 
 		if (buf != NULL) {
-			fFavoriteIcon = new BBitmap(BRect(0, 0, fIconSize, fIconSize),
-				B_RGBA32);
+			fFavoriteIcon = new BBitmap(BRect(0, 0, fIconSize, fIconSize), B_RGBA32);
 			BIconUtils::GetVectorIcon((const uint8*)buf, size, fFavoriteIcon);
 		}
 	}

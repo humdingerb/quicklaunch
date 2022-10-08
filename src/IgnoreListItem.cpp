@@ -11,6 +11,7 @@
 
 #include "IgnoreListItem.h"
 
+
 IgnoreListItem::IgnoreListItem(BString item)
 	:
 	BListItem(),
@@ -29,7 +30,7 @@ IgnoreListItem::~IgnoreListItem()
 }
 
 
-#pragma mark -- BListItem Overrides --
+#pragma mark-- BListItem Overrides --
 
 
 void
@@ -68,8 +69,8 @@ IgnoreListItem::DrawItem(BView* view, BRect rect, bool complete)
 	view->SetFont(&font);
 
 	view->MovePenTo(spacing,
-		rect.top - 2 + ((rect.Height() - (finfo.ascent + finfo.descent
-		+ finfo.leading)) / 2) + (finfo.ascent + finfo.descent));
+		rect.top - 2 + ((rect.Height() - (finfo.ascent + finfo.descent + finfo.leading)) / 2)
+			+ (finfo.ascent + finfo.descent));
 
 	float width, height;
 	view->GetPreferredSize(&width, &height);

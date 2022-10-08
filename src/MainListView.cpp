@@ -6,8 +6,8 @@
  *	Humdinger, humdingerb@gmail.com
  */
 
-#include "MainListItem.h"
 #include "MainListView.h"
+#include "MainListItem.h"
 #include "MainWindow.h"
 #include "QLFilter.h"
 #include "QuickLaunch.h"
@@ -17,13 +17,14 @@
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "ListView"
 
-class PopUpMenu : public BPopUpMenu {
+class PopUpMenu : public BPopUpMenu
+{
 public:
 				PopUpMenu(const char* name, BMessenger target);
 	virtual 	~PopUpMenu();
 
 private:
-	BMessenger 	fTarget;
+	BMessenger	fTarget;
 };
 
 
@@ -57,13 +58,13 @@ MainListView::~MainListView()
 }
 
 
-#pragma mark -- BListView Overrides --
+#pragma mark-- BListView Overrides --
 
 
 void
 MainListView::Draw(BRect rect)
 {
-	MainWindow* window = dynamic_cast<MainWindow *> (Window());
+	MainWindow* window = dynamic_cast<MainWindow*>(Window());
 	int letters = window->GetStringLength();
 	float width, height;
 	BFont font;
@@ -135,7 +136,7 @@ MainListView::InitiateDrag(BPoint point, int32 dragIndex, bool wasSelected)
 	if ((buttons & B_SECONDARY_MOUSE_BUTTON) != 0)
 		return false;
 
-	MainListItem* sItem = dynamic_cast<MainListItem *> (ItemAt(dragIndex));
+	MainListItem* sItem = dynamic_cast<MainListItem*>(ItemAt(dragIndex));
 
 	entry_ref* ref = NULL;
 	ref = sItem->Ref();
@@ -151,8 +152,7 @@ MainListView::InitiateDrag(BPoint point, int32 dragIndex, bool wasSelected)
 	BRect dragRect(0.0f, 0.0f, Bounds().Width(), sItem->Height());
 	BBitmap* dragBitmap = new BBitmap(dragRect, B_RGB32, true);
 	if (dragBitmap->IsValid()) {
-		BView* view = new BView(dragBitmap->Bounds(), "helper", B_FOLLOW_NONE,
-			B_WILL_DRAW);
+		BView* view = new BView(dragBitmap->Bounds(), "helper", B_FOLLOW_NONE, B_WILL_DRAW);
 		dragBitmap->AddChild(view);
 		dragBitmap->Lock();
 
@@ -194,7 +194,7 @@ MainListView::MessageReceived(BMessage* message)
 			MainListItem* item = NULL;
 
 			int selection = CurrentSelection();
-			item = dynamic_cast<MainListItem *> (ItemAt(selection));
+			item = dynamic_cast<MainListItem*>(ItemAt(selection));
 
 			if (item->IsFavorite())
 				break;
@@ -208,10 +208,9 @@ MainListView::MessageReceived(BMessage* message)
 				bool duplicate = false;
 
 				if (settings.Lock()) {
-					for (int i = 0; i < settings.fFavoriteList->CountItems(); i++)
-					{
-						entry_ref* favorite = static_cast<entry_ref *>
-							(settings.fFavoriteList->ItemAt(i));
+					for (int i = 0; i < settings.fFavoriteList->CountItems(); i++) {
+						entry_ref* favorite
+							= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
 						if (*ref == *favorite)
 							duplicate = true;
 					}
@@ -231,18 +230,18 @@ MainListView::MessageReceived(BMessage* message)
 			MainListItem* item = NULL;
 
 			int selection = CurrentSelection();
-			item = dynamic_cast<MainListItem *> (ItemAt(selection));
+			item = dynamic_cast<MainListItem*>(ItemAt(selection));
 
 			if (!item->IsFavorite())
 				break;
 
-			MainWindow* window = dynamic_cast<MainWindow *> (Window());
+			MainWindow* window = dynamic_cast<MainWindow*>(Window());
 			int letters = window->GetStringLength();
 
 			if (item) {
 				ref = item->Ref();
 				item->SetFavorite(false);
-				if (letters == 0) {		// don't remove from result list
+				if (letters == 0) { // don't remove from result list
 					RemoveItem(selection);
 					Select((selection - 1 < 0) ? 0 : selection - 1);
 				}
@@ -250,10 +249,9 @@ MainListView::MessageReceived(BMessage* message)
 
 			if (ref) {
 				if (settings.Lock()) {
-					for (int i = 0; i < settings.fFavoriteList->CountItems(); i++)
-					{
-						entry_ref* favorite = static_cast<entry_ref *>
-							(settings.fFavoriteList->ItemAt(i));
+					for (int i = 0; i < settings.fFavoriteList->CountItems(); i++) {
+						entry_ref* favorite
+							= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
 						if (*ref == *favorite)
 							settings.fFavoriteList->RemoveItem(i);
 					}
@@ -271,7 +269,7 @@ MainListView::MessageReceived(BMessage* message)
 			MainListItem* item = NULL;
 
 			int selection = CurrentSelection();
-			item = dynamic_cast<MainListItem *> (ItemAt(selection));
+			item = dynamic_cast<MainListItem*>(ItemAt(selection));
 
 			if (item->IsFavorite())
 				break;
@@ -282,7 +280,7 @@ MainListView::MessageReceived(BMessage* message)
 			if (ref) {
 				BMessenger msgr(my_app->fSetupWindow);
 				BMessage refMsg(B_REFS_RECEIVED);
-				refMsg.AddRef("refs",ref);
+				refMsg.AddRef("refs", ref);
 				msgr.SendMessage(&refMsg);
 			}
 			break;
@@ -387,8 +385,7 @@ MainListView::MouseUp(BPoint position)
 
 
 void
-MainListView::MouseMoved(BPoint where, uint32 transit,
-	const BMessage* dragMessage)
+MainListView::MouseMoved(BPoint where, uint32 transit, const BMessage* dragMessage)
 {
 	if (dragMessage != NULL) {
 		switch (transit) {
@@ -401,7 +398,7 @@ MainListView::MouseMoved(BPoint where, uint32 transit,
 
 				fDropRect = ItemFrame(index);
 				if (fDropRect.IsValid()) {
-					fDropRect.top = fDropRect.top -1;
+					fDropRect.top = fDropRect.top - 1;
 					fDropRect.bottom = fDropRect.top + 1;
 				} else {
 					fDropRect = ItemFrame(index - 1);
@@ -428,7 +425,7 @@ MainListView::MouseMoved(BPoint where, uint32 transit,
 }
 
 
-#pragma mark -- Private Methods --
+#pragma mark-- Private Methods --
 
 
 void
@@ -437,8 +434,7 @@ MainListView::_ShowPopUpMenu(BPoint screen)
 	if (fShowingPopUpMenu || IsEmpty())
 		return;
 
-	MainListItem* sItem = dynamic_cast<MainListItem *>
-		(ItemAt(CurrentSelection()));
+	MainListItem* sItem = dynamic_cast<MainListItem*>(ItemAt(CurrentSelection()));
 
 	bool isFav = false;
 	if (sItem != NULL)
@@ -449,22 +445,18 @@ MainListView::_ShowPopUpMenu(BPoint screen)
 	BMenuItem* item;
 
 	if (isFav) {
-		item = new BMenuItem(B_TRANSLATE("Remove favorite"),
-			new BMessage(REMOVEFAVORITE), 'R');
+		item = new BMenuItem(B_TRANSLATE("Remove favorite"), new BMessage(REMOVEFAVORITE), 'R');
 	} else {
-		item = new BMenuItem(B_TRANSLATE("Add to favorites"),
-			new BMessage(ADDFAVORITE), 'F');
+		item = new BMenuItem(B_TRANSLATE("Add to favorites"), new BMessage(ADDFAVORITE), 'F');
 	}
 	menu->AddItem(item);
 
 	if (!isFav) {
-	item = new BMenuItem(B_TRANSLATE("Add to ignore list"),
-		new BMessage(ADDIGNORE), 'I');
-	menu->AddItem(item);
+		item = new BMenuItem(B_TRANSLATE("Add to ignore list"), new BMessage(ADDIGNORE), 'I');
+		menu->AddItem(item);
 	}
 
-	item = new BMenuItem(B_TRANSLATE("Open containing folder"),
-		new BMessage(OPENLOCATION), 'O');
+	item = new BMenuItem(B_TRANSLATE("Open containing folder"), new BMessage(OPENLOCATION), 'O');
 	menu->AddItem(item);
 
 	menu->SetTargetForItems(this);

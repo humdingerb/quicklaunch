@@ -8,10 +8,10 @@
  *  Chris Roberts
  */
 
-#include "QLFilter.h"
-#include "QuickLaunch.h"
 #include "MainWindow.h"
 #include "IgnoreListItem.h"
+#include "QLFilter.h"
+#include "QuickLaunch.h"
 
 #include <Catalog.h>
 #include <ControlLook.h>
@@ -25,6 +25,7 @@ extern const char* kApplicationName;
 
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "MainWindow"
+
 
 static int
 compare_items(const void* a, const void* b)
@@ -53,28 +54,25 @@ compare_favorite_items(const void* a, const void* b)
 
 MainWindow::MainWindow()
 	:
-	BWindow(BRect(), B_TRANSLATE_SYSTEM_NAME(kApplicationName),
-		B_TITLED_WINDOW_LOOK, B_MODAL_ALL_WINDOW_FEEL,
-		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE
-		| B_FRAME_EVENTS | B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
+	BWindow(BRect(), B_TRANSLATE_SYSTEM_NAME(kApplicationName), B_TITLED_WINDOW_LOOK,
+		B_MODAL_ALL_WINDOW_FEEL,
+		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE | B_FRAME_EVENTS
+			| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
 	QLSettings& settings = my_app->Settings();
 	_GetIconHeight();
 
 	fSearchBox = new BTextControl("SearchBox", NULL, NULL, NULL);
 
-	fSetupButton = new BButton ("Setup", B_TRANSLATE("Setup"),
-		new BMessage(SETUP_BUTTON));
+	fSetupButton = new BButton("Setup", B_TRANSLATE("Setup"), new BMessage(SETUP_BUTTON));
 	fSetupButton->SetTarget(be_app);
-	fHelpButton = new BButton ("Help", B_TRANSLATE("Help"),
-		new BMessage(HELP_BUTTON));
+	fHelpButton = new BButton("Help", B_TRANSLATE("Help"), new BMessage(HELP_BUTTON));
 	fHelpButton->SetTarget(be_app);
 
 	fListView = new MainListView();
 	fListView->SetExplicitMinSize(BSize(B_SIZE_UNSET, fIconHeight + 8));
 
-	fScrollView = new BScrollView("ScrollList", fListView, B_WILL_DRAW,
-		false, true);
+	fScrollView = new BScrollView("ScrollList", fListView, B_WILL_DRAW, false, true);
 
 	// Build the layout
 	float spacing = be_control_look->DefaultItemSpacing();
@@ -87,11 +85,11 @@ MainWindow::MainWindow()
 			.AddStrut(spacing / 2)
 			.Add(fHelpButton)
 			.SetInsets(spacing / 2)
-		.End()
+			.End()
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fScrollView)
 			.SetInsets(spacing / 2, 0, spacing / 2, spacing / 2)
-		.End();
+			.End();
 
 	fSearchBox->MakeFocus(true);
 
@@ -118,7 +116,7 @@ MainWindow::~MainWindow()
 }
 
 
-#pragma mark -- BWindow Overrides --
+#pragma mark-- BWindow Overrides --
 
 
 void
@@ -159,8 +157,9 @@ MainWindow::MessageReceived(BMessage* message)
 
 			if (selection > kMAX_DISPLAYED_ITEMS) {
 				fListView->Select(selection - kMAX_DISPLAYED_ITEMS + 1);
-				fListView->ScrollBy(0.0, -(kMAX_DISPLAYED_ITEMS - 1)
-					* fListView->ItemFrame(0).Height() - kMAX_DISPLAYED_ITEMS + 1);
+				fListView->ScrollBy(0.0,
+					-(kMAX_DISPLAYED_ITEMS - 1) * fListView->ItemFrame(0).Height()
+						- kMAX_DISPLAYED_ITEMS + 1);
 			} else
 				fListView->Select(first);
 
@@ -174,8 +173,9 @@ MainWindow::MessageReceived(BMessage* message)
 
 			if (selection < (fListView->CountItems() - kMAX_DISPLAYED_ITEMS)) {
 				fListView->Select(selection + kMAX_DISPLAYED_ITEMS - 1);
-				fListView->ScrollBy(0.0, (kMAX_DISPLAYED_ITEMS - 1)
-					* fListView->ItemFrame(0).Height() + kMAX_DISPLAYED_ITEMS - 1);
+				fListView->ScrollBy(0.0,
+					(kMAX_DISPLAYED_ITEMS - 1) * fListView->ItemFrame(0).Height()
+						+ kMAX_DISPLAYED_ITEMS - 1);
 			} else
 				fListView->Select(last);
 			break;
@@ -205,13 +205,13 @@ MainWindow::MessageReceived(BMessage* message)
 			MainListItem* item = NULL;
 
 			int selection = fListView->CurrentSelection();
-			item = dynamic_cast<MainListItem *>(fListView->ItemAt(selection));
+			item = dynamic_cast<MainListItem*>(fListView->ItemAt(selection));
 			if (item)
 				ref = item->Ref();
 
 			if (ref) {
-			// if we got a ref, try opening its parent folder by sending a
-			// B_REFS_RECEIVED to Tracker
+				// if we got a ref, try opening its parent folder by sending a
+				// B_REFS_RECEIVED to Tracker
 				BEntry entry(ref);
 				BEntry parent;
 				entry.GetParent(&parent);
@@ -221,8 +221,8 @@ MainWindow::MessageReceived(BMessage* message)
 				BMessage refMsg(B_REFS_RECEIVED);
 				refMsg.AddRef("refs", &folderRef);
 				msgr.SendMessage(&refMsg);
-			// End DW code
-			// select the app in the opened folder (thanks, opentargetfolder)
+				// End DW code
+				// select the app in the opened folder (thanks, opentargetfolder)
 				BMessage selectMessage('Tsel');
 				entry_ref target;
 				if (entry.GetRef(&target) != B_OK) {
@@ -230,7 +230,7 @@ MainWindow::MessageReceived(BMessage* message)
 					break;
 				}
 				selectMessage.AddRef("refs", &target);
-				snooze(300000);	// wait 0.3 sec to give Tracker time to populate
+				snooze(300000); // wait 0.3 sec to give Tracker time to populate
 				msgr.SendMessage(&selectMessage);
 			}
 			if (settings.Lock()) {
@@ -245,7 +245,7 @@ MainWindow::MessageReceived(BMessage* message)
 		{
 			MainListItem* item = NULL;
 			int selection = fListView->CurrentSelection();
-			item = dynamic_cast<MainListItem *>(fListView->ItemAt(selection));
+			item = dynamic_cast<MainListItem*>(fListView->ItemAt(selection));
 			if (item != NULL)
 				_LaunchApp(item);
 			break;
@@ -257,7 +257,7 @@ MainWindow::MessageReceived(BMessage* message)
 
 			MainListItem* item = NULL;
 			int selection = fListView->CurrentSelection();
-			item = dynamic_cast<MainListItem *>(fListView->ItemAt(selection));
+			item = dynamic_cast<MainListItem*>(fListView->ItemAt(selection));
 			if (item != NULL)
 				_LaunchApp(item);
 
@@ -299,7 +299,7 @@ MainWindow::QuitRequested()
 }
 
 
-#pragma mark -- Public Methods --
+#pragma mark-- Public Methods --
 
 
 void
@@ -312,10 +312,8 @@ MainWindow::BuildList()
 	if (settings.Lock()) {
 		if (GetStringLength() == 0) {
 			// show favorites
-			for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++)
-			{
-				entry_ref* favorite = static_cast<entry_ref *>
-					(settings.fFavoriteList->ItemAt(i));
+			for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++) {
+				entry_ref* favorite = static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
 				if (!favorite)
 					continue;
 				BEntry entry(favorite);
@@ -382,23 +380,21 @@ MainWindow::BuildList()
 						bool ignore = false;
 						if (settings.GetShowIgnore()) {
 							BString* newItem = new BString(path.Path());
-							for (int i = 0; i < settings.fIgnoreList->CountItems(); i++)
-							{
-								IgnoreListItem* sItem = dynamic_cast<IgnoreListItem *>
-									(settings.fIgnoreList->ItemAt(i));
+							for (int i = 0; i < settings.fIgnoreList->CountItems(); i++) {
+								IgnoreListItem* sItem = dynamic_cast<IgnoreListItem*>(
+									settings.fIgnoreList->ItemAt(i));
 
 								if (newItem->ICompare(sItem->GetItem(),
-										std::min(newItem->Length(),
-										sItem->GetItem().Length())) == 0)
+										std::min(newItem->Length(), sItem->GetItem().Length()))
+									== 0)
 									ignore = true;
 							}
 						}
 						if (!ignore) {
 							bool isFav = false;
-							for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++)
-							{
-								entry_ref* favorite = static_cast<entry_ref *>
-									(settings.fFavoriteList->ItemAt(i));
+							for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++) {
+								entry_ref* favorite
+									= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
 
 								if (!favorite)
 									continue;
@@ -456,24 +452,22 @@ MainWindow::ResizeWindow()
 }
 
 
-#pragma mark -- Private Methods --
+#pragma mark-- Private Methods --
 
 
 void
 MainWindow::_GetIconHeight()
 {
-	font_height	fontHeight;
+	font_height fontHeight;
 	be_plain_font->GetHeight(&fontHeight);
-	float height = 2 * (fontHeight.ascent + fontHeight.descent
-		+ fontHeight.leading);
+	float height = 2 * (fontHeight.ascent + fontHeight.descent + fontHeight.leading);
 	fIconHeight = int(height * 0.9);
 
-	static int iconSizes[] = { 16, 32, 40, 48, 64, 72, 80, 96, 1000 };
+	static int iconSizes[] = {16, 32, 40, 48, 64, 72, 80, 96, 1000};
 
-	int count = sizeof(iconSizes)/sizeof(iconSizes[0]);
+	int count = sizeof(iconSizes) / sizeof(iconSizes[0]);
 	for (int i = 0; i < count; i++) {
-		if (abs(fIconHeight - iconSizes[i])
-				< abs(fIconHeight - iconSizes[i + 1])) {
+		if (abs(fIconHeight - iconSizes[i]) < abs(fIconHeight - iconSizes[i + 1])) {
 			fIconHeight = iconSizes[i];
 			break;
 		}
@@ -492,7 +486,8 @@ MainWindow::_LaunchApp(MainListItem* item)
 		BString errorMessage;
 		if (result != B_OK && result != B_ALREADY_RUNNING) {
 			BString errStr(B_TRANSLATE_COMMENT("Failed to launch %appname%.\n\n"
-			"Error:", "Don't translate the variable %appname%."));
+											   "Error:",
+				"Don't translate the variable %appname%."));
 			errStr.ReplaceFirst("%appname%", item->GetName());
 			errorMessage << errStr.String() << " ";
 			errorMessage << strerror(result);
@@ -502,8 +497,8 @@ MainWindow::_LaunchApp(MainListItem* item)
 			errorMessage = "";
 		}
 		if (errorMessage.Length() > 0) {
-			BAlert* alert = new BAlert("error", errorMessage.String(),
-				B_TRANSLATE("OK"), NULL, NULL, B_WIDTH_FROM_WIDEST);
+			BAlert* alert = new BAlert(
+				"error", errorMessage.String(), B_TRANSLATE("OK"), NULL, NULL, B_WIDTH_FROM_WIDEST);
 			alert->SetFlags(alert->Flags() | B_CLOSE_ON_ESCAPE);
 			alert->Go();
 		}

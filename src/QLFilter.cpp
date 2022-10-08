@@ -6,13 +6,13 @@
  *	Humdinger, humdingerb@gmail.com
  */
 
-#include "QuickLaunch.h"
 #include "QLFilter.h"
+#include "QuickLaunch.h"
 
 
 QLFilter::QLFilter()
-		: BMessageFilter(B_PROGRAMMED_DELIVERY,
-			B_ANY_SOURCE, B_KEY_DOWN)
+	:
+	BMessageFilter(B_PROGRAMMED_DELIVERY, B_ANY_SOURCE, B_KEY_DOWN)
 {
 }
 
@@ -30,7 +30,7 @@ QLFilter::Filter(BMessage* message, BHandler** target)
 	message->FindInt32("raw_char", &rawchar);
 	message->FindInt32("modifiers", &mod);
 
-	if (mod & B_NUM_LOCK) {		// NumLock's on, interpret as numbers
+	if (mod & B_NUM_LOCK) { // NumLock's on, interpret as numbers
 		if (   key == 0x37 || key == 0x38 || key == 0x39
 			|| key == 0x49 || key == 0x49 || key == 0x4a
 			|| key == 0x58 || key == 0x59 || key == 0x5a
@@ -39,7 +39,10 @@ QLFilter::Filter(BMessage* message, BHandler** target)
 	}
 
 	switch (rawchar) {
-		case B_SPACE: case B_LEFT_ARROW: case B_RIGHT_ARROW: case B_INSERT:
+		case B_SPACE:
+		case B_LEFT_ARROW:
+		case B_RIGHT_ARROW:
+		case B_INSERT:
 		case B_DELETE: /*case B_PAGE_UP: case B_PAGE_DOWN:*/
 		case B_FUNCTION_KEY:
 		{

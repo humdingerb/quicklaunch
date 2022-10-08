@@ -25,7 +25,7 @@
 #include <Roster.h>
 
 
-extern "C" _EXPORT BView *instantiate_deskbar_item(float maxWidth, float maxHeight);
+extern "C" _EXPORT BView* instantiate_deskbar_item(float maxWidth, float maxHeight);
 status_t our_image(image_info& image);
 
 // from QuickLaunch.cpp
@@ -34,8 +34,8 @@ extern const char* kApplicationName;
 
 const char* kClassName = "DeskbarReplicant";
 
-#define OPEN_REF	'opre'
-#define OPEN_QL		'opql'
+#define OPEN_REF 'opre'
+#define OPEN_QL 'opql'
 
 
 #undef B_TRANSLATION_CONTEXT
@@ -46,7 +46,8 @@ const char* kClassName = "DeskbarReplicant";
 
 
 DeskbarReplicant::DeskbarReplicant(BRect frame, int32 resizingMode)
-	: BView(frame, kApplicationName, resizingMode,
+	:
+	BView(frame, kApplicationName, resizingMode,
 		B_WILL_DRAW | B_TRANSPARENT_BACKGROUND | B_FRAME_EVENTS)
 {
 	_Init();
@@ -54,7 +55,8 @@ DeskbarReplicant::DeskbarReplicant(BRect frame, int32 resizingMode)
 
 
 DeskbarReplicant::DeskbarReplicant(BMessage* archive)
-	: BView(archive)
+	:
+	BView(archive)
 {
 	_Init();
 }
@@ -83,12 +85,11 @@ DeskbarReplicant::_Init()
 		return;
 
 	size_t size;
-	const void* data = resources.LoadResource(B_VECTOR_ICON_TYPE,
-		"tray_icon", &size);
+	const void* data = resources.LoadResource(B_VECTOR_ICON_TYPE, "tray_icon", &size);
 	if (data != NULL) {
 		BBitmap* icon = new BBitmap(Bounds(), B_RGBA32);
 		if (icon->InitCheck() == B_OK
-				&& BIconUtils::GetVectorIcon((const uint8 *)data, size, icon) == B_OK)
+			&& BIconUtils::GetVectorIcon((const uint8*)data, size, icon) == B_OK)
 			fIcon = icon;
 		else
 			delete icon;
@@ -96,7 +97,7 @@ DeskbarReplicant::_Init()
 }
 
 
-DeskbarReplicant *
+DeskbarReplicant*
 DeskbarReplicant::Instantiate(BMessage* archive)
 {
 	if (!validate_instantiation(archive, kClassName))
@@ -212,10 +213,8 @@ DeskbarReplicant::MouseDown(BPoint where)
 		menu->SetFont(be_plain_font);
 
 		if (!fFavoriteList->IsEmpty()) {
-			for (int i = 0; i < fFavoriteList->CountItems(); i++)
-			{
-				entry_ref* favorite = static_cast<entry_ref *>
-					(fFavoriteList->ItemAt(i));
+			for (int i = 0; i < fFavoriteList->CountItems(); i++) {
+				entry_ref* favorite = static_cast<entry_ref*>(fFavoriteList->ItemAt(i));
 				BMessage* message = new BMessage(OPEN_REF);
 				message->AddRef("refs", favorite);
 				menu->AddItem(new BMenuItem(favorite->name, message));
@@ -223,13 +222,12 @@ DeskbarReplicant::MouseDown(BPoint where)
 			menu->AddSeparatorItem();
 		}
 		menu->AddItem(new BMenuItem(B_TRANSLATE("Open QuickLaunch"), new BMessage(OPEN_QL)));
-		menu->AddItem(new BMenuItem(B_TRANSLATE("About QuickLaunch"),
-			new BMessage(B_ABOUT_REQUESTED)));
+		menu->AddItem(
+			new BMenuItem(B_TRANSLATE("About QuickLaunch"), new BMessage(B_ABOUT_REQUESTED)));
 
 		menu->SetTargetForItems(this);
 		ConvertToScreen(&point);
-		menu->Go(point, true, true, BRect(where - BPoint(4, 4), 
-			point + BPoint(4, 4)));
+		menu->Go(point, true, true, BRect(where - BPoint(4, 4), point + BPoint(4, 4)));
 
 		delete fFavoriteList;
 		delete menu;
@@ -267,11 +265,10 @@ DeskbarReplicant::_GetFavoriteList()
 //	#pragma mark -
 
 
-extern "C" _EXPORT BView *
+extern "C" _EXPORT BView*
 instantiate_deskbar_item(float maxWidth, float maxHeight)
 {
-	return new DeskbarReplicant(BRect(0, 0, maxHeight - 1, maxHeight - 1),
-		B_FOLLOW_NONE);
+	return new DeskbarReplicant(BRect(0, 0, maxHeight - 1, maxHeight - 1), B_FOLLOW_NONE);
 }
 
 
@@ -283,11 +280,11 @@ our_image(image_info& image)
 {
 	int32 cookie = 0;
 	while (get_next_image_info(B_CURRENT_TEAM, &cookie, &image) == B_OK) {
-		if ((char *)our_image >= (char *)image.text
-			&& (char *)our_image <= (char *)image.text + image.text_size)
+		if ((char*)our_image >= (char*)image.text
+			&& (char*)our_image <= (char*)image.text + image.text_size)
 			return B_OK;
 	}
-BAlert* alert = new BAlert("image", "Image NOT OK", "NOT");
-alert->Show();
+	BAlert* alert = new BAlert("image", "Image NOT OK", "NOT");
+	alert->Show();
 	return B_ERROR;
 }

@@ -6,8 +6,8 @@
  *	Humdinger, humdingerb@gmail.com
  */
 
-#include "QuickLaunch.h"
 #include "IgnoreListView.h"
+#include "QuickLaunch.h"
 #include "SetupWindow.h"
 
 #include <Catalog.h>
@@ -15,6 +15,7 @@
 
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "SetupWindow"
+
 
 IgnoreListView::IgnoreListView()
 	:
@@ -29,7 +30,7 @@ IgnoreListView::~IgnoreListView()
 }
 
 
-#pragma mark -- BListView Overrides --
+#pragma mark-- BListView Overrides --
 
 
 void
@@ -128,7 +129,7 @@ IgnoreListView::MouseDown(BPoint position)
 void
 IgnoreListView::SelectionChanged()
 {
-	SetupWindow* window = dynamic_cast<SetupWindow *> (Window());
+	SetupWindow* window = dynamic_cast<SetupWindow*>(Window());
 	if (CurrentSelection() < 0)
 		window->fButRem->SetEnabled(false);
 	else
@@ -136,7 +137,7 @@ IgnoreListView::SelectionChanged()
 }
 
 
-#pragma mark -- Public Methods --
+#pragma mark-- Public Methods --
 
 
 void

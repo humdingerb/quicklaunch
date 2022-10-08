@@ -9,12 +9,12 @@
  */
 
 #include "QLSettings.h"
-#include "QuickLaunch.h"
 #include "IgnoreListItem.h"
+#include "QuickLaunch.h"
 
 #include <Application.h>
-#include <FindDirectory.h>
 #include <File.h>
+#include <FindDirectory.h>
 #include <Message.h>
 #include <Path.h>
 #include <Screen.h>
@@ -52,8 +52,7 @@ QLSettings::QLSettings()
 
 	BMessage settings;
 
-	if (file.InitCheck() == B_OK
-		&& settings.Unflatten(&file) == B_OK) {
+	if (file.InitCheck() == B_OK && settings.Unflatten(&file) == B_OK) {
 		BRect frame;
 		if (settings.FindRect("main window frame", &frame) == B_OK)
 			fMainWindowFrame = frame;
@@ -123,10 +122,8 @@ QLSettings::SaveSettings()
 	settings.AddInt32("show ignore", fShowIgnore);
 	settings.AddInt32("sort favorites", fSortFavorites);
 
-	for (int32 i = 0; i < fIgnoreList->CountItems(); i++)
-	{
-		IgnoreListItem* item = dynamic_cast<IgnoreListItem *>
-			(fIgnoreList->ItemAt(i));
+	for (int32 i = 0; i < fIgnoreList->CountItems(); i++) {
+		IgnoreListItem* item = dynamic_cast<IgnoreListItem*>(fIgnoreList->ItemAt(i));
 		if (!item)
 			continue;
 
@@ -134,10 +131,8 @@ QLSettings::SaveSettings()
 			settings.AddString("item", item->GetItem());
 	}
 
-	for (int32 i = 0; i < fFavoriteList->CountItems(); i++)
-	{
-		entry_ref* favorite = static_cast<entry_ref *>
-			(fFavoriteList->ItemAt(i));
+	for (int32 i = 0; i < fFavoriteList->CountItems(); i++) {
+		entry_ref* favorite = static_cast<entry_ref*>(fFavoriteList->ItemAt(i));
 
 		if (!favorite)
 			continue;
