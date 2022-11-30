@@ -165,7 +165,7 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 		else
 			view->SetHighColor(tint_color(ui_color(B_LIST_ITEM_TEXT_COLOR), 0.6));
 
-		pathfont.SetSize(appfont.Size() - 2);
+		pathfont.SetSize(appfont.Size() * 0.9);
 		pathfont.GetHeight(&finfo);
 		view->SetFont(&pathfont);
 

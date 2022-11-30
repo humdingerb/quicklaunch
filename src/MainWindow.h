@@ -66,7 +66,7 @@ private:
 	void			_GetIconHeight();
 	void			_LaunchApp(MainListItem* item);
 
-	int				fIconHeight;
+	int32			fIconHeight;
 	BTextControl*	fSearchBox;
 	BButton*		fSetupButton;
 	BButton*		fHelpButton;

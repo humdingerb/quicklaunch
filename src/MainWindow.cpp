@@ -460,18 +460,7 @@ MainWindow::_GetIconHeight()
 {
 	font_height fontHeight;
 	be_plain_font->GetHeight(&fontHeight);
-	float height = 2 * (fontHeight.ascent + fontHeight.descent + fontHeight.leading);
-	fIconHeight = int(height * 0.9);
-
-	static int iconSizes[] = {16, 32, 40, 48, 64, 72, 80, 96, 1000};
-
-	int count = sizeof(iconSizes) / sizeof(iconSizes[0]);
-	for (int i = 0; i < count; i++) {
-		if (abs(fIconHeight - iconSizes[i]) < abs(fIconHeight - iconSizes[i + 1])) {
-			fIconHeight = iconSizes[i];
-			break;
-		}
-	}
+	fIconHeight = int32(2 * (fontHeight.ascent + fontHeight.descent + fontHeight.leading));
 }
 
 
