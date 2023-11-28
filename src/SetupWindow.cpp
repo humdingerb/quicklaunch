@@ -189,12 +189,11 @@ SetupWindow::MessageReceived(BMessage* message)
 		{
 			int32 ref_num;
 			entry_ref ref;
-			status_t err;
 			ref_num = 0;
 
 			QLSettings& settings = my_app->Settings();
 			if (settings.Lock()) {
-				while ((err = message->FindRef("refs", ref_num, &ref)) == B_OK) {
+				while ((message->FindRef("refs", ref_num, &ref)) == B_OK) {
 					BPath path;
 					BEntry* entry = new BEntry(&ref);
 					entry->GetPath(&path);

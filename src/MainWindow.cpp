@@ -379,14 +379,16 @@ MainWindow::BuildList()
 
 						bool ignore = false;
 						if (settings.GetShowIgnore()) {
+							int32 ignoreCount = settings.fIgnoreList->CountItems();
+							if (ignoreCount == 0)
+								break;
 							BString* newItem = new BString(path.Path());
-							for (int i = 0; i < settings.fIgnoreList->CountItems(); i++) {
+							for (int i = 0; i < ignoreCount; i++) {
 								IgnoreListItem* sItem = dynamic_cast<IgnoreListItem*>(
 									settings.fIgnoreList->ItemAt(i));
 
 								if (newItem->ICompare(sItem->GetItem(),
-										std::min(newItem->Length(), sItem->GetItem().Length()))
-									== 0)
+									std::min(newItem->Length(), sItem->GetItem().Length())) == 0)
 									ignore = true;
 							}
 						}
