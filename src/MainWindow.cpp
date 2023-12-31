@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022. All rights reserved.
+ * Copyright 2010-2023. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Authors:
@@ -17,6 +17,7 @@
 #include <ControlLook.h>
 #include <Font.h>
 #include <LayoutBuilder.h>
+#include <MessageRunner.h>
 
 #include <algorithm>
 
@@ -230,8 +231,9 @@ MainWindow::MessageReceived(BMessage* message)
 					break;
 				}
 				selectMessage.AddRef("refs", &target);
-				snooze(300000); // wait 0.3 sec to give Tracker time to populate
-				msgr.SendMessage(&selectMessage);
+				// wait 0.3 sec to give Tracker time to populate
+				BMessageRunner::StartSending(BMessenger("application/x-vnd.Be-TRAK"),
+					&selectMessage, 300000, 1);
 			}
 			if (settings.Lock()) {
 				settings.SetSearchTerm(GetSearchString());
