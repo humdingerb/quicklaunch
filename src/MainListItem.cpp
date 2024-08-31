@@ -160,10 +160,15 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 
 		// application path and version
 
-		if (IsSelected())
-			view->SetHighColor(tint_color(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR), 0.7));
-		else
-			view->SetHighColor(tint_color(ui_color(B_LIST_ITEM_TEXT_COLOR), 0.6));
+		if (IsSelected()) {
+			view->SetHighColor(tint_color(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR),
+				ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR).IsDark() ?
+				B_LIGHTEN_1_TINT : B_DARKEN_1_TINT));
+		} else {
+			view->SetHighColor(tint_color(ui_color(B_LIST_ITEM_TEXT_COLOR),
+				ui_color(B_LIST_ITEM_TEXT_COLOR).IsDark() ?
+				B_LIGHTEN_1_TINT : B_DARKEN_1_TINT));
+		}
 
 		pathfont.SetSize(appfont.Size() * 0.9);
 		pathfont.GetHeight(&finfo);
@@ -201,7 +206,8 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 	}
 	// draw lines
 
-	view->SetHighColor(tint_color(ui_color(B_CONTROL_BACKGROUND_COLOR), B_DARKEN_1_TINT));
+	view->SetHighColor(tint_color(ui_color(B_LIST_BACKGROUND_COLOR),
+			ui_color(B_LIST_BACKGROUND_COLOR).IsDark() ? B_LIGHTEN_1_TINT : B_DARKEN_1_TINT));
 	view->StrokeLine(rect.LeftBottom(), rect.RightBottom());
 }
 
