@@ -17,6 +17,7 @@
 #include <AboutWindow.h>
 #include <Catalog.h>
 #include <Deskbar.h>
+#include <PathFinder.h>
 #include <storage/NodeMonitor.h>
 
 const char* kApplicationSignature = "application/x-vnd.humdinger-quicklaunch";
@@ -29,8 +30,15 @@ const char* kApplicationName = "QuickLaunch";
 
 QLApp::QLApp()
 	:
-	BApplication(kApplicationSignature)
+	BApplication(kApplicationSignature),
+	fSetupWindow(NULL),
+	fMainWindow(NULL)
 {
+	// Check if user's Shortcuts have the old QL location
+	// ToDo: Remove some time after R1beta5
+	if (_OpenShortcutPrefs())
+		return;
+
 	if (fSettings.GetDeskbar()) // make sure the replicant is shown
 		_AddToDeskbar();
 
@@ -43,13 +51,16 @@ QLApp::~QLApp()
 {
 	stop_watching(this);
 
-	BMessenger messengerMain(fMainWindow);
-	if (messengerMain.IsValid() && messengerMain.LockTarget())
-		fMainWindow->Quit();
-
-	BMessenger messengerSetup(fSetupWindow);
-	if (messengerSetup.IsValid() && messengerSetup.LockTarget())
-		fSetupWindow->Quit();
+	if (fMainWindow != NULL) {
+		BMessenger messengerMain(fMainWindow);
+		if (messengerMain.IsValid() && messengerMain.LockTarget())
+			fMainWindow->Quit();
+	}
+	if (fSetupWindow != NULL) {
+		BMessenger messengerSetup(fSetupWindow);
+		if (messengerSetup.IsValid() && messengerSetup.LockTarget())
+			fSetupWindow->Quit();
+	}
 }
 
 
@@ -367,6 +378,56 @@ QLApp::_RestorePositionAndSelection()
 
 	fMainWindow->SetScrollPosition(position);
 	fMainWindow->fListView->UnlockLooper();
+}
+
+
+bool
+QLApp::_OpenShortcutPrefs()
+{
+	BPath path;
+	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path) != B_OK)
+		return false;
+
+	path.Append("shortcuts_settings");
+	BFile file(path.Path(), B_READ_ONLY);
+
+	BMessage settings;
+	if (file.InitCheck() != B_OK || settings.Unflatten(&file) != B_OK)
+		return false;
+
+	int32 i = 0;
+	BMessage specMsg;
+	BString command;
+	bool found = false;
+	while (settings.FindMessage("spec", i, &specMsg) == B_OK) {
+		if (specMsg.FindString("command", &command) == B_OK) {
+			if (command.FindFirst("/apps/QuickLaunch/QuickLaunch") != B_ERROR) {
+				found = true;
+				break;
+			}
+		i++;
+		}
+	}
+
+	if (!found)
+		return false;
+
+	BAlert* alert = new BAlert("Found old Shortcuts preference entry", B_TRANSLATE(
+		"The Shortcuts preferences appear to have a shortcut that points to the old "
+		"location of QuickLaunch.\n\n"
+		"Do you want to open the Shortcuts preferences so you can set the correct location: "
+		"'/boot/system/apps/QuickLaunch' ?"),
+		B_TRANSLATE("Cancel"), B_TRANSLATE("Open Shortcuts"));
+	alert->SetShortcut(1, B_ESCAPE);
+	int32 button = alert->Go();
+
+	if (button == 0)
+		return false;
+	else {
+		be_roster->Launch("application/x-vnd.Haiku-Shortcuts");
+		PostMessage(B_QUIT_REQUESTED);
+		return true;
+	}
 }
 
 

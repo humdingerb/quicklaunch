@@ -1,24 +1,27 @@
-1	English	application/x-vnd.humdinger-quicklaunch	3994280092
-Add…	SetupWindow		Add…
-Help	MainWindow		Help
-Show application version	SetupWindow		Show application version
+1	English	application/x-vnd.humdinger-quicklaunch	257150810
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Failed to launch %appname%.\n\nError:
-Add to favorites	ListView		Add to favorites
-Sort favorite items to the top	SetupWindow		Sort favorite items to the top
-OK	MainWindow		OK
 Found no matches.	ListView		Found no matches.
-Open containing folder	ListView		Open containing folder
-Remember last search term	SetupWindow		Remember last search term
+OK	MainWindow		OK
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?
 Show Deskbar replicant	SetupWindow		Show Deskbar replicant
-Remove favorite	ListView		Remove favorite
-Open QuickLaunch	Application		Open QuickLaunch
 Setup	MainWindow		Setup
 Show application path	SetupWindow		Show application path
 QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.
 Remove	SetupWindow		Remove
-Use '*' as wildcards.	ListView		Use '*' as wildcards.
-Add to ignore list	ListView		Add to ignore list
 Search from start of application name	SetupWindow		Search from start of application name
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignore these files & folders (and their subfolders):
 Setup	SetupWindow		Setup
+Add…	SetupWindow		Add…
+Help	MainWindow		Help
+Show application version	SetupWindow		Show application version
+Add to favorites	ListView		Add to favorites
+Sort favorite items to the top	SetupWindow		Sort favorite items to the top
+Open containing folder	ListView		Open containing folder
+Remember last search term	SetupWindow		Remember last search term
+Remove favorite	ListView		Remove favorite
+Open QuickLaunch	Application		Open QuickLaunch
+Cancel	Application		Cancel
+Add to ignore list	ListView		Add to ignore list
+Use '*' as wildcards.	ListView		Use '*' as wildcards.
+Open Shortcuts	Application		Open Shortcuts
 About QuickLaunch	Application		About QuickLaunch
