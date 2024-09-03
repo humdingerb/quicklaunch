@@ -68,6 +68,10 @@ SetupWindow::SetupWindow(BRect frame)
 			new BMessage(SORTFAVS_CHK), B_WILL_DRAW | B_NAVIGABLE);
 	fChkSortFavorites->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
+	BButton* openShortcuts = new BButton("OpenShortcuts", B_TRANSLATE("Open Shortcuts preferences"),
+		new BMessage(OPEN_SHORTCUTS));
+	openShortcuts->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
+
 	fChkIgnore = new BCheckBox("IgnoreChk",
 		B_TRANSLATE("Ignore these files & folders (and their subfolders):"),
 		new BMessage(IGNORE_CHK), B_WILL_DRAW | B_NAVIGABLE);
@@ -112,6 +116,12 @@ SetupWindow::SetupWindow(BRect frame)
 			.Add(fChkSaveSearch)
 			.Add(fChkSortFavorites)
 			.SetInsets(spacing, spacing, spacing, 0)
+			.End()
+		.AddStrut(spacing)
+		.AddGroup(B_HORIZONTAL)
+			.AddGlue()
+			.Add(openShortcuts)
+			.AddGlue()
 			.End()
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkIgnore)
@@ -173,6 +183,11 @@ void
 SetupWindow::MessageReceived(BMessage* message)
 {
 	switch (message->what) {
+		case OPEN_SHORTCUTS:
+		{
+			be_roster->Launch("application/x-vnd.Haiku-Shortcuts");
+			break;
+		}
 		case ADD_BUT:
 		{
 			fOpenPanel->Show();

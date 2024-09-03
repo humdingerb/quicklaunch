@@ -42,6 +42,7 @@
 #define SAVESEARCH_CHK	'chss'
 #define SORTFAVS_CHK	'chsf'
 #define IGNORE_CHK		'chig'
+#define OPEN_SHORTCUTS	'opsc'
 #define ADD_BUT			'addb'
 #define REM_BUT			'remb'
 #define FILEPANEL		'file'
