@@ -40,6 +40,7 @@ private:
 	void			_RemoveFromDeskbar();
 	void			_RestorePositionAndSelection();
 
+	void			_OpenHelp();
 	bool			_OpenShortcutPrefs();
 
 	QLSettings		fSettings;
