@@ -1,4 +1,4 @@
-![QuickLaunch icon](./images/quicklaunch_icon_64.png)
+![QuickLaunch icon](./documentation/images/quicklaunch_icon_64.png)
 **QuickLaunch**
 for [Haiku](https://www.haiku-os.org)
 
@@ -10,6 +10,6 @@ Simply start to enter the name of an application and QuickLaunch will find all p
 
 Here's the main window after searching for all applications starting with "me" and behind it the settings window when clicking the _Setup_ button (or pressing _ALT_+_S_):
 
-![QuickLaunch windows](./images/quicklaunch.png)
+![QuickLaunch windows](./documentation/images/quicklaunch.png)
 
-For more information, please see the [QuickLaunch help file](http://htmlpreview.github.io/?https://github.com/humdingerb/quicklaunch/master/ReadMe.html).
+For more information, please see the [QuickLaunch help file](http://htmlpreview.github.io/?https://github.com/humdingerb/quicklaunch/master/documentation/ReadMe.html).
