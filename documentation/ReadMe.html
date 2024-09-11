@@ -146,7 +146,7 @@ A right-click on it also offers quick access to your favorites.</p>
 <li><p><span class="menu">Search from start of application name</span> —  when unchecked, finds all applications with the search term anywhere in their name, not only with those initial letters. Same as starting a search with a '*' as first letter.</p></li>
 <li><p><span class="menu">Sort favorite items to the top</span> — after entering a search term, list the matching favorites first instead of all the results strictly alphabetically.</p></li>
 <li><p><span class="menu">Remember last search term</span> — starts QuickLaunch with the previous search.</p></li>
-<li><p><span class="menu">Open Shortcut preferences</span> — opens Haiku's Shortcuts preferences where you can add a keycombo to run QuickLaunch.</p></li>
+<li><p><span class="menu">Open Shortcuts preferences</span> — opens Haiku's Shortcuts preferences where you can add a keycombo to run QuickLaunch.</p></li>
 <li><p><span class="menu">Ignore these files &amp; folders (and their subfolders)</span> that you can add and remove from the list with the buttons at the bottom.<br />
 You can also right-click an app in the main window's result list to add that specific app to the ignore list or drag &amp; drop any application or folder from Tracker or an app from QuickLaunch's main window into it.<br />
 <span class="key">DEL</span> removes the selected items from the ignore list.</p>
@@ -194,11 +194,24 @@ Equally useful was Robert Polic's EZLauncher of BeNewsletter 3-46 and the help I
 AnEvilYak provided valuable hints and code when I got stuck.</p>
 <p>Finally, thanks to everyone that contributed bug reports and translations for QuickLaunch.<br />
 The translators:<br />
-Catalan &nbsp;(ca) by &nbsp;Davidmp · Chinese &nbsp;(simplified) &nbsp;(zh-Hans) by &nbsp;玉堂白鹤 · Croatian &nbsp;(hr) by &nbsp;zvacet · Dutch &nbsp;(nl) by &nbsp;no-act, Schrijvers Luc · Esperanto &nbsp;(eo) by &nbsp;Lutrulo, Jakub Fabijan · French &nbsp;(fr) by &nbsp;Briseur, oco27 · Friulian &nbsp;(fur) by &nbsp;tmtfx · Greek &nbsp;(Modern) &nbsp;(el) by &nbsp;blu.256 · Hungarian &nbsp;(hu) by &nbsp;miqlas · Indonesian &nbsp;(id) by &nbsp;mazbrili · Italian &nbsp;(it) by &nbsp;Gabriele Baldassarre, zumikkebe · Japanese &nbsp;(ja) by &nbsp;Murai Takashi · Polish &nbsp;(pl) by &nbsp;KapiX · Portuguese &nbsp;(pt) by &nbsp;Victor Domingos, kenmays, louisdem · Portuguese &nbsp;(Brazil) &nbsp;(pt_BR) by &nbsp;Andrei Bosco B. Torres, louisdem · Romanian &nbsp;(ro) by &nbsp;Florentina Mușat, al-popa · Russian &nbsp;(ru) by &nbsp;Sergei Reznikov · Spanish &nbsp;(es) by &nbsp;unspacyar, cafeina · Swedish &nbsp;(sv) by &nbsp;Knezzen, deejam, Fredrik Modéen · Turkish &nbsp;(tr) by &nbsp;Emir Sarı · Ukrainian &nbsp;(uk) by &nbsp;Alexey Lugin</p>
+Catalan&nbsp;(ca) by&nbsp;Davidmp · Chinese&nbsp;(simplified)&nbsp;(zh-Hans) by&nbsp;玉堂白鹤 · Croatian&nbsp;(hr) by&nbsp;zvacet · Dutch&nbsp;(nl) by&nbsp;no-act, Schrijvers Luc · Esperanto&nbsp;(eo) by&nbsp;Lutrulo, Jakub Fabijan · French&nbsp;(fr) by&nbsp;Briseur, oco27 · Friulian&nbsp;(fur) by&nbsp;tmtfx · Greek&nbsp;(Modern)&nbsp;(el) by&nbsp;blu.256 · Hungarian&nbsp;(hu) by&nbsp;miqlas · Indonesian&nbsp;(id) by&nbsp;mazbrili · Italian&nbsp;(it) by&nbsp;Gabriele Baldassarre, zumikkebe · Japanese&nbsp;(ja) by&nbsp;Murai Takashi · Polish&nbsp;(pl) by&nbsp;KapiX · Norwegian&nbsp;(nb) by&nbsp;Johan Wagenheim · Portuguese&nbsp;(pt) by&nbsp;Victor Domingos, kenmays, louisdem · Portuguese&nbsp;(Brazil)&nbsp;(pt_BR) by&nbsp;Andrei Bosco B. Torres, louisdem · Romanian&nbsp;(ro) by&nbsp;Florentina Mușat, al-popa · Russian&nbsp;(ru) by&nbsp;Sergei Reznikov · Spanish&nbsp;(es) by&nbsp;unspacyar, cafeina · Spanish (Latin American)&nbsp;(es_419) by&nbsp;cafeina, victroniko, OscarL · Swedish&nbsp;(sv) by&nbsp;Knezzen, deejam, Fredrik Modéen · Turkish&nbsp;(tr) by&nbsp;Emir Sarı · Ukrainian&nbsp;(uk) by&nbsp;Alexey Lugin</p>
 
 <h2>
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
 <a id="history" name="history">History</a></h2>
+
+<p><b>1.5</b> - <i>09-11-2024:</i></p>
+<ul>
+<li>Moved the QuickLaunch binary directly into /system/apps. An alert will prompt the user to adjust their Shortcuts perferences.</li>
+<li>Moved documentation into /system/documentation hierarchy.</li>
+<li>Added "Open Shortcuts preferences" button to Setup window as convenience.</li>
+<li>Improved color management, esp. for dark themes.</li>
+<li>Update translations, thanks all translators!</li>
+<li>Added Australian English translation</li>
+<li>Added Norwegian translation, thanks Johan Wagenheim!</li>
+<li>Added Latin American Spanish translation, thanks cafeina, victroniko, OscarL!</li>
+</ul>
+
 <p><b>1.4</b> - <i>03-09-2022:</i></p>
 <ul>
 <li>Fix possible crash if getting the version info failed (by augiedoggie).</li>
