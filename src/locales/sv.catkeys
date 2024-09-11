@@ -1,7 +1,10 @@
-1	Swedish	application/x-vnd.humdinger-quicklaunch	3994280092
+1	Swedish	application/x-vnd.humdinger-quicklaunch	3653521921
 About QuickLaunch	Application		Om QuickLaunch
+Cancel	Application		Avbryt
 Open QuickLaunch	Application		Öppna QuickLaunch
+Open Shortcuts	Application		Öppna genvägar
 QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch startar snabbt dina installerade applikationer. Skriv dom första bokstäverna av namnet och välj från listan över hittade applikationer.
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		\nGenvägsinställningarna verkar ha en genväg som pekar på den gamla platsen för QuickLaunch.\n\nVill du öppna genvägsinställningarna så att du kan ställa in rätt plats: '/boot/system/apps/QuickLaunch'?
 Add to favorites	ListView		Lägg till i favoriter
 Add to ignore list	ListView		Lägg till i ignoreringslista
 Found no matches.	ListView		Hittade inga matchningar.
@@ -10,6 +13,7 @@ Remove favorite	ListView		Ta bort från favoriter
 Use '*' as wildcards.	ListView		Använd '*' som jokertecken.
 Add…	SetupWindow		Lägg till…
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignorera dessa filer och mappar (inklusive undermappar):
+Open Shortcuts preferences	SetupWindow		Öppna inställningarna för genvägar
 Remember last search term	SetupWindow		Kom ihåg den senaste sökningen
 Remove	SetupWindow		Ta bort
 Search from start of application name	SetupWindow		Sök från början av applikationsnamnet

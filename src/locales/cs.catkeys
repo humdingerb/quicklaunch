@@ -1,7 +1,10 @@
-1	Czech	application/x-vnd.humdinger-quicklaunch	3994280092
+1	Czech	application/x-vnd.humdinger-quicklaunch	3653521921
 About QuickLaunch	Application		O aplikaci rychlé spuštění
+Cancel	Application		Zrušit
 Open QuickLaunch	Application		Otevřít rychlé spuštění
+Open Shortcuts	Application		Otevřete Zkratky
 QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		Rychlé spuštění spuští instalované apliakce. Stačí napsat začátek názvu a zvolit ze seznamu nalezených aplikací.
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		Zdá se, že předvolby zkratek mají zkratku, která ukazuje na staré umístění QuickLaunch.\n\nChcete otevřít předvolby zkratek, abyste mohli nastavit správné umístění: '/boot/system/apps/QuickLaunch' ?
 Add to favorites	ListView		Přidat jako oblíbené
 Add to ignore list	ListView		Příště ignorovat
 Found no matches.	ListView		Nic nenalezeno.
@@ -10,6 +13,7 @@ Remove favorite	ListView		Odebrat z oblíbených
 Use '*' as wildcards.	ListView		Použijte '*' jako zástupný znak.
 Add…	SetupWindow		Přidat…
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignorovat tyto soubory a adresáře (a jejich podadresáře):
+Open Shortcuts preferences	SetupWindow		Otevřete předvolby zkratek
 Remember last search term	SetupWindow		Pamatovat poslení hledaný výraz
 Remove	SetupWindow		Odebrat
 Search from start of application name	SetupWindow		Hledat od začátku názvu aplikace
@@ -17,7 +21,7 @@ Setup	SetupWindow		Nastavení
 Show application path	SetupWindow		Zobrazit cestu
 Show application version	SetupWindow		Zobrazit verzi
 Show Deskbar replicant	SetupWindow		Replikanta v panelu
-Sort favorite items to the top	SetupWindow		Sort favorite items to the top
+Sort favorite items to the top	SetupWindow		Seřaďte oblíbené položky nahoru
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Nepodařilo se spustit %appname%.\n\nChyba:
 Help	MainWindow		Nápověda
 OK	MainWindow		OK

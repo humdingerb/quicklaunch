@@ -1,7 +1,10 @@
-1	Romanian	application/x-vnd.humdinger-quicklaunch	3994280092
+1	Romanian	application/x-vnd.humdinger-quicklaunch	3653521921
 About QuickLaunch	Application		Despre QuickLaunch
+Cancel	Application		Anulează
 Open QuickLaunch	Application		Deschide QuickLaunch
+Open Shortcuts	Application		Deschide scurtăturile
 QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch pornește rapid orice aplicație instalată. Introduceți doar primele câteva litere din numele acesteia și alegeți dintr-o listă a tuturor programelor găsite.
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?
 Add to favorites	ListView		Adaugă la favorite
 Add to ignore list	ListView		Adaugă la lista de ignorat
 Found no matches.	ListView		Nu s-au găsit potriviri.
@@ -10,6 +13,7 @@ Remove favorite	ListView		Elimină favoritul
 Use '*' as wildcards.	ListView		Folosește '*' ca metacaracter.
 Add…	SetupWindow		Adaugă...
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignoră aceste fișiere și dosare (și subdosarele lor)
+Open Shortcuts preferences	SetupWindow		Deschide preferințele scurtături
 Remember last search term	SetupWindow		Ține minte ultimul termen căutat
 Remove	SetupWindow		Elimină
 Search from start of application name	SetupWindow		Caută de la începutul numelui aplicației

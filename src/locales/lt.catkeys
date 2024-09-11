@@ -1,7 +1,10 @@
-1	Lithuanian	application/x-vnd.humdinger-quicklaunch	3994280092
+1	Lithuanian	application/x-vnd.humdinger-quicklaunch	3653521921
 About QuickLaunch	Application		Apie QuickLaunch
+Cancel	Application		Cancel
 Open QuickLaunch	Application		Atverti QuickLaunch
+Open Shortcuts	Application		Open Shortcuts
 QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch greit paleidžia bet kurią įdiegtą programą. Tiesiog įveskite pirmąsias pavadinimo raides ir rinkitės iš rastų programų sąrašo.
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?
 Add to favorites	ListView		Pridėti prie mėgstamų
 Add to ignore list	ListView		Pridėti prie nepaisomų sąrašo
 Found no matches.	ListView		Atitikmenų nerasta.
@@ -10,6 +13,7 @@ Remove favorite	ListView		Šalinti iš mėgstamų
 Use '*' as wildcards.	ListView		Pakaitai naudokite „*“.
 Add…	SetupWindow		Pridėti…
 Ignore these files & folders (and their subfolders):	SetupWindow		Nepaisyti šių bylų ir aplankų (ir jų poaplankių):
+Open Shortcuts preferences	SetupWindow		Open Shortcuts preferences
 Remember last search term	SetupWindow		Atminti paskutinę paiešką
 Remove	SetupWindow		Šalinti
 Search from start of application name	SetupWindow		Ieškoti nuo programos pavadinimo pradžios

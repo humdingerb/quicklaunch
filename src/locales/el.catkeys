@@ -1,7 +1,10 @@
-1	Greek (Modern)	application/x-vnd.humdinger-quicklaunch	3994280092
+1	Greek (Modern)	application/x-vnd.humdinger-quicklaunch	3653521921
 About QuickLaunch	Application		Σχετικά με το QuickLaunch
+Cancel	Application		Cancel
 Open QuickLaunch	Application		Άνοιγμα του QuickLaunch
+Open Shortcuts	Application		Open Shortcuts
 QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		Το QuickLaunch ξεκινά στιγμιαία οποιαδήποτε εγκατεστημένη εφαρμογή. Απλώς πληκτρολογήστε λίγα από τα πρώτα γράμματα του ονόματός της και επιλέξτε από μια λίστα των ταιριασμένων εφαρμογών.
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?
 Add to favorites	ListView		Προσθήκη στα αγαπημένα
 Add to ignore list	ListView		Προσθήκη στη λίστα παράβλεψης
 Found no matches.	ListView		Δεν βρέθηκε τίποτα.
@@ -10,6 +13,7 @@ Remove favorite	ListView		Αφαίρεση από αγαπημένα
 Use '*' as wildcards.	ListView		Χρησιμοποιήστε το '*' για ελεύθερο ταίριασμα
 Add…	SetupWindow		Προσθήκη...
 Ignore these files & folders (and their subfolders):	SetupWindow		Παράβλεψη των εξής αρχείων και καταλόγων (και υποκαταλόγων επίσης):
+Open Shortcuts preferences	SetupWindow		Open Shortcuts preferences
 Remember last search term	SetupWindow		Να θυμάσαι την τελευταία αναζήτηση
 Remove	SetupWindow		Αφαίρεση
 Search from start of application name	SetupWindow		Αναζήτηση με βάση τα αρχικά του ονόματος εφαρμογής

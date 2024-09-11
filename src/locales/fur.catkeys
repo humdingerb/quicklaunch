@@ -1,7 +1,10 @@
-1	Friulian	application/x-vnd.humdinger-quicklaunch	3994280092
+1	Friulian	application/x-vnd.humdinger-quicklaunch	3653521921
 About QuickLaunch	Application		Informazions su QuickLaunch
+Cancel	Application		Anule
 Open QuickLaunch	Application		Vierç QuickLaunch
+Open Shortcuts	Application		Vierç scurtis
 QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch al invie subite cualsisei aplicazion instalade. Al baste inserî lis primis letaris dal lôr non e sielzi de liste di ducj i programs cjatâts.
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		Al somee che lis preferencis pes scurtis a vedin une scurte che e ponte ae vecje posizion di QuickLaunch.\n\nDesideristu vierzi lis preferencis pes scurtis cussì  di podê meti la posizion juste: '/boot/system/apps/QuickLaunch' ?
 Add to favorites	ListView		Zonte tai preferîts
 Add to ignore list	ListView		Zonte te liste di ignorâ
 Found no matches.	ListView		Nissune corispondence cjatade.
@@ -10,6 +13,7 @@ Remove favorite	ListView		Gjave preferît
 Use '*' as wildcards.	ListView		Dopre '*' come mate.
 Add…	SetupWindow		Zonte…
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignore chescj file e cartelis (e lis lôr sotcartelis):
+Open Shortcuts preferences	SetupWindow		Vierç preferencis pes scurtis
 Remember last search term	SetupWindow		Visâsi dal ultin tiermin cirût
 Remove	SetupWindow		Gjave
 Search from start of application name	SetupWindow		Cîr dal inizi dal non de aplicazion

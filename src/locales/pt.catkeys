@@ -1,7 +1,10 @@
-1	Portuguese	application/x-vnd.humdinger-quicklaunch	3994280092
+1	Portuguese	application/x-vnd.humdinger-quicklaunch	3653521921
 About QuickLaunch	Application		Acerca do QuickLaunch
+Cancel	Application		Cancel
 Open QuickLaunch	Application		Abrir o QuickLaunch
+Open Shortcuts	Application		Open Shortcuts
 QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		O QuickLaunch inicia rapidamente qualquer aplicação instalada. Basta introduzir as primeiras letras do seu nome e escolher a partir da lista de todos os programas encontrados.
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?
 Add to favorites	ListView		Adicionar aos favoritos
 Add to ignore list	ListView		Adicionar à lista a ignorar
 Found no matches.	ListView		Não foram encontradas correspondências.
@@ -10,6 +13,7 @@ Remove favorite	ListView		Remover favorito
 Use '*' as wildcards.	ListView		Usar '*' como caracteres genéricos.
 Add…	SetupWindow		Adicionar…
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignorar estes ficheiros e pastas (e as suas sub-pastas):
+Open Shortcuts preferences	SetupWindow		Open Shortcuts preferences
 Remember last search term	SetupWindow		Lembrar o último termo pesquisado
 Remove	SetupWindow		Remover
 Search from start of application name	SetupWindow		Pesquisar a partir do início do nome da aplicação

@@ -1,0 +1,28 @@
+1	Norwegian	application/x-vnd.humdinger-quicklaunch	3653521921
+About QuickLaunch	Application		Om QuickLaunch
+Cancel	Application		Avbryt
+Open QuickLaunch	Application		Åpne QuickLaunch
+Open Shortcuts	Application		Åpne snarveier
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch starter raskt dine installerte applikasjoner. Bare skriv inn de første bokstavene i navnet og velg fra en liste over alle applikasjoner som er funnet.
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		Snarveispreferansene ser ut til å ha en snarvei som peker til den gamle plasseringen til QuickLaunch.\n\nVil du åpne snarveispreferansene slik at du kan angi riktig plassering: '/boot/system/apps/QuickLaunch'?
+Add to favorites	ListView		Legg til i favoritter
+Add to ignore list	ListView		Legg til i ignoreringslisten
+Found no matches.	ListView		Ingen treff.
+Open containing folder	ListView		Åpne målmappen
+Remove favorite	ListView		Fjern favoritt
+Use '*' as wildcards.	ListView		Bruk '*' som jokertegn.
+Add…	SetupWindow		Legg til…
+Ignore these files & folders (and their subfolders):	SetupWindow		Ignorer disse filene og mappene (og deres undermapper):
+Open Shortcuts preferences	SetupWindow		Åpne snarveispreferansene
+Remember last search term	SetupWindow		Husk siste søkeord
+Remove	SetupWindow		Fjern
+Search from start of application name	SetupWindow		Søk fra starten av applikasjonsnavnet
+Setup	SetupWindow		Innstillinger
+Show application path	SetupWindow		Vis applikasjonsstien
+Show application version	SetupWindow		Vis applikasjonsversjonen
+Show Deskbar replicant	SetupWindow		Vis ikon i Deskbar
+Sort favorite items to the top	SetupWindow		Sorter favorittelementene til toppen
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Kunne ikke starte %appname%.\n\nFeil:
+Help	MainWindow		Hjelp
+OK	MainWindow		OK
+Setup	MainWindow		Innstillinger

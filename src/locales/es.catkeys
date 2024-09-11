@@ -1,15 +1,19 @@
-1	Spanish	application/x-vnd.humdinger-quicklaunch	3994280092
+1	Spanish	application/x-vnd.humdinger-quicklaunch	3653521921
 About QuickLaunch	Application		Acerca de QuickLaunch
+Cancel	Application		Cancelar
 Open QuickLaunch	Application		Abrir QuickLaunch
-QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch permite iniciar rápidamente cualquier aplicación instalada. Sólo ingrese las primeras letras del nombre y elija de la lista de resultados encontrados.
-Add to favorites	ListView		Agregar a favoritos
-Add to ignore list	ListView		Agregar a la lista de ignorados
-Found no matches.	ListView		No se encontraron coincidencias.
+Open Shortcuts	Application		Abrir Atajos de teclado
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch permite iniciar rápidamente cualquier aplicación instalada. Sólo tiene que introducir las primeras letras del nombre y elegir entre la lista de resultados encontrados.
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		Al parecer ya existe un atajo para QuickLaunch en las preferencias de Atajos de teclado, pero apunta a su ubicación anterior.\n\n¿Desea abrir las preferencias de Atajos de teclado para cambiarlo por la ubicación correcta? (/boot/system/apps/QuickLaunch)
+Add to favorites	ListView		Añadir a favoritos
+Add to ignore list	ListView		Añadir a la lista de ignorados
+Found no matches.	ListView		No se han encontrado coincidencias.
 Open containing folder	ListView		Abrir carpeta contenedora
 Remove favorite	ListView		Quitar de favoritos
 Use '*' as wildcards.	ListView		Usar '*' como caracter comodín.
-Add…	SetupWindow		Agregar…
+Add…	SetupWindow		Añadir...
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignorar estos archivos y carpetas (y sus correspondientes subcarpetas):
+Open Shortcuts preferences	SetupWindow		Abrir preferencias de Atajos de teclado
 Remember last search term	SetupWindow		Recordar la última búsqueda
 Remove	SetupWindow		Quitar
 Search from start of application name	SetupWindow		Buscar desde el inicio del nombre de la aplicación
@@ -20,5 +24,5 @@ Show Deskbar replicant	SetupWindow		Mostrar replicante de la barra de escritorio
 Sort favorite items to the top	SetupWindow		Mover entradas favoritas a la parte superior
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Error al iniciar %appname%.\n\nError:
 Help	MainWindow		Ayuda
-OK	MainWindow		OK
+OK	MainWindow		Aceptar
 Setup	MainWindow		Configuración

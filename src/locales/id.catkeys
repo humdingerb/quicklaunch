@@ -1,7 +1,10 @@
-1	Indonesian	application/x-vnd.humdinger-quicklaunch	3994280092
+1	Indonesian	application/x-vnd.humdinger-quicklaunch	3653521921
 About QuickLaunch	Application		Tentang QuickLaunch
+Cancel	Application		Batal
 Open QuickLaunch	Application		Buka QuickLaunch
+Open Shortcuts	Application		Buka Pintasan
 QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch Secara cepat menjalankan aplikasi apa saja yang terpasang. Cukup masukkan beberapa huruf awalan aplikasi dan pilih dari daftar semua program yang ditemukan.
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		Preferensi Pintasan tampaknya memiliki pintasan yang menunjuk ke lokasi lama QuickLaunch.\n\nApakah Anda ingin membuka preferensi Pintasan sehingga Anda dapat mengatur lokasi yang benar: '/boot/system/apps/QuickLaunch'?
 Add to favorites	ListView		Tambah ke favorit
 Add to ignore list	ListView		Tambah ke daftar yang diabaikan
 Found no matches.	ListView		Tak ditemukan kecocokan.
@@ -10,6 +13,7 @@ Remove favorite	ListView		Hapus favorit
 Use '*' as wildcards.	ListView		Gunakan '*' sebagai tanda bebas.
 Add…	SetupWindow		Tambah…
 Ignore these files & folders (and their subfolders):	SetupWindow		Abaikan berkas & folder (dan sub-folder):
+Open Shortcuts preferences	SetupWindow		Buka preferensi Pintasan
 Remember last search term	SetupWindow		Ingat pencarian terakhir
 Remove	SetupWindow		Hapus
 Search from start of application name	SetupWindow		Cari dari awal nama aplikasi

@@ -1,0 +1,28 @@
+1	Spanish (Latin American)	application/x-vnd.humdinger-quicklaunch	3653521921
+About QuickLaunch	Application		Acerca de QuickLaunch
+Cancel	Application		Cancelar
+Open QuickLaunch	Application		Abrir QuickLaunch
+Open Shortcuts	Application		Abrir Atajos de teclado
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch inicia rápidamente cualquier aplicación instalada. Basta con introducir las primeras letras del nombre, y elegir entre una lista de las aplicaciones encontradas.
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		Al parecer ya existe un atajo para QuickLaunch en las preferencias de Atajos de teclado, pero apunta a su ubicación anterior.\n\n¿Deseas abrir las preferencias de Atajos de teclado para cambiarlo por la ubicación correcta? (/boot/system/apps/QuickLaunch)
+Add to favorites	ListView		Añadir a favoritos
+Add to ignore list	ListView		Añadir a la lista de ignorados
+Found no matches.	ListView		No se han encontrado coincidencias.
+Open containing folder	ListView		Abrir carpeta contenedora
+Remove favorite	ListView		Quitar favorito
+Use '*' as wildcards.	ListView		Utilice '*' como comodines.
+Add…	SetupWindow		Añadir…
+Ignore these files & folders (and their subfolders):	SetupWindow		Ignore estos archivos y carpetas (y sus subcarpetas):
+Open Shortcuts preferences	SetupWindow		Abrir preferencias de Atajos de teclado
+Remember last search term	SetupWindow		Recordar el último término de búsqueda
+Remove	SetupWindow		Quitar
+Search from start of application name	SetupWindow		Buscar desde el principio del nombre de la aplicación
+Setup	SetupWindow		Configurar
+Show application path	SetupWindow		Mostrar ruta de aplicación
+Show application version	SetupWindow		Mostrar versión de la aplicación
+Show Deskbar replicant	SetupWindow		Mostrar replicante Deskbar
+Sort favorite items to the top	SetupWindow		Ordenar los elementos favoritos al principio
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Error al iniciar %appname%.\nnError:
+Help	MainWindow		Ayuda
+OK	MainWindow		Aceptar
+Setup	MainWindow		Configurar

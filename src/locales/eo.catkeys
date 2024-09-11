@@ -1,7 +1,10 @@
-1	Esperanto	application/x-vnd.humdinger-quicklaunch	3994280092
+1	Esperanto	application/x-vnd.humdinger-quicklaunch	3653521921
 About QuickLaunch	Application		Pri RapidLanĉilo
+Cancel	Application		Cancel
 Open QuickLaunch	Application		Malfermi RapidLanĉilo
+Open Shortcuts	Application		Open Shortcuts
 QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch rapide lanĉas ian instalitan aplikaĵon. Simple tajpu la unuajn literojn de ĝia nomo kaj elektu el listo de ĉiaj trovitaj programoj.
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?
 Add to favorites	ListView		Doni al legosignon
 Add to ignore list	ListView		Doni al malatentan liston
 Found no matches.	ListView		Kongruoj ne estis trovitaj.
@@ -10,6 +13,7 @@ Remove favorite	ListView		Forigi legosignon
 Use '*' as wildcards.	ListView		Uzi '*' kiel ĵokeroj.
 Add…	SetupWindow		Aldoni…
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignori ĉi tiujn dosierojn & dosierujojn (kaj iliajn subdosierujojn)
+Open Shortcuts preferences	SetupWindow		Open Shortcuts preferences
 Remember last search term	SetupWindow		Memori antaŭan serĉvorton
 Remove	SetupWindow		Forigi
 Search from start of application name	SetupWindow		Serĉi el komenco de aplikaĵa nomo

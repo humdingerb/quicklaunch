@@ -1,7 +1,10 @@
-1	Chinese (simplified)	application/x-vnd.humdinger-quicklaunch	3994280092
+1	Chinese (simplified)	application/x-vnd.humdinger-quicklaunch	3653521921
 About QuickLaunch	Application		关于 QuickLaunch
+Cancel	Application		取消
 Open QuickLaunch	Application		打开 QuickLaunch
+Open Shortcuts	Application		打开快捷方式
 QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch 可快速启动任何已安装的应用程序。只需输入其名称的前几个字母，然后在所有找到的应用程序列表中进行选择。 
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		“快捷方式”首选项似乎有一个指向“快速启动”旧位置的快捷方式。\n\n是否要打开快捷方式首选项，以便设置正确的位置：“/boot/system/apps/QuickLaunch”？
 Add to favorites	ListView		添加至收藏
 Add to ignore list	ListView		添加至忽略列表
 Found no matches.	ListView		未找到匹配项。
@@ -10,6 +13,7 @@ Remove favorite	ListView		从收藏中移除
 Use '*' as wildcards.	ListView		使用 “*” 号作为通配符。
 Add…	SetupWindow		添加…
 Ignore these files & folders (and their subfolders):	SetupWindow		忽略这些文件和文件夹（以及它们的子文件夹）：
+Open Shortcuts preferences	SetupWindow		打开快捷方式首选项
 Remember last search term	SetupWindow		记住最后一个搜索词
 Remove	SetupWindow		移除
 Search from start of application name	SetupWindow		从应用程序名称的开头搜索

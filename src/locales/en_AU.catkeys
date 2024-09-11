@@ -1,4 +1,4 @@
-1	English (British)	application/x-vnd.humdinger-quicklaunch	3653521921
+1	English (Australian)	application/x-vnd.humdinger-quicklaunch	3653521921
 About QuickLaunch	Application		About QuickLaunch
 Cancel	Application		Cancel
 Open QuickLaunch	Application		Open QuickLaunch
@@ -24,5 +24,5 @@ Show Deskbar replicant	SetupWindow		Show Deskbar replicant
 Sort favorite items to the top	SetupWindow		Sort favourite items to the top
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Failed to launch %appname%.\n\nError:
 Help	MainWindow		Help
-OK	MainWindow		Alright
+OK	MainWindow		OK
 Setup	MainWindow		Setup
