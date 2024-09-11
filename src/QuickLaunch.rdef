@@ -4,7 +4,7 @@ resource app_flags B_SINGLE_LAUNCH;
 
 resource app_version {
 	major  = 1,
-	middle = 4,
+	middle = 5,
 	minor  = 0,
 
 	/* 0 = development	1 = alpha			2 = beta
@@ -14,7 +14,7 @@ resource app_version {
 	internal = 0,
 
 	short_info = "Application launcher",
-	long_info  = "Find and start any application with a query."
+	long_info  = "Find and start any installed application."
 };
 
 resource vector_icon {
