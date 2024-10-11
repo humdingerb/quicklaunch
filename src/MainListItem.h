@@ -29,8 +29,7 @@
 
 class MainListItem : public BListItem {
 public:
-					MainListItem(BEntry* entry, int iconSize,
-						bool isFav = false);
+					MainListItem(BEntry* entry, BString name, int iconSize,	bool isFav = false);
 					~MainListItem();
 
 	virtual void	DrawItem(BView*, BRect, bool);

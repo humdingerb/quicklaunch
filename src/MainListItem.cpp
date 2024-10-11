@@ -16,7 +16,7 @@
 #include "QuickLaunch.h"
 
 
-MainListItem::MainListItem(BEntry* entry, int iconSize, bool isFav)
+MainListItem::MainListItem(BEntry* entry, BString name, int iconSize, bool isFav)
 	:
 	BListItem()
 {
@@ -30,7 +30,7 @@ MainListItem::MainListItem(BEntry* entry, int iconSize, bool isFav)
 	if ((node.SetTo(entry) == B_NO_ERROR) && (node_info.SetTo(&node) == B_NO_ERROR)) {
 
 		// cache name and path
-		entry->GetName(fName);
+		snprintf(fName, sizeof(fName), "%s", name.String());
 		entry->GetPath(&fPath);
 
 		// create bitmap large enough for icon

@@ -9,6 +9,7 @@
 #ifndef QL_WINDOW_H
 #define QL_WINDOW_H
 
+#include "AppListItem.h"
 #include "MainListItem.h"
 #include "MainListView.h"
 
@@ -21,6 +22,7 @@
 #include <GroupLayoutBuilder.h>
 #include <ListView.h>
 #include <Message.h>
+#include <ObjectList.h>
 #include <Path.h>
 #include <Query.h>
 #include <Roster.h>
@@ -51,7 +53,8 @@ public:
 	void			MessageReceived(BMessage* message);
 	bool			QuitRequested();
 
-	void			BuildList();
+	void			BuildAppList();
+	void			FilterAppList();
 	float			GetScrollPosition();
 	void			SetScrollPosition(float position);
 	int				GetStringLength()
@@ -66,6 +69,7 @@ private:
 	void			_GetIconHeight();
 	void			_LaunchApp(MainListItem* item);
 
+	BObjectList<AppListItem> fAppList;
 	int32			fIconHeight;
 	BTextControl*	fSearchBox;
 	BButton*		fSetupButton;

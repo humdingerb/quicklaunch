@@ -11,7 +11,6 @@
  */
 
 #include "QuickLaunch.h"
-#include "DeskbarReplicant.h"
 #include "QLFilter.h"
 
 #include <AboutWindow.h>
@@ -41,6 +40,8 @@ QLApp::QLApp()
 
 	if (fSettings.GetDeskbar()) // make sure the replicant is shown
 		_AddToDeskbar();
+
+	fSettings.InitLists();
 
 	fSetupWindow = new SetupWindow(fSettings.GetSetupWindowFrame());
 	fMainWindow = new MainWindow();
@@ -194,7 +195,7 @@ QLApp::MessageReceived(BMessage* message)
 
 			if (!fMainWindow->fListView->IsEmpty()) {
 				fMainWindow->LockLooper();
-				fMainWindow->BuildList();
+				fMainWindow->FilterAppList();
 				fMainWindow->UnlockLooper();
 			}
 			break;
@@ -223,6 +224,7 @@ QLApp::MessageReceived(BMessage* message)
 
 			if (!fSettings.fIgnoreList->IsEmpty()) {
 				fSetupWindow->fChkIgnore->SetValue(value);
+				fMainWindow->BuildAppList();
 				_RestorePositionAndSelection();
 			}
 			break;
@@ -246,6 +248,7 @@ QLApp::MessageReceived(BMessage* message)
 				}
 				fSetupWindow->UnlockLooper();
 			}
+			fMainWindow->BuildAppList();
 			_RestorePositionAndSelection();
 			break;
 		}
@@ -253,8 +256,10 @@ QLApp::MessageReceived(BMessage* message)
 		{
 			int32 opcode = message->GetInt32("opcode", -1);
 
-			if ((opcode == B_DEVICE_MOUNTED) || (opcode == B_DEVICE_UNMOUNTED))
+			if ((opcode == B_DEVICE_MOUNTED) || (opcode == B_DEVICE_UNMOUNTED)) {
+				fMainWindow->BuildAppList();
 				_RestorePositionAndSelection();
+			}
 			break;
 		}
 		default:
@@ -277,14 +282,13 @@ void
 QLApp::ReadyToRun()
 {
 	BRect frame = fSettings.GetMainWindowFrame();
+
 	fMainWindow->MoveTo(frame.LeftTop());
 	fMainWindow->ResizeTo(frame.right - frame.left, 0);
 	fMainWindow->Show();
 
-	fSettings.InitLists();
-
 	fMainWindow->fListView->LockLooper();
-	fMainWindow->BuildList();
+	fMainWindow->FilterAppList();
 	fMainWindow->fListView->Select(0);
 	fMainWindow->fListView->UnlockLooper();
 
@@ -356,7 +360,7 @@ QLApp::_RestorePositionAndSelection()
 	fMainWindow->fListView->LockLooper();
 	int32 selection = fMainWindow->fListView->CurrentSelection();
 	float position = fMainWindow->GetScrollPosition();
-	fMainWindow->BuildList();
+	fMainWindow->FilterAppList();
 	if (selection >= 0) {
 		fMainWindow->fListView->Select((selection < fMainWindow->fListView->CountItems())
 				? selection
