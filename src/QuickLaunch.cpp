@@ -287,10 +287,8 @@ QLApp::ReadyToRun()
 	fMainWindow->ResizeTo(frame.right - frame.left, 0);
 	fMainWindow->Show();
 
-	fMainWindow->fListView->LockLooper();
-	fMainWindow->FilterAppList();
-	fMainWindow->fListView->Select(0);
-	fMainWindow->fListView->UnlockLooper();
+	// Initial filtering. Shows favorites and resizes window correctly
+	fMainWindow->PostMessage(NEW_FILTER);
 
 	fSetupWindow->Hide();
 	fSetupWindow->Show();
