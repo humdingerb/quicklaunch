@@ -408,10 +408,12 @@ MainWindow::FilterAppList()
 				BString name = fAppList.ItemAt(i)->GetName();
 
 				bool found;
-				if (settings.GetSearchStart() == 1)
+				if (settings.GetSearchStart() == 1 && !searchtext.IStartsWith("*"))
 					found = name.IStartsWith(searchtext);
-				else
+				else {
+					searchtext.RemoveFirst("*");
 					found = name.IFindFirst(searchtext) == B_ERROR ? false : true;
+				}
 
 				if (found) {
 					bool isFav = false;
