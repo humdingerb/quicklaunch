@@ -124,11 +124,6 @@ MainListView::FrameResized(float w, float h)
 bool
 MainListView::InitiateDrag(BPoint point, int32 dragIndex, bool wasSelected)
 {
-	// Hack: Un-modal MainWindow to enable d'n'd to e.g. LaunchBox
-	// Unwanted side-effect: The MainWindow stays un-modal ater the
-	// item was dropped
-	// my_app->SetWindowsFeel(B_NORMAL_WINDOW_FEEL);
-
 	BPoint pt;
 	uint32 buttons;
 	GetMouse(&pt, &buttons);

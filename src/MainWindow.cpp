@@ -56,7 +56,7 @@ compare_favorite_items(const void* a, const void* b)
 MainWindow::MainWindow()
 	:
 	BWindow(BRect(), B_TRANSLATE_SYSTEM_NAME(kApplicationName), B_TITLED_WINDOW_LOOK,
-		B_MODAL_ALL_WINDOW_FEEL,
+		B_FLOATING_ALL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE | B_FRAME_EVENTS
 			| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {

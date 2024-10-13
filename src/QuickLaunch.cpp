@@ -95,10 +95,9 @@ QLApp::MessageReceived(BMessage* message)
 	switch (message->what) {
 		case SETUP_BUTTON:
 		{
-			if (fSetupWindow->IsHidden()) {
-				SetWindowsFeel(B_NORMAL_WINDOW_FEEL);
+			if (fSetupWindow->IsHidden())
 				fSetupWindow->Show();
-			} else
+			else
 				fSetupWindow->Hide();
 			break;
 		}
@@ -300,15 +299,6 @@ QLApp::ReadyToRun()
 	}
 
 	watch_node(NULL, B_WATCH_MOUNT, this);
-}
-
-
-void
-QLApp::SetWindowsFeel(window_feel feel)
-{
-	fMainWindow->LockLooper();
-	fMainWindow->SetFeel(feel);
-	fMainWindow->UnlockLooper();
 }
 
 
