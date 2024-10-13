@@ -66,6 +66,7 @@ MainWindow::MainWindow()
 	_GetIconHeight();
 
 	fSearchBox = new BTextControl("SearchBox", NULL, NULL, NULL);
+	fSearchBox->SetModificationMessage(new BMessage (NEW_FILTER));
 
 	fSetupButton = new BButton("Setup", B_TRANSLATE("Setup"), new BMessage(SETUP_BUTTON));
 	fSetupButton->SetTarget(be_app);
