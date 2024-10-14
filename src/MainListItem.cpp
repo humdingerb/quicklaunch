@@ -87,11 +87,22 @@ MainListItem::~MainListItem()
 void
 MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 {
+	QLSettings& settings = my_app->Settings();
+	bool showVersion = settings.GetShowVersion();
+	bool showPath = settings.GetShowPath();
+
 	float spacing = be_control_look->DefaultLabelSpacing();
 	float offset = spacing;
+
 	BFont appfont;
+	font_height appFI;
+	appfont.GetHeight(&appFI);
+	appfont.SetFace(B_BOLD_FACE);
+
 	BFont pathfont;
-	font_height finfo;
+	font_height pathFI;
+	pathfont.SetSize(appfont.Size() * 0.9);
+	pathfont.GetHeight(&pathFI);
 
 	// set background color
 
@@ -135,21 +146,18 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 	else
 		view->SetHighColor(ui_color(B_LIST_ITEM_TEXT_COLOR));
 
-	appfont.GetHeight(&finfo);
-	appfont.SetFace(B_BOLD_FACE);
 	view->SetFont(&appfont);
 
-	QLSettings& settings = my_app->Settings();
+
 	if (settings.Lock()) {
-		if (settings.GetShowVersion() || settings.GetShowPath()) {
-			view->MovePenTo(offset,
-				rect.top + ((rect.Height() - (finfo.ascent + finfo.descent + finfo.leading)) / 2)
-					+ (finfo.ascent + finfo.descent) - appfont.Size() + 2 + 3);
+		if (showVersion || showPath) {
+			view->MovePenTo(offset, floor(rect.top + appFI.ascent + 1
+			+ (rect.Height() + 1 - (appFI.ascent + appFI.descent + pathFI.ascent + pathFI.descent))
+			/ 2));
 		} else {
-			view->MovePenTo(offset,
-				rect.top - 2
-					+ ((rect.Height() - (finfo.ascent + finfo.descent + finfo.leading)) / 2)
-					+ (finfo.ascent + finfo.descent));
+			view->MovePenTo(offset, floor(rect.top + appFI.ascent
+			+ (rect.Height() + 1 - (appFI.ascent + appFI.descent))
+			/ 2));
 		}
 
 		float width, height;
@@ -159,49 +167,48 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 		view->DrawString(string.String());
 
 		// application path and version
+		if (showVersion || showPath) {
+			if (IsSelected()) {
+				view->SetHighColor(tint_color(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR),
+					ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR).IsDark() ?
+					B_LIGHTEN_1_TINT : B_DARKEN_1_TINT));
+			} else {
+				view->SetHighColor(tint_color(ui_color(B_LIST_ITEM_TEXT_COLOR),
+					ui_color(B_LIST_ITEM_TEXT_COLOR).IsDark() ?
+					B_LIGHTEN_1_TINT : B_DARKEN_1_TINT));
+			}
 
-		if (IsSelected()) {
-			view->SetHighColor(tint_color(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR),
-				ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR).IsDark() ?
-				B_LIGHTEN_1_TINT : B_DARKEN_1_TINT));
-		} else {
-			view->SetHighColor(tint_color(ui_color(B_LIST_ITEM_TEXT_COLOR),
-				ui_color(B_LIST_ITEM_TEXT_COLOR).IsDark() ?
-				B_LIGHTEN_1_TINT : B_DARKEN_1_TINT));
+			view->SetFont(&pathfont);
+			// view->MovePenTo(offset,
+			view->MovePenTo(offset, floor(rect.top + appFI.ascent + 2 + pathFI.ascent
+				+ (rect.Height() + 1
+					- (appFI.ascent + appFI.descent + 1 + pathFI.ascent + pathFI.descent))
+				/ 2));
+
+			BPath parent;
+			fPath.GetParent(&parent);
+			string = "";
+
+			char text[256];
+			if (showVersion) {
+				snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.major);
+				string << "v" << text << ".";
+				snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.middle);
+				string << text << ".";
+				snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.minor);
+				string << text;
+			}
+			if (showVersion && showPath)
+				string << " - ";
+
+			if (showPath) {
+				string << parent.Path();
+				string << "/";
+			}
+
+			view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - fIconSize - offset / 2);
+			view->DrawString(string.String());
 		}
-
-		pathfont.SetSize(appfont.Size() * 0.9);
-		pathfont.GetHeight(&finfo);
-		view->SetFont(&pathfont);
-
-		view->MovePenTo(offset,
-			rect.top + appfont.Size() - pathfont.Size() + 3
-				+ ((rect.Height() - (finfo.ascent + finfo.descent + finfo.leading)) / 2)
-				+ (finfo.ascent + finfo.descent));
-
-		BPath parent;
-		fPath.GetParent(&parent);
-		string = "";
-
-		char text[256];
-		if (settings.GetShowVersion()) {
-			snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.major);
-			string << "v" << text << ".";
-			snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.middle);
-			string << text << ".";
-			snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.minor);
-			string << text;
-		}
-		if (settings.GetShowVersion() && settings.GetShowPath())
-			string << " - ";
-
-		if (settings.GetShowPath()) {
-			string << parent.Path();
-			string << "/";
-		}
-
-		view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - fIconSize - offset / 2);
-		view->DrawString(string.String());
 		settings.Unlock();
 	}
 	// draw lines
