@@ -63,7 +63,7 @@ MainWindow::MainWindow()
 	BuildAppList();
 
 	QLSettings& settings = my_app->Settings();
-	_GetIconHeight();
+	fIconHeight = (int32(be_control_look->ComposeIconSize(B_LARGE_ICON).Height()) + 2);
 
 	fSearchBox = new BTextControl("SearchBox", NULL, NULL, NULL);
 	fSearchBox->SetModificationMessage(new BMessage (NEW_FILTER));
@@ -477,15 +477,6 @@ MainWindow::ResizeWindow()
 
 
 #pragma mark-- Private Methods --
-
-
-void
-MainWindow::_GetIconHeight()
-{
-	font_height fontHeight;
-	be_plain_font->GetHeight(&fontHeight);
-	fIconHeight = int32(2 * (fontHeight.ascent + fontHeight.descent + fontHeight.leading));
-}
 
 
 void

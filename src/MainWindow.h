@@ -66,7 +66,6 @@ public:
 	MainListView*	fListView;
 
 private:
-	void			_GetIconHeight();
 	void			_LaunchApp(MainListItem* item);
 
 	BObjectList<AppListItem> fAppList;
