@@ -395,13 +395,19 @@ MainWindow::FilterAppList()
 	if (settings.Lock()) {
 		if (GetStringLength() == 0) {
 			// show favorites
+			bool localized = BLocaleRoster::Default()->IsFilesystemTranslationPreferred();
 			for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++) {
 				entry_ref* favorite = static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
 				if (!favorite)
 					continue;
 				BEntry entry(favorite);
-				if (entry.InitCheck() == B_OK)
-					fListView->AddItem(new MainListItem(&entry, favorite->name, fIconHeight, true));
+				if (entry.InitCheck() == B_OK) {
+					BString appName;
+					if (!localized
+						|| BLocaleRoster::Default()->GetLocalizedFileName(appName, *favorite) != B_OK)
+						appName = favorite->name;
+					fListView->AddItem(new MainListItem(&entry, appName, fIconHeight, true));
+				}
 			}
 		} else {
 			for (int32 i = 0; i < fAppList.CountItems(); i++) {
