@@ -1,19 +1,19 @@
 1	Turkish	application/x-vnd.humdinger-quicklaunch	3653521921
 About QuickLaunch	Application		QuickLaunch hakkında
-Cancel	Application		Cancel
+Cancel	Application		Vazgeç
 Open QuickLaunch	Application		QuickLaunch’u aç
-Open Shortcuts	Application		Open Shortcuts
+Open Shortcuts	Application		Kestirmeler’i aç
 QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunch, kurulu uygulamaları hızlıca çalıştırır. Yalnızca uygulamanın ilk birkaç harfini girin ve açılan listeden uygulamayı seçin.
-The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?
+The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		Kestirmeler tercihleri panelinde QuickLaunch’un eski konumuna işaret eden bir kestirme var gibi görünüyor.\n\nKestirmeler tercihlerini açıp doğru konumu ayarlamak istiyor musunuz: “/boot/system/apps/QuickLaunch”?
 Add to favorites	ListView		Sık kullanılanlara ekle
 Add to ignore list	ListView		Yok sayılanlar listesine ekle
 Found no matches.	ListView		Eşleşme bulunamadı
 Open containing folder	ListView		İçeren klasörü aç
 Remove favorite	ListView		Sık kullanılanlardan kaldır
-Use '*' as wildcards.	ListView		Joker karakter olarak ‘*’ kullan
+Use '*' as wildcards.	ListView		Joker karakter olarak “*” kullan
 Add…	SetupWindow		Ekle…
 Ignore these files & folders (and their subfolders):	SetupWindow		Bu klasörleri, alt klasörlerini ve dosyaları yok say:
-Open Shortcuts preferences	SetupWindow		Open Shortcuts preferences
+Open Shortcuts preferences	SetupWindow		Kestirmeler tercihlerini aç
 Remember last search term	SetupWindow		Son aramayı anımsa
 Remove	SetupWindow		Kaldır
 Search from start of application name	SetupWindow		Aramayı uygulama adının başından başlat
