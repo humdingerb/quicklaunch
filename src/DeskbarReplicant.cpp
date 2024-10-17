@@ -213,11 +213,16 @@ DeskbarReplicant::MouseDown(BPoint where)
 		menu->SetFont(be_plain_font);
 
 		if (!fFavoriteList->IsEmpty()) {
+			bool localized = BLocaleRoster::Default()->IsFilesystemTranslationPreferred();
 			for (int i = 0; i < fFavoriteList->CountItems(); i++) {
 				entry_ref* favorite = static_cast<entry_ref*>(fFavoriteList->ItemAt(i));
 				BMessage* message = new BMessage(OPEN_REF);
 				message->AddRef("refs", favorite);
-				menu->AddItem(new BMenuItem(favorite->name, message));
+				BString appName;
+				if (!localized
+					|| BLocaleRoster::Default()->GetLocalizedFileName(appName, *favorite) != B_OK)
+					appName = favorite->name;
+				menu->AddItem(new BMenuItem(appName, message));
 			}
 			menu->AddSeparatorItem();
 		}
