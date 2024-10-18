@@ -20,5 +20,4 @@ AppListItem::AppListItem(BEntry entry, bool localized)
 		if (BLocaleRoster::Default()->GetLocalizedFileName(fName, fRef) != B_OK)
 			fName = fRef.name;
 	}
-
 }

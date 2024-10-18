@@ -292,12 +292,6 @@ QLApp::ReadyToRun()
 	fSetupWindow->Hide();
 	fSetupWindow->Show();
 
-	if (fSettings.GetSaveSearch()) {
-		BMessenger messenger(fMainWindow);
-		BMessage message(NEW_FILTER);
-		messenger.SendMessage(&message);
-	}
-
 	watch_node(NULL, B_WATCH_MOUNT, this);
 }
 

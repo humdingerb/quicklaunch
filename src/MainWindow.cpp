@@ -60,8 +60,6 @@ MainWindow::MainWindow()
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE | B_FRAME_EVENTS
 			| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
-	BuildAppList();
-
 	QLSettings& settings = my_app->Settings();
 	fIconHeight = (int32(be_control_look->ComposeIconSize(B_LARGE_ICON).Height()) + 2);
 
@@ -100,6 +98,8 @@ MainWindow::MainWindow()
 	AddCommonFilter(new QLFilter);
 	fListView->SetInvocationMessage(new BMessage(RETURN_KEY));
 	fListView->SetViewColor(B_TRANSPARENT_COLOR);
+
+	_ShowFavorites();
 
 	if (settings.Lock()) {
 		if (settings.GetSaveSearch())
@@ -284,6 +284,9 @@ MainWindow::MessageReceived(BMessage* message)
 		}
 		case NEW_FILTER:
 		{
+			if (fAppList.IsEmpty())
+				BuildAppList();
+
 			FilterAppList();
 			fListView->Select(0);
 			break;
@@ -315,6 +318,11 @@ MainWindow::BuildAppList()
 	QLSettings& settings = my_app->Settings();
 
 	bool localized = BLocaleRoster::Default()->IsFilesystemTranslationPreferred();
+	bool activeIgnore = settings.GetShowIgnore();
+	int32 ignoreCount = settings.fIgnoreList->CountItems();
+
+	BPath addonsDir;
+	find_directory(B_SYSTEM_ADDONS_DIRECTORY, &addonsDir);
 
 	BVolumeRoster volumeRoster;
 	BVolume volume;
@@ -349,32 +357,30 @@ MainWindow::BuildAppList()
 					continue;
 				}
 
-				BPath dir;
 				BPath parent;
 				entry.GetPath(&path);
 				path.GetParent(&parent);
 
-				find_directory(B_SYSTEM_ADDONS_DIRECTORY, &dir);
-				if (strstr(parent.Path(), dir.Path()))
+				// ignore system addons
+				if (strstr(parent.Path(), addonsDir.Path()))
 					continue;
-				// check Trash on all volumes
-				find_directory(B_TRASH_DIRECTORY, &dir, false, &volume);
-				if (strstr(parent.Path(), dir.Path()))
-					continue;
+				// ignore Trash on all volumes
+				BPath trashDir;
+				if (find_directory(B_TRASH_DIRECTORY, &trashDir, false, &volume) == B_OK) {
+					if (strstr(parent.Path(), trashDir.Path()))
+						continue;
+				}
 
 				bool ignore = false;
-				if (settings.GetShowIgnore()) {
-					int32 ignoreCount = settings.fIgnoreList->CountItems();
-					if (ignoreCount != 0) {
-						BString* newItem = new BString(path.Path());
-						for (int i = 0; i < ignoreCount; i++) {
-							IgnoreListItem* sItem = dynamic_cast<IgnoreListItem*>(
-								settings.fIgnoreList->ItemAt(i));
+				if (activeIgnore && ignoreCount != 0) {
+					BString* newItem = new BString(path.Path());
+					for (int i = 0; i < ignoreCount; i++) {
+						IgnoreListItem* sItem = dynamic_cast<IgnoreListItem*>(
+							settings.fIgnoreList->ItemAt(i));
 
-							if (newItem->ICompare(sItem->GetItem(),
-								std::min(newItem->Length(), sItem->GetItem().Length())) == 0)
-								ignore = true;
-						}
+						if (newItem->ICompare(sItem->GetItem(),
+							std::min(newItem->Length(), sItem->GetItem().Length())) == 0)
+							ignore = true;
 					}
 				}
 				if (!ignore && entry.InitCheck() == B_OK)
@@ -390,36 +396,25 @@ void
 MainWindow::FilterAppList()
 {
 	QLSettings& settings = my_app->Settings();
+	BString searchtext = GetSearchString();
 
 	fListView->MakeEmpty();
 	if (settings.Lock()) {
-		if (GetStringLength() == 0) {
-			// show favorites
-			bool localized = BLocaleRoster::Default()->IsFilesystemTranslationPreferred();
-			for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++) {
-				entry_ref* favorite = static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
-				if (!favorite)
-					continue;
-				BEntry entry(favorite);
-				if (entry.InitCheck() == B_OK) {
-					BString appName;
-					if (!localized
-						|| BLocaleRoster::Default()->GetLocalizedFileName(appName, *favorite) != B_OK)
-						appName = favorite->name;
-					fListView->AddItem(new MainListItem(&entry, appName, fIconHeight, true));
-				}
-			}
-		} else {
+		if (searchtext == "")
+			_ShowFavorites();
+		else {
+			int32 searchFromStart = settings.GetSearchStart();
+			bool showAll = (searchtext == "*");
 			for (int32 i = 0; i < fAppList.CountItems(); i++) {
-				BString searchtext = GetSearchString();
 				BString name = fAppList.ItemAt(i)->GetName();
-
-				bool found;
-				if (settings.GetSearchStart() == 1 && !searchtext.IStartsWith("*"))
-					found = name.IStartsWith(searchtext);
-				else {
-					searchtext.RemoveFirst("*");
-					found = name.IFindFirst(searchtext) == B_ERROR ? false : true;
+				bool found = true;
+				if (!showAll) {
+					if (searchFromStart == 1 && !searchtext.IStartsWith("*"))
+						found = name.IStartsWith(searchtext);
+					else {
+						searchtext.RemoveFirst("*");
+						found = name.IFindFirst(searchtext) == B_ERROR ? false : true;
+					}
 				}
 
 				if (found) {
@@ -511,6 +506,27 @@ MainWindow::_LaunchApp(MainListItem* item)
 				"error", errorMessage.String(), B_TRANSLATE("OK"), NULL, NULL, B_WIDTH_FROM_WIDEST);
 			alert->SetFlags(alert->Flags() | B_CLOSE_ON_ESCAPE);
 			alert->Go();
+		}
+	}
+}
+
+void
+MainWindow::_ShowFavorites()
+{
+	QLSettings& settings = my_app->Settings();
+	bool localized = BLocaleRoster::Default()->IsFilesystemTranslationPreferred();
+
+	for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++) {
+		entry_ref* favorite = static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
+		if (favorite == NULL)
+			continue;
+		BEntry entry(favorite);
+		if (entry.InitCheck() == B_OK) {
+			BString appName;
+			if (!localized
+				|| BLocaleRoster::Default()->GetLocalizedFileName(appName, *favorite) != B_OK)
+				appName = favorite->name;
+			fListView->AddItem(new MainListItem(&entry, appName, fIconHeight, true));
 		}
 	}
 }

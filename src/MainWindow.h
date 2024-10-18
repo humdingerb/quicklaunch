@@ -67,6 +67,7 @@ public:
 
 private:
 	void			_LaunchApp(MainListItem* item);
+	void			_ShowFavorites();
 
 	BObjectList<AppListItem> fAppList;
 	int32			fIconHeight;
