@@ -373,13 +373,13 @@ MainWindow::BuildAppList()
 
 				bool ignore = false;
 				if (activeIgnore && ignoreCount != 0) {
-					BString* newItem = new BString(path.Path());
+					BString newItem(path.Path());
 					for (int i = 0; i < ignoreCount; i++) {
 						IgnoreListItem* sItem = dynamic_cast<IgnoreListItem*>(
 							settings.fIgnoreList->ItemAt(i));
 
-						if (newItem->ICompare(sItem->GetItem(),
-							std::min(newItem->Length(), sItem->GetItem().Length())) == 0)
+						if (newItem.ICompare(sItem->GetItem(),
+							std::min(newItem.Length(), sItem->GetItem().Length())) == 0)
 							ignore = true;
 					}
 				}

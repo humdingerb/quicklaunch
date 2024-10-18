@@ -223,7 +223,8 @@ SetupWindow::MessageReceived(BMessage* message)
 					if (!duplicate) {
 						fIgnoreList->AddItem(newitem);
 						fIgnoreList->SortItems(&compare_items);
-					}
+					} else
+						delete newitem;
 					ref_num++;
 				}
 				settings.Unlock();
