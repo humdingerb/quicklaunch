@@ -13,7 +13,6 @@
 #include <PopUpMenu.h>
 #include <String.h>
 
-#include <stdio.h>
 
 class IgnoreListView : public BListView {
 public:

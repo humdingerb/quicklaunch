@@ -20,10 +20,7 @@
 #include <Path.h>
 #include <String.h>
 
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
 
 class IgnoreListItem : public BListItem {
 public:
@@ -31,9 +28,9 @@ public:
 					~IgnoreListItem();
 
 	virtual void	DrawItem(BView*, BRect, bool);
-	
+
 	const BString&	GetItem() const { return fItemString; };
-		
+
 private:
 	BPath*			fPath;
 	BString			fItemString;

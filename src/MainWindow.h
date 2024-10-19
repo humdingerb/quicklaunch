@@ -33,7 +33,6 @@
 #include <VolumeRoster.h>
 #include <Window.h>
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <strings.h>
 
@@ -66,8 +65,14 @@ public:
 	MainListView*	fListView;
 
 private:
+	static status_t _AppListThread(void* self);
+	void			_BuildAppList();
+
 	void			_LaunchApp(MainListItem* item);
 	void			_ShowFavorites();
+
+	thread_id		fThreadId;
+	bool			fBusy;
 
 	BObjectList<AppListItem> fAppList;
 	int32			fIconHeight;

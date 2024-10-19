@@ -22,10 +22,7 @@
 #include <Path.h>
 #include <String.h>
 
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
 
 class MainListItem : public BListItem {
 public:
@@ -40,7 +37,7 @@ public:
 	entry_ref*		Ref() { return &fRef; };
 	bool			IsFavorite() { return fIsFavorite; };
 	void			SetFavorite(bool state);
-		
+
 private:
 	char			fName[B_FILE_NAME_LENGTH];
 	entry_ref		fRef;

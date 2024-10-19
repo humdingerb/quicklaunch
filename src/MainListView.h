@@ -14,7 +14,6 @@
 #include <PopUpMenu.h>
 #include <String.h>
 
-#include <stdio.h>
 
 #define ADDFAVORITE		'addf'
 #define REMOVEFAVORITE	'rmfa'
