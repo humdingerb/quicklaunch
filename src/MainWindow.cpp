@@ -18,6 +18,7 @@
 #include <Font.h>
 #include <LayoutBuilder.h>
 #include <MessageRunner.h>
+#include <StopWatch.h>
 
 #include <algorithm>
 
@@ -338,16 +339,17 @@ MainWindow::FilterAppList()
 		else {
 			int32 searchFromStart = settings.GetSearchStart();
 			bool showAll = (searchtext == "*");
+			bool startJocker = searchtext.StartsWith("*");
+			if (startJocker)
+				searchtext.RemoveFirst("*");
 			for (int32 i = 0; i < fAppList.CountItems(); i++) {
 				BString name = fAppList.ItemAt(i)->GetName();
 				bool found = true;
 				if (!showAll) {
-					if (searchFromStart == 1 && !searchtext.IStartsWith("*"))
+					if (searchFromStart == 1 && !startJocker)
 						found = name.IStartsWith(searchtext);
-					else {
-						searchtext.RemoveFirst("*");
+					else
 						found = name.IFindFirst(searchtext) == B_ERROR ? false : true;
-					}
 				}
 
 				if (found) {
@@ -426,6 +428,7 @@ MainWindow::_AppListThread(void* _self)
 void
 MainWindow::_BuildAppList()
 {
+BStopWatch* timer = new BStopWatch("Timer");
 	fBusy = true;
 
 	fAppList.MakeEmpty();
@@ -444,6 +447,27 @@ MainWindow::_BuildAppList()
 
 	while (volumeRoster.GetNextVolume(&volume) == B_OK) {
 		if (volume.KnowsQuery()) {
+			// Check if the whole volume is on ignore list
+			if (activeIgnore && ignoreCount != 0) {
+				bool ignore = false;
+				BDirectory root;
+				volume.GetRootDirectory(&root);
+				BPath mountPoint(&root, NULL);
+
+				BString newItem(mountPoint.Path());
+				for (int i = 0; i < ignoreCount; i++) {
+					IgnoreListItem* sItem = dynamic_cast<IgnoreListItem*>(
+						settings.fIgnoreList->ItemAt(i));
+
+					if (newItem.Compare(sItem->GetItem()) == 0) {
+						ignore = true;
+						continue;
+					}
+				}
+				if (ignore)
+					continue;
+			}
+
 			// Set up the volume and predicate for the query.
 			query.SetVolume(&volume);
 			query.PushAttr("BEOS:TYPE");
@@ -492,7 +516,7 @@ MainWindow::_BuildAppList()
 						IgnoreListItem* sItem = dynamic_cast<IgnoreListItem*>(
 							settings.fIgnoreList->ItemAt(i));
 
-						if (newItem.ICompare(sItem->GetItem(),
+						if (newItem.Compare(sItem->GetItem(),
 							std::min(newItem.Length(), sItem->GetItem().Length())) == 0)
 							ignore = true;
 					}
@@ -505,6 +529,7 @@ MainWindow::_BuildAppList()
 	}
 	fBusy = false;
 	PostMessage(NEW_FILTER);
+	delete timer;
 }
 
 
