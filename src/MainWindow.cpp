@@ -291,6 +291,12 @@ MainWindow::MessageReceived(BMessage* message)
 			fListView->Select(0);
 			break;
 		}
+		case B_SIMPLE_DATA:
+		{
+			if (fSearchBox->TextLength() == 0)
+				_AddDroppedAsFav(message);
+			break;
+		}
 		default:
 		{
 			BWindow::MessageReceived(message);
@@ -562,6 +568,41 @@ MainWindow::_LaunchApp(MainListItem* item)
 		}
 	}
 }
+
+
+void
+MainWindow::_AddDroppedAsFav(BMessage* message)
+{
+	entry_ref ref;
+	if (message->FindRef("refs", &ref) != B_OK)
+		return;
+
+	BPoint dropPoint = message->DropPoint();
+	int32 dropIndex = fListView->IndexOf(fListView->ConvertFromScreen(dropPoint));
+	if (dropIndex < 0)
+		dropIndex = fListView->CountItems(); // move to bottom
+
+	QLSettings& settings = my_app->Settings();
+
+	bool duplicate = false;
+
+	if (settings.Lock()) {
+		for (int i = 0; i < settings.fFavoriteList->CountItems(); i++) {
+			entry_ref* favorite
+				= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
+			if (ref == *favorite)
+				duplicate = true;
+		}
+		if (!duplicate) {
+			settings.fFavoriteList->AddItem(new entry_ref(ref), dropIndex);
+			fListView->MakeEmpty();
+			_ShowFavorites();
+		}
+		settings.Unlock();
+	}
+	ResizeWindow();
+}
+
 
 void
 MainWindow::_ShowFavorites()

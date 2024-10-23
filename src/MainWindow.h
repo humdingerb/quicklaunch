@@ -69,6 +69,7 @@ private:
 	void			_BuildAppList();
 
 	void			_LaunchApp(MainListItem* item);
+	void			_AddDroppedAsFav(BMessage* message);
 	void			_ShowFavorites();
 
 	thread_id		fThreadId;

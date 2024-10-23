@@ -293,7 +293,7 @@ MainListView::MessageReceived(BMessage* message)
 		{
 			bool fav = false;
 			if (message->FindBool("isfav", &fav) != B_OK)
-				break;
+				Window()->MessageReceived(message);
 
 			if (!fav)
 				break;
@@ -311,7 +311,7 @@ MainListView::MessageReceived(BMessage* message)
 			dropPoint = message->DropPoint();
 			dropIndex = IndexOf(ConvertFromScreen(dropPoint));
 			if (dropIndex > origIndex)
-				dropIndex = dropIndex - 1;
+				dropIndex--;
 			if (dropIndex < 0)
 				dropIndex = CountItems() - 1; // move to bottom
 
