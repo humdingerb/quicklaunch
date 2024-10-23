@@ -39,8 +39,20 @@ MainListItem::MainListItem(BEntry* entry, BString name, int iconSize, bool isFav
 		// cache the icon
 		status_t result = node_info.GetIcon(fIcon, icon_size(fIconSize));
 		if (result != B_OK) {
+			char mimeString[B_MIME_TYPE_LENGTH];
 			BMimeType nodeType;
-			nodeType.SetTo("application/x-vnd.Be-elfexecutable");
+
+			if (node_info.GetType(mimeString) != B_OK) {
+				entry_ref ref;
+				entry->GetRef(&ref);
+				if (BMimeType::GuessMimeType(&ref, &nodeType) == B_OK) {
+					strlcpy(mimeString, nodeType.Type(), B_MIME_TYPE_LENGTH);
+					node_info.SetType(nodeType.Type());
+				} else
+					nodeType.SetTo("application/x-vnd.Be-elfexecutable");
+			} else
+				nodeType.SetTo(mimeString);
+
 			result = nodeType.GetIcon(fIcon, icon_size(fIconSize));
 			if (result != B_OK)
 				fIcon = NULL;
@@ -190,6 +202,7 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 			string = "";
 
 			char text[256];
+
 			if (showVersion) {
 				snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.major);
 				string << "v" << text << ".";
