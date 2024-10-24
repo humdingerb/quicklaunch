@@ -163,7 +163,6 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 	}
 
 	// application name
-
 	if (IsSelected())
 		view->SetHighColor(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR));
 	else
@@ -171,69 +170,68 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 
 	view->SetFont(&appfont);
 
+	if (!showPath && fIsNoApp) {
+		view->MovePenTo(offset, floor(rect.top + appFI.ascent
+		+ (rect.Height() + 1 - (appFI.ascent + appFI.descent))
+		/ 2));
+	} else if (showVersion || showPath) {
+		view->MovePenTo(offset, floor(rect.top + appFI.ascent + 1
+		+ (rect.Height() + 1 - (appFI.ascent + appFI.descent + pathFI.ascent + pathFI.descent))
+		/ 2));
+	} else {
+		view->MovePenTo(offset, floor(rect.top + appFI.ascent
+		+ (rect.Height() + 1 - (appFI.ascent + appFI.descent))
+		/ 2));
+	}
 
-	if (settings.Lock()) {
-		if (showVersion || showPath) {
-			view->MovePenTo(offset, floor(rect.top + appFI.ascent + 1
-			+ (rect.Height() + 1 - (appFI.ascent + appFI.descent + pathFI.ascent + pathFI.descent))
-			/ 2));
+	float width, height;
+	view->GetPreferredSize(&width, &height);
+	BString string(fName);
+	view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - fIconSize - offset / 2);
+	view->DrawString(string.String());
+
+	// application path and version
+	if (showVersion || showPath) {
+		if (IsSelected()) {
+			view->SetHighColor(tint_color(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR),
+				ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR).IsDark() ?
+				B_LIGHTEN_1_TINT : B_DARKEN_1_TINT));
 		} else {
-			view->MovePenTo(offset, floor(rect.top + appFI.ascent
-			+ (rect.Height() + 1 - (appFI.ascent + appFI.descent))
+			view->SetHighColor(tint_color(ui_color(B_LIST_ITEM_TEXT_COLOR),
+				ui_color(B_LIST_ITEM_TEXT_COLOR).IsDark() ?
+				B_LIGHTEN_1_TINT : B_DARKEN_1_TINT));
+		}
+
+		view->SetFont(&pathfont);
+		view->MovePenTo(offset, floor(rect.top + appFI.ascent + 2 + pathFI.ascent
+			+ (rect.Height() + 1
+				- (appFI.ascent + appFI.descent + 1 + pathFI.ascent + pathFI.descent))
 			/ 2));
+
+		BPath parent;
+		fPath.GetParent(&parent);
+		string = "";
+
+		char text[256];
+
+		if (showVersion && !fIsNoApp) {
+			snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.major);
+			string << "v" << text << ".";
+			snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.middle);
+			string << text << ".";
+			snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.minor);
+			string << text;
+		}
+		if (showVersion && showPath && !fIsNoApp)
+			string << " - ";
+
+		if (showPath) {
+			string << parent.Path();
+			string << "/";
 		}
 
-		float width, height;
-		view->GetPreferredSize(&width, &height);
-		BString string(fName);
 		view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - fIconSize - offset / 2);
-		view->DrawString(string.String());
-
-		// application path and version
-		if (showVersion || showPath) {
-			if (IsSelected()) {
-				view->SetHighColor(tint_color(ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR),
-					ui_color(B_LIST_SELECTED_ITEM_TEXT_COLOR).IsDark() ?
-					B_LIGHTEN_1_TINT : B_DARKEN_1_TINT));
-			} else {
-				view->SetHighColor(tint_color(ui_color(B_LIST_ITEM_TEXT_COLOR),
-					ui_color(B_LIST_ITEM_TEXT_COLOR).IsDark() ?
-					B_LIGHTEN_1_TINT : B_DARKEN_1_TINT));
-			}
-
-			view->SetFont(&pathfont);
-			// view->MovePenTo(offset,
-			view->MovePenTo(offset, floor(rect.top + appFI.ascent + 2 + pathFI.ascent
-				+ (rect.Height() + 1
-					- (appFI.ascent + appFI.descent + 1 + pathFI.ascent + pathFI.descent))
-				/ 2));
-
-			BPath parent;
-			fPath.GetParent(&parent);
-			string = "";
-
-			char text[256];
-
-			if (showVersion) {
-				snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.major);
-				string << "v" << text << ".";
-				snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.middle);
-				string << text << ".";
-				snprintf(text, sizeof(text), "%" B_PRId32, fVersionInfo.minor);
-				string << text;
-			}
-			if (showVersion && showPath)
-				string << " - ";
-
-			if (showPath) {
-				string << parent.Path();
-				string << "/";
-			}
-
-			view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - fIconSize - offset / 2);
 			view->DrawString(string.String());
-		}
-		settings.Unlock();
 	}
 	// draw lines
 
