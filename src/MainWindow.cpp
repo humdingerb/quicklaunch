@@ -18,7 +18,6 @@
 #include <Font.h>
 #include <LayoutBuilder.h>
 #include <MessageRunner.h>
-#include <StopWatch.h>
 
 #include <algorithm>
 
@@ -434,7 +433,6 @@ MainWindow::_AppListThread(void* _self)
 void
 MainWindow::_BuildAppList()
 {
-BStopWatch* timer = new BStopWatch("Timer");
 	fBusy = true;
 
 	fAppList.MakeEmpty();
@@ -535,7 +533,6 @@ BStopWatch* timer = new BStopWatch("Timer");
 	}
 	fBusy = false;
 	PostMessage(NEW_FILTER);
-	delete timer;
 }
 
 
