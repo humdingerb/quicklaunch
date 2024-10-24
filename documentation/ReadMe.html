@@ -124,6 +124,8 @@ The final item opens the app's location in a Tracker window (key-combo: <span cl
 <p>The background of favorites is slightly tinted yellow and a little yellow star is added to their icon to distinguish them from a regular search result.</p>
 <p>You add favorites by right-clicking an app's entry in a search result list and choosing <span class="menu">Add to favorites</span> or pressing <span class="key">ALT</span>+<span class="key">F</span>.<br />
 Similarly, you remove a favorite again by right-clicking it and selecting <span class="menu">Remove favorite</span> or with <span class="key">ALT</span>+<span class="key">R</span>.</p>
+<p>You can also create a favorite by dragging a file from any Tracker window onto your favorites' list. Even better: The dropped file doesn't have to be an application. Any file or folder will do. Non-application favorites are tinted slightly green to distinguish them from your app favorites.</p>
+
 <p><img src="./images/quicklaunch_replicant.png" alt="QuickLaunch replicant favorites" align="left" valign="middle" vspace="5" hspace="32"/>The Deskbar replicant can be activated from the Setup window (see below). It installs the QuickLaunch icon into the Deskbar tray, alongside the clock and the replicants of other applications.<br />
 A right-click on it also offers quick access to your favorites.</p>
 <p><br /></p>
@@ -159,14 +161,15 @@ You can also right-click an app in the main window's result list to add that spe
 <ul>
 <li><p>Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like <span class="key">OPT</span>+<span class="key">SPACEBAR</span>, for even quicker QuickLaunching apps.</p></li>
 <li><p>If you don't want to deactivate the option <span class="menu">Search from start of application name</span> in general, but just once in a while would like to search within an app name, you can use a '<tt>*</tt>' as a wildcard. E.g. "<tt>*player</tt>" will find '<tt>MediaPlayer</tt>' and '<tt>MidiPlayer</tt>'.</p></li>
+<li><p>You can create a favorite by dragging any file &ndash; not just an application &ndash; from any Tracker window onto your favorites' list.</p></li>
 <li><p><span class="key">SHIFT</span>+<span class="key">RETURN</span> will keep the QuickLaunch window open after launching the app.</p></li>
 <li><p>These two folders are ignored by default: <span style="font-family: monospace">/system/add-ons/</span> and <span style="font-family: monospace">Trash</span><br />
 In other words, applications in Trash are ignored, as well as add-ons.<br />
 <span style="font-family: monospace">/system/bin/</span> used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, i.e. via <span class="menu">Add to ignore list</span> of the context menu.</p></li>
 <li>There are two reasons why an application may not be found by QuickLaunch:
 <ol>
-<li><p>The application isn't located on a BFS partition or the BFS partition wasn't formatted to support queries.</p></li>
-<li><p>The application lacks the proper attribute <span style="font-family: monospace">BEOS:APP_SIG</span>. In that case, ask the app's developer to add it, or try to apply the following tip.</p></li>
+<li>The application isn't located on a BFS partition or the BFS partition wasn't formatted to support queries.</li>
+<li>The application lacks the proper attributes <span style="font-family: monospace">BEOS:APP_SIG</span> or <span style="font-family: monospace">BEOS:TYPE</span>. In that case, ask the app's developer to add it, or try to apply the following tip.</li>
 </ol>
 </li>
 <li><p>If you happen to use an app or a script that doesn't show up in QuickLaunch (and is in a writable location), you can add these atrributes in Terminal to the app or script:<br />
@@ -199,6 +202,12 @@ Catalan&nbsp;(ca) by&nbsp;Davidmp · Chinese&nbsp;(simplified)&nbsp;(zh-Hans) by
 <h2>
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
 <a id="history" name="history">History</a></h2>
+
+<p><b>1.7</b> - <i>10-25-2024:</i></p>
+<ul>
+<li>Accept any dropped file - not just applications - as a favorite.</li>
+<li>More optimizations to reduce start-up time.</li>
+</ul>
 
 <p><b>1.6.1</b> - <i>10-19-2024:</i></p>
 <ul>
