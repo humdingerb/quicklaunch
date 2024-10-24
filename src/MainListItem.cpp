@@ -18,7 +18,8 @@
 
 MainListItem::MainListItem(BEntry* entry, BString name, int iconSize, bool isFav)
 	:
-	BListItem()
+	BListItem(),
+	fIsNoApp(false)
 {
 	fIconSize = iconSize;
 	fIsFavorite = isFav;
@@ -32,6 +33,16 @@ MainListItem::MainListItem(BEntry* entry, BString name, int iconSize, bool isFav
 		// cache name and path
 		snprintf(fName, sizeof(fName), "%s", name.String());
 		entry->GetPath(&fPath);
+
+		// check if the favorite is no application
+		if (fIsFavorite) {
+			char mimeString[B_MIME_TYPE_LENGTH];
+			BMimeType nodeType;
+
+			node_info.GetType(mimeString);
+			if (strcasecmp(mimeString, "application/x-vnd.Be-elfexecutable") != 0)
+				fIsNoApp = true;
+		}
 
 		// create bitmap large enough for icon
 		fIcon = new BBitmap(BRect(0, 0, fIconSize, fIconSize), 0, B_RGBA32);
@@ -124,11 +135,11 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 	else {
 		bgColor = ui_color(B_LIST_BACKGROUND_COLOR);
 		if (IsFavorite()) {
-			rgb_color favColor = (rgb_color){255, 255, 0, 255};
-			bgColor = mix_color(bgColor, favColor, 16);
+			rgb_color favColor = (rgb_color){255, 255, 0, 32};
+			rgb_color noAppColor = (rgb_color){0, 255, 0, 64};
+			bgColor = blend_color(fIsNoApp == true ? noAppColor : favColor, bgColor, 80);
 		}
 	}
-
 	view->SetHighColor(bgColor);
 	view->SetLowColor(bgColor);
 	view->FillRect(rect);

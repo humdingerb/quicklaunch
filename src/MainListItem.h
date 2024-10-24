@@ -47,6 +47,7 @@ private:
 	BBitmap*		fFavoriteIcon;
 	int				fIconSize;
 	bool			fIsFavorite;
+	bool			fIsNoApp;
 };
 
 #endif // QLLISTITEM_H
