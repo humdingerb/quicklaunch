@@ -40,8 +40,16 @@ MainListItem::MainListItem(BEntry* entry, BString name, int iconSize, bool isFav
 			BMimeType nodeType;
 
 			node_info.GetType(mimeString);
-			if (strcasecmp(mimeString, "application/x-vnd.Be-elfexecutable") != 0)
+			if (strcasecmp(mimeString, "application/x-vnd.Be-elfexecutable") != 0) {
 				fIsNoApp = true;
+				// In case the non-App favorite is a link,
+				// traverse to the source to get the right icon
+				entry_ref followRef;
+				entry->GetRef(&followRef);
+				BEntry followLink(&followRef, true); // traverse link
+				node.SetTo(&followLink);
+				node_info.SetTo(&node);
+			}
 		}
 
 		// create bitmap large enough for icon

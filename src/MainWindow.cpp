@@ -573,8 +573,6 @@ MainWindow::_AddDroppedAsFav(BMessage* message)
 	entry_ref ref;
 	if (message->FindRef("refs", &ref) != B_OK)
 		return;
-	BEntry followLink(&ref, true); // traverse link
-	followLink.GetRef(&ref);
 
 	BPoint dropPoint = message->DropPoint();
 	int32 dropIndex = fListView->IndexOf(fListView->ConvertFromScreen(dropPoint));
