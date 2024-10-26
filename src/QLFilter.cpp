@@ -181,14 +181,6 @@ QLFilter::Filter(BMessage* message, BHandler** target)
 				return B_SKIP_MESSAGE;
 			}
 		}
-		default:
-		{
-			BLooper* loop = (*target)->Looper();
-			if (loop) {
-				BMessenger msgr(loop);
-				msgr.SendMessage(NEW_FILTER);
-			}
-		}
 	}
 	return B_DISPATCH_MESSAGE;
 }

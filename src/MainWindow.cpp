@@ -420,7 +420,6 @@ MainWindow::ResizeWindow()
 #pragma mark-- Private Methods --
 
 
-
 /*static*/ status_t
 MainWindow::_AppListThread(void* _self)
 {
@@ -531,6 +530,7 @@ MainWindow::_BuildAppList()
 			query.Clear();
 		}
 	}
+
 	fBusy = false;
 	PostMessage(NEW_FILTER);
 }
