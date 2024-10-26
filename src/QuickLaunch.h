@@ -41,6 +41,7 @@ private:
 
 	void			_OpenHelp();
 	bool			_OpenShortcutPrefs();
+	void			_SetMainWindowFeel(window_feel feel);
 
 	QLSettings		fSettings;
 };

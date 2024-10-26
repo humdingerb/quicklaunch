@@ -34,7 +34,7 @@ compare_items(const void* a, const void* b)
 
 SetupWindow::SetupWindow(BRect frame)
 	:
-	BWindow(frame, B_TRANSLATE("Setup"), B_TITLED_WINDOW_LOOK, B_NORMAL_WINDOW_FEEL,
+	BWindow(frame, B_TRANSLATE("Setup"), B_TITLED_WINDOW_LOOK, B_FLOATING_ALL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_FRAME_EVENTS | B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
 	QLSettings& settings = my_app->Settings();
@@ -169,10 +169,10 @@ SetupWindow::~SetupWindow()
 bool
 SetupWindow::QuitRequested()
 {
-	this->Hide();
-
 	if (fOpenPanel->Window()->IsHidden() == false)
 		fOpenPanel->Hide();
+
+	be_app->PostMessage(SETUP_BUTTON);
 
 	return false;
 }

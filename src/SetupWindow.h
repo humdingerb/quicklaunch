@@ -12,7 +12,6 @@
 #define SETUP_WINDOW_H
 
 #include "IgnoreListView.h"
-#include "QLSettings.h"
 
 #include <Application.h>
 #include <Button.h>
@@ -31,9 +30,6 @@
 #include <Window.h>
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 
 #define DESKBAR_CHK		'chdb'
 #define VERSION_CHK		'chve'

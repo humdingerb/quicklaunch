@@ -95,10 +95,13 @@ QLApp::MessageReceived(BMessage* message)
 	switch (message->what) {
 		case SETUP_BUTTON:
 		{
-			if (fSetupWindow->IsHidden())
+			if (fSetupWindow->IsHidden()) {
+				_SetMainWindowFeel(B_NORMAL_WINDOW_FEEL);
 				fSetupWindow->Show();
-			else
+			} else {
+				_SetMainWindowFeel(B_FLOATING_ALL_WINDOW_FEEL);
 				fSetupWindow->Hide();
+			}
 			break;
 		}
 		case HELP_BUTTON:
@@ -429,6 +432,14 @@ QLApp::_OpenShortcutPrefs()
 	}
 }
 
+
+void
+QLApp::_SetMainWindowFeel(window_feel feel)
+{
+	fMainWindow->LockLooper();
+	fMainWindow->SetFeel(feel);
+	fMainWindow->UnlockLooper();
+}
 
 #pragma mark-- main --
 
