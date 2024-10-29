@@ -93,7 +93,7 @@ void
 QLApp::MessageReceived(BMessage* message)
 {
 	switch (message->what) {
-		case SETUP_BUTTON:
+		case SETUP_MENU:
 		{
 			if (fSetupWindow->IsHidden()) {
 				_SetMainWindowFeel(B_NORMAL_WINDOW_FEEL);
@@ -104,7 +104,7 @@ QLApp::MessageReceived(BMessage* message)
 			}
 			break;
 		}
-		case HELP_BUTTON:
+		case HELP_MENU:
 		{
 			_OpenHelp();
 			break;

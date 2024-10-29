@@ -137,7 +137,7 @@ QLFilter::Filter(BMessage* message, BHandler** target)
 		case 'h':
 		{
 			if (mod & B_COMMAND_KEY) {
-				be_app->PostMessage(HELP_BUTTON);
+				be_app->PostMessage(HELP_MENU);
 				return B_SKIP_MESSAGE;
 			}
 		}
@@ -177,7 +177,7 @@ QLFilter::Filter(BMessage* message, BHandler** target)
 		case 's':
 		{
 			if (mod & B_COMMAND_KEY) {
-				be_app->PostMessage(SETUP_BUTTON);
+				be_app->PostMessage(SETUP_MENU);
 				return B_SKIP_MESSAGE;
 			}
 		}

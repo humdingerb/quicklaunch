@@ -29,6 +29,7 @@ SRCS = \
 	 QLFilter.cpp  \
 	 QLSettings.cpp  \
 	 QuickLaunch.cpp  \
+	 IconMenuItem.cpp \
 	 IgnoreListItem.cpp  \
 	 IgnoreListView.cpp  \
 	 SetupWindow.cpp  \

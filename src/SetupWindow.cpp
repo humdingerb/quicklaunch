@@ -172,7 +172,7 @@ SetupWindow::QuitRequested()
 	if (fOpenPanel->Window()->IsHidden() == false)
 		fOpenPanel->Hide();
 
-	be_app->PostMessage(SETUP_BUTTON);
+	be_app->PostMessage(SETUP_MENU);
 
 	return false;
 }

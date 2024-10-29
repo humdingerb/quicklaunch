@@ -37,9 +37,12 @@
 #include <strings.h>
 
 
-#define SINGLE_CLICK	'1clk'
-#define SETUP_BUTTON	'setb'
-#define HELP_BUTTON		'help'
+#define SINGLE_CLICK		'1clk'
+#define SETUP_MENU			'setb'
+#define HELP_MENU			'help'
+#define ADD_REMOVE_FAVORITE	'arfv'
+#define ADDIGNORE			'addi'
+
 
 #define kMAX_DISPLAYED_ITEMS	10
 
@@ -49,6 +52,7 @@ public:
 					MainWindow();
 	virtual			~MainWindow();
 
+	void			MenusBeginning();
 	void			MessageReceived(BMessage* message);
 	bool			QuitRequested();
 
@@ -77,9 +81,16 @@ private:
 
 	BObjectList<AppListItem> fAppList;
 	int32			fIconHeight;
+
+	BMenu*			fSelectionMenu;
+
+	BMenuItem*		fAddRemoveFav;
+	BMenuItem*		fAddToIgnore;
+	BMenuItem*		fTempShowPath;
+	BMenuItem*		fTempShowVersion;
+	BMenuItem*		fTempSearchFromStart;
+
 	BTextControl*	fSearchBox;
-	BButton*		fSetupButton;
-	BButton*		fHelpButton;
 	BScrollView*	fScrollView;
 };
 

@@ -9,6 +9,8 @@
  */
 
 #include "MainWindow.h"
+#include "MenuBar.h"
+#include "IconMenuItem.h"
 #include "IgnoreListItem.h"
 #include "QLFilter.h"
 #include "QuickLaunch.h"
@@ -22,6 +24,7 @@
 #include <algorithm>
 
 // from QuickLaunch.cpp
+extern char* kApplicationSignature;
 extern const char* kApplicationName;
 
 #undef B_TRANSLATION_CONTEXT
@@ -64,13 +67,50 @@ MainWindow::MainWindow()
 	QLSettings& settings = my_app->Settings();
 	fIconHeight = (int32(be_control_look->ComposeIconSize(B_LARGE_ICON).Height()) + 2);
 
+	BMenuBar* menubar = new BMenuBar("mainmenu");
+	BMenuItem* item;
+
+	BMenu* menu = new BMenu("");
+	menu->AddItem(new BMenuItem(
+		B_TRANSLATE("Settings" B_UTF8_ELLIPSIS), new BMessage(SETUP_MENU), ','));
+	menu->AddSeparatorItem();
+	item = new BMenuItem(B_TRANSLATE("Help"), new BMessage(HELP_MENU), 'H');
+	item->SetTarget(be_app);
+	menu->AddItem(item);
+	item = new BMenuItem(B_TRANSLATE("About QuickLaunch"), new BMessage(B_ABOUT_REQUESTED));
+	item->SetTarget(be_app);
+	menu->AddItem(item);
+	menu->AddSeparatorItem();
+	menu->AddItem(new BMenuItem(B_TRANSLATE("Quit"), new BMessage(B_QUIT_REQUESTED), 'Q'));
+
+	menubar->AddItem(new IconMenuItem(menu, NULL, kApplicationSignature, B_MINI_ICON));
+
+	fSelectionMenu = new BMenu(B_TRANSLATE("Selection"));
+	fAddRemoveFav = new BMenuItem("AddRemoveFavorite", new BMessage(ADD_REMOVE_FAVORITE));
+	fSelectionMenu->AddItem(fAddRemoveFav);
+	fAddToIgnore = new BMenuItem(B_TRANSLATE("Add to ignore list"), new BMessage(ADDIGNORE) , 'I');
+	fSelectionMenu->AddItem(fAddToIgnore);
+	item = new BMenuItem(B_TRANSLATE("Open containing folder"), new BMessage(OPENLOCATION), 'O');
+	fSelectionMenu->AddItem(item);
+
+	menubar->AddItem(fSelectionMenu);
+
+	menu = new BMenu(B_TRANSLATE("Temporary options"));
+	fTempShowPath = new BMenuItem(
+		B_TRANSLATE("Show application path"), new BMessage(PATH_CHK), 'P');
+	menu->AddItem(fTempShowPath);
+	fTempShowVersion = new BMenuItem(
+		B_TRANSLATE("Show application version"), new BMessage(PATH_CHK), 'V');
+	menu->AddItem(fTempShowVersion);
+	menu->AddSeparatorItem();
+	fTempSearchFromStart = new BMenuItem(
+		B_TRANSLATE("Search from start of application name"), new BMessage(SEARCHSTART_CHK), 'S');
+	menu->AddItem(fTempSearchFromStart);
+
+	menubar->AddItem(menu);
+
 	fSearchBox = new BTextControl("SearchBox", NULL, NULL, NULL);
 	fSearchBox->SetModificationMessage(new BMessage (NEW_FILTER));
-
-	fSetupButton = new BButton("Setup", B_TRANSLATE("Setup"), new BMessage(SETUP_BUTTON));
-	fSetupButton->SetTarget(be_app);
-	fHelpButton = new BButton("Help", B_TRANSLATE("Help"), new BMessage(HELP_BUTTON));
-	fHelpButton->SetTarget(be_app);
 
 	fListView = new MainListView();
 	fListView->SetExplicitMinSize(BSize(B_SIZE_UNSET, fIconHeight + 8));
@@ -80,17 +120,12 @@ MainWindow::MainWindow()
 	// Build the layout
 
 	BLayoutBuilder::Group<>(this, B_VERTICAL, 0)
-		.AddGroup(B_HORIZONTAL, 0)
-			.Add(fSearchBox)
-			.AddStrut(B_USE_ITEM_SPACING)
-			.Add(fSetupButton)
-			.AddStrut(B_USE_HALF_ITEM_SPACING)
-			.Add(fHelpButton)
-			.SetInsets(B_USE_HALF_ITEM_SPACING)
-			.End()
+		.Add(menubar)
 		.AddGroup(B_VERTICAL, 0)
+			.Add(fSearchBox)
+			.AddStrut(B_USE_HALF_ITEM_SPACING)
 			.Add(fScrollView)
-			.SetInsets(B_USE_HALF_ITEM_SPACING, 0, B_USE_HALF_ITEM_SPACING, B_USE_HALF_ITEM_SPACING)
+			.SetInsets(B_USE_HALF_ITEM_SPACING)
 			.End();
 
 	fSearchBox->MakeFocus(true);
@@ -123,6 +158,27 @@ MainWindow::~MainWindow()
 
 
 #pragma mark-- BWindow Overrides --
+
+
+void
+MainWindow::MenusBeginning()
+{
+	MainListItem* sItem
+		= dynamic_cast<MainListItem*>(fListView->ItemAt(fListView->CurrentSelection()));
+
+	if (sItem == NULL)
+		return;
+
+	if (sItem->IsFavorite()) {
+		fAddRemoveFav->SetLabel(B_TRANSLATE("Remove favorite"));
+		fAddRemoveFav->SetShortcut('R', B_COMMAND_KEY);
+		fAddToIgnore->SetEnabled(false);
+	} else {
+		fAddRemoveFav->SetLabel(B_TRANSLATE("Add to favorites"));
+		fAddRemoveFav->SetShortcut('A', B_COMMAND_KEY);
+		fAddToIgnore->SetEnabled(true);
+	}
+}
 
 
 void
@@ -287,6 +343,13 @@ MainWindow::MessageReceived(BMessage* message)
 		case NEW_FILTER:
 		{
 			FilterAppList();
+
+			if (fListView->IsEmpty()) {
+				fSelectionMenu->SetEnabled(false);
+				break;
+			} else
+				fSelectionMenu->SetEnabled(true);
+
 			fListView->Select(0);
 			break;
 		}
