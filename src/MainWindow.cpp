@@ -77,20 +77,19 @@ MainWindow::MainWindow()
 	fScrollView = new BScrollView("ScrollList", fListView, B_WILL_DRAW, false, true);
 
 	// Build the layout
-	float spacing = be_control_look->DefaultItemSpacing();
 
 	BLayoutBuilder::Group<>(this, B_VERTICAL, 0)
 		.AddGroup(B_HORIZONTAL, 0)
 			.Add(fSearchBox)
-			.AddStrut(spacing)
+			.AddStrut(B_USE_ITEM_SPACING)
 			.Add(fSetupButton)
-			.AddStrut(spacing / 2)
+			.AddStrut(B_USE_HALF_ITEM_SPACING)
 			.Add(fHelpButton)
-			.SetInsets(spacing / 2)
+			.SetInsets(B_USE_HALF_ITEM_SPACING)
 			.End()
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fScrollView)
-			.SetInsets(spacing / 2, 0, spacing / 2, spacing / 2)
+			.SetInsets(B_USE_HALF_ITEM_SPACING, 0, B_USE_HALF_ITEM_SPACING, B_USE_HALF_ITEM_SPACING)
 			.End();
 
 	fSearchBox->MakeFocus(true);
