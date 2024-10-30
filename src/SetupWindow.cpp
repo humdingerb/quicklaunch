@@ -32,10 +32,11 @@ compare_items(const void* a, const void* b)
 }
 
 
-SetupWindow::SetupWindow(BRect frame)
+SetupWindow::SetupWindow(BRect frame, BMessenger main_msgr)
 	:
 	BWindow(frame, B_TRANSLATE("Setup"), B_TITLED_WINDOW_LOOK, B_FLOATING_ALL_WINDOW_FEEL,
-		B_NOT_ZOOMABLE | B_FRAME_EVENTS | B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
+		B_NOT_ZOOMABLE | B_FRAME_EVENTS | B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE),
+	fMainMessenger(main_msgr)
 {
 	QLSettings& settings = my_app->Settings();
 	if (settings.Lock()) {
@@ -90,12 +91,10 @@ SetupWindow::SetupWindow(BRect frame)
 	fButRem->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
 	fChkDeskbar->SetTarget(be_app);
-	fChkVersion->SetTarget(be_app);
-	fChkPath->SetTarget(be_app);
-	fChkSearchStart->SetTarget(be_app);
-	fChkSaveSearch->SetTarget(be_app);
-	fChkSortFavorites->SetTarget(be_app);
-	fChkIgnore->SetTarget(be_app);
+	fChkVersion->SetTarget(fMainMessenger);
+	fChkPath->SetTarget(fMainMessenger);
+	fChkSearchStart->SetTarget(fMainMessenger);
+	fChkSortFavorites->SetTarget(fMainMessenger);
 
 	// Build the layout
 
@@ -169,10 +168,13 @@ SetupWindow::~SetupWindow()
 bool
 SetupWindow::QuitRequested()
 {
+	QLSettings& settings = my_app->Settings();
+	settings.SetSetupWindowFrame(Frame());
+
 	if (fOpenPanel->Window()->IsHidden() == false)
 		fOpenPanel->Hide();
 
-	be_app->PostMessage(SETUP_MENU);
+	fMainMessenger.SendMessage(SETUP_MENU);
 
 	return false;
 }
@@ -181,7 +183,38 @@ SetupWindow::QuitRequested()
 void
 SetupWindow::MessageReceived(BMessage* message)
 {
+	QLSettings& settings = my_app->Settings();
+
 	switch (message->what) {
+		case IGNORE_CHK:
+		{
+			if (settings.fIgnoreList->IsEmpty()) {
+				fChkIgnore->SetValue(false);
+				settings.SetShowIgnore(false);
+
+				break;
+			}
+			int32 value;
+			message->FindInt32("be:value", &value);
+
+			settings.SetShowIgnore(value);
+			fChkIgnore->SetValue(value);
+
+			fMainMessenger.SendMessage(message);
+			break;
+		}
+		case FILEPANEL:
+		{
+			if (!settings.fIgnoreList->IsEmpty()) {
+				fChkIgnore->SetValue(true);
+				settings.SetShowIgnore(true);
+			} else {
+				fChkIgnore->SetValue(false);
+				settings.SetShowIgnore(false);
+			}
+			fMainMessenger.SendMessage(message);
+			break;
+		}
 		case OPEN_SHORTCUTS:
 		{
 			be_roster->Launch("application/x-vnd.Haiku-Shortcuts");

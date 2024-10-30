@@ -119,8 +119,8 @@ void
 MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 {
 	QLSettings& settings = my_app->Settings();
-	bool showVersion = settings.GetShowVersion();
-	bool showPath = settings.GetShowPath();
+	bool showVersion = settings.GetTempShowVersion();
+	bool showPath = settings.GetTempShowPath();
 
 	float spacing = be_control_look->DefaultLabelSpacing();
 	float offset = spacing;

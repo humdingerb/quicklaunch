@@ -37,13 +37,13 @@ QLSettings::QLSettings()
 	delete screen;
 	fSetupWindowFrame = fMainWindowFrame.OffsetByCopy(70.0, 120.0);
 	fDeskbar = false;
-	fShowVersion = false;
-	fShowPath = true;
-	fSearchStart = true;
+	fShowVersion = fTempShowVersion = false;
+	fShowPath = fTempShowPath = true;
+	fSearchStart = fTempSearchStart = true;
 	fSaveSearch = false;
 	fSortFavorites = false;
 	fSearchTerm = "";
-	fShowIgnore = false;
+	fShowIgnore = fTempShowIgnore = false;
 	fFavoriteList = new BObjectList<entry_ref>(20, true);
 	fIgnoreList = new IgnoreListView();
 
@@ -67,15 +67,15 @@ QLSettings::QLSettings()
 
 		int32 version;
 		if (settings.FindInt32("show version", &version) == B_OK)
-			fShowVersion = version;
+			fShowVersion = fTempShowVersion = version;
 
 		int32 path;
 		if (settings.FindInt32("show path", &path) == B_OK)
-			fShowPath = path;
+			fShowPath = fTempShowPath = path;
 
 		int32 searchstart;
 		if (settings.FindInt32("searchstart", &searchstart) == B_OK)
-			fSearchStart = searchstart;
+			fSearchStart = fTempSearchStart = searchstart;
 
 		int32 savesearch;
 		if (settings.FindInt32("savesearch", &savesearch) == B_OK)
@@ -87,7 +87,7 @@ QLSettings::QLSettings()
 
 		int32 ignore;
 		if (settings.FindInt32("show ignore", &ignore) == B_OK)
-			fShowIgnore = ignore;
+			fShowIgnore = fTempShowIgnore = ignore;
 
 		int32 sortfavs;
 		if (settings.FindInt32("sort favorites", &sortfavs) == B_OK)
@@ -111,8 +111,7 @@ QLSettings::SaveSettings()
 
 	BMessage settings;
 	settings.AddRect("main window frame", my_app->fMainWindow->Frame());
-	settings.AddRect("setup window frame",
-		my_app->fSetupWindow->ConvertToScreen(my_app->fSetupWindow->Bounds()));
+	settings.AddRect("setup window frame", fSetupWindowFrame);
 	settings.AddInt32("deskbar", fDeskbar);
 	settings.AddInt32("show version", fShowVersion);
 	settings.AddInt32("show path", fShowPath);

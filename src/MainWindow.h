@@ -58,12 +58,17 @@ public:
 
 	void			BuildAppList();
 	void			FilterAppList();
+
 	float			GetScrollPosition();
 	void			SetScrollPosition(float position);
+	void			RestorePositionAndSelection();
+
 	int				GetStringLength()
 						{return fSearchBox->TextView()->TextLength();};
 	const char*		GetSearchString()
 						{return fSearchBox->TextView()->Text();};
+	bool			GetTempShowPath();
+	bool			GetTempShowVersion();
 	void			ResizeWindow();
 
 	MainListView*	fListView;
@@ -88,10 +93,12 @@ private:
 	BMenuItem*		fAddToIgnore;
 	BMenuItem*		fTempShowPath;
 	BMenuItem*		fTempShowVersion;
-	BMenuItem*		fTempSearchFromStart;
+	BMenuItem*		fTempSearchStart;
 
 	BTextControl*	fSearchBox;
 	BScrollView*	fScrollView;
+
+	BWindow*		fSetupWindow;
 };
 
 #endif // QL_WINDOW_H

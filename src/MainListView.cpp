@@ -273,10 +273,10 @@ MainListView::MessageReceived(BMessage* message)
 			ref = item->Ref();
 
 			if (ref) {
-				BMessenger msgr(my_app->fSetupWindow);
+				// BMessenger msgr(my_app->fSetupWindow);
 				BMessage refMsg(B_REFS_RECEIVED);
 				refMsg.AddRef("refs", ref);
-				msgr.SendMessage(&refMsg);
+				Window()->PostMessage(&refMsg);
 			}
 			break;
 		}

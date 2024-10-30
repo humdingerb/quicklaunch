@@ -52,6 +52,16 @@ public:
 	int32	GetShowIgnore() { return fShowIgnore; };
 	int32	GetSortFavorites() { return fSortFavorites; };
 
+	// Set/Getters for "Temporary options" menu
+	void	SetTempShowVersion(int32 version) { fTempShowVersion = version; };
+	void	SetTempShowPath(int32 path) { fTempShowPath = path; };
+	void	SetTempSearchStart(int32 searchstart) { fTempSearchStart = searchstart; };
+	void	SetTempShowIgnore(int32 ignore) { fTempShowIgnore = ignore; };
+	int32	GetTempShowVersion() { return fTempShowVersion; };
+	int32	GetTempShowPath() { return fTempShowPath; };
+	int32	GetTempSearchStart() { return fTempSearchStart; };
+	int32	GetTempShowIgnore() { return fTempShowIgnore; };
+
 	void			InitLists();
 	IgnoreListView* IgnoreList() { return fIgnoreList; };
 
@@ -69,6 +79,12 @@ private:
 	BString	fSearchTerm;
 	int32	fShowIgnore;
 	int32	fSortFavorites;
+
+	// Settings for "Temporary options" menu
+	int32	fTempShowVersion;
+	int32	fTempShowPath;
+	int32	fTempSearchStart;
+	int32	fTempShowIgnore;
 
 	BLocker	fLock;
 };

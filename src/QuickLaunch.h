@@ -31,17 +31,14 @@ public:
 
 	QLSettings& 	Settings() { return fSettings; }
 
-	SetupWindow*	fSetupWindow;
 	MainWindow*		fMainWindow;
 
 private:
 	void			_AddToDeskbar();
 	void			_RemoveFromDeskbar();
-	void			_RestorePositionAndSelection();
 
 	void			_OpenHelp();
 	bool			_OpenShortcutPrefs();
-	void			_SetMainWindowFeel(window_feel feel);
 
 	QLSettings		fSettings;
 };

@@ -46,7 +46,7 @@
 
 class SetupWindow : public BWindow {
 public:
-					SetupWindow(BRect frame);
+					SetupWindow(BRect frame, BMessenger main_window);
 	virtual			~SetupWindow();
 
 	bool			QuitRequested();
@@ -72,6 +72,7 @@ private:
 	BFilePanel*		fOpenPanel;
 
 	IgnoreListView*	fIgnoreList;
+	BMessenger		fMainMessenger;
 };
 
 #endif // SETUP_WINDOW_H

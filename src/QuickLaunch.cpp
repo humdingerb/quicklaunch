@@ -30,7 +30,6 @@ const char* kApplicationName = "QuickLaunch";
 QLApp::QLApp()
 	:
 	BApplication(kApplicationSignature),
-	fSetupWindow(NULL),
 	fMainWindow(NULL)
 {
 	// Check if user's Shortcuts have the old QL location
@@ -43,7 +42,6 @@ QLApp::QLApp()
 
 	fSettings.InitLists();
 
-	fSetupWindow = new SetupWindow(fSettings.GetSetupWindowFrame());
 	fMainWindow = new MainWindow();
 }
 
@@ -56,11 +54,6 @@ QLApp::~QLApp()
 		BMessenger messengerMain(fMainWindow);
 		if (messengerMain.IsValid() && messengerMain.LockTarget())
 			fMainWindow->Quit();
-	}
-	if (fSetupWindow != NULL) {
-		BMessenger messengerSetup(fSetupWindow);
-		if (messengerSetup.IsValid() && messengerSetup.LockTarget())
-			fSetupWindow->Quit();
 	}
 }
 
@@ -93,17 +86,6 @@ void
 QLApp::MessageReceived(BMessage* message)
 {
 	switch (message->what) {
-		case SETUP_MENU:
-		{
-			if (fSetupWindow->IsHidden()) {
-				_SetMainWindowFeel(B_NORMAL_WINDOW_FEEL);
-				fSetupWindow->Show();
-			} else {
-				_SetMainWindowFeel(B_FLOATING_ALL_WINDOW_FEEL);
-				fSetupWindow->Hide();
-			}
-			break;
-		}
 		case HELP_MENU:
 		{
 			_OpenHelp();
@@ -125,142 +107,13 @@ QLApp::MessageReceived(BMessage* message)
 				_RemoveFromDeskbar();
 			break;
 		}
-		case VERSION_CHK:
-		{
-			int32 value;
-			message->FindInt32("be:value", &value);
-
-			if (fSettings.Lock()) {
-				fSettings.SetShowVersion(value);
-				fSettings.Unlock();
-			}
-
-			if (!fMainWindow->fListView->IsEmpty()) {
-				fMainWindow->LockLooper();
-				fMainWindow->fListView->Invalidate();
-				fMainWindow->UnlockLooper();
-			}
-			break;
-		}
-		case PATH_CHK:
-		{
-			int32 value;
-			message->FindInt32("be:value", &value);
-
-			if (fSettings.Lock()) {
-				fSettings.SetShowPath(value);
-				fSettings.Unlock();
-			}
-
-			if (!fMainWindow->fListView->IsEmpty()) {
-				fMainWindow->LockLooper();
-				fMainWindow->fListView->Invalidate();
-				fMainWindow->UnlockLooper();
-			}
-			break;
-		}
-		case SEARCHSTART_CHK:
-		{
-			int32 value;
-			message->FindInt32("be:value", &value);
-
-			if (fSettings.Lock()) {
-				fSettings.SetSearchStart(value);
-				fSettings.Unlock();
-			}
-
-			if (!fMainWindow->fListView->IsEmpty())
-				_RestorePositionAndSelection();
-
-			break;
-		}
-		case SAVESEARCH_CHK:
-		{
-			int32 value;
-			message->FindInt32("be:value", &value);
-
-			if (fSettings.Lock()) {
-				fSettings.SetSaveSearch(value);
-				fSettings.Unlock();
-			}
-			break;
-		}
-		case SORTFAVS_CHK:
-		{
-			int32 value;
-			message->FindInt32("be:value", &value);
-
-			if (fSettings.Lock()) {
-				fSettings.SetSortFavorites(value);
-				fSettings.Unlock();
-			}
-
-			if (!fMainWindow->fListView->IsEmpty()) {
-				fMainWindow->LockLooper();
-				fMainWindow->FilterAppList();
-				fMainWindow->UnlockLooper();
-			}
-			break;
-		}
-		case IGNORE_CHK:
-		{
-			if (fSettings.fIgnoreList->IsEmpty()) {
-				fSetupWindow->LockLooper();
-				fSetupWindow->fChkIgnore->SetValue(false);
-
-				if (fSettings.Lock()) {
-					fSettings.SetShowIgnore(false);
-					fSettings.Unlock();
-				}
-
-				fSetupWindow->UnlockLooper();
-				break;
-			}
-			int32 value;
-			message->FindInt32("be:value", &value);
-
-			if (fSettings.Lock()) {
-				fSettings.SetShowIgnore(value);
-				fSettings.Unlock();
-			}
-
-			if (!fSettings.fIgnoreList->IsEmpty()) {
-				fSetupWindow->fChkIgnore->SetValue(value);
-				fMainWindow->BuildAppList();
-				_RestorePositionAndSelection();
-			}
-			break;
-		}
-		case FILEPANEL:
-		{
-			if (!fSettings.fIgnoreList->IsEmpty()) {
-				fSetupWindow->LockLooper();
-				fSetupWindow->fChkIgnore->SetValue(true);
-				if (fSettings.Lock()) {
-					fSettings.SetShowIgnore(true);
-					fSettings.Unlock();
-				}
-				fSetupWindow->UnlockLooper();
-			} else {
-				fSetupWindow->LockLooper();
-				fSetupWindow->fChkIgnore->SetValue(false);
-				if (fSettings.Lock()) {
-					fSettings.SetShowIgnore(false);
-					fSettings.Unlock();
-				}
-				fSetupWindow->UnlockLooper();
-			}
-			fMainWindow->BuildAppList();
-			_RestorePositionAndSelection();
-			break;
-		}
 		case B_NODE_MONITOR:
 		{
 			int32 opcode = message->GetInt32("opcode", -1);
 
 			if ((opcode == B_DEVICE_MOUNTED) || (opcode == B_DEVICE_UNMOUNTED)) {
 				fMainWindow->BuildAppList();
-				_RestorePositionAndSelection();
+				fMainWindow->RestorePositionAndSelection();
 			}
 			break;
 		}
@@ -291,9 +144,6 @@ QLApp::ReadyToRun()
 
 	// Initial filtering. Shows favorites and resizes window correctly
 	fMainWindow->PostMessage(NEW_FILTER);
-
-	fSetupWindow->Hide();
-	fSetupWindow->Show();
 
 	watch_node(NULL, B_WATCH_MOUNT, this);
 }
@@ -336,25 +186,6 @@ QLApp::_RemoveFromDeskbar()
 				found_id, strerror(err));
 		}
 	}
-}
-
-
-void
-QLApp::_RestorePositionAndSelection()
-{
-	fMainWindow->fListView->LockLooper();
-	int32 selection = fMainWindow->fListView->CurrentSelection();
-	float position = fMainWindow->GetScrollPosition();
-	fMainWindow->FilterAppList();
-	if (selection >= 0) {
-		fMainWindow->fListView->Select((selection < fMainWindow->fListView->CountItems())
-				? selection
-				: fMainWindow->fListView->CountItems() - 1);
-	} else if (!fMainWindow->fListView->IsEmpty())
-		fMainWindow->fListView->Select(0);
-
-	fMainWindow->SetScrollPosition(position);
-	fMainWindow->fListView->UnlockLooper();
 }
 
 
@@ -432,14 +263,6 @@ QLApp::_OpenShortcutPrefs()
 	}
 }
 
-
-void
-QLApp::_SetMainWindowFeel(window_feel feel)
-{
-	fMainWindow->LockLooper();
-	fMainWindow->SetFeel(feel);
-	fMainWindow->UnlockLooper();
-}
 
 #pragma mark-- main --
 

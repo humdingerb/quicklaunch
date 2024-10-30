@@ -63,9 +63,14 @@ MainWindow::MainWindow()
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE | B_FRAME_EVENTS
 			| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE),
 	fAppList(20, true)
+	fBusy(false)
 {
 	QLSettings& settings = my_app->Settings();
 	fIconHeight = (int32(be_control_look->ComposeIconSize(B_LARGE_ICON).Height()) + 2);
+
+	fSetupWindow = new SetupWindow(settings.GetSetupWindowFrame(), this);
+	fSetupWindow->Hide();
+	fSetupWindow->Show();
 
 	BMenuBar* menubar = new BMenuBar("mainmenu");
 	BMenuItem* item;
@@ -98,14 +103,17 @@ MainWindow::MainWindow()
 	menu = new BMenu(B_TRANSLATE("Temporary options"));
 	fTempShowPath = new BMenuItem(
 		B_TRANSLATE("Show application path"), new BMessage(PATH_CHK), 'P');
+	fTempShowPath->SetMarked(settings.GetTempShowPath() == true);
 	menu->AddItem(fTempShowPath);
 	fTempShowVersion = new BMenuItem(
-		B_TRANSLATE("Show application version"), new BMessage(PATH_CHK), 'V');
+		B_TRANSLATE("Show application version"), new BMessage(VERSION_CHK), 'V');
+	fTempShowVersion->SetMarked(settings.GetTempShowVersion() == true);
 	menu->AddItem(fTempShowVersion);
 	menu->AddSeparatorItem();
-	fTempSearchFromStart = new BMenuItem(
+	fTempSearchStart = new BMenuItem(
 		B_TRANSLATE("Search from start of application name"), new BMessage(SEARCHSTART_CHK), 'S');
-	menu->AddItem(fTempSearchFromStart);
+	fTempSearchStart->SetMarked(settings.GetTempSearchStart() == true);
+	menu->AddItem(fTempSearchStart);
 
 	menubar->AddItem(menu);
 
@@ -175,7 +183,7 @@ MainWindow::MenusBeginning()
 		fAddToIgnore->SetEnabled(false);
 	} else {
 		fAddRemoveFav->SetLabel(B_TRANSLATE("Add to favorites"));
-		fAddRemoveFav->SetShortcut('A', B_COMMAND_KEY);
+		fAddRemoveFav->SetShortcut('F', B_COMMAND_KEY);
 		fAddToIgnore->SetEnabled(true);
 	}
 }
@@ -340,6 +348,11 @@ MainWindow::MessageReceived(BMessage* message)
 			messenger.SendMessage(message);
 			break;
 		}
+		case B_REFS_RECEIVED:
+		{
+			fSetupWindow->MessageReceived(message);
+			break;
+		}
 		case NEW_FILTER:
 		{
 			FilterAppList();
@@ -357,6 +370,83 @@ MainWindow::MessageReceived(BMessage* message)
 		{
 			if (fSearchBox->TextLength() == 0)
 				_AddDroppedAsFav(message);
+			break;
+		}
+		case SETUP_MENU:
+		{
+			if (fSetupWindow->IsHidden()) {
+				SetFeel(B_NORMAL_WINDOW_FEEL);
+				fSetupWindow->Show();
+			} else {
+				SetFeel(B_FLOATING_ALL_WINDOW_FEEL);
+				fSetupWindow->Hide();
+			}
+			break;
+		}
+		case VERSION_CHK:
+		{
+			int32 value;
+			if (message->FindInt32("be:value", &value) == B_OK)
+				settings.SetShowVersion(value);
+			else
+				value = fTempShowVersion->IsMarked() == true ? 0 : 1;
+
+			settings.SetTempShowVersion(value);
+			fTempShowVersion->SetMarked(value);
+			fListView->Invalidate();
+			break;
+		}
+		case PATH_CHK:
+		{
+			int32 value;
+			if (message->FindInt32("be:value", &value) == B_OK)
+				settings.SetShowPath(value);
+			else
+				value = fTempShowPath->IsMarked() == true ? 0 : 1;
+
+			settings.SetTempShowPath(value);
+			fTempShowPath->SetMarked(value);
+			fListView->Invalidate();
+			break;
+		}
+		case SEARCHSTART_CHK:
+		{
+			int32 value;
+			if (message->FindInt32("be:value", &value) == B_OK)
+				settings.SetSearchStart(value);
+			else
+				value = fTempSearchStart->IsMarked() == true ? 0 : 1;
+
+			settings.SetTempSearchStart(value);
+			fTempSearchStart->SetMarked(value);
+
+			if (!fListView->IsEmpty())
+				RestorePositionAndSelection();
+
+			break;
+		}
+		case SAVESEARCH_CHK:
+		{
+			int32 value;
+			message->FindInt32("be:value", &value);
+			settings.SetSaveSearch(value);
+			break;
+		}
+		case SORTFAVS_CHK:
+		{
+			int32 value;
+			message->FindInt32("be:value", &value);
+			settings.SetSortFavorites(value);
+
+			if (!fListView->IsEmpty())
+				FilterAppList();
+			break;
+		}
+		case FILEPANEL:
+		case IGNORE_CHK:
+		{
+			BuildAppList();
+			RestorePositionAndSelection();
 			break;
 		}
 		default:
@@ -405,7 +495,7 @@ MainWindow::FilterAppList()
 		if (searchtext == "")
 			_ShowFavorites();
 		else {
-			int32 searchFromStart = settings.GetSearchStart();
+			int32 searchFromStart = settings.GetTempSearchStart();
 			bool showAll = (searchtext == "*");
 			bool startJocker = searchtext.StartsWith("*");
 			if (startJocker)
@@ -470,6 +560,37 @@ MainWindow::SetScrollPosition(float position)
 	return;
 }
 
+
+void
+MainWindow::RestorePositionAndSelection()
+{
+	// fMainWindow->fListView->LockLooper();
+	int32 selection = fListView->CurrentSelection();
+	float position = GetScrollPosition();
+	FilterAppList();
+	if (selection >= 0) {
+		fListView->Select((selection < fListView->CountItems())
+				? selection : fListView->CountItems() - 1);
+	} else if (!fListView->IsEmpty())
+		fListView->Select(0);
+
+	SetScrollPosition(position);
+	// fListView->UnlockLooper();
+}
+
+
+bool
+MainWindow::GetTempShowPath()
+{
+	return (fTempShowPath->IsMarked() == true);
+}
+
+
+bool
+MainWindow::GetTempShowVersion()
+{
+	return (fTempShowVersion->IsMarked() == true);
+}
 
 void
 MainWindow::ResizeWindow()
