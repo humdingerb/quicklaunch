@@ -412,8 +412,9 @@ MainWindow::ResizeWindow()
 	count = (count < kMAX_DISPLAYED_ITEMS) ? count : kMAX_DISPLAYED_ITEMS;
 	BRect itemRect = fListView->ItemFrame(0);
 	float itemHeight = itemRect.Height();
-	float windowRest = Frame().Height() - fListView->Frame().Height();
-	ResizeTo(Bounds().Width(), count * itemHeight + windowRest + count - 2);
+	float heightDelta = (count * (itemHeight + 1) - 1) - fListView->Frame().Height();
+	if (fabs(heightDelta) > 2)
+		ResizeTo(Bounds().Width(), Frame().Height() + heightDelta);
 }
 
 
