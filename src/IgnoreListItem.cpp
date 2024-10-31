@@ -82,3 +82,24 @@ IgnoreListItem::DrawItem(BView* view, BRect rect, bool complete)
 	view->TruncateString(&string, B_TRUNCATE_MIDDLE, width - spacing);
 	view->DrawString(string.String());
 }
+
+
+#pragma mark-- Public Methods --
+
+
+bool
+IgnoreListItem::Ignores(const BString& path) const
+{
+	BString sPath = path;
+
+	if (fIsDirectory) {
+		BPath container = sPath.String();
+		while (sPath.Length() > GetItem().Length()) {
+			if (container.GetParent(&container) != B_OK)
+				break;
+			sPath = container.Path();
+		}
+	}
+
+	return sPath.Compare(GetItem()) == 0;
+}

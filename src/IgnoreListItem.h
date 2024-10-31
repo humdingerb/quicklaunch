@@ -30,6 +30,7 @@ public:
 	virtual void	DrawItem(BView*, BRect, bool);
 
 	const BString&	GetItem() const { return fItemString; };
+	bool			Ignores(const BString& path) const;
 
 private:
 	BPath*			fPath;

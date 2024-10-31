@@ -518,8 +518,7 @@ MainWindow::_BuildAppList()
 						IgnoreListItem* sItem = dynamic_cast<IgnoreListItem*>(
 							settings.fIgnoreList->ItemAt(i));
 
-						if (newItem.Compare(sItem->GetItem(),
-							std::min(newItem.Length(), sItem->GetItem().Length())) == 0)
+						if (sItem->Ignores(newItem))
 							ignore = true;
 					}
 				}
