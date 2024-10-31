@@ -191,13 +191,12 @@ MainListView::MessageReceived(BMessage* message)
 			int selection = CurrentSelection();
 			item = dynamic_cast<MainListItem*>(ItemAt(selection));
 
-			if (item->IsFavorite())
+			if (item == NULL || item->IsFavorite())
 				break;
 
 			item->SetFavorite(true);
 
-			if (item)
-				ref = item->Ref();
+			ref = item->Ref();
 
 			if (ref) {
 				bool duplicate = false;
@@ -227,19 +226,17 @@ MainListView::MessageReceived(BMessage* message)
 			int selection = CurrentSelection();
 			item = dynamic_cast<MainListItem*>(ItemAt(selection));
 
-			if (!item->IsFavorite())
+			if (item == NULL || !item->IsFavorite())
 				break;
 
 			MainWindow* window = dynamic_cast<MainWindow*>(Window());
 			int letters = window->GetStringLength();
 
-			if (item) {
-				ref = item->Ref();
-				item->SetFavorite(false);
-				if (letters == 0) { // don't remove from result list
-					RemoveItem(selection);
-					Select((selection - 1 < 0) ? 0 : selection - 1);
-				}
+			ref = item->Ref();
+			item->SetFavorite(false);
+			if (letters == 0) { // don't remove from result list
+				RemoveItem(selection);
+				Select((selection - 1 < 0) ? 0 : selection - 1);
 			}
 
 			if (ref) {
@@ -266,11 +263,10 @@ MainListView::MessageReceived(BMessage* message)
 			int selection = CurrentSelection();
 			item = dynamic_cast<MainListItem*>(ItemAt(selection));
 
-			if (item->IsFavorite())
+			if (item == NULL || item->IsFavorite())
 				break;
 
-			if (item)
-				ref = item->Ref();
+			ref = item->Ref();
 
 			if (ref) {
 				BMessenger msgr(my_app->fSetupWindow);
