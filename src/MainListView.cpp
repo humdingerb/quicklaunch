@@ -205,8 +205,10 @@ MainListView::MessageReceived(BMessage* message)
 					for (int i = 0; i < settings.fFavoriteList->CountItems(); i++) {
 						entry_ref* favorite
 							= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
-						if (*ref == *favorite)
+						if (*ref == *favorite) {
 							duplicate = true;
+							break;
+						}
 					}
 					if (!duplicate)
 						settings.fFavoriteList->AddItem(ref);
@@ -244,8 +246,10 @@ MainListView::MessageReceived(BMessage* message)
 					for (int i = 0; i < settings.fFavoriteList->CountItems(); i++) {
 						entry_ref* favorite
 							= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
-						if (*ref == *favorite)
+						if (*ref == *favorite) {
 							settings.fFavoriteList->RemoveItem(i);
+							break;
+						}
 					}
 					settings.Unlock();
 				}

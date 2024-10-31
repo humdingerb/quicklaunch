@@ -217,8 +217,10 @@ SetupWindow::MessageReceived(BMessage* message)
 					for (int i = 0; i < fIgnoreList->CountItems(); i++) {
 						IgnoreListItem* sItem
 							= dynamic_cast<IgnoreListItem*>(fIgnoreList->ItemAt(i));
-						if (strcmp(sItem->GetItem(), newitem->GetItem()) == 0)
+						if (strcmp(sItem->GetItem(), newitem->GetItem()) == 0) {
 							duplicate = true;
+							break;
+						}
 					}
 					if (!duplicate) {
 						fIgnoreList->AddItem(newitem);
