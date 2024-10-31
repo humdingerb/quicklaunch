@@ -6,11 +6,13 @@
  *	Humdinger, humdingerb@gmail.com
  */
 
+#include "IgnoreListItem.h"
 #include "IgnoreListView.h"
 #include "QuickLaunch.h"
 #include "SetupWindow.h"
 
 #include <Catalog.h>
+#include <ObjectList.h>
 
 
 #undef B_TRANSLATION_CONTEXT
@@ -27,6 +29,7 @@ IgnoreListView::IgnoreListView()
 
 IgnoreListView::~IgnoreListView()
 {
+	MakeEmpty();
 }
 
 
@@ -134,6 +137,21 @@ IgnoreListView::SelectionChanged()
 		window->fButRem->SetEnabled(false);
 	else
 		window->fButRem->SetEnabled(true);
+}
+
+
+void
+IgnoreListView::MakeEmpty()
+{
+	// This breaks the contract of BListView, but we are the only ones
+	// keeping track of the items.
+
+	int32 count = CountItems();
+	BObjectList<IgnoreListItem> list(count, true);
+	for (int32 i = 0; i < count; i++)
+		list.AddItem(dynamic_cast<IgnoreListItem*>(ItemAt(i)));
+
+	BListView::MakeEmpty();
 }
 
 

@@ -37,6 +37,7 @@ public:
 	void			MouseUp(BPoint position);
 	virtual	void 	MouseMoved(BPoint where, uint32 transit,
 						const BMessage* dragMessage);
+	virtual void	MakeEmpty();
 
 private:
 	void			_ShowPopUpMenu(BPoint screen);

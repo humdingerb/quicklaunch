@@ -13,8 +13,9 @@
 
 #include "IgnoreListView.h"
 
-#include <List.h>
+#include <Entry.h>
 #include <Locker.h>
+#include <ObjectList.h>
 #include <Rect.h>
 #include <String.h>
 
@@ -54,7 +55,7 @@ public:
 	void			InitLists();
 	IgnoreListView* IgnoreList() { return fIgnoreList; };
 
-	BList*			fFavoriteList;
+	BObjectList<entry_ref>* fFavoriteList;
 	IgnoreListView*	fIgnoreList;
 
 private:

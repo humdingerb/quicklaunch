@@ -58,7 +58,8 @@ MainWindow::MainWindow()
 	BWindow(BRect(), B_TRANSLATE_SYSTEM_NAME(kApplicationName), B_TITLED_WINDOW_LOOK,
 		B_FLOATING_ALL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE | B_FRAME_EVENTS
-			| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
+			| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE),
+	fAppList(20, true)
 {
 	QLSettings& settings = my_app->Settings();
 	fIconHeight = (int32(be_control_look->ComposeIconSize(B_LARGE_ICON).Height()) + 2);
@@ -363,8 +364,7 @@ MainWindow::FilterAppList()
 						continue;
 
 					for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++) {
-						entry_ref* favorite
-							= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
+						entry_ref* favorite = settings.fFavoriteList->ItemAt(i);
 
 						if (!favorite)
 							continue;
@@ -589,8 +589,7 @@ MainWindow::_AddDroppedAsFav(BMessage* message)
 
 	if (settings.Lock()) {
 		for (int i = 0; i < settings.fFavoriteList->CountItems(); i++) {
-			entry_ref* favorite
-				= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
+			entry_ref* favorite = settings.fFavoriteList->ItemAt(i);
 			if (ref == *favorite) {
 				duplicate = true;
 				break;
@@ -614,7 +613,7 @@ MainWindow::_ShowFavorites()
 	bool localized = BLocaleRoster::Default()->IsFilesystemTranslationPreferred();
 
 	for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++) {
-		entry_ref* favorite = static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
+		entry_ref* favorite = settings.fFavoriteList->ItemAt(i);
 		if (favorite == NULL)
 			continue;
 		BEntry entry(favorite);

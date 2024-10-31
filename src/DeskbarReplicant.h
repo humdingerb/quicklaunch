@@ -10,6 +10,7 @@
 
 
 #include <Entry.h>
+#include <ObjectList.h>
 #include <View.h>
 
 
@@ -32,10 +33,10 @@ class DeskbarReplicant : public BView {
 
 	private:
 		void			_Init();
-		void			_GetFavoriteList();
+		BObjectList<entry_ref>*
+						_GetFavoriteList();
 
 		BBitmap*		fIcon;
-		BList*			fFavoriteList;
 };
 
 #endif	// DESKBAR_REPLICANT_H

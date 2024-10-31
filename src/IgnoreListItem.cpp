@@ -27,6 +27,7 @@ IgnoreListItem::IgnoreListItem(BString item)
 
 IgnoreListItem::~IgnoreListItem()
 {
+	delete fPath;
 }
 
 
