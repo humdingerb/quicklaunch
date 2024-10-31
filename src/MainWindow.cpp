@@ -359,6 +359,9 @@ MainWindow::FilterAppList()
 				if (found) {
 					bool isFav = false;
 					BEntry entry = fAppList.ItemAt(i)->GetRef();
+					if (entry.InitCheck() != B_OK)
+						continue;
+
 					for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++) {
 						entry_ref* favorite
 							= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
@@ -369,8 +372,7 @@ MainWindow::FilterAppList()
 						if (favEntry == entry)
 							isFav = true;
 					}
-					if (entry.InitCheck() == B_OK)
-						fListView->AddItem(new MainListItem(&entry, name, fIconHeight, isFav));
+					fListView->AddItem(new MainListItem(&entry, name, fIconHeight, isFav));
 				}
 			}
 
