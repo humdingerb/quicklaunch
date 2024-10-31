@@ -207,15 +207,15 @@ DeskbarReplicant::MouseDown(BPoint where)
 	GetMouse(&point, &buttons);
 
 	if (buttons & B_SECONDARY_MOUSE_BUTTON) {
-		_GetFavoriteList();
+		BObjectList<entry_ref>* favoriteList = _GetFavoriteList();
 
 		BPopUpMenu* menu = new BPopUpMenu("", false, false);
 		menu->SetFont(be_plain_font);
 
-		if (!fFavoriteList->IsEmpty()) {
+		if (favoriteList != NULL && !favoriteList->IsEmpty()) {
 			bool localized = BLocaleRoster::Default()->IsFilesystemTranslationPreferred();
-			for (int i = 0; i < fFavoriteList->CountItems(); i++) {
-				entry_ref* favorite = static_cast<entry_ref*>(fFavoriteList->ItemAt(i));
+			for (int i = 0; i < favoriteList->CountItems(); i++) {
+				entry_ref* favorite = favoriteList->ItemAt(i);
 				BMessage* message = new BMessage(OPEN_REF);
 				message->AddRef("refs", favorite);
 				BString appName;
@@ -234,24 +234,24 @@ DeskbarReplicant::MouseDown(BPoint where)
 		ConvertToScreen(&point);
 		menu->Go(point, true, true, BRect(where - BPoint(4, 4), point + BPoint(4, 4)));
 
-		delete fFavoriteList;
+		delete favoriteList;
 		delete menu;
 	} else if (buttons & B_PRIMARY_MOUSE_BUTTON)
 		be_roster->Launch(kApplicationSignature);
 }
 
 
-void
+BObjectList<entry_ref>*
 DeskbarReplicant::_GetFavoriteList()
 {
 	BPath path;
 	if (find_directory(B_USER_SETTINGS_DIRECTORY, &path) != B_OK)
-		return;
+		return NULL;
 
 	path.Append("QuickLaunch_settings");
 	BFile file(path.Path(), B_READ_ONLY);
 
-	fFavoriteList = new BList();
+	BObjectList<entry_ref>* favoriteList = new BObjectList<entry_ref>(20, true);
 
 	BMessage settings;
 	if (file.InitCheck() == B_OK && settings.Unflatten(&file) == B_OK) {
@@ -261,9 +261,11 @@ DeskbarReplicant::_GetFavoriteList()
 			entry_ref favorite;
 			status_t err = get_ref_for_path(itemText.String(), &favorite);
 			if (err == B_OK)
-				fFavoriteList->AddItem(new entry_ref(favorite));
+				favoriteList->AddItem(new entry_ref(favorite));
 		}
 	}
+
+	return favoriteList;
 }
 
 

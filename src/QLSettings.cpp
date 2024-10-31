@@ -44,7 +44,7 @@ QLSettings::QLSettings()
 	fSortFavorites = false;
 	fSearchTerm = "";
 	fShowIgnore = false;
-	fFavoriteList = new BList();
+	fFavoriteList = new BObjectList<entry_ref>(20, true);
 	fIgnoreList = new IgnoreListView();
 
 	path.Append("QuickLaunch_settings");
@@ -132,7 +132,7 @@ QLSettings::SaveSettings()
 	}
 
 	for (int32 i = 0; i < fFavoriteList->CountItems(); i++) {
-		entry_ref* favorite = static_cast<entry_ref*>(fFavoriteList->ItemAt(i));
+		entry_ref* favorite = fFavoriteList->ItemAt(i);
 
 		if (!favorite)
 			continue;

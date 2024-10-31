@@ -55,6 +55,7 @@ MainListView::MainListView()
 
 MainListView::~MainListView()
 {
+	MakeEmpty();
 }
 
 
@@ -203,15 +204,14 @@ MainListView::MessageReceived(BMessage* message)
 
 				if (settings.Lock()) {
 					for (int i = 0; i < settings.fFavoriteList->CountItems(); i++) {
-						entry_ref* favorite
-							= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
+						entry_ref* favorite = settings.fFavoriteList->ItemAt(i);
 						if (*ref == *favorite) {
 							duplicate = true;
 							break;
 						}
 					}
 					if (!duplicate)
-						settings.fFavoriteList->AddItem(ref);
+						settings.fFavoriteList->AddItem(new entry_ref(*ref));
 
 					settings.Unlock();
 				}
@@ -235,25 +235,25 @@ MainListView::MessageReceived(BMessage* message)
 			int letters = window->GetStringLength();
 
 			ref = item->Ref();
-			item->SetFavorite(false);
-			if (letters == 0) { // don't remove from result list
-				RemoveItem(selection);
-				Select((selection - 1 < 0) ? 0 : selection - 1);
-			}
-
 			if (ref) {
 				if (settings.Lock()) {
 					for (int i = 0; i < settings.fFavoriteList->CountItems(); i++) {
-						entry_ref* favorite
-							= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
+						entry_ref* favorite = settings.fFavoriteList->ItemAt(i);
 						if (*ref == *favorite) {
-							settings.fFavoriteList->RemoveItem(i);
+							delete settings.fFavoriteList->RemoveItemAt(i);
 							break;
 						}
 					}
 					settings.Unlock();
 				}
 			}
+
+			item->SetFavorite(false);
+			if (letters == 0) { // remove from result list
+				delete RemoveItem(selection);
+				Select((selection - 1 < 0) ? 0 : selection - 1);
+			}
+
 			Invalidate();
 			window->ResizeWindow();
 			break;
@@ -417,6 +417,21 @@ MainListView::MouseMoved(BPoint where, uint32 transit, const BMessage* dragMessa
 		}
 	}
 	BListView::MouseMoved(where, transit, dragMessage);
+}
+
+
+void
+MainListView::MakeEmpty()
+{
+	// This breaks the contract of BListView, but we are the only ones
+	// keeping track of the items.
+
+	int32 count = CountItems();
+	BObjectList<MainListItem> list(count, true);
+	for (int32 i = 0; i < count; i++)
+		list.AddItem(dynamic_cast<MainListItem*>(ItemAt(i)));
+
+	BListView::MakeEmpty();
 }
 
 

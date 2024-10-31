@@ -25,6 +25,7 @@ public:
 	virtual	void	MessageReceived(BMessage* message);
 	void			MouseDown(BPoint position);
 	virtual void	SelectionChanged();
+	virtual void	MakeEmpty();
 
 private:
 	void			_ShowPopUpMenu(BPoint screen);

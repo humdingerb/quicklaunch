@@ -19,7 +19,8 @@
 MainListItem::MainListItem(BEntry* entry, BString name, int iconSize, bool isFav)
 	:
 	BListItem(),
-	fIsNoApp(false)
+	fIsNoApp(false),
+	fFavoriteIcon(NULL)
 {
 	fIconSize = iconSize;
 	fIsFavorite = isFav;
@@ -107,8 +108,7 @@ MainListItem::MainListItem(BEntry* entry, BString name, int iconSize, bool isFav
 MainListItem::~MainListItem()
 {
 	delete fIcon;
-	if (fIsFavorite)
-		delete fFavoriteIcon;
+	delete fFavoriteIcon;
 }
 
 
@@ -264,7 +264,7 @@ MainListItem::Update(BView* owner, const BFont* finfo)
 void
 MainListItem::SetFavorite(bool state)
 {
-	if (state) {
+	if (state && fFavoriteIcon == NULL) {
 		size_t size;
 		const void* buf
 			= be_app->AppResources()->LoadResource(B_VECTOR_ICON_TYPE, "FavoriteStar", &size);
