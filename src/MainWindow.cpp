@@ -369,8 +369,10 @@ MainWindow::FilterAppList()
 						if (!favorite)
 							continue;
 						BEntry favEntry(favorite);
-						if (favEntry == entry)
+						if (favEntry == entry) {
 							isFav = true;
+							break;
+						}
 					}
 					fListView->AddItem(new MainListItem(&entry, name, fIconHeight, isFav));
 				}
@@ -465,7 +467,7 @@ MainWindow::_BuildAppList()
 
 					if (newItem.Compare(sItem->GetItem()) == 0) {
 						ignore = true;
-						continue;
+						break;
 					}
 				}
 				if (ignore)
@@ -520,8 +522,10 @@ MainWindow::_BuildAppList()
 						IgnoreListItem* sItem = dynamic_cast<IgnoreListItem*>(
 							settings.fIgnoreList->ItemAt(i));
 
-						if (sItem->Ignores(newItem))
+						if (sItem->Ignores(newItem)) {
 							ignore = true;
+							break;
+						}
 					}
 				}
 				if (!ignore && entry.InitCheck() == B_OK)
@@ -587,8 +591,10 @@ MainWindow::_AddDroppedAsFav(BMessage* message)
 		for (int i = 0; i < settings.fFavoriteList->CountItems(); i++) {
 			entry_ref* favorite
 				= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
-			if (ref == *favorite)
+			if (ref == *favorite) {
 				duplicate = true;
+				break;
+			}
 		}
 		if (!duplicate) {
 			settings.fFavoriteList->AddItem(new entry_ref(ref), dropIndex);
