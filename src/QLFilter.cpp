@@ -123,64 +123,6 @@ QLFilter::Filter(BMessage* message, BHandler** target)
 				return B_SKIP_MESSAGE;
 			}
 		}
-		case 'f':
-		{
-			if (mod & B_COMMAND_KEY) {
-				BLooper* loop = (*target)->Looper();
-				if (loop) {
-					BMessenger msgr(loop);
-					msgr.SendMessage(ADDFAVORITE);
-					return B_SKIP_MESSAGE;
-				}
-			}
-		}
-		case 'h':
-		{
-			if (mod & B_COMMAND_KEY) {
-				be_app->PostMessage(HELP_MENU);
-				return B_SKIP_MESSAGE;
-			}
-		}
-		case 'i':
-		{
-			if (mod & B_COMMAND_KEY) {
-				BLooper* loop = (*target)->Looper();
-				if (loop) {
-					BMessenger msgr(loop);
-					msgr.SendMessage(ADDIGNORE);
-					return B_SKIP_MESSAGE;
-				}
-			}
-		}
-		case 'o':
-		{
-			if (mod & B_COMMAND_KEY) {
-				BLooper* loop = (*target)->Looper();
-				if (loop) {
-					BMessenger msgr(loop);
-					msgr.SendMessage(RETURN_CTRL_KEY);
-					return B_SKIP_MESSAGE;
-				}
-			}
-		}
-		case 'r':
-		{
-			if (mod & B_COMMAND_KEY) {
-				BLooper* loop = (*target)->Looper();
-				if (loop) {
-					BMessenger msgr(loop);
-					msgr.SendMessage(REMOVEFAVORITE);
-					return B_SKIP_MESSAGE;
-				}
-			}
-		}
-		case 's':
-		{
-			if (mod & B_COMMAND_KEY) {
-				be_app->PostMessage(SETUP_MENU);
-				return B_SKIP_MESSAGE;
-			}
-		}
 	}
 	return B_DISPATCH_MESSAGE;
 }
