@@ -114,6 +114,10 @@ MainWindow::MainWindow()
 		B_TRANSLATE("Search from start of application name"), new BMessage(SEARCHSTART_CHK), 'S');
 	fTempSearchStart->SetMarked(settings.GetTempSearchStart() == true);
 	menu->AddItem(fTempSearchStart);
+	fTempApplyIgnore = new BMenuItem(
+		B_TRANSLATE("Apply ignore list"), new BMessage(IGNORE_CHK), 'A');
+	fTempApplyIgnore->SetMarked(settings.GetTempApplyIgnore() == true);
+	menu->AddItem(fTempApplyIgnore);
 
 	menubar->AddItem(menu);
 
@@ -442,6 +446,19 @@ MainWindow::MessageReceived(BMessage* message)
 				_FilterKeepPositionSelection();
 			break;
 		}
+		case IGNORE_CHK:
+		{
+			int32 value;
+			if (message->FindInt32("be:value", &value) == B_OK)
+				settings.SetApplyIgnore(value);
+			else
+				value = fTempApplyIgnore->IsMarked() == true ? 0 : 1;
+
+			settings.SetTempShowIgnore(value);
+			fTempApplyIgnore->SetMarked(value);
+			// intentional fall-thru
+
+		}
 		case BUILDAPPLIST:
 		{
 			BuildAppList();
@@ -509,7 +526,7 @@ MainWindow::_BuildAppList()
 	QLSettings& settings = my_app->Settings();
 
 	bool localized = BLocaleRoster::Default()->IsFilesystemTranslationPreferred();
-	bool activeIgnore = settings.GetShowIgnore();
+	bool activeIgnore = settings.GetTempApplyIgnore();
 	int32 ignoreCount = settings.fIgnoreList->CountItems();
 
 	BPath addonsDir;

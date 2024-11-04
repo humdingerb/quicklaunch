@@ -143,7 +143,7 @@ SetupWindow::SetupWindow(BRect frame, BMessenger main_msgr)
 		fChkSearchStart->SetValue(settings.GetSearchStart());
 		fChkSaveSearch->SetValue(settings.GetSaveSearch());
 		fChkSortFavorites->SetValue(settings.GetSortFavorites());
-		fChkIgnore->SetValue(settings.GetShowIgnore());
+		fChkIgnore->SetValue(settings.GetApplyIgnore());
 
 		settings.Unlock();
 	}
@@ -190,27 +190,27 @@ SetupWindow::MessageReceived(BMessage* message)
 		{
 			if (settings.fIgnoreList->IsEmpty()) {
 				fChkIgnore->SetValue(false);
-				settings.SetShowIgnore(false);
+				settings.SetApplyIgnore(false);
 
 				break;
 			}
 			int32 value;
 			message->FindInt32("be:value", &value);
 
-			settings.SetShowIgnore(value);
+			settings.SetApplyIgnore(value);
 			fChkIgnore->SetValue(value);
 
-			fMainMessenger.SendMessage(new BMessage(BUILDAPPLIST));
+			fMainMessenger.SendMessage(message);
 			break;
 		}
 		case FILEPANEL:
 		{
 			if (!settings.fIgnoreList->IsEmpty()) {
 				fChkIgnore->SetValue(true);
-				settings.SetShowIgnore(true);
+				settings.SetApplyIgnore(true);
 			} else {
 				fChkIgnore->SetValue(false);
-				settings.SetShowIgnore(false);
+				settings.SetApplyIgnore(false);
 			}
 			fMainMessenger.SendMessage(new BMessage(BUILDAPPLIST));
 			break;

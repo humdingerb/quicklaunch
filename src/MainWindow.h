@@ -90,6 +90,7 @@ private:
 	BMenuItem*		fTempShowPath;
 	BMenuItem*		fTempShowVersion;
 	BMenuItem*		fTempSearchStart;
+	BMenuItem*		fTempApplyIgnore;
 
 	BTextControl*	fSearchBox;
 	BScrollView*	fScrollView;

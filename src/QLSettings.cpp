@@ -43,7 +43,7 @@ QLSettings::QLSettings()
 	fSaveSearch = false;
 	fSortFavorites = false;
 	fSearchTerm = "";
-	fShowIgnore = fTempShowIgnore = false;
+	fShowIgnore = fTempApplyIgnore = true;
 	fFavoriteList = new BObjectList<entry_ref>(20, true);
 	fIgnoreList = new IgnoreListView();
 
@@ -87,7 +87,7 @@ QLSettings::QLSettings()
 
 		int32 ignore;
 		if (settings.FindInt32("show ignore", &ignore) == B_OK)
-			fShowIgnore = fTempShowIgnore = ignore;
+			fShowIgnore = fTempApplyIgnore = ignore;
 
 		int32 sortfavs;
 		if (settings.FindInt32("sort favorites", &sortfavs) == B_OK)

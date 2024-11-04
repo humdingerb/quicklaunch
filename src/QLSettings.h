@@ -38,7 +38,7 @@ public:
 	void	SetSearchStart(int32 searchstart) { fSearchStart = searchstart; };
 	void	SetSaveSearch(int32 savesearch) { fSaveSearch = savesearch; };
 	void	SetSearchTerm(BString searchterm) { fSearchTerm = searchterm; };
-	void	SetShowIgnore(int32 ignore) { fShowIgnore = ignore; };
+	void	SetApplyIgnore(int32 ignore) { fShowIgnore = ignore; };
 	void	SetSortFavorites(int32 sortfavs) { fSortFavorites = sortfavs; };
 
 	BRect	GetMainWindowFrame() { return fMainWindowFrame; };
@@ -49,18 +49,18 @@ public:
 	int32	GetSearchStart() { return fSearchStart; };
 	int32	GetSaveSearch() { return fSaveSearch; };
 	BString	GetSearchTerm() { return fSearchTerm; };
-	int32	GetShowIgnore() { return fShowIgnore; };
+	int32	GetApplyIgnore() { return fShowIgnore; };
 	int32	GetSortFavorites() { return fSortFavorites; };
 
 	// Set/Getters for "Temporary options" menu
 	void	SetTempShowVersion(int32 version) { fTempShowVersion = version; };
 	void	SetTempShowPath(int32 path) { fTempShowPath = path; };
 	void	SetTempSearchStart(int32 searchstart) { fTempSearchStart = searchstart; };
-	void	SetTempShowIgnore(int32 ignore) { fTempShowIgnore = ignore; };
+	void	SetTempShowIgnore(int32 ignore) { fTempApplyIgnore = ignore; };
 	int32	GetTempShowVersion() { return fTempShowVersion; };
 	int32	GetTempShowPath() { return fTempShowPath; };
 	int32	GetTempSearchStart() { return fTempSearchStart; };
-	int32	GetTempShowIgnore() { return fTempShowIgnore; };
+	int32	GetTempApplyIgnore() { return fTempApplyIgnore; };
 
 	void			InitLists();
 	IgnoreListView* IgnoreList() { return fIgnoreList; };
@@ -84,7 +84,7 @@ private:
 	int32	fTempShowVersion;
 	int32	fTempShowPath;
 	int32	fTempSearchStart;
-	int32	fTempShowIgnore;
+	int32	fTempApplyIgnore;
 
 	BLocker	fLock;
 };
