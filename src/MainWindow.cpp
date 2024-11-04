@@ -439,13 +439,12 @@ MainWindow::MessageReceived(BMessage* message)
 			settings.SetSortFavorites(value);
 
 			if (!fListView->IsEmpty())
-				FilterAppList();
+				RestorePositionAndSelection();
 			break;
 		}
 		case BUILDAPPLIST:
 		{
 			BuildAppList();
-			RestorePositionAndSelection();
 			break;
 		}
 		default:
@@ -490,6 +489,7 @@ MainWindow::FilterAppList()
 	BString searchtext = GetSearchString();
 
 	fListView->MakeEmpty();
+
 	if (settings.Lock()) {
 		if (searchtext == "")
 			_ShowFavorites();

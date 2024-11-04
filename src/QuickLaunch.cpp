@@ -111,10 +111,8 @@ QLApp::MessageReceived(BMessage* message)
 		{
 			int32 opcode = message->GetInt32("opcode", -1);
 
-			if ((opcode == B_DEVICE_MOUNTED) || (opcode == B_DEVICE_UNMOUNTED)) {
-				fMainWindow->BuildAppList();
-				fMainWindow->RestorePositionAndSelection();
-			}
+			if ((opcode == B_DEVICE_MOUNTED) || (opcode == B_DEVICE_UNMOUNTED))
+				fMainWindow->PostMessage(new BMessage(BUILDAPPLIST));
 			break;
 		}
 		default:
