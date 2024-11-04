@@ -256,8 +256,10 @@ SetupWindow::MessageReceived(BMessage* message)
 						}
 					}
 					if (!duplicate) {
+						fIgnoreList->LockLooper();
 						fIgnoreList->AddItem(newitem);
 						fIgnoreList->SortItems(&compare_items);
+						fIgnoreList->UnlockLooper();
 					} else
 						delete newitem;
 					ref_num++;
