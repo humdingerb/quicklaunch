@@ -67,8 +67,6 @@ public:
 						{return fSearchBox->TextView()->TextLength();};
 	const char*		GetSearchString()
 						{return fSearchBox->TextView()->Text();};
-	bool			GetTempShowPath();
-	bool			GetTempShowVersion();
 	void			ResizeWindow();
 
 	MainListView*	fListView;

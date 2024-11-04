@@ -576,19 +576,6 @@ MainWindow::RestorePositionAndSelection()
 }
 
 
-bool
-MainWindow::GetTempShowPath()
-{
-	return (fTempShowPath->IsMarked() == true);
-}
-
-
-bool
-MainWindow::GetTempShowVersion()
-{
-	return (fTempShowVersion->IsMarked() == true);
-}
-
 void
 MainWindow::ResizeWindow()
 {
