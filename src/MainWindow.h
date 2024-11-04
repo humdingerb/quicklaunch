@@ -57,16 +57,9 @@ public:
 	bool			QuitRequested();
 
 	void			BuildAppList();
-	void			FilterAppList();
 
-	float			GetScrollPosition();
-	void			SetScrollPosition(float position);
-	void			RestorePositionAndSelection();
-
-	int				GetStringLength()
-						{return fSearchBox->TextView()->TextLength();};
-	const char*		GetSearchString()
-						{return fSearchBox->TextView()->Text();};
+	int				GetStringLength() { return fSearchBox->TextView()->TextLength(); };
+	const char*		GetSearchString() { return fSearchBox->TextView()->Text(); };
 	void			ResizeWindow();
 
 	MainListView*	fListView;
@@ -74,6 +67,11 @@ public:
 private:
 	static status_t _AppListThread(void* self);
 	void			_BuildAppList();
+	void			_FilterAppList();
+
+	float			_GetScrollPosition();
+	void			_SetScrollPosition(float position);
+	void			_FilterKeepPositionSelection();
 
 	void			_LaunchApp(MainListItem* item);
 	void			_AddDroppedAsFav(BMessage* message);
