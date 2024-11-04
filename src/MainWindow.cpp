@@ -442,8 +442,7 @@ MainWindow::MessageReceived(BMessage* message)
 				FilterAppList();
 			break;
 		}
-		case FILEPANEL:
-		case IGNORE_CHK:
+		case BUILDAPPLIST:
 		{
 			BuildAppList();
 			RestorePositionAndSelection();
@@ -564,7 +563,6 @@ MainWindow::SetScrollPosition(float position)
 void
 MainWindow::RestorePositionAndSelection()
 {
-	// fMainWindow->fListView->LockLooper();
 	int32 selection = fListView->CurrentSelection();
 	float position = GetScrollPosition();
 	FilterAppList();
@@ -575,7 +573,6 @@ MainWindow::RestorePositionAndSelection()
 		fListView->Select(0);
 
 	SetScrollPosition(position);
-	// fListView->UnlockLooper();
 }
 
 

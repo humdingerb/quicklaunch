@@ -200,7 +200,7 @@ SetupWindow::MessageReceived(BMessage* message)
 			settings.SetShowIgnore(value);
 			fChkIgnore->SetValue(value);
 
-			fMainMessenger.SendMessage(message);
+			fMainMessenger.SendMessage(new BMessage(BUILDAPPLIST));
 			break;
 		}
 		case FILEPANEL:
@@ -212,7 +212,7 @@ SetupWindow::MessageReceived(BMessage* message)
 				fChkIgnore->SetValue(false);
 				settings.SetShowIgnore(false);
 			}
-			fMainMessenger.SendMessage(message);
+			fMainMessenger.SendMessage(new BMessage(BUILDAPPLIST));
 			break;
 		}
 		case OPEN_SHORTCUTS:
@@ -228,7 +228,7 @@ SetupWindow::MessageReceived(BMessage* message)
 		case REM_BUT:
 		{
 			_RemoveSelected();
-			be_app->PostMessage(FILEPANEL);
+			fMainMessenger.SendMessage(new BMessage(BUILDAPPLIST));
 			break;
 		}
 		case B_SIMPLE_DATA:
@@ -264,7 +264,7 @@ SetupWindow::MessageReceived(BMessage* message)
 				}
 				settings.Unlock();
 			}
-			be_app->PostMessage(FILEPANEL);
+			fMainMessenger.SendMessage(new BMessage(BUILDAPPLIST));
 		}
 	}
 }
