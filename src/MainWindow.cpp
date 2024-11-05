@@ -530,9 +530,6 @@ MainWindow::_BuildAppList()
 	bool activeIgnore = settings.GetTempApplyIgnore();
 	int32 ignoreCount = settings.fIgnoreList->CountItems();
 
-	BPath addonsDir;
-	find_directory(B_SYSTEM_ADDONS_DIRECTORY, &addonsDir);
-
 	BVolumeRoster volumeRoster;
 	BVolume volume;
 	BQuery query;
@@ -591,9 +588,6 @@ MainWindow::_BuildAppList()
 				entry.GetPath(&path);
 				path.GetParent(&parent);
 
-				// ignore system addons
-				if (strstr(parent.Path(), addonsDir.Path()))
-					continue;
 				// ignore Trash on all volumes
 				BPath trashDir;
 				if (find_directory(B_TRASH_DIRECTORY, &trashDir, false, &volume) == B_OK) {

@@ -64,6 +64,7 @@ public:
 
 	void			InitLists();
 	IgnoreListView* IgnoreList() { return fIgnoreList; };
+	void			AddDefaultIgnore();
 
 	BObjectList<entry_ref>* fFavoriteList;
 	IgnoreListView*	fIgnoreList;
@@ -85,8 +86,10 @@ private:
 	int32	fTempShowPath;
 	int32	fTempSearchStart;
 	int32	fTempApplyIgnore;
+	static const char* kDefaultSystemIgnore[];
 
 	BLocker	fLock;
+
 };
 
 #endif	// QLSETTINGS_H

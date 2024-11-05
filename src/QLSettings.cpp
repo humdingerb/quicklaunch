@@ -22,6 +22,20 @@
 #include <stdio.h>
 
 
+const char*
+QLSettings::kDefaultSystemIgnore[] = {
+	"add-ons",
+	"bin",
+	"data",
+	"lib",
+	"servers",
+	"haiku_loader.bios_ia32",
+	"kernel_x86_64",
+	"runtime_loader",
+	NULL
+};
+
+
 QLSettings::QLSettings()
 {
 	BPath path;
@@ -175,6 +189,33 @@ QLSettings::InitLists()
 			if (entry.Exists())
 				fFavoriteList->AddItem(new entry_ref(favorite));
 		}
+	} else // First launch? Add default ignore items
+		AddDefaultIgnore();
+}
+
+
+void
+QLSettings::AddDefaultIgnore()
+{
+	BPath systemDir;
+	if (find_directory(B_SYSTEM_DIRECTORY, &systemDir) != B_OK)
+		return;
+
+	int32 count = fIgnoreList->CountItems();
+
+	for (const char** list = kDefaultSystemIgnore; *list != NULL; ++list) {
+		bool inList = false;
+		BString dir = systemDir.Path();
+		dir << "/" << *list;
+		for (int i = 0; i < count; i++) {
+			IgnoreListItem* item = dynamic_cast<IgnoreListItem*>(fIgnoreList->ItemAt(i));
+			if (strcasecmp(dir.String(), item->GetItem()) == 0) {
+				inList = true;
+				continue;
+			}
+		}
+		if (!inList)
+			fIgnoreList->AddItem(new IgnoreListItem(dir));
 	}
 }
 
