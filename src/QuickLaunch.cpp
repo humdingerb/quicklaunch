@@ -1,9 +1,9 @@
 /*
- * Copyright 2010-2022. All rights reserved.
+ * Copyright 2010-2024. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Authors:
- *	Humdinger, humdingerb@gmail.com
+ *	Humdinger, humdinger@mailbox.org
  *  Kevin Adams
  *  Chris Roberts
  *

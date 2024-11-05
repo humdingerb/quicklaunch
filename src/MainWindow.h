@@ -1,9 +1,9 @@
 /*
- * Copyright 2010-2019. All rights reserved.
+ * Copyright 2010-2024. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Author:
- *	Humdinger, humdingerb@gmail.com
+ *	Humdinger, humdinger@mailbox.org
  */
 
 #ifndef QL_WINDOW_H

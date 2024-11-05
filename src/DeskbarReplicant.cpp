@@ -6,6 +6,8 @@
  *		Michael Weirauch, dev@m-phasis.de
  *
  * Adapted from Haiku's Bluetooth server by Humdinger, 2022
+ *  Contributers:
+ *	Máximo Castañeda
  */
 
 

@@ -1,9 +1,9 @@
 /*
- * Copyright 2010-2022. All rights reserved.
+ * Copyright 2010-2024. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Authors:
- *	Humdinger, humdingerb@gmail.com
+ *	Humdinger, humdinger@mailbox.org
  *	Chris Roberts
  */
 
@@ -19,8 +19,8 @@
 MainListItem::MainListItem(BEntry* entry, BString name, int iconSize, bool isFav)
 	:
 	BListItem(),
-	fIsNoApp(false),
-	fFavoriteIcon(NULL)
+	fFavoriteIcon(NULL),
+	fIsNoApp(false)
 {
 	fIconSize = iconSize;
 	fIsFavorite = isFav;

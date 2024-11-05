@@ -3,7 +3,8 @@
  * Distributed under the terms of the MIT license.
  *
  * Author:
- *	Humdinger, humdingerb@gmail.com
+ *	Humdinger, humdinger@mailbox.org
+ *  Máximo Castañeda
  */
 
 #include <ControlLook.h>

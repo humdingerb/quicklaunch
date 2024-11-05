@@ -1,10 +1,11 @@
 /*
- * Copyright 2010-2023. All rights reserved.
+ * Copyright 2010-2024. All rights reserved.
  * Distributed under the terms of the MIT license.
  *
  * Authors:
- *	Humdinger, humdingerb@gmail.com
+ *	Humdinger, humdinger@mailbox.org
  *  Kevin Adams
+ *  Máximo Castañeda
  *  Chris Roberts
  */
 
@@ -62,8 +63,8 @@ MainWindow::MainWindow()
 		B_FLOATING_ALL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE | B_FRAME_EVENTS
 			| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE),
-	fAppList(20, true),
-	fBusy(false)
+	fBusy(false),
+	fAppList(20, true)
 {
 	QLSettings& settings = my_app->Settings();
 	fIconHeight = (int32(be_control_look->ComposeIconSize(B_LARGE_ICON).Height()) + 2);

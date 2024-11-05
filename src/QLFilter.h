@@ -3,7 +3,7 @@
  * Distributed under the terms of the MIT license.
  *
  * Author:
- *	Humdinger, humdingerb@gmail.com
+ *	Humdinger, humdinger@mailbox.org
  */
 
 #ifndef QL_FILTER_H
