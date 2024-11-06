@@ -1,4 +1,4 @@
-1	English	application/x-vnd.humdinger-quicklaunch	1308988430
+1	English	application/x-vnd.humdinger-quicklaunch	526509110
 Show application path	MainWindow		Show application path
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Failed to launch %appname%.\n\nError:
 Found no matches.	ListView		Found no matches.
@@ -25,6 +25,7 @@ Show application version	SetupWindow		Show application version
 Add to favorites	MainWindow		Add to favorites
 Add to favorites	ListView		Add to favorites
 Open Shortcuts preferences	SetupWindow		Open Shortcuts preferences
+Defaults	SetupWindow		Defaults
 Sort favorite items to the top	SetupWindow		Sort favorite items to the top
 Settings…	MainWindow		Settings…
 Open containing folder	ListView		Open containing folder

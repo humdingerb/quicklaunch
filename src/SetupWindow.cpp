@@ -83,6 +83,9 @@ SetupWindow::SetupWindow(BRect frame, BMessenger main_msgr)
 	fIgnoreScroll->SetExplicitMinSize(BSize(B_SIZE_UNSET, 48));
 	fIgnoreScroll->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
+	BButton* butDefaults = new BButton("DefaultsButton", B_TRANSLATE("Defaults"),
+		new BMessage(DEFAULTS_BUT));
+
 	fButAdd = new BButton("AddButton", B_TRANSLATE("Add" B_UTF8_ELLIPSIS), new BMessage(ADD_BUT));
 	fButAdd->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNSET));
 
@@ -128,11 +131,11 @@ SetupWindow::SetupWindow(BRect frame, BMessenger main_msgr)
 			.SetInsets(spacing, spacing, spacing, 0)
 			.End()
 		.AddGroup(B_HORIZONTAL, spacing)
+			.Add(butDefaults)
 			.AddGlue()
 			.Add(fButAdd)
 			.Add(fButRem)
-			.AddGlue()
-			.SetInsets(0, spacing, spacing, spacing)
+			.SetInsets(spacing)
 			.End()
 		.End();
 
@@ -218,6 +221,13 @@ SetupWindow::MessageReceived(BMessage* message)
 		case OPEN_SHORTCUTS:
 		{
 			be_roster->Launch("application/x-vnd.Haiku-Shortcuts");
+			break;
+		}
+		case DEFAULTS_BUT:
+		{
+			QLSettings& settings = my_app->Settings();
+			settings.AddDefaultIgnore();
+			fIgnoreList->SortItems(&compare_items);
 			break;
 		}
 		case ADD_BUT:

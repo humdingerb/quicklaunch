@@ -41,6 +41,7 @@
 #define OPEN_SHORTCUTS	'opsc'
 #define ADD_BUT			'addb'
 #define REM_BUT			'remb'
+#define DEFAULTS_BUT	'defl'
 #define FILEPANEL		'file'
 #define POPCLOSE		'clpo'
 #define BUILDAPPLIST	'buil'
