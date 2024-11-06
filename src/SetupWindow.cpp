@@ -16,6 +16,7 @@
 #include <Catalog.h>
 #include <ControlLook.h>
 #include <LayoutBuilder.h>
+#include <SeparatorView.h>
 
 
 #undef B_TRANSLATION_CONTEXT
@@ -101,41 +102,35 @@ SetupWindow::SetupWindow(BRect frame, BMessenger main_msgr)
 
 	// Build the layout
 
-	float spacing = be_control_look->DefaultItemSpacing();
-
-	BLayoutBuilder::Group<>(this, B_VERTICAL, 0)
+	BLayoutBuilder::Group<>(this, B_VERTICAL, B_USE_DEFAULT_SPACING)
+			.SetInsets(B_USE_WINDOW_INSETS)
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkDeskbar)
-			.SetInsets(spacing, spacing, spacing, 0)
 			.End()
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkVersion)
 			.Add(fChkPath)
-			.SetInsets(spacing, spacing, spacing, 0)
 			.End()
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkSearchStart)
 			.Add(fChkSaveSearch)
 			.Add(fChkSortFavorites)
-			.SetInsets(spacing, spacing, spacing, 0)
 			.End()
-		.AddStrut(spacing)
 		.AddGroup(B_HORIZONTAL)
 			.AddGlue()
 			.Add(openShortcuts)
 			.AddGlue()
 			.End()
+		.Add(new BSeparatorView(B_HORIZONTAL, B_PLAIN_BORDER))
 		.AddGroup(B_VERTICAL, 0)
 			.Add(fChkIgnore)
 			.Add(fIgnoreScroll)
-			.SetInsets(spacing, spacing, spacing, 0)
 			.End()
-		.AddGroup(B_HORIZONTAL, spacing)
+		.AddGroup(B_HORIZONTAL, B_USE_DEFAULT_SPACING)
 			.Add(butDefaults)
 			.AddGlue()
 			.Add(fButAdd)
 			.Add(fButRem)
-			.SetInsets(spacing)
 			.End()
 		.End();
 
