@@ -212,7 +212,7 @@ QLSettings::AddDefaultIgnore()
 			IgnoreListItem* item = dynamic_cast<IgnoreListItem*>(fIgnoreList->ItemAt(i));
 			if (strcasecmp(dir.String(), item->GetItem()) == 0) {
 				inList = true;
-				continue;
+				break;
 			}
 		}
 		if (!inList)
