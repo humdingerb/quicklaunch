@@ -46,10 +46,11 @@ QLSettings::QLSettings()
 	BScreen* screen = new BScreen(B_MAIN_SCREEN_ID);
 	BRect resolution = screen->Frame();
 	fMainWindowFrame = BRect(
-		resolution.Width() / 2 - 340.0 / 2, resolution.Height() / 2 - 120.0 / 2,
-		resolution.Width() / 2 + 340.0 / 2, resolution.Height() / 2 + 120.0 / 2);
+		resolution.Width() / 2 - 340.0 / 2, 100,
+		resolution.Width() / 2 + 340.0 / 2, 0);
 	delete screen;
 	fSetupWindowFrame = fMainWindowFrame.OffsetByCopy(70.0, 120.0);
+	fSetupWindowFrame.bottom = 770;
 	fDeskbar = false;
 	fShowVersion = fTempShowVersion = false;
 	fShowPath = fTempShowPath = true;

@@ -81,7 +81,7 @@ MainListView::Draw(BRect rect)
 
 		if (settings.Lock()) {
 			if (letters == 0)
-				string = B_TRANSLATE("Use '*' as wildcards.");
+				string = B_TRANSLATE("Enter the app's name.");
 			else
 				string = B_TRANSLATE("Found no matches.");
 
@@ -274,7 +274,6 @@ MainListView::MessageReceived(BMessage* message)
 			ref = item->Ref();
 
 			if (ref) {
-				// BMessenger msgr(my_app->fSetupWindow);
 				BMessage refMsg(B_REFS_RECEIVED);
 				refMsg.AddRef("refs", ref);
 				Window()->PostMessage(&refMsg);
