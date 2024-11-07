@@ -345,8 +345,7 @@ MainWindow::MessageReceived(BMessage* message)
 			be_app->PostMessage(B_QUIT_REQUESTED);
 			break;
 		}
-		case ADDFAVORITE:
-		case REMOVEFAVORITE:
+		case ADD_REMOVE_FAVORITE:
 		case ADDIGNORE:
 		{
 			BMessenger messenger(fListView);

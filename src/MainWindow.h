@@ -40,7 +40,6 @@
 #define SINGLE_CLICK		'1clk'
 #define SETUP_MENU			'setb'
 #define HELP_MENU			'help'
-#define ADD_REMOVE_FAVORITE	'arfv'
 #define ADDIGNORE			'addi'
 
 

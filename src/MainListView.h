@@ -15,12 +15,11 @@
 #include <String.h>
 
 
-#define ADDFAVORITE		'addf'
-#define REMOVEFAVORITE	'rmfa'
-#define ADDIGNORE		'addi'
-#define FAV_DRAGGED		'fvdr'
-#define OPENLOCATION	'oloc'
-#define POPCLOSED		'pmcl'
+#define ADD_REMOVE_FAVORITE	'arfv'
+#define ADDIGNORE			'addi'
+#define FAV_DRAGGED			'fvdr'
+#define OPENLOCATION		'oloc'
+#define POPCLOSED			'pmcl'
 
 
 class MainListView : public BListView {

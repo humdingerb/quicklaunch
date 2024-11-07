@@ -184,7 +184,7 @@ MainListView::MessageReceived(BMessage* message)
 			fShowingPopUpMenu = false;
 			break;
 		}
-		case ADDFAVORITE:
+		case ADD_REMOVE_FAVORITE:
 		{
 			fShowingPopUpMenu = false;
 			entry_ref* ref = NULL;
@@ -193,70 +193,43 @@ MainListView::MessageReceived(BMessage* message)
 			int selection = CurrentSelection();
 			item = dynamic_cast<MainListItem*>(ItemAt(selection));
 
-			if (item == NULL || item->IsFavorite())
+			if (item == NULL)
 				break;
 
-			item->SetFavorite(true);
+			bool wasFavorite = item->IsFavorite();
 
 			ref = item->Ref();
-
 			if (ref) {
-				bool duplicate = false;
-
 				if (settings.Lock()) {
-					for (int i = 0; i < settings.fFavoriteList->CountItems(); i++) {
-						entry_ref* favorite = settings.fFavoriteList->ItemAt(i);
-						if (*ref == *favorite) {
-							duplicate = true;
-							break;
-						}
-					}
-					if (!duplicate)
+					int32 count = settings.fFavoriteList->CountItems();
+					int32 i = 0;
+					while (i < count && *ref != *settings.fFavoriteList->ItemAt(i))
+						i++;
+
+					if (i < count) {
+						if (wasFavorite)
+							delete settings.fFavoriteList->RemoveItemAt(i);
+					} else if (!wasFavorite)
 						settings.fFavoriteList->AddItem(new entry_ref(*ref));
 
 					settings.Unlock();
 				}
 			}
-			Invalidate();
-			break;
-		}
-		case REMOVEFAVORITE:
-		{
-			fShowingPopUpMenu = false;
-			entry_ref* ref = NULL;
-			MainListItem* item = NULL;
 
-			int selection = CurrentSelection();
-			item = dynamic_cast<MainListItem*>(ItemAt(selection));
+			item->SetFavorite(!wasFavorite);
 
-			if (item == NULL || !item->IsFavorite())
-				break;
+			if (wasFavorite) {
+				MainWindow* window = dynamic_cast<MainWindow*>(Window());
+				int letters = window->GetStringLength();
 
-			MainWindow* window = dynamic_cast<MainWindow*>(Window());
-			int letters = window->GetStringLength();
-
-			ref = item->Ref();
-			if (ref) {
-				if (settings.Lock()) {
-					for (int i = 0; i < settings.fFavoriteList->CountItems(); i++) {
-						entry_ref* favorite = settings.fFavoriteList->ItemAt(i);
-						if (*ref == *favorite) {
-							delete settings.fFavoriteList->RemoveItemAt(i);
-							break;
-						}
-					}
-					settings.Unlock();
+				if (letters == 0) { // remove from result list
+					delete RemoveItem(selection);
+					Select((selection - 1 < 0) ? 0 : selection - 1);
+					window->ResizeWindow();
 				}
 			}
 
-			item->SetFavorite(false);
-			if (letters == 0) { // remove from result list
-				delete RemoveItem(selection);
-				Select((selection - 1 < 0) ? 0 : selection - 1);
-			}
-
 			Invalidate();
-			window->ResizeWindow();
 			break;
 		}
 		case ADDIGNORE:
@@ -455,9 +428,9 @@ MainListView::_ShowPopUpMenu(BPoint screen)
 	BMenuItem* item;
 
 	if (isFav) {
-		item = new BMenuItem(B_TRANSLATE("Remove favorite"), new BMessage(REMOVEFAVORITE), 'R');
+		item = new BMenuItem(B_TRANSLATE("Remove favorite"), new BMessage(ADD_REMOVE_FAVORITE), 'R');
 	} else {
-		item = new BMenuItem(B_TRANSLATE("Add to favorites"), new BMessage(ADDFAVORITE), 'F');
+		item = new BMenuItem(B_TRANSLATE("Add to favorites"), new BMessage(ADD_REMOVE_FAVORITE), 'F');
 	}
 	menu->AddItem(item);
 
