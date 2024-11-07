@@ -429,13 +429,6 @@ MainWindow::MessageReceived(BMessage* message)
 
 			break;
 		}
-		case SAVESEARCH_CHK:
-		{
-			int32 value;
-			message->FindInt32("be:value", &value);
-			settings.SetSaveSearch(value);
-			break;
-		}
 		case SORTFAVS_CHK:
 		{
 			int32 value;

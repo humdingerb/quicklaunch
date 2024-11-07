@@ -201,6 +201,13 @@ SetupWindow::MessageReceived(BMessage* message)
 			fMainMessenger.SendMessage(message);
 			break;
 		}
+		case SAVESEARCH_CHK:
+		{
+			int32 value;
+			message->FindInt32("be:value", &value);
+			settings.SetSaveSearch(value);
+			break;
+		}
 		case FILEPANEL:
 		{
 			if (!settings.fIgnoreList->IsEmpty()) {
