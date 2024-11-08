@@ -57,7 +57,7 @@ public:
 
 	void			BuildAppList();
 
-	int				GetStringLength() { return fSearchBox->TextView()->TextLength(); };
+	bool			IsFavoritesOnly() { return fSearchBox->TextView()->TextLength() == 0; };
 	const char*		GetSearchString() { return fSearchBox->TextView()->Text(); };
 	void			ResizeWindow();
 
