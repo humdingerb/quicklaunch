@@ -67,7 +67,7 @@ void
 MainListView::Draw(BRect rect)
 {
 	MainWindow* window = dynamic_cast<MainWindow*>(Window());
-	int letters = window->GetStringLength();
+	bool emptySearch = window->IsFavoritesOnly();
 	float width, height;
 	BFont font;
 
@@ -80,7 +80,7 @@ MainListView::Draw(BRect rect)
 		BString string;
 
 		if (settings.Lock()) {
-			if (letters == 0)
+			if (emptySearch)
 				string = B_TRANSLATE("Enter the app's name.");
 			else
 				string = B_TRANSLATE("Found no matches.");
@@ -103,7 +103,7 @@ MainListView::Draw(BRect rect)
 	BListView::Draw(rect);
 
 	// Only for Favorites == empty search field
-	if (fDropRect.IsValid() && letters == 0) {
+	if (fDropRect.IsValid() && emptySearch) {
 		SetHighColor(255, 0, 0, 255);
 		StrokeRect(fDropRect);
 	}
@@ -220,9 +220,7 @@ MainListView::MessageReceived(BMessage* message)
 
 			if (wasFavorite) {
 				MainWindow* window = dynamic_cast<MainWindow*>(Window());
-				int letters = window->GetStringLength();
-
-				if (letters == 0) { // remove from result list
+				if (window->IsFavoritesOnly()) { // remove from result list
 					delete RemoveItem(selection);
 					Select((selection - 1 < 0) ? 0 : selection - 1);
 					window->ResizeWindow();
@@ -272,7 +270,7 @@ MainListView::MessageReceived(BMessage* message)
 				break;
 
 			// see if we're dragging a Favorite in a result list
-			if (my_app->fMainWindow->GetStringLength() > 0)
+			if (!my_app->fMainWindow->IsFavoritesOnly())
 				break;
 
 			int32 origIndex;

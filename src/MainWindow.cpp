@@ -153,7 +153,7 @@ MainWindow::MainWindow()
 	fListView->SetInvocationMessage(new BMessage(RETURN_KEY));
 	fListView->SetViewColor(B_TRANSPARENT_COLOR);
 
-	if (searchstring == "")
+	if (IsFavoritesOnly())
 		_ShowFavorites();
 }
 
