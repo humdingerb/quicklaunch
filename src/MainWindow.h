@@ -59,22 +59,21 @@ public:
 
 	bool			IsFavoritesOnly() { return fSearchBox->TextView()->TextLength() == 0; };
 	const char*		GetSearchString() { return fSearchBox->TextView()->Text(); };
-	void			ResizeWindow();
-
-	MainListView*	fListView;
+	void			ResultsCountChanged();
 
 private:
 	static status_t _AppListThread(void* self);
 	void			_BuildAppList();
+
+	void			_RebuildResults();
 	void			_FilterAppList();
+	void			_ShowFavorites();
 
 	float			_GetScrollPosition();
 	void			_SetScrollPosition(float position);
-	void			_FilterKeepPositionSelection();
 
 	void			_LaunchApp(MainListItem* item);
 	void			_AddDroppedAsFav(BMessage* message);
-	void			_ShowFavorites();
 
 	thread_id		fThreadId;
 	bool			fBusy;
@@ -93,6 +92,7 @@ private:
 
 	BTextControl*	fSearchBox;
 	BScrollView*	fScrollView;
+	MainListView*	fListView;
 
 	BWindow*		fSetupWindow;
 };

@@ -223,7 +223,7 @@ MainListView::MessageReceived(BMessage* message)
 				if (window->IsFavoritesOnly()) { // remove from result list
 					delete RemoveItem(selection);
 					Select((selection - 1 < 0) ? 0 : selection - 1);
-					window->ResizeWindow();
+					window->ResultsCountChanged();
 				}
 			}
 
