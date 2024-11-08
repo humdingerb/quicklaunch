@@ -154,7 +154,7 @@ MainWindow::MainWindow()
 	fListView->SetViewColor(B_TRANSPARENT_COLOR);
 
 	if (IsFavoritesOnly())
-		_ShowFavorites();
+		_RebuildResults();
 }
 
 
@@ -358,15 +358,7 @@ MainWindow::MessageReceived(BMessage* message)
 		}
 		case NEW_FILTER:
 		{
-			_FilterAppList();
-
-			if (fListView->IsEmpty()) {
-				fSelectionMenu->SetEnabled(false);
-				break;
-			} else
-				fSelectionMenu->SetEnabled(true);
-
-			fListView->Select(0);
+			_RebuildResults();
 			break;
 		}
 		case B_SIMPLE_DATA:
@@ -424,7 +416,7 @@ MainWindow::MessageReceived(BMessage* message)
 			fTempSearchStart->SetMarked(value);
 
 			if (!(fListView->IsEmpty() && value))
-				_FilterKeepPositionSelection();
+				_RebuildResults();
 
 			break;
 		}
@@ -435,7 +427,7 @@ MainWindow::MessageReceived(BMessage* message)
 			settings.SetSortFavorites(value);
 
 			if (!fListView->IsEmpty())
-				_FilterKeepPositionSelection();
+				_RebuildResults();
 			break;
 		}
 		case IGNORE_CHK:
@@ -491,7 +483,7 @@ MainWindow::BuildAppList()
 
 
 void
-MainWindow::ResizeWindow()
+MainWindow::ResultsCountChanged()
 {
 	int32 count = fListView->CountItems();
 	count = (count < kMAX_DISPLAYED_ITEMS) ? count : kMAX_DISPLAYED_ITEMS;
@@ -499,6 +491,8 @@ MainWindow::ResizeWindow()
 	float itemHeight = itemRect.Height();
 	float windowRest = Frame().Height() - fListView->Frame().Height();
 	ResizeTo(Bounds().Width(), count * itemHeight + windowRest + count - 2);
+
+	fSelectionMenu->SetEnabled(!fListView->IsEmpty());
 }
 
 
@@ -617,6 +611,30 @@ MainWindow::_BuildAppList()
 
 
 void
+MainWindow::_RebuildResults()
+{
+	int32 selection = fListView->CurrentSelection();
+	float position = _GetScrollPosition();
+
+	fListView->MakeEmpty();
+
+	if (IsFavoritesOnly())
+		_ShowFavorites();
+	else
+		_FilterAppList();
+
+	if (selection >= 0) {
+		fListView->Select((selection < fListView->CountItems())
+				? selection : fListView->CountItems() - 1);
+	} else if (!fListView->IsEmpty())
+		fListView->Select(0);
+
+	ResultsCountChanged();
+	_SetScrollPosition(position);
+}
+
+
+void
 MainWindow::_FilterAppList()
 {
 	if (fBusy)
@@ -628,53 +646,46 @@ MainWindow::_FilterAppList()
 	QLSettings& settings = my_app->Settings();
 	BString searchtext = GetSearchString();
 
-	fListView->MakeEmpty();
-
 	if (settings.Lock()) {
-		if (searchtext == "")
-			_ShowFavorites();
-		else {
-			int32 searchFromStart = settings.GetTempSearchStart();
-			bool showAll = (searchtext == "*");
-			bool startJocker = searchtext.StartsWith("*");
-			if (startJocker)
-				searchtext.RemoveFirst("*");
-			for (int32 i = 0; i < fAppList.CountItems(); i++) {
-				BString name = fAppList.ItemAt(i)->GetName();
-				bool found = true;
-				if (!showAll) {
-					if (searchFromStart == 1 && !startJocker)
-						found = name.IStartsWith(searchtext);
-					else
-						found = name.IFindFirst(searchtext) == B_ERROR ? false : true;
-				}
-
-				if (found) {
-					bool isFav = false;
-					BEntry entry = fAppList.ItemAt(i)->GetRef();
-					for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++) {
-						entry_ref* favorite
-							= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
-
-						if (!favorite)
-							continue;
-						BEntry favEntry(favorite);
-						if (favEntry == entry)
-							isFav = true;
-					}
-					if (entry.InitCheck() == B_OK)
-						fListView->AddItem(new MainListItem(&entry, name, fIconHeight, isFav));
-				}
+		int32 searchFromStart = settings.GetTempSearchStart();
+		bool showAll = (searchtext == "*");
+		bool startJocker = searchtext.StartsWith("*");
+		if (startJocker)
+			searchtext.RemoveFirst("*");
+		for (int32 i = 0; i < fAppList.CountItems(); i++) {
+			BString name = fAppList.ItemAt(i)->GetName();
+			bool found = true;
+			if (!showAll) {
+				if (searchFromStart == 1 && !startJocker)
+					found = name.IStartsWith(searchtext);
+				else
+					found = name.IFindFirst(searchtext) == B_ERROR ? false : true;
 			}
 
-			if (settings.GetSortFavorites())
-				fListView->SortItems(&compare_favorite_items);
-			else
-				fListView->SortItems(&compare_items);
+			if (found) {
+				bool isFav = false;
+				BEntry entry = fAppList.ItemAt(i)->GetRef();
+				for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++) {
+					entry_ref* favorite
+						= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
+
+					if (!favorite)
+						continue;
+					BEntry favEntry(favorite);
+					if (favEntry == entry)
+						isFav = true;
+				}
+				if (entry.InitCheck() == B_OK)
+					fListView->AddItem(new MainListItem(&entry, name, fIconHeight, isFav));
+			}
 		}
+
+		if (settings.GetSortFavorites())
+			fListView->SortItems(&compare_favorite_items);
+		else
+			fListView->SortItems(&compare_items);
 	}
 	settings.Unlock();
-	ResizeWindow();
 }
 
 
@@ -694,22 +705,6 @@ MainWindow::_SetScrollPosition(float position)
 	BScrollBar* scrollBar = fScrollView->ScrollBar(B_VERTICAL);
 	scrollBar->SetValue(position);
 	return;
-}
-
-
-void
-MainWindow::_FilterKeepPositionSelection()
-{
-	int32 selection = fListView->CurrentSelection();
-	float position = _GetScrollPosition();
-	_FilterAppList();
-	if (selection >= 0) {
-		fListView->Select((selection < fListView->CountItems())
-				? selection : fListView->CountItems() - 1);
-	} else if (!fListView->IsEmpty())
-		fListView->Select(0);
-
-	_SetScrollPosition(position);
 }
 
 
@@ -770,12 +765,10 @@ MainWindow::_AddDroppedAsFav(BMessage* message)
 		}
 		if (!duplicate) {
 			settings.fFavoriteList->AddItem(new entry_ref(ref), dropIndex);
-			fListView->MakeEmpty();
-			_ShowFavorites();
+			_RebuildResults();
 		}
 		settings.Unlock();
 	}
-	ResizeWindow();
 }
 
 
