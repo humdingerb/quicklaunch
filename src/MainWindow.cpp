@@ -423,7 +423,7 @@ MainWindow::MessageReceived(BMessage* message)
 			settings.SetTempSearchStart(value);
 			fTempSearchStart->SetMarked(value);
 
-			if (!fListView->IsEmpty())
+			if (!(fListView->IsEmpty() && value))
 				_FilterKeepPositionSelection();
 
 			break;
