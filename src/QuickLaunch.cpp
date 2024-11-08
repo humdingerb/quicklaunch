@@ -137,11 +137,8 @@ QLApp::ReadyToRun()
 	BRect frame = fSettings.GetMainWindowFrame();
 
 	fMainWindow->MoveTo(frame.LeftTop());
-	fMainWindow->ResizeTo(frame.right - frame.left, 0);
+	fMainWindow->ResizeBy(frame.Width() - fMainWindow->Frame().Width(), 0);
 	fMainWindow->Show();
-
-	// Initial filtering. Shows favorites and resizes window correctly
-	fMainWindow->PostMessage(NEW_FILTER);
 
 	watch_node(NULL, B_WATCH_MOUNT, this);
 }

@@ -151,14 +151,15 @@ MainWindow::MainWindow()
 			.SetInsets(B_USE_HALF_ITEM_SPACING)
 			.End();
 
+	Layout(false);
+
 	fSearchBox->MakeFocus(true);
 
 	AddCommonFilter(new QLFilter);
 	fListView->SetInvocationMessage(new BMessage(RETURN_KEY));
 	fListView->SetViewColor(B_TRANSPARENT_COLOR);
 
-	if (IsFavoritesOnly())
-		_RebuildResults();
+	_RebuildResults();
 }
 
 
@@ -652,8 +653,12 @@ MainWindow::_FilterAppList()
 	if (fBusy)
 		return;
 
-	if (fAppList.IsEmpty())
+	if (fAppList.IsEmpty()) {
 		BuildAppList();
+
+		// Give up. We'll be called again when the app list is built.
+		return;
+	}
 
 	QLSettings& settings = my_app->Settings();
 	BString searchtext = GetSearchString();
