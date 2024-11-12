@@ -614,7 +614,9 @@ void
 MainWindow::_RebuildResults()
 {
 	int32 selection = fListView->CurrentSelection();
-	float position = _GetScrollPosition();
+	entry_ref ref;
+	if (selection >= 0)
+		ref = *dynamic_cast<MainListItem*>(fListView->ItemAt(selection))->Ref();
 
 	fListView->MakeEmpty();
 
@@ -624,13 +626,19 @@ MainWindow::_RebuildResults()
 		_FilterAppList();
 
 	if (selection >= 0) {
-		fListView->Select((selection < fListView->CountItems())
-				? selection : fListView->CountItems() - 1);
+		int32 count = fListView->CountItems();
+		for (int32 i = 0; i < count; i++) {
+			if (ref == *dynamic_cast<MainListItem*>(fListView->ItemAt(i))->Ref()) {
+				selection = i;
+				break;
+			}
+		}
+		fListView->Select((selection < count) ? selection : count - 1);
 	} else if (!fListView->IsEmpty())
 		fListView->Select(0);
 
 	ResultsCountChanged();
-	_SetScrollPosition(position);
+	fListView->ScrollToSelection();
 }
 
 
@@ -686,25 +694,6 @@ MainWindow::_FilterAppList()
 			fListView->SortItems(&compare_items);
 	}
 	settings.Unlock();
-}
-
-
-float
-MainWindow::_GetScrollPosition()
-{
-	float position;
-	BScrollBar* scrollBar = fScrollView->ScrollBar(B_VERTICAL);
-	position = scrollBar->Value();
-	return (position);
-}
-
-
-void
-MainWindow::_SetScrollPosition(float position)
-{
-	BScrollBar* scrollBar = fScrollView->ScrollBar(B_VERTICAL);
-	scrollBar->SetValue(position);
-	return;
 }
 
 

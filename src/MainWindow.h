@@ -69,9 +69,6 @@ private:
 	void			_FilterAppList();
 	void			_ShowFavorites();
 
-	float			_GetScrollPosition();
-	void			_SetScrollPosition(float position);
-
 	void			_LaunchApp(MainListItem* item);
 	void			_AddDroppedAsFav(BMessage* message);
 
