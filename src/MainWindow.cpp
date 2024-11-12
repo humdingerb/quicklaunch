@@ -38,7 +38,11 @@ compare_items(const void* a, const void* b)
 	MainListItem* stringA = *(MainListItem**)a;
 	MainListItem* stringB = *(MainListItem**)b;
 
-	return strcasecmp(stringA->GetName(), stringB->GetName());
+	int cmp = strcasecmp(stringA->GetName(), stringB->GetName());
+	if (cmp != 0)
+		return cmp;
+
+	return strcasecmp(stringA->Path().Path(), stringB->Path().Path());
 }
 
 
