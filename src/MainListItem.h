@@ -35,6 +35,7 @@ public:
 	BBitmap*		Bitmap() { return fIcon; };
 	char*			GetName() { return fName; };
 	entry_ref*		Ref() { return &fRef; };
+	const BPath&	Path() { return fPath; };
 	bool			IsFavorite() { return fIsFavorite; };
 	void			SetFavorite(bool state);
 
