@@ -9,7 +9,6 @@
 #ifndef QL_WINDOW_H
 #define QL_WINDOW_H
 
-#include "AppListItem.h"
 #include "MainListItem.h"
 #include "MainListView.h"
 
@@ -22,15 +21,10 @@
 #include <GroupLayoutBuilder.h>
 #include <ListView.h>
 #include <Message.h>
-#include <ObjectList.h>
-#include <Path.h>
-#include <Query.h>
 #include <Roster.h>
 #include <Screen.h>
 #include <ScrollView.h>
 #include <TextControl.h>
-#include <Volume.h>
-#include <VolumeRoster.h>
 #include <Window.h>
 
 #include <stdlib.h>
@@ -46,6 +40,9 @@
 #define kMAX_DISPLAYED_ITEMS	10
 
 
+class AppList;
+
+
 class MainWindow : public BWindow {
 public:
 					MainWindow();
@@ -55,16 +52,11 @@ public:
 	void			MessageReceived(BMessage* message);
 	bool			QuitRequested();
 
-	void			BuildAppList();
-
 	bool			IsFavoritesOnly() { return fSearchBox->TextView()->TextLength() == 0; };
 	const char*		GetSearchString() { return fSearchBox->TextView()->Text(); };
 	void			ResultsCountChanged();
 
 private:
-	static status_t _AppListThread(void* self);
-	void			_BuildAppList();
-
 	void			_RebuildResults();
 	void			_FilterAppList();
 	void			_ShowFavorites();
@@ -72,10 +64,7 @@ private:
 	void			_LaunchApp(MainListItem* item);
 	void			_AddDroppedAsFav(BMessage* message);
 
-	thread_id		fThreadId;
-	bool			fBusy;
-
-	BObjectList<AppListItem> fAppList;
+	AppList*		fAppList;
 	int32			fIconHeight;
 
 	BMenu*			fSelectionMenu;

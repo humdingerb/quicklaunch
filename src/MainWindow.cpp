@@ -10,9 +10,9 @@
  */
 
 #include "MainWindow.h"
-#include "MenuBar.h"
+
+#include "AppList.h"
 #include "IconMenuItem.h"
-#include "IgnoreListItem.h"
 #include "QLFilter.h"
 #include "QuickLaunch.h"
 
@@ -20,6 +20,7 @@
 #include <ControlLook.h>
 #include <Font.h>
 #include <LayoutBuilder.h>
+#include <MenuBar.h>
 #include <MessageRunner.h>
 
 #include <algorithm>
@@ -66,13 +67,14 @@ MainWindow::MainWindow()
 	BWindow(BRect(), B_TRANSLATE_SYSTEM_NAME(kApplicationName), B_TITLED_WINDOW_LOOK,
 		B_FLOATING_ALL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_ASYNCHRONOUS_CONTROLS | B_QUIT_ON_WINDOW_CLOSE | B_FRAME_EVENTS
-			| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE),
-	fBusy(false),
-	fAppList(20, true)
+			| B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE)
 {
-	QLSettings& settings = my_app->Settings();
+	fAppList = new AppList();
+	fAppList->StartWatching(this, BUILDAPPLIST);
+
 	fIconHeight = (int32(be_control_look->ComposeIconSize(B_LARGE_ICON).Height()) + 2);
 
+	QLSettings& settings = my_app->Settings();
 	fSetupWindow = new SetupWindow(settings.GetSetupWindowFrame(), this);
 	fSetupWindow->Hide();
 	fSetupWindow->Show();
@@ -165,6 +167,9 @@ MainWindow::MainWindow()
 
 MainWindow::~MainWindow()
 {
+	fAppList->Lock();
+	fAppList->Quit();
+
 	QLSettings& settings = my_app->Settings();
 	if (settings.Lock()) {
 		settings.SetSearchTerm(GetSearchString());
@@ -445,12 +450,21 @@ MainWindow::MessageReceived(BMessage* message)
 
 			settings.SetTempShowIgnore(value);
 			fTempApplyIgnore->SetMarked(value);
-			// intentional fall-thru
+			// intentional fall-thru to BUILDAPPLIST
 
 		}
 		case BUILDAPPLIST:
 		{
-			BuildAppList();
+			fAppList->PostMessage(BUILDAPPLIST);
+			break;
+		}
+		case B_OBSERVER_NOTICE_CHANGE:
+		{
+			int32 what;
+			if (message->FindInt32(B_OBSERVE_WHAT_CHANGE, &what) == B_OK
+					&& what == BUILDAPPLIST && !IsFavoritesOnly())
+				_RebuildResults();
+
 			break;
 		}
 		case OPENLOCATION:
@@ -478,16 +492,6 @@ MainWindow::QuitRequested()
 
 
 void
-MainWindow::BuildAppList()
-{
-	fThreadId = spawn_thread(_AppListThread, "build app list", B_NORMAL_PRIORITY, this);
-	if (fThreadId < 0)
-		return;
-	resume_thread(fThreadId);
-}
-
-
-void
 MainWindow::ResultsCountChanged()
 {
 	int32 count = fListView->CountItems();
@@ -502,117 +506,6 @@ MainWindow::ResultsCountChanged()
 
 
 #pragma mark-- Private Methods --
-
-
-/*static*/ status_t
-MainWindow::_AppListThread(void* _self)
-{
-	MainWindow* self = (MainWindow*)_self;
-	self->_BuildAppList();
-	return B_OK;
-}
-
-
-void
-MainWindow::_BuildAppList()
-{
-	fBusy = true;
-
-	fAppList.MakeEmpty();
-	QLSettings& settings = my_app->Settings();
-
-	bool localized = BLocaleRoster::Default()->IsFilesystemTranslationPreferred();
-	bool activeIgnore = settings.GetTempApplyIgnore();
-	int32 ignoreCount = settings.fIgnoreList->CountItems();
-
-	BVolumeRoster volumeRoster;
-	BVolume volume;
-	BQuery query;
-
-	while (volumeRoster.GetNextVolume(&volume) == B_OK) {
-		if (volume.KnowsQuery()) {
-			// Check if the whole volume is on ignore list
-			if (activeIgnore && ignoreCount != 0) {
-				bool ignore = false;
-				BDirectory root;
-				volume.GetRootDirectory(&root);
-				BPath mountPoint(&root, NULL);
-
-				BString newItem(mountPoint.Path());
-				for (int i = 0; i < ignoreCount; i++) {
-					IgnoreListItem* sItem = dynamic_cast<IgnoreListItem*>(
-						settings.fIgnoreList->ItemAt(i));
-
-					if (newItem.Compare(sItem->GetItem()) == 0) {
-						ignore = true;
-						break;
-					}
-				}
-				if (ignore)
-					continue;
-			}
-
-			// Set up the volume and predicate for the query.
-			query.SetVolume(&volume);
-			query.PushAttr("BEOS:TYPE");
-			query.PushString("application/x-vnd.be-elfexecutable", true);
-			query.PushOp(B_EQ);
-
-			query.PushAttr("BEOS:APP_SIG");
-			query.PushString("application/x");
-			query.PushOp(B_BEGINS_WITH);
-			query.PushOp(B_AND);
-
-			status_t status = query.Fetch();
-
-			if (status != B_OK)
-				printf("2. what happened? %s\n", strerror(status));
-
-			BEntry entry;
-			BPath path;
-			while (query.GetNextEntry(&entry) == B_OK) {
-				if (!entry.IsFile())
-					continue;
-
-				if (entry.GetPath(&path) < B_OK) {
-					fprintf(stderr, "could not get path for entry\n");
-					continue;
-				}
-
-				BPath parent;
-				entry.GetPath(&path);
-				path.GetParent(&parent);
-
-				// ignore Trash on all volumes
-				BPath trashDir;
-				if (find_directory(B_TRASH_DIRECTORY, &trashDir, false, &volume) == B_OK) {
-					if (strstr(parent.Path(), trashDir.Path()))
-						continue;
-				}
-
-				bool ignore = false;
-				if (activeIgnore && ignoreCount != 0) {
-					BString newItem(path.Path());
-					for (int i = 0; i < ignoreCount; i++) {
-						IgnoreListItem* sItem = dynamic_cast<IgnoreListItem*>(
-							settings.fIgnoreList->ItemAt(i));
-
-						if (sItem->Ignores(newItem)) {
-							ignore = true;
-							break;
-						}
-					}
-				}
-				if (!ignore && entry.InitCheck() == B_OK)
-					fAppList.AddItem(new AppListItem(entry, localized));
-			}
-			query.Clear();
-		}
-	}
-
-	fBusy = false;
-	PostMessage(NEW_FILTER);
-}
 
 
 void
@@ -650,13 +543,12 @@ MainWindow::_RebuildResults()
 void
 MainWindow::_FilterAppList()
 {
-	if (fBusy)
+	if (fAppList->LockWithTimeout(50 * 1000) != B_OK)
 		return;
 
-	if (fAppList.IsEmpty()) {
-		BuildAppList();
-
-		// Give up. We'll be called again when the app list is built.
+	const AppListItems* appList = fAppList->Items();
+	if (appList == NULL) {
+		fAppList->Unlock();
 		return;
 	}
 
@@ -669,8 +561,8 @@ MainWindow::_FilterAppList()
 		bool startJocker = searchtext.StartsWith("*");
 		if (startJocker)
 			searchtext.RemoveFirst("*");
-		for (int32 i = 0; i < fAppList.CountItems(); i++) {
-			BString name = fAppList.ItemAt(i)->GetName();
+		for (int32 i = 0; i < appList->CountItems(); i++) {
+			BString name = appList->ItemAt(i)->GetName();
 			bool found = true;
 			if (!showAll) {
 				if (searchFromStart == 1 && !startJocker)
@@ -681,7 +573,7 @@ MainWindow::_FilterAppList()
 
 			if (found) {
 				bool isFav = false;
-				BEntry entry = fAppList.ItemAt(i)->GetRef();
+				BEntry entry = appList->ItemAt(i)->GetRef();
 				for (int32 i = 0; i < settings.fFavoriteList->CountItems(); i++) {
 					entry_ref* favorite
 						= static_cast<entry_ref*>(settings.fFavoriteList->ItemAt(i));
@@ -703,6 +595,7 @@ MainWindow::_FilterAppList()
 			fListView->SortItems(&compare_items);
 	}
 	settings.Unlock();
+	fAppList->Unlock();
 }
 
 
