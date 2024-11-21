@@ -97,6 +97,13 @@ AppList::_BuildAppList()
 					continue;
 			}
 
+			char trashPath[B_PATH_NAME_LENGTH];
+			size_t trashPathLength;
+			if (find_directory(B_TRASH_DIRECTORY, volume.Device(), false, trashPath, sizeof(trashPath)) == B_OK)
+				trashPathLength = strlen(trashPath);
+			else
+				trashPathLength = 0;
+
 			// Set up the volume and predicate for the query.
 			query.SetVolume(&volume);
 			query.PushAttr("BEOS:TYPE");
@@ -128,10 +135,10 @@ AppList::_BuildAppList()
 				entry.GetPath(&path);
 				path.GetParent(&parent);
 
-				// ignore Trash on all volumes
-				BPath trashDir;
-				if (find_directory(B_TRASH_DIRECTORY, &trashDir, false, &volume) == B_OK) {
-					if (strstr(parent.Path(), trashDir.Path()))
+				// ignore Trash
+				if (trashPathLength > 0 && strncmp(parent.Path(), trashPath, trashPathLength) == 0) {
+					char nextChar = parent.Path()[trashPathLength];
+					if (nextChar == '\0' || nextChar == '/')
 						continue;
 				}
 
