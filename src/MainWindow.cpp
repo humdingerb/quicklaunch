@@ -123,7 +123,6 @@ MainWindow::MainWindow()
 	menubar->AddItem(menu);
 
 	fSearchBox = new BTextControl("SearchBox", NULL, NULL, NULL);
-	fSearchBox->SetModificationMessage(new BMessage (NEW_FILTER));
 
 	fListView = new MainListView();
 	fListView->SetExplicitMinSize(BSize(B_SIZE_UNSET, fIconHeight + 8));
@@ -152,6 +151,9 @@ MainWindow::MainWindow()
 			fSearchBox->SetText(settings.GetSearchTerm());
 		settings.Unlock();
 	}
+	// set modification msg after the SetText() above or we get
+	// an unwanted NEW_FILTER message
+	fSearchBox->SetModificationMessage(new BMessage(NEW_FILTER));
 
 	BString searchstring(GetSearchString());
 	if (searchstring == "")
