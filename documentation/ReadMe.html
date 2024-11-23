@@ -89,12 +89,12 @@ h3 {
 </head>
 <body>
 <div align = "center">
-<img width="64" height="64" src="./images/quicklaunch_icon_64.png" alt="QuickLaunch icon" />
+<img width="64" height="64" src="./images/icon_64.png" alt="QuickLaunch icon" />
 <p><span style="font-size: 1.5em; font-weight:bold">QuickLaunch</span><br />
 for <a href="https://www.haiku-os.org">Haiku</a><br />
 <i>by Humdinger</i></p>
 <hr />
-<p id="index"><a href="#favorites">Favorites</a> — <a href="#setup">Setup</a> — <a href="#tips">Tips &amp; Tricks</a><br />
+<p id="index"><a href="#favorites">Favorites</a> — <a href="#settings">Settings</a> — <a href="#menus">Menus</a> — <a href="#tips">Tips &amp; Tricks</a><br />
 <a href="#download">Download</a> — <a href="#bugs_feedback">Bugreports &amp; Feedback</a> — <a href="#thanks">Thanks</a> — <a href="#history">History</a></p>
 </div>
 <hr />
@@ -102,8 +102,8 @@ for <a href="https://www.haiku-os.org">Haiku</a><br />
 <p>QuickLaunch is a small launcher tool that helps you to quickly start any installed application.</p>
 <p>Simply start to enter the name of an application and QuickLaunch will find all programs matching these initial letters and show them in a list. You choose an app from that list with the <span class="key">↑</span> <span class="key">↓</span> keys and launch it by hitting <span class="key">RETURN</span>. <span class="key">ESC</span> quits QuickLaunch.</p>
 
-<p>Here's the main window after searching for all applications starting with "me" and behind it the settings window when clicking the <span class="button">Setup</span> button (or pressing <span class="key">ALT</span>+<span class="key">S</span>:</p>
-<div align = "center">
+<p>Here's the main window after searching for all applications starting with "me" and behind it QuickLaunch's settings window:</p>
+<div align="center">
 <img src="./images/quicklaunch.png" alt="QuickLaunch windows" />
 </div>
 <p>In the main window the context menu was invoked via a right-click.<br />
@@ -111,23 +111,23 @@ The first item adds the selected app to your favorites which will be shown whene
 The second item adds the app to the ignore list (key-combo: <span class="key">ALT</span>+<span class="key">I</span>; works also with a drag &amp; drop into the ignore list of the setup window). More on that in the setup options discussed below.<br />
 The final item opens the app's location in a Tracker window (key-combo: <span class="key">ALT</span>+<span class="key">O</span> or <span class="key">CTRL</span>+<span class="key">RETURN</span>).</p>
 
-<p>The <span class="button">Help</span> button, or pressing <span class="key">ALT</span>+<span class="key">H</span>, opens this ReadMe in the browser.</p>
+<p>Those menu items are also found und <span class="menu">Selection</span> in the menu bar.</p>
 
 <h2>
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
 <a id="favorites" name="setup">Favorites</a></h2>
 
 <p>Your list of favorite applications is shown whenever the search field is empty, e.g. right when you start QuickLaunch.</p>
-<div align = "center">
-<img src="./images/quicklaunch_favorites.png" alt="QuickLaunch favorites" />
+<div align="center">
+<img src="./images/favorites.png" alt="QuickLaunch favorites" />
 </div>
 <p>The background of favorites is slightly tinted yellow and a little yellow star is added to their icon to distinguish them from a regular search result.</p>
 <p>You add favorites by right-clicking an app's entry in a search result list and choosing <span class="menu">Add to favorites</span> or pressing <span class="key">ALT</span>+<span class="key">F</span>.<br />
 Similarly, you remove a favorite again by right-clicking it and selecting <span class="menu">Remove favorite</span> or with <span class="key">ALT</span>+<span class="key">R</span>.</p>
 <p>You can also create a favorite by dragging a file from any Tracker window onto your favorites' list. Even better: The dropped file doesn't have to be an application. Any file or folder will do. Non-application favorites are tinted slightly green to distinguish them from your app favorites.</p>
 
-<p><img src="./images/quicklaunch_replicant.png" alt="QuickLaunch replicant favorites" align="left" valign="middle" vspace="5" hspace="32"/>The Deskbar replicant can be activated from the Setup window (see below). It installs the QuickLaunch icon into the Deskbar tray, alongside the clock and the replicants of other applications.<br />
-A right-click on it also offers quick access to your favorites.</p>
+<p><img src="./images/replicant.png" alt="QuickLaunch replicant favorites" align="left" valign="middle" vspace="5" hspace="32"/>The Deskbar replicant can be activated from the Settings window (see below). It installs the QuickLaunch icon into the Deskbar tray, alongside the clock and the replicants of other applications.<br />
+A left-click starts QuickLaunch, a right-click offers quick access to your favorites.</p>
 <p><br /></p>
 <p><br /></p>
 <p><br /></p>
@@ -135,11 +135,11 @@ A right-click on it also offers quick access to your favorites.</p>
 
 <h2>
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
-<a id="setup" name="setup">Setup</a></h2>
+<a id="settings" name="settings">Settings</a></h2>
 
-<p>The setup window, invoked with the <span class="button">Setup</span> button or <span class="key">ALT</span>+<span class="key">S</span>:</p>
-<div align = "center">
-<img src="./images/quicklaunch_setup.png" alt="QuickLaunch setup" />
+<p>The Settings window, invoked from the app-icon menu or with <span class="key">ALT</span>+<span class="key">,</span>:</p>
+<div align="center">
+<img src="./images/settings.png" alt="QuickLaunch settings" />
 </div>
 <ul>
 <li><p><span class="menu">Show Deskbar replicant</span> — puts the QuickLaunch icon into the Deskbar tray. A left-click on it starts QuickLaunch, with a right-click you can start your favorite applications directly from the context menu.</p></li>
@@ -153,19 +153,54 @@ A right-click on it also offers quick access to your favorites.</p>
 You can also right-click an app in the main window's result list to add that specific app to the ignore list or drag &amp; drop any application or folder from Tracker or an app from QuickLaunch's main window into it.<br />
 <span class="key">DEL</span> removes the selected items from the ignore list.</p>
 <p>If you add a folder instead of a file, QuickLaunch will ignore all the files and subfolders it contains. Those items are marked with a "<tt>*</tt>" in the list and are printed in italics.</p></li>
+<li><p>QuickLaunch has a number of files and folders (*) on the ignore list by default, that would return normally unwanted matches:</p>
+<ul>
+<li><tt>/system/add-ons/</tt> *</li>
+<li><tt>/system/bin/</tt> *</li>
+<li><tt>/system/data/</tt> *</li>
+<li><tt>/system/lib/</tt> *</li>
+<li><tt>/system/servers/</tt> *</li>
+<li><tt>/system/haiku_loader.bios_ia32</tt></li>
+<li><tt>/system/kernel_x86_64</tt></li>
+<li><tt>/system/runtime_loader</tt></li>
 </ul>
+<p>You can remove any of them if you need to. Clicking <span class="button">Defaults</span> will reinstate them without removing any of your own additions to the ignore list.</p></li>
+</ul>
+
+<h2>
+<a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
+<a id="menus" name="menus">Menus</a></h2>
+<table border="0">
+<tr><td valign="top"><img src="./images/menu-app.png" alt="The app-icon menu" align="right" /></td><td width="20px"></td>
+<td valign="top">
+<p>Those menu items are all pretty self-explanatory.</p>
+<p><span class="menu">Settings…</span> opens the settings window. <span class="menu">Help</span> opens the documentation you're currently reading. <span class="menu">About QuickLaunch</span> shows the app's version, copyright, credits etc. and
+<span class="menu">Quit</span> exits the app, same as <span class="key">ESC</span>.</p>
+</td></tr>
+<tr><td colspan="3"><p></p></td></tr>
+<tr><td valign="top"><img src="./images/menu-selection.png" alt="The selection menu" align="right" /></td><td width="20px"></td>
+<td valign="top">
+<p>These menu items pertain to the currently selected list item.</p>
+<p>If the item happens to be a 'favorite', you can <span class="menu">Remove favorite</span>. Otherwise you can <span class="menu">Add to favorites</span> or <span class="menu">Add to ignore list</span>. <span class="menu">Open containing folder</span> opens the item's location in a Tracker window.</p>
+<p>This menu is also available from the context menu when you right-click an item.</p>
+</td></tr>
+<tr><td valign="top"><img src="./images/menu-temp-options.png" alt="The temporaray options menu" align="right" /></td><td width="20px"></td>
+<td valign="top">
+<p>The <span class="menu">Temporary options</span> override the configurations in the Settings window. These options are not saved, next time you start QuickLaunch the usual settings are in effect.</p>
+<p>These options are most conveniently applied via their keyboard shortcuts. For example, you may usually prefer to show neither path nor version. Only some searches return several different versions of the same app. Then it's handy to quickly show their path/version with <span class="key">ALT</span>+<span class="key">P</span>&nbsp;/&nbsp;<span class="key">V</span>.<br/>
+Sometimes it's also useful not to limit the search to the start of application names (<span class="key">ALT</span>+<span class="key">S</span>), or to temporarily disable the ignore list (<span class="key">ALT</span>+<span class="key">A</span>).</p>
+</td></tr>
+</table>
 
 <h2>
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
 <a id="tips" name="tips">Tips &amp; Tricks</a></h2>
 <ul>
 <li><p>Assign a keycombo to QuickLaunch in Haiku's Shortcuts preferences, like <span class="key">OPT</span>+<span class="key">SPACEBAR</span>, for even quicker QuickLaunching apps.</p></li>
-<li><p>If you don't want to deactivate the option <span class="menu">Search from start of application name</span> in general, but just once in a while would like to search within an app name, you can use a '<tt>*</tt>' as a wildcard. E.g. "<tt>*player</tt>" will find '<tt>MediaPlayer</tt>' and '<tt>MidiPlayer</tt>'.</p></li>
 <li><p>You can create a favorite by dragging any file &ndash; not just an application &ndash; from any Tracker window onto your favorites' list.</p></li>
 <li><p><span class="key">SHIFT</span>+<span class="key">RETURN</span> will keep the QuickLaunch window open after launching the app.</p></li>
-<li><p>These two folders are ignored by default: <span style="font-family: monospace">/system/add-ons/</span> and <span style="font-family: monospace">Trash</span><br />
-In other words, applications in Trash are ignored, as well as add-ons.<br />
-<span style="font-family: monospace">/system/bin/</span> used to be ignored, but since especially ported software often ends up in the /bin folder, that is a bad idea. You'll have to remove unwanted commandline apps manually now, i.e. via <span class="menu">Add to ignore list</span> of the context menu.</p></li>
+<li><p>The <span style="font-family: monospace">Trash</span> is the only folder that is permanently ignored. Anything else is handled with the ignore list of the Settings window.<br />
+<span style="font-family: monospace">/system/bin/</span> is on the ignore list by default, but since especially ported software often ends up in the /bin folder, you may want to remove it from there and ignore unwanted commandline apps individually instead.</p></li>
 <li>There are two reasons why an application may not be found by QuickLaunch:
 <ol>
 <li>The application isn't located on a BFS partition or the BFS partition wasn't formatted to support queries.</li>
