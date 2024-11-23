@@ -1,10 +1,8 @@
-1	English	application/x-vnd.humdinger-quicklaunch	526509110
-Show application path	MainWindow		Show application path
+1	English	application/x-vnd.humdinger-quicklaunch	4005991587
 Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Failed to launch %appname%.\n\nError:
 Found no matches.	ListView		Found no matches.
 Apply ignore list	MainWindow		Apply ignore list
 OK	MainWindow		OK
-Add to ignore list	MainWindow		Add to ignore list
 The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?
 Show Deskbar replicant	SetupWindow		Show Deskbar replicant
 Settings	SetupWindow		Settings
@@ -17,25 +15,20 @@ Search from start of application name	SetupWindow		Search from start of applicat
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignore these files & folders (and their subfolders):
 Selection	MainWindow		Selection
 About QuickLaunch	MainWindow		About QuickLaunch
-Show application version	MainWindow		Show application version
-Open containing folder	MainWindow		Open containing folder
 Add…	SetupWindow		Add…
 Help	MainWindow		Help
 Show application version	SetupWindow		Show application version
-Add to favorites	MainWindow		Add to favorites
 Add to favorites	ListView		Add to favorites
 Open Shortcuts preferences	SetupWindow		Open Shortcuts preferences
 Defaults	SetupWindow		Defaults
 Sort favorite items to the top	SetupWindow		Sort favorite items to the top
 Settings…	MainWindow		Settings…
 Open containing folder	ListView		Open containing folder
-Search from start of application name	MainWindow		Search from start of application name
 Remember last search term	SetupWindow		Remember last search term
 Remove favorite	ListView		Remove favorite
 Open QuickLaunch	Application		Open QuickLaunch
+Enter the app's name.	ListView		Enter the app's name.
 Cancel	Application		Cancel
 Add to ignore list	ListView		Add to ignore list
-Use '*' as wildcards.	ListView		Use '*' as wildcards.
-Remove favorite	MainWindow		Remove favorite
 Open Shortcuts	Application		Open Shortcuts
 About QuickLaunch	Application		About QuickLaunch

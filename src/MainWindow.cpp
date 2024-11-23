@@ -94,25 +94,25 @@ MainWindow::MainWindow()
 	fSelectionMenu = new BMenu(B_TRANSLATE("Selection"));
 	fAddRemoveFav = new BMenuItem("AddRemoveFavorite", new BMessage(ADD_REMOVE_FAVORITE));
 	fSelectionMenu->AddItem(fAddRemoveFav);
-	fAddToIgnore = new BMenuItem(B_TRANSLATE("Add to ignore list"), new BMessage(ADDIGNORE) , 'I');
+	fAddToIgnore = new BMenuItem(B_TRANSLATE_CONTEXT("Add to ignore list", "ListView"), new BMessage(ADDIGNORE) , 'I');
 	fSelectionMenu->AddItem(fAddToIgnore);
-	item = new BMenuItem(B_TRANSLATE("Open containing folder"), new BMessage(OPENLOCATION), 'O');
+	item = new BMenuItem(B_TRANSLATE_CONTEXT("Open containing folder", "ListView"), new BMessage(OPENLOCATION), 'O');
 	fSelectionMenu->AddItem(item);
 
 	menubar->AddItem(fSelectionMenu);
 
 	menu = new BMenu(B_TRANSLATE("Temporary options"));
 	fTempShowPath = new BMenuItem(
-		B_TRANSLATE("Show application path"), new BMessage(PATH_CHK), 'P');
+		B_TRANSLATE_CONTEXT("Show application path", "SetupWindow"), new BMessage(PATH_CHK), 'P');
 	fTempShowPath->SetMarked(settings.GetTempShowPath() == true);
 	menu->AddItem(fTempShowPath);
 	fTempShowVersion = new BMenuItem(
-		B_TRANSLATE("Show application version"), new BMessage(VERSION_CHK), 'V');
+		B_TRANSLATE_CONTEXT("Show application version", "SetupWindow"), new BMessage(VERSION_CHK), 'V');
 	fTempShowVersion->SetMarked(settings.GetTempShowVersion() == true);
 	menu->AddItem(fTempShowVersion);
 	menu->AddSeparatorItem();
 	fTempSearchStart = new BMenuItem(
-		B_TRANSLATE("Search from start of application name"), new BMessage(SEARCHSTART_CHK), 'S');
+		B_TRANSLATE_CONTEXT("Search from start of application name", "SetupWindow"), new BMessage(SEARCHSTART_CHK), 'S');
 	fTempSearchStart->SetMarked(settings.GetTempSearchStart() == true);
 	menu->AddItem(fTempSearchStart);
 	fTempApplyIgnore = new BMenuItem(
@@ -182,11 +182,11 @@ MainWindow::MenusBeginning()
 		return;
 
 	if (sItem->IsFavorite()) {
-		fAddRemoveFav->SetLabel(B_TRANSLATE("Remove favorite"));
+		fAddRemoveFav->SetLabel(B_TRANSLATE_CONTEXT("Remove favorite", "ListView"));
 		fAddRemoveFav->SetShortcut('R', B_COMMAND_KEY);
 		fAddToIgnore->SetEnabled(false);
 	} else {
-		fAddRemoveFav->SetLabel(B_TRANSLATE("Add to favorites"));
+		fAddRemoveFav->SetLabel(B_TRANSLATE_CONTEXT("Add to favorites", "ListView"));
 		fAddRemoveFav->SetShortcut('F', B_COMMAND_KEY);
 		fAddToIgnore->SetEnabled(true);
 	}
