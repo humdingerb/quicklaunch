@@ -11,6 +11,7 @@
 
 #include <Looper.h>
 #include <ObjectList.h>
+#include <Volume.h>
 
 
 typedef BObjectList<AppListItem> AppListItems;
@@ -19,12 +20,14 @@ typedef BObjectList<AppListItem> AppListItems;
 class AppList : public BLooper {
 public:
 							AppList();
+	virtual					~AppList();
 
 	void					MessageReceived(BMessage* message);
 
 	const AppListItems*		Items();
 
 private:
+	int						_AppendVolumeItems(const BVolume& volume, bool localized);
 	void					_BuildAppList();
 
 private:
