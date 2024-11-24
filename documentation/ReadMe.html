@@ -108,7 +108,7 @@ for <a href="https://www.haiku-os.org">Haiku</a><br />
 </div>
 <p>In the main window the context menu was invoked via a right-click.<br />
 The first item adds the selected app to your favorites which will be shown whenever the search field is empty (key-combo: <span class="key">ALT</span>+<span class="key">F</span>).<br />
-The second item adds the app to the ignore list (key-combo: <span class="key">ALT</span>+<span class="key">I</span>; works also with a drag &amp; drop into the ignore list of the setup window). More on that in the setup options discussed below.<br />
+The second item adds the app to the ignore list (key-combo: <span class="key">ALT</span>+<span class="key">A</span>; works also with a drag &amp; drop into the ignore list of the setup window). More on that in the setup options discussed below.<br />
 The final item opens the app's location in a Tracker window (key-combo: <span class="key">ALT</span>+<span class="key">O</span> or <span class="key">CTRL</span>+<span class="key">RETURN</span>).</p>
 
 <p>Those menu items are also found under <span class="menu">Selection</span> in the menu bar.</p>
@@ -123,7 +123,7 @@ The final item opens the app's location in a Tracker window (key-combo: <span cl
 </div>
 <p>The background of favorites is slightly tinted yellow and a little yellow star is added to their icon to distinguish them from a regular search result.</p>
 <p>You add favorites by right-clicking an app's entry in a search result list and choosing <span class="menu">Add to favorites</span> or pressing <span class="key">ALT</span>+<span class="key">F</span>.<br />
-Similarly, you remove a favorite again by right-clicking it and selecting <span class="menu">Remove favorite</span> or with <span class="key">ALT</span>+<span class="key">R</span>.</p>
+Similarly, you remove a favorite again by right-clicking it and selecting <span class="menu">Remove favorite</span> or with <span class="key">ALT</span>+<span class="key">F</span>.</p>
 <p>You can also create a favorite by dragging a file from any Tracker window onto your favorites' list. Even better: The dropped file doesn't have to be an application. Any file or folder will do. Non-application favorites are tinted slightly green to distinguish them from your app favorites.</p>
 
 <p><img src="./images/replicant.png" alt="QuickLaunch replicant favorites" align="left" valign="middle" vspace="5" hspace="32"/>The Deskbar replicant can be activated from the Settings window (see below). It installs the QuickLaunch icon into the Deskbar tray, alongside the clock and the replicants of other applications.<br />
@@ -188,7 +188,7 @@ You can also right-click an app in the main window's result list to add that spe
 <td valign="top">
 <p>The <span class="menu">Temporary options</span> override the configurations in the Settings window. These options are not saved, next time you start QuickLaunch the usual settings are in effect.</p>
 <p>These options are most conveniently applied via their keyboard shortcuts. For example, you may usually prefer to show neither path nor version. Only some searches return several different versions of the same app. Then it's handy to quickly show their path/version with <span class="key">ALT</span>+<span class="key">P</span>&nbsp;/&nbsp;<span class="key">V</span>.<br/>
-Sometimes it's also useful not to limit the search to the start of application names (<span class="key">ALT</span>+<span class="key">S</span>), or to temporarily disable the ignore list (<span class="key">ALT</span>+<span class="key">A</span>).</p>
+Sometimes it's also useful not to limit the search to the start of application names (<span class="key">ALT</span>+<span class="key">S</span>), or to temporarily disable the ignore list (<span class="key">ALT</span>+<span class="key">I</span>).</p>
 </td></tr>
 </table>
 
@@ -237,6 +237,25 @@ Catalan&nbsp;(ca) by&nbsp;Davidmp · Chinese&nbsp;(simplified)&nbsp;(zh-Hans) by
 <h2>
 <a href="#"><img src="images/up.png" style="border:none;float:right" alt="index" /></a>
 <a id="history" name="history">History</a></h2>
+
+<p><b>1.8</b> - <i>11-xx-2024:</i></p>
+<ul>
+<li>Remove buttons, add menu bar.</li>
+<li>Add menu items to temporarily override settings.</li>
+<li>Change some keyboard shortcuts to keep things intuitive with the new temp options.</li>
+<li>Add default entries to ignore list.</li>
+<li>Add button to reset default entries.</li>
+<li>Move favorite star icon to the right for less interference with icons with overlays.</li>
+<li>Always sort items with the same name in the same order and keep the selection on result change if possible. Thanks Máximo!</li>
+<li>Bugfix: Fixed false positives when filtering Trash. Thanks Máximo!</li>
+<li>Bugfix: Sometimes the scrollbar was needlessly active (window slightly too small). Thanks Máximo!</li>
+<li>Bugfix: Fixed rarely encountered 'overfiltering' bug of ignore list. Thanks Máximo!</li>
+<li>Bugfix: Fixed memory leaks. Thanks Máximo!</li>
+<li>Bugfix: Fix crash when mounting/unmounting a volume.</li>
+<li>Bugfix: Fix double entries when setting 'save last term' is active.</li>
+<li>Updated documentation.</li>
+<li>Updated translations.</li>
+</ul>
 
 <p><b>1.7</b> - <i>10-26-2024:</i></p>
 <ul>
