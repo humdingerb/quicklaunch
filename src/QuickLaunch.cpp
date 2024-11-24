@@ -17,7 +17,6 @@
 #include <Catalog.h>
 #include <Deskbar.h>
 #include <PathFinder.h>
-#include <storage/NodeMonitor.h>
 
 const char* kApplicationSignature = "application/x-vnd.humdinger-quicklaunch";
 const char* kApplicationName = "QuickLaunch";
@@ -48,8 +47,6 @@ QLApp::QLApp()
 
 QLApp::~QLApp()
 {
-	stop_watching(this);
-
 	if (fMainWindow != NULL) {
 		BMessenger messengerMain(fMainWindow);
 		if (messengerMain.IsValid() && messengerMain.LockTarget())
@@ -107,14 +104,6 @@ QLApp::MessageReceived(BMessage* message)
 				_RemoveFromDeskbar();
 			break;
 		}
-		case B_NODE_MONITOR:
-		{
-			int32 opcode = message->GetInt32("opcode", -1);
-
-			if ((opcode == B_DEVICE_MOUNTED) || (opcode == B_DEVICE_UNMOUNTED))
-				fMainWindow->PostMessage(new BMessage(BUILDAPPLIST));
-			break;
-		}
 		default:
 		{
 			BApplication::MessageReceived(message);
@@ -139,8 +128,6 @@ QLApp::ReadyToRun()
 	fMainWindow->MoveTo(frame.LeftTop());
 	fMainWindow->ResizeBy(frame.Width() - fMainWindow->Frame().Width(), 0);
 	fMainWindow->Show();
-
-	watch_node(NULL, B_WATCH_MOUNT, this);
 }
 
 
