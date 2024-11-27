@@ -456,6 +456,11 @@ MainWindow::MessageReceived(BMessage* message)
 			BuildAppList();
 			break;
 		}
+		case OPENLOCATION:
+		{
+			fListView->MessageReceived(message);
+			break;
+		}
 		default:
 		{
 			BWindow::MessageReceived(message);
