@@ -100,7 +100,7 @@ MainWindow::MainWindow()
 	fSelectionMenu = new BMenu(B_TRANSLATE("Selection"));
 	fAddRemoveFav = new BMenuItem("AddRemoveFavorite", new BMessage(ADD_REMOVE_FAVORITE));
 	fSelectionMenu->AddItem(fAddRemoveFav);
-	fAddToIgnore = new BMenuItem(B_TRANSLATE_CONTEXT("Add to ignore list", "ListView"), new BMessage(ADDIGNORE) , 'I');
+	fAddToIgnore = new BMenuItem(B_TRANSLATE_CONTEXT("Add to ignore list", "ListView"), new BMessage(ADDIGNORE) , 'A');
 	fSelectionMenu->AddItem(fAddToIgnore);
 	item = new BMenuItem(B_TRANSLATE_CONTEXT("Open containing folder", "ListView"), new BMessage(OPENLOCATION), 'O');
 	fSelectionMenu->AddItem(item);
@@ -122,7 +122,7 @@ MainWindow::MainWindow()
 	fTempSearchStart->SetMarked(settings.GetTempSearchStart() == true);
 	menu->AddItem(fTempSearchStart);
 	fTempApplyIgnore = new BMenuItem(
-		B_TRANSLATE("Apply ignore list"), new BMessage(IGNORE_CHK), 'A');
+		B_TRANSLATE("Apply ignore list"), new BMessage(IGNORE_CHK), 'I');
 	fTempApplyIgnore->SetMarked(settings.GetTempApplyIgnore() == true);
 	menu->AddItem(fTempApplyIgnore);
 
@@ -193,7 +193,7 @@ MainWindow::MenusBeginning()
 
 	if (sItem->IsFavorite()) {
 		fAddRemoveFav->SetLabel(B_TRANSLATE_CONTEXT("Remove favorite", "ListView"));
-		fAddRemoveFav->SetShortcut('R', B_COMMAND_KEY);
+		fAddRemoveFav->SetShortcut('F', B_COMMAND_KEY);
 		fAddToIgnore->SetEnabled(false);
 	} else {
 		fAddRemoveFav->SetLabel(B_TRANSLATE_CONTEXT("Add to favorites", "ListView"));

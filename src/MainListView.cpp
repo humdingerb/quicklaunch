@@ -426,14 +426,14 @@ MainListView::_ShowPopUpMenu(BPoint screen)
 	BMenuItem* item;
 
 	if (isFav) {
-		item = new BMenuItem(B_TRANSLATE("Remove favorite"), new BMessage(ADD_REMOVE_FAVORITE), 'R');
+		item = new BMenuItem(B_TRANSLATE("Remove favorite"), new BMessage(ADD_REMOVE_FAVORITE), 'F');
 	} else {
 		item = new BMenuItem(B_TRANSLATE("Add to favorites"), new BMessage(ADD_REMOVE_FAVORITE), 'F');
 	}
 	menu->AddItem(item);
 
 	if (!isFav) {
-		item = new BMenuItem(B_TRANSLATE("Add to ignore list"), new BMessage(ADDIGNORE), 'I');
+		item = new BMenuItem(B_TRANSLATE("Add to ignore list"), new BMessage(ADDIGNORE), 'A');
 		menu->AddItem(item);
 	}
 
