@@ -162,9 +162,9 @@ MainListItem::DrawItem(BView* view, BRect rect, bool complete)
 
 		if (fIsFavorite) {
 			view->SetBlendingMode(B_PIXEL_ALPHA, B_ALPHA_OVERLAY);
-			view->DrawBitmap(fFavoriteIcon,
-				BPoint(
-					rect.left + spacing / 2 - 3, rect.top + (rect.Height() - fIconSize) / 2 + 4));
+			view->DrawBitmap(
+				fFavoriteIcon, BPoint(rect.left + fIconSize - spacing - 3,
+				rect.top + (rect.Height() - fIconSize) / 2 + 4));
 		}
 		view->PopState();
 		offset = fIcon->Bounds().Width() + offset + spacing;
