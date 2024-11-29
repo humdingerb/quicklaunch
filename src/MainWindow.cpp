@@ -381,6 +381,9 @@ MainWindow::MessageReceived(BMessage* message)
 		{
 			if (fSetupWindow->IsHidden()) {
 				SetFeel(B_NORMAL_WINDOW_FEEL);
+				BRect rect = Frame().OffsetBySelf(fIconHeight * 4, fIconHeight);
+				fSetupWindow->MoveTo(rect.LeftTop());
+				fSetupWindow->MoveOnScreen(B_MOVE_IF_PARTIALLY_OFFSCREEN);
 				fSetupWindow->Show();
 			} else {
 				SetFeel(B_FLOATING_ALL_WINDOW_FEEL);
