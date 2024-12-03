@@ -1,4 +1,13 @@
-1	French	application/x-vnd.humdinger-quicklaunch	3653521921
+1	French	application/x-vnd.humdinger-quicklaunch	4005991587
+About QuickLaunch	MainWindow		À propos de QuickLaunch
+Apply ignore list	MainWindow		Appliquer la liste des ignorés
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Impossible de lancer « %appname% ».\n\nErreur : 
+Help	MainWindow		Aide
+OK	MainWindow		D’accord
+Quit	MainWindow		Quitter
+Selection	MainWindow		Sélection
+Settings…	MainWindow		Paramètres…
+Temporary options	MainWindow		Options temporaires
 About QuickLaunch	Application		À propos de QuickLaunch
 Cancel	Application		Annuler
 Open QuickLaunch	Application		Ouvrir QuickLaunch
@@ -7,22 +16,19 @@ QuickLaunch quickly starts any installed application. Just enter the first few l
 The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		Il semble qu'il existe un raccourci qui pointe vers l'ancienne localisation de Quicklaunch dans les préférences de Raccourcis.\n\nVoulez-vous ouvrir les préférences de Raccourcis pour définir la localisation correcte :  '/boot/system/apps/QuickLaunch' ?
 Add to favorites	ListView		Ajouter aux favoris
 Add to ignore list	ListView		Ajouter à la liste des ignorés
+Enter the app's name.	ListView		Entrez le nom de l'application.
 Found no matches.	ListView		Aucune correspondance.
 Open containing folder	ListView		Ouvrir le dossier parent
 Remove favorite	ListView		Supprimer le favori
-Use '*' as wildcards.	ListView		Utiliser  «*» comme joker.
 Add…	SetupWindow		Ajouter…
+Defaults	SetupWindow		Par défaut
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignorer ces fichiers et dossiers (et leurs sous-dossiers):
 Open Shortcuts preferences	SetupWindow		Ouvrir les préférences de Raccourcis
 Remember last search term	SetupWindow		Se rappeler du terme de la dernière recherche
 Remove	SetupWindow		Supprimer
 Search from start of application name	SetupWindow		Rechercher le début du nom de l’application
-Setup	SetupWindow		Paramétrage
+Settings	SetupWindow		Paramètres
 Show application path	SetupWindow		Montrer le chemin du programme
 Show application version	SetupWindow		Montrer la version du programme
 Show Deskbar replicant	SetupWindow		Montrer le réplicant de la Deskbar
 Sort favorite items to the top	SetupWindow		Afficher les éléments favoris en premier
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Impossible de lancer « %appname% ».\n\nErreur : 
-Help	MainWindow		Aide
-OK	MainWindow		D’accord
-Setup	MainWindow		Paramétrage

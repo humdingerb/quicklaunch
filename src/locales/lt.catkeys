@@ -1,4 +1,13 @@
-1	Lithuanian	application/x-vnd.humdinger-quicklaunch	3653521921
+1	Lithuanian	application/x-vnd.humdinger-quicklaunch	4005991587
+About QuickLaunch	MainWindow		About QuickLaunch
+Apply ignore list	MainWindow		Apply ignore list
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Nepavyko paleisti %appname%.\n\nKlaida:
+Help	MainWindow		Pagalba
+OK	MainWindow		Gerai
+Quit	MainWindow		Quit
+Selection	MainWindow		Selection
+Settings…	MainWindow		Settings…
+Temporary options	MainWindow		Temporary options
 About QuickLaunch	Application		Apie QuickLaunch
 Cancel	Application		Cancel
 Open QuickLaunch	Application		Atverti QuickLaunch
@@ -7,22 +16,19 @@ QuickLaunch quickly starts any installed application. Just enter the first few l
 The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?
 Add to favorites	ListView		Pridėti prie mėgstamų
 Add to ignore list	ListView		Pridėti prie nepaisomų sąrašo
+Enter the app's name.	ListView		Enter the app's name.
 Found no matches.	ListView		Atitikmenų nerasta.
 Open containing folder	ListView		Atverti turinio aplanką
 Remove favorite	ListView		Šalinti iš mėgstamų
-Use '*' as wildcards.	ListView		Pakaitai naudokite „*“.
 Add…	SetupWindow		Pridėti…
+Defaults	SetupWindow		Defaults
 Ignore these files & folders (and their subfolders):	SetupWindow		Nepaisyti šių bylų ir aplankų (ir jų poaplankių):
 Open Shortcuts preferences	SetupWindow		Open Shortcuts preferences
 Remember last search term	SetupWindow		Atminti paskutinę paiešką
 Remove	SetupWindow		Šalinti
 Search from start of application name	SetupWindow		Ieškoti nuo programos pavadinimo pradžios
-Setup	SetupWindow		Sąranka
+Settings	SetupWindow		Settings
 Show application path	SetupWindow		Rodyti programos kelią
 Show application version	SetupWindow		Rodyti programos versiją
 Show Deskbar replicant	SetupWindow		Rodyti Deskbar’o lipduką
 Sort favorite items to the top	SetupWindow		Sort favorite items to the top
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Nepavyko paleisti %appname%.\n\nKlaida:
-Help	MainWindow		Pagalba
-OK	MainWindow		Gerai
-Setup	MainWindow		Sąranka

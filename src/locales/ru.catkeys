@@ -1,4 +1,13 @@
-1	Russian	application/x-vnd.humdinger-quicklaunch	3653521921
+1	Russian	application/x-vnd.humdinger-quicklaunch	4005991587
+About QuickLaunch	MainWindow		О QuickLaunch
+Apply ignore list	MainWindow		Применить список игнорирования
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Не удалось запустить %appname%.\n\nОшибка:
+Help	MainWindow		Помощь
+OK	MainWindow		OK
+Quit	MainWindow		Выход
+Selection	MainWindow		Выделение
+Settings…	MainWindow		Настройки…
+Temporary options	MainWindow		Временные настройки
 About QuickLaunch	Application		Об QuickLaunch
 Cancel	Application		Отмена
 Open QuickLaunch	Application		Открыть QuickLaunch
@@ -7,22 +16,19 @@ QuickLaunch quickly starts any installed application. Just enter the first few l
 The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		Горячие клавиши, похоже, содержат горячую клавишу, указывающую на старое расположение QuickLaunch.\n\nЖелаете открыть Горячие клавиши, чтобы указать корректное расположение: '/boot/system/apps/QuickLaunch' ?
 Add to favorites	ListView		Добавить в избранное
 Add to ignore list	ListView		Добавить в список игнорирования
+Enter the app's name.	ListView		Введите имя приложения.
 Found no matches.	ListView		Совпадения не найдены.
 Open containing folder	ListView		Открыть папку, содержащую элемент
 Remove favorite	ListView		Удалить из избранного
-Use '*' as wildcards.	ListView		Используйте '*' для вывода всего списка.
 Add…	SetupWindow		Добавить…
+Defaults	SetupWindow		По умолчанию
 Ignore these files & folders (and their subfolders):	SetupWindow		Игнорировать эти файлы и папки (и их подпапки):
 Open Shortcuts preferences	SetupWindow		Открыть Горячие клавиши
 Remember last search term	SetupWindow		Запоминать последний поисковый запрос
 Remove	SetupWindow		Удалить
 Search from start of application name	SetupWindow		Искать с начала имени приложения
-Setup	SetupWindow		Настройки
-Show application path	SetupWindow		Отображать полный путь к приложению
+Settings	SetupWindow		Настройки
+Show application path	SetupWindow		Отображать путь к приложению
 Show application version	SetupWindow		Показывать версию приложения
 Show Deskbar replicant	SetupWindow		Отображать репликант в Deskbar
-Sort favorite items to the top	SetupWindow		Избранные элемены сверху
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Не удалось запустить %appname%.\n\nОшибка:
-Help	MainWindow		Помощь
-OK	MainWindow		OK
-Setup	MainWindow		Настройки
+Sort favorite items to the top	SetupWindow		Избранные элементы сверху

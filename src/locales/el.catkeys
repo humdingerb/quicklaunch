@@ -1,4 +1,13 @@
-1	Greek (Modern)	application/x-vnd.humdinger-quicklaunch	3653521921
+1	Greek (Modern)	application/x-vnd.humdinger-quicklaunch	4005991587
+About QuickLaunch	MainWindow		About QuickLaunch
+Apply ignore list	MainWindow		Apply ignore list
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Αδύνατη η εκκίνηση της εφαρμογής %appname%.\n\Σφάλμα:
+Help	MainWindow		Βοήθεια
+OK	MainWindow		Εντάξει
+Quit	MainWindow		Quit
+Selection	MainWindow		Selection
+Settings…	MainWindow		Settings…
+Temporary options	MainWindow		Temporary options
 About QuickLaunch	Application		Σχετικά με το QuickLaunch
 Cancel	Application		Cancel
 Open QuickLaunch	Application		Άνοιγμα του QuickLaunch
@@ -7,22 +16,19 @@ QuickLaunch quickly starts any installed application. Just enter the first few l
 The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?
 Add to favorites	ListView		Προσθήκη στα αγαπημένα
 Add to ignore list	ListView		Προσθήκη στη λίστα παράβλεψης
+Enter the app's name.	ListView		Enter the app's name.
 Found no matches.	ListView		Δεν βρέθηκε τίποτα.
 Open containing folder	ListView		Άνοιγμα σχετικού καταλόγου
 Remove favorite	ListView		Αφαίρεση από αγαπημένα
-Use '*' as wildcards.	ListView		Χρησιμοποιήστε το '*' για ελεύθερο ταίριασμα
 Add…	SetupWindow		Προσθήκη...
+Defaults	SetupWindow		Defaults
 Ignore these files & folders (and their subfolders):	SetupWindow		Παράβλεψη των εξής αρχείων και καταλόγων (και υποκαταλόγων επίσης):
 Open Shortcuts preferences	SetupWindow		Open Shortcuts preferences
 Remember last search term	SetupWindow		Να θυμάσαι την τελευταία αναζήτηση
 Remove	SetupWindow		Αφαίρεση
 Search from start of application name	SetupWindow		Αναζήτηση με βάση τα αρχικά του ονόματος εφαρμογής
-Setup	SetupWindow		Ρυθμίσεις
+Settings	SetupWindow		Settings
 Show application path	SetupWindow		Εμφάνιση διαδρομής εφαρμογής
 Show application version	SetupWindow		Εμφάνιση έκδοσης εφαρμογής
 Show Deskbar replicant	SetupWindow		Εμφάνιση ρεπλίκας Deskbar
 Sort favorite items to the top	SetupWindow		Εμφάνιση των αγαπημένων στην κορυφή
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Αδύνατη η εκκίνηση της εφαρμογής %appname%.\n\Σφάλμα:
-Help	MainWindow		Βοήθεια
-OK	MainWindow		Εντάξει
-Setup	MainWindow		Ρυθμίσεις

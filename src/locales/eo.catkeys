@@ -1,4 +1,13 @@
-1	Esperanto	application/x-vnd.humdinger-quicklaunch	3653521921
+1	Esperanto	application/x-vnd.humdinger-quicklaunch	4005991587
+About QuickLaunch	MainWindow		About QuickLaunch
+Apply ignore list	MainWindow		Apply ignore list
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Lanĉado de %appname% fiaskis.\n\nEraro:
+Help	MainWindow		Helpo
+OK	MainWindow		Bone
+Quit	MainWindow		Quit
+Selection	MainWindow		Selection
+Settings…	MainWindow		Settings…
+Temporary options	MainWindow		Temporary options
 About QuickLaunch	Application		Pri RapidLanĉilo
 Cancel	Application		Cancel
 Open QuickLaunch	Application		Malfermi RapidLanĉilo
@@ -7,22 +16,19 @@ QuickLaunch quickly starts any installed application. Just enter the first few l
 The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?
 Add to favorites	ListView		Doni al legosignon
 Add to ignore list	ListView		Doni al malatentan liston
+Enter the app's name.	ListView		Enter the app's name.
 Found no matches.	ListView		Kongruoj ne estis trovitaj.
 Open containing folder	ListView		Malfermi enhavatan dosierujon
 Remove favorite	ListView		Forigi legosignon
-Use '*' as wildcards.	ListView		Uzi '*' kiel ĵokeroj.
 Add…	SetupWindow		Aldoni…
+Defaults	SetupWindow		Defaults
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignori ĉi tiujn dosierojn & dosierujojn (kaj iliajn subdosierujojn)
 Open Shortcuts preferences	SetupWindow		Open Shortcuts preferences
 Remember last search term	SetupWindow		Memori antaŭan serĉvorton
 Remove	SetupWindow		Forigi
 Search from start of application name	SetupWindow		Serĉi el komenco de aplikaĵa nomo
-Setup	SetupWindow		Agordo
+Settings	SetupWindow		Settings
 Show application path	SetupWindow		Monti aplikaĵa dosierindiko
 Show application version	SetupWindow		Montri aplikaĵa versio
 Show Deskbar replicant	SetupWindow		Montri Deskbara replikanto
 Sort favorite items to the top	SetupWindow		Sort favorite items to the top
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Lanĉado de %appname% fiaskis.\n\nEraro:
-Help	MainWindow		Helpo
-OK	MainWindow		Bone
-Setup	MainWindow		Agordo

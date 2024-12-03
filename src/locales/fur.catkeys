@@ -1,4 +1,13 @@
-1	Friulian	application/x-vnd.humdinger-quicklaunch	3653521921
+1	Friulian	application/x-vnd.humdinger-quicklaunch	4005991587
+About QuickLaunch	MainWindow		Informazions su QuickLaunch
+Apply ignore list	MainWindow		Apliche liste ignorâts
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	No si è rivâts a inviâ %appname%.\n\nErôr:
+Help	MainWindow		Jutori
+OK	MainWindow		Va ben
+Quit	MainWindow		Jes
+Selection	MainWindow		Selezion
+Settings…	MainWindow		Impostazions…
+Temporary options	MainWindow		Opzions temporaniis
 About QuickLaunch	Application		Informazions su QuickLaunch
 Cancel	Application		Anule
 Open QuickLaunch	Application		Vierç QuickLaunch
@@ -7,22 +16,19 @@ QuickLaunch quickly starts any installed application. Just enter the first few l
 The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		Al somee che lis preferencis pes scurtis a vedin une scurte che e ponte ae vecje posizion di QuickLaunch.\n\nDesideristu vierzi lis preferencis pes scurtis cussì  di podê meti la posizion juste: '/boot/system/apps/QuickLaunch' ?
 Add to favorites	ListView		Zonte tai preferîts
 Add to ignore list	ListView		Zonte te liste di ignorâ
+Enter the app's name.	ListView		Inserìs il non de aplicazion.
 Found no matches.	ListView		Nissune corispondence cjatade.
 Open containing folder	ListView		Mostre inte so cartele
 Remove favorite	ListView		Gjave preferît
-Use '*' as wildcards.	ListView		Dopre '*' come mate.
 Add…	SetupWindow		Zonte…
+Defaults	SetupWindow		Predefinîts
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignore chescj file e cartelis (e lis lôr sotcartelis):
 Open Shortcuts preferences	SetupWindow		Vierç preferencis pes scurtis
 Remember last search term	SetupWindow		Visâsi dal ultin tiermin cirût
 Remove	SetupWindow		Gjave
 Search from start of application name	SetupWindow		Cîr dal inizi dal non de aplicazion
-Setup	SetupWindow		Configurazion
+Settings	SetupWindow		Impostazions
 Show application path	SetupWindow		Mostre percors de aplicazion
 Show application version	SetupWindow		Mostre version de aplicazion
 Show Deskbar replicant	SetupWindow		Mostre replicant dal Scritori
 Sort favorite items to the top	SetupWindow		Met i elements preferîts parsore
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	No si è rivâts a inviâ %appname%.\n\nErôr:
-Help	MainWindow		Jutori
-OK	MainWindow		Va ben
-Setup	MainWindow		Configurazion

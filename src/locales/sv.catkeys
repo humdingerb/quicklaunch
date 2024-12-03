@@ -1,4 +1,13 @@
-1	Swedish	application/x-vnd.humdinger-quicklaunch	3653521921
+1	Swedish	application/x-vnd.humdinger-quicklaunch	4005991587
+About QuickLaunch	MainWindow		About QuickLaunch
+Apply ignore list	MainWindow		Apply ignore list
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Kunde inte starta %appname%.\n\nFel:
+Help	MainWindow		Hjälp
+OK	MainWindow		OK
+Quit	MainWindow		Quit
+Selection	MainWindow		Selection
+Settings…	MainWindow		Settings…
+Temporary options	MainWindow		Temporary options
 About QuickLaunch	Application		Om QuickLaunch
 Cancel	Application		Avbryt
 Open QuickLaunch	Application		Öppna QuickLaunch
@@ -7,22 +16,19 @@ QuickLaunch quickly starts any installed application. Just enter the first few l
 The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		\nGenvägsinställningarna verkar ha en genväg som pekar på den gamla platsen för QuickLaunch.\n\nVill du öppna genvägsinställningarna så att du kan ställa in rätt plats: '/boot/system/apps/QuickLaunch'?
 Add to favorites	ListView		Lägg till i favoriter
 Add to ignore list	ListView		Lägg till i ignoreringslista
+Enter the app's name.	ListView		Enter the app's name.
 Found no matches.	ListView		Hittade inga matchningar.
 Open containing folder	ListView		Öppna målmapp
 Remove favorite	ListView		Ta bort från favoriter
-Use '*' as wildcards.	ListView		Använd '*' som jokertecken.
 Add…	SetupWindow		Lägg till…
+Defaults	SetupWindow		Defaults
 Ignore these files & folders (and their subfolders):	SetupWindow		Ignorera dessa filer och mappar (inklusive undermappar):
 Open Shortcuts preferences	SetupWindow		Öppna inställningarna för genvägar
 Remember last search term	SetupWindow		Kom ihåg den senaste sökningen
 Remove	SetupWindow		Ta bort
 Search from start of application name	SetupWindow		Sök från början av applikationsnamnet
-Setup	SetupWindow		Inställningar
+Settings	SetupWindow		Settings
 Show application path	SetupWindow		Visa applikationens sökväg
 Show application version	SetupWindow		Visa applikationens version
 Show Deskbar replicant	SetupWindow		Visa ikon i Deskbar
 Sort favorite items to the top	SetupWindow		Sortera favoritartiklar till toppen
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Kunde inte starta %appname%.\n\nFel:
-Help	MainWindow		Hjälp
-OK	MainWindow		OK
-Setup	MainWindow		Inställningar

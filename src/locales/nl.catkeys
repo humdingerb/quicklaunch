@@ -1,4 +1,13 @@
-1	Dutch	application/x-vnd.humdinger-quicklaunch	3653521921
+1	Dutch	application/x-vnd.humdinger-quicklaunch	4005991587
+About QuickLaunch	MainWindow		Over QuickLaunch
+Apply ignore list	MainWindow		Negeren lijst toepassen
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Kan %appname% niet starten.\n\nFout:
+Help	MainWindow		Help
+OK	MainWindow		OK
+Quit	MainWindow		Afsluiten
+Selection	MainWindow		Selectie
+Settings…	MainWindow		Instellingen...
+Temporary options	MainWindow		Tijdelijke opties
 About QuickLaunch	Application		Over QuickLaunch
 Cancel	Application		Annuleer
 Open QuickLaunch	Application		QuickLaunch openen
@@ -7,22 +16,19 @@ QuickLaunch quickly starts any installed application. Just enter the first few l
 The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		De instellingen van snelkoppelingen hebben een koppeling die wijst naar een oude lokatie van QuickLaunch.\n\nWil je de snelkoppelingen instelling openen zodat je dit can corrigeren naar: '/boot/system/apps/QuickLaunch' ?
 Add to favorites	ListView		Toevoegen aan favorieten
 Add to ignore list	ListView		Toevoegen aan negeerlijst
+Enter the app's name.	ListView		Geef de naam op van de toepassing.
 Found no matches.	ListView		Geen resultaten gevonden.
 Open containing folder	ListView		Bijbehorende map openen
 Remove favorite	ListView		Favoriet verwijderen
-Use '*' as wildcards.	ListView		Gebruik '*' als wildcard
 Add…	SetupWindow		Toevoegen…
+Defaults	SetupWindow		Standaarden
 Ignore these files & folders (and their subfolders):	SetupWindow		Negeer deze bestanden & mappen (en submappen):
 Open Shortcuts preferences	SetupWindow		Open Snelkoppelingen instellingen
 Remember last search term	SetupWindow		Herinner mijn vorige zoekterm
 Remove	SetupWindow		Verwijder
 Search from start of application name	SetupWindow		Zoek vanaf begin van applicatienaam
-Setup	SetupWindow		Instellingen
+Settings	SetupWindow		Instelling
 Show application path	SetupWindow		Toon pad van toepassing
 Show application version	SetupWindow		Toon versie van toepassing
 Show Deskbar replicant	SetupWindow		Toon Deskbar replicant
 Sort favorite items to the top	SetupWindow		Sorteer favoriete items naar boven
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Kan %appname% niet starten.\n\nFout:
-Help	MainWindow		Help
-OK	MainWindow		OK
-Setup	MainWindow		Instellingen

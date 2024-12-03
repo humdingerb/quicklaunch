@@ -1,4 +1,13 @@
-1	Indonesian	application/x-vnd.humdinger-quicklaunch	3653521921
+1	Indonesian	application/x-vnd.humdinger-quicklaunch	4005991587
+About QuickLaunch	MainWindow		About QuickLaunch
+Apply ignore list	MainWindow		Apply ignore list
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Gagal meluncurkan %appname%.\n\nKesalahan:
+Help	MainWindow		Tolong
+OK	MainWindow		OKE
+Quit	MainWindow		Quit
+Selection	MainWindow		Selection
+Settings…	MainWindow		Settings…
+Temporary options	MainWindow		Temporary options
 About QuickLaunch	Application		Tentang QuickLaunch
 Cancel	Application		Batal
 Open QuickLaunch	Application		Buka QuickLaunch
@@ -7,22 +16,19 @@ QuickLaunch quickly starts any installed application. Just enter the first few l
 The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		Preferensi Pintasan tampaknya memiliki pintasan yang menunjuk ke lokasi lama QuickLaunch.\n\nApakah Anda ingin membuka preferensi Pintasan sehingga Anda dapat mengatur lokasi yang benar: '/boot/system/apps/QuickLaunch'?
 Add to favorites	ListView		Tambah ke favorit
 Add to ignore list	ListView		Tambah ke daftar yang diabaikan
+Enter the app's name.	ListView		Enter the app's name.
 Found no matches.	ListView		Tak ditemukan kecocokan.
 Open containing folder	ListView		Buka folder yang berisi
 Remove favorite	ListView		Hapus favorit
-Use '*' as wildcards.	ListView		Gunakan '*' sebagai tanda bebas.
 Add…	SetupWindow		Tambah…
+Defaults	SetupWindow		Defaults
 Ignore these files & folders (and their subfolders):	SetupWindow		Abaikan berkas & folder (dan sub-folder):
 Open Shortcuts preferences	SetupWindow		Buka preferensi Pintasan
 Remember last search term	SetupWindow		Ingat pencarian terakhir
 Remove	SetupWindow		Hapus
 Search from start of application name	SetupWindow		Cari dari awal nama aplikasi
-Setup	SetupWindow		Menyiapkan
+Settings	SetupWindow		Settings
 Show application path	SetupWindow		Tampilkan jalur aplikasi
 Show application version	SetupWindow		Tampilkan versi aplikasi
 Show Deskbar replicant	SetupWindow		Tampilkan Deskbar replicant
 Sort favorite items to the top	SetupWindow		Urutkan item yang disukai di atas
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	Gagal meluncurkan %appname%.\n\nKesalahan:
-Help	MainWindow		Tolong
-OK	MainWindow		OKE
-Setup	MainWindow		Mempersiapkan

@@ -1,28 +1,34 @@
-1	Japanese	application/x-vnd.humdinger-quicklaunch	3653521921
+1	Japanese	application/x-vnd.humdinger-quicklaunch	4005991587
+About QuickLaunch	MainWindow		QuickLaunch について
+Apply ignore list	MainWindow		無視リストを適用
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	％appname％の起動に失敗しました。\n\nエラー：
+Help	MainWindow		ヘルプ
+OK	MainWindow		OK
+Quit	MainWindow		終了
+Selection	MainWindow		選択
+Settings…	MainWindow		設定…
+Temporary options	MainWindow		一時的なオプション
 About QuickLaunch	Application		QuickLaunch について
 Cancel	Application		キャンセル
 Open QuickLaunch	Application		QuickLaunch を開く
 Open Shortcuts	Application		ショートカットキー
-QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		は、インストールされたすべてのアプリを素早く立ち上げます。アプリ名の最初の数文字を入力し、見つかったプログラムリストから選択するだけです。
+QuickLaunch quickly starts any installed application. Just enter the first few letters of its name and choose from a list of all found applications.	Application		QuickLaunchは、インストールされたすべてのアプリを素早く立ち上げます。アプリ名の最初の数文字を入力し、見つかったプログラムリストから選択するだけです。
 The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		ショートカットキー設定に以前QuickLaunchがあった場所を指定したショートカットキーが残っているようです。\n\\nn正しい場所 / boot/system/apps/QuickLaunchに設定を修正するためにショートカットキー設定を開きますか？
 Add to favorites	ListView		お気に入り
 Add to ignore list	ListView		無視リストに追加
-Found no matches.	ListView		一致するアプリがありません
+Enter the app's name.	ListView		アプリケーション名を入力してください。
+Found no matches.	ListView		一致するアプリケーションがありません
 Open containing folder	ListView		フォルダーを開く
 Remove favorite	ListView		お気に入りから削除
-Use '*' as wildcards.	ListView		'*' はワイルドカード
 Add…	SetupWindow		追加…
+Defaults	SetupWindow		デフォルト
 Ignore these files & folders (and their subfolders):	SetupWindow		以下のファイルとフォルダー (およびサブフォルダー) を無視する:
 Open Shortcuts preferences	SetupWindow		ショートカットキーを設定する
 Remember last search term	SetupWindow		最後の検索語を覚えている
 Remove	SetupWindow		削除
 Search from start of application name	SetupWindow		アプリケーション名の初めから検索
-Setup	SetupWindow		設定
-Show application path	SetupWindow		アプリのパスを表示
-Show application version	SetupWindow		アプリのバージョンを表示
+Settings	SetupWindow		設定
+Show application path	SetupWindow		アプリケーションのパスを表示
+Show application version	SetupWindow		アプリケーションのバージョンを表示
 Show Deskbar replicant	SetupWindow		Deskbarレプリカントを表示
 Sort favorite items to the top	SetupWindow		お気に入りを先頭に表示
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	％appname％の起動に失敗しました。\n\nエラー：
-Help	MainWindow		ヘルプ
-OK	MainWindow		OK
-Setup	MainWindow		設定

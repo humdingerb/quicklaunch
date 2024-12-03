@@ -1,4 +1,13 @@
-1	Turkish	application/x-vnd.humdinger-quicklaunch	3653521921
+1	Turkish	application/x-vnd.humdinger-quicklaunch	4005991587
+About QuickLaunch	MainWindow		About QuickLaunch
+Apply ignore list	MainWindow		Apply ignore list
+Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	%appname% başlatılamadı.\n\nHata:
+Help	MainWindow		Yardım
+OK	MainWindow		Tamam
+Quit	MainWindow		Quit
+Selection	MainWindow		Selection
+Settings…	MainWindow		Settings…
+Temporary options	MainWindow		Temporary options
 About QuickLaunch	Application		QuickLaunch hakkında
 Cancel	Application		Vazgeç
 Open QuickLaunch	Application		QuickLaunch’u aç
@@ -7,22 +16,19 @@ QuickLaunch quickly starts any installed application. Just enter the first few l
 The Shortcuts preferences appear to have a shortcut that points to the old location of QuickLaunch.\n\nDo you want to open the Shortcuts preferences so you can set the correct location: '/boot/system/apps/QuickLaunch' ?	Application		Kestirmeler tercihleri panelinde QuickLaunch’un eski konumuna işaret eden bir kestirme var gibi görünüyor.\n\nKestirmeler tercihlerini açıp doğru konumu ayarlamak istiyor musunuz: “/boot/system/apps/QuickLaunch”?
 Add to favorites	ListView		Sık kullanılanlara ekle
 Add to ignore list	ListView		Yok sayılanlar listesine ekle
+Enter the app's name.	ListView		Enter the app's name.
 Found no matches.	ListView		Eşleşme bulunamadı
 Open containing folder	ListView		İçeren klasörü aç
 Remove favorite	ListView		Sık kullanılanlardan kaldır
-Use '*' as wildcards.	ListView		Joker karakter olarak “*” kullan
 Add…	SetupWindow		Ekle…
+Defaults	SetupWindow		Defaults
 Ignore these files & folders (and their subfolders):	SetupWindow		Bu klasörleri, alt klasörlerini ve dosyaları yok say:
 Open Shortcuts preferences	SetupWindow		Kestirmeler tercihlerini aç
 Remember last search term	SetupWindow		Son aramayı anımsa
 Remove	SetupWindow		Kaldır
 Search from start of application name	SetupWindow		Aramayı uygulama adının başından başlat
-Setup	SetupWindow		Ayarlar
+Settings	SetupWindow		Settings
 Show application path	SetupWindow		Uygulama yolunu göster
 Show application version	SetupWindow		Uygulama sürümünü göster
 Show Deskbar replicant	SetupWindow		Masaüstü Yinelenen’ini göster
 Sort favorite items to the top	SetupWindow		Sık kullanılan ögeleri tepeden sırala
-Failed to launch %appname%.\n\nError:	MainWindow	Don't translate the variable %appname%.	%appname% başlatılamadı.\n\nHata:
-Help	MainWindow		Yardım
-OK	MainWindow		Tamam
-Setup	MainWindow		Ayarlar
