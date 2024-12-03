@@ -4,7 +4,7 @@ resource app_flags B_SINGLE_LAUNCH;
 
 resource app_version {
 	major  = 1,
-	middle = 7,
+	middle = 8,
 	minor  = 0,
 
 	/* 0 = development	1 = alpha			2 = beta
