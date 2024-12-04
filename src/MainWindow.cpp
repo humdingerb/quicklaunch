@@ -98,9 +98,11 @@ MainWindow::MainWindow()
 	menubar->AddItem(new IconMenuItem(menu, NULL, kApplicationSignature, B_MINI_ICON));
 
 	fSelectionMenu = new BMenu(B_TRANSLATE("Selection"));
-	fAddRemoveFav = new BMenuItem("AddRemoveFavorite", new BMessage(ADD_REMOVE_FAVORITE));
+	fAddRemoveFav = new BMenuItem(B_TRANSLATE_CONTEXT("Add to favorites", "ListView"),
+		new BMessage(ADD_REMOVE_FAVORITE));
 	fSelectionMenu->AddItem(fAddRemoveFav);
-	fAddToIgnore = new BMenuItem(B_TRANSLATE_CONTEXT("Add to ignore list", "ListView"), new BMessage(ADDIGNORE) , 'A');
+	fAddToIgnore = new BMenuItem(B_TRANSLATE_CONTEXT("Add to ignore list", "ListView"),
+		new BMessage(ADDIGNORE) , 'A');
 	fSelectionMenu->AddItem(fAddToIgnore);
 	item = new BMenuItem(B_TRANSLATE_CONTEXT("Open containing folder", "ListView"), new BMessage(OPENLOCATION), 'O');
 	fSelectionMenu->AddItem(item);
