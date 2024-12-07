@@ -69,32 +69,27 @@ MainListView::Draw(BRect rect)
 	MainWindow* window = dynamic_cast<MainWindow*>(Window());
 	bool emptySearch = window->IsFavoritesOnly();
 	float width, height;
-	BFont font;
+	SetLowColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
+	SetHighColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
 
 	if (IsEmpty()) {
-		SetLowColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
-		SetHighColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
 		FillRect(rect);
 
-		QLSettings& settings = my_app->Settings();
 		BString string;
+		if (emptySearch)
+			string = B_TRANSLATE("Enter the app's name.");
+		else
+			string = B_TRANSLATE("Found no matches.");
 
-		if (settings.Lock()) {
-			if (emptySearch)
-				string = B_TRANSLATE("Enter the app's name.");
-			else
-				string = B_TRANSLATE("Found no matches.");
-
-			settings.Unlock();
-		}
+		BFont font;
 		float strwidth = font.StringWidth(string);
 		GetPreferredSize(&width, &height);
 		GetFont(&font);
 		MovePenTo(width / 2 - strwidth / 2, height / 2 + font.Size() / 2);
-		SetHighColor(ui_color(B_MENU_SELECTED_BACKGROUND_COLOR));
+		SetHighColor(disable_color(
+			ui_color(B_CONTROL_TEXT_COLOR), ui_color(B_CONTROL_BACKGROUND_COLOR)));
 		DrawString(string.String());
 	} else {
-		SetHighColor(ui_color(B_CONTROL_BACKGROUND_COLOR));
 		BRect bounds(Bounds());
 		BRect itemFrame = ItemFrame(CountItems() - 1);
 		bounds.top = itemFrame.bottom;
