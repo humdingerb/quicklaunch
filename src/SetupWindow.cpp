@@ -149,6 +149,7 @@ SetupWindow::SetupWindow(BRect frame, BMessenger main_msgr)
 
 	fOpenPanel = new BFilePanel(B_OPEN_PANEL, NULL, NULL, B_FILE_NODE | B_DIRECTORY_NODE);
 	fOpenPanel->SetTarget(this);
+	fOpenPanel->Window()->SetFeel(B_FLOATING_ALL_WINDOW_FEEL);
 
 	AddShortcut('S', B_COMMAND_KEY, new BMessage(B_QUIT_REQUESTED));
 }
