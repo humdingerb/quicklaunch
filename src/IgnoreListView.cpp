@@ -148,7 +148,7 @@ IgnoreListView::MakeEmpty()
 	// keeping track of the items.
 
 	int32 count = CountItems();
-	BObjectList<IgnoreListItem> list(count, true);
+	BObjectList<IgnoreListItem, true> list(count);
 	for (int32 i = 0; i < count; i++)
 		list.AddItem(dynamic_cast<IgnoreListItem*>(ItemAt(i)));
 
