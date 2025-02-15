@@ -1,4 +1,4 @@
-![QuickLaunch icon](./documentation/images/quicklaunch_icon_64.png)
+![QuickLaunch icon](./documentation/images/icon_64.png)
 **QuickLaunch**
 for [Haiku](https://www.haiku-os.org)
 
