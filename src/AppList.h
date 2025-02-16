@@ -14,7 +14,7 @@
 #include <Volume.h>
 
 
-typedef BObjectList<AppListItem> AppListItems;
+typedef BObjectList<AppListItem, true> AppListItems;
 
 
 class AppList : public BLooper {

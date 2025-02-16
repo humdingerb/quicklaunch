@@ -209,7 +209,7 @@ DeskbarReplicant::MouseDown(BPoint where)
 	GetMouse(&point, &buttons);
 
 	if (buttons & B_SECONDARY_MOUSE_BUTTON) {
-		BObjectList<entry_ref>* favoriteList = _GetFavoriteList();
+		BObjectList<entry_ref, true>* favoriteList = _GetFavoriteList();
 
 		BPopUpMenu* menu = new BPopUpMenu("", false, false);
 		menu->SetFont(be_plain_font);
@@ -243,7 +243,7 @@ DeskbarReplicant::MouseDown(BPoint where)
 }
 
 
-BObjectList<entry_ref>*
+BObjectList<entry_ref, true>*
 DeskbarReplicant::_GetFavoriteList()
 {
 	BPath path;
@@ -253,7 +253,7 @@ DeskbarReplicant::_GetFavoriteList()
 	path.Append("QuickLaunch_settings");
 	BFile file(path.Path(), B_READ_ONLY);
 
-	BObjectList<entry_ref>* favoriteList = new BObjectList<entry_ref>(20, true);
+	BObjectList<entry_ref, true>* favoriteList = new BObjectList<entry_ref, true>();
 
 	BMessage settings;
 	if (file.InitCheck() == B_OK && settings.Unflatten(&file) == B_OK) {

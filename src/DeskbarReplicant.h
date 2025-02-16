@@ -33,7 +33,7 @@ class DeskbarReplicant : public BView {
 
 	private:
 		void			_Init();
-		BObjectList<entry_ref>*
+		BObjectList<entry_ref, true>*
 						_GetFavoriteList();
 
 		BBitmap*		fIcon;

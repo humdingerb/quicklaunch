@@ -393,7 +393,7 @@ MainListView::MakeEmpty()
 	// keeping track of the items.
 
 	int32 count = CountItems();
-	BObjectList<MainListItem> list(count, true);
+	BObjectList<MainListItem, true> list(count);
 	for (int32 i = 0; i < count; i++)
 		list.AddItem(dynamic_cast<MainListItem*>(ItemAt(i)));
 

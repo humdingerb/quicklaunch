@@ -24,7 +24,7 @@ AppList::AppList()
 	:
 	BLooper("app list builder"),
 	fInit(false),
-	fAppList(20, true)
+	fAppList()
 {
 	Run();
 }

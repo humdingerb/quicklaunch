@@ -66,7 +66,7 @@ public:
 	IgnoreListView* IgnoreList() { return fIgnoreList; };
 	void			AddDefaultIgnore();
 
-	BObjectList<entry_ref>* fFavoriteList;
+	BObjectList<entry_ref, true>* fFavoriteList;
 	IgnoreListView*	fIgnoreList;
 
 private:

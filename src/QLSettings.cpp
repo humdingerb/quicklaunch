@@ -59,7 +59,7 @@ QLSettings::QLSettings()
 	fSortFavorites = false;
 	fSearchTerm = "";
 	fShowIgnore = fTempApplyIgnore = true;
-	fFavoriteList = new BObjectList<entry_ref>(20, true);
+	fFavoriteList = new BObjectList<entry_ref, true>();
 	fIgnoreList = new IgnoreListView();
 
 	path.Append("QuickLaunch_settings");
