@@ -1,3 +1,8 @@
+* * *
+This repository is in archived, read-only mode.
+QuickLaunch development continues at [Codeberg](https://codeberg.org/humdinger/quicklaunch).
+* * *
+
 ![QuickLaunch icon](./documentation/images/icon_64.png)
 **QuickLaunch**
 for [Haiku](https://www.haiku-os.org)
@@ -11,5 +16,3 @@ Simply start to enter the name of an application and QuickLaunch will find all p
 Here's the main window after searching for all applications starting with "me" and behind it the settings window:
 
 ![QuickLaunch windows](./documentation/images/quicklaunch.png)
-
-For more information, please see the [QuickLaunch help file](http://htmlpreview.github.io/?https://github.com/humdingerb/quicklaunch/master/documentation/ReadMe.html).
